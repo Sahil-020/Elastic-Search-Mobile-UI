@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import kwiat from "../Logo/kwiat-logo-removebg-preview.png";
 import {
   Nav,
   NavDropdown,
@@ -28,11 +29,7 @@ class Main extends Component {
         <Navbar bg="light" expand={false}>
           <Container fluid>
             <Navbar.Brand href="#">
-              <img
-                src="https://cdn4.kwiat.com/source-images/web/logos/kwiat.jpg"
-                height="50px"
-                width="80px"
-              ></img>
+              <img src={kwiat} height="50px" width="80px"></img>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="offcanvasNavbar" />
             <Navbar.Offcanvas
