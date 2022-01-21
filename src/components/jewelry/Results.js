@@ -75,6 +75,7 @@ class Results extends Component {
                   : ""}
               </div>
               <div className="item_metal">{item.Metal}</div>
+              <div className="item_price">{item.RetailPrice}</div>
             </div>
           </div>
         ))}

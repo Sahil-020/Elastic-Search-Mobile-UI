@@ -2,12 +2,18 @@
     // padding: 6px;
     .content {
         .search_components_container {
-            padding: 8px 16px 16px;
+            display: flex;
+            flex-direction: column;
+            row-gap: 20px;
+            // align-items: center;
+            padding: 20px 16px 16px;
             .form_field {
-                height: 30px;
-                input {
-                    height: 30px !important;
-                    min-height: 30px !important;
+                height: 42px;
+                width: 100%;
+                input,
+                .css-ee3byn-Select {
+                    height: 42px !important;
+                    min-height: 42px !important;
                 }
             }
         }

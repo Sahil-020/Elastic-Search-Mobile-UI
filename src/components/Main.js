@@ -21,6 +21,8 @@ import {
 import jewelrySearch from "./jewelry/jewelrySearch";
 import Results from "./jewelry/Results";
 import SerialSearchComponent from "./search-components/SerialSearchComponent";
+import ItemTypeSearch from "./search-components/ItemTypeSearch";
+import PriceRange from "./search-components/PriceRange";
 
 class Main extends Component {
   constructor(props) {
@@ -67,12 +69,14 @@ class Main extends Component {
           >
             <div className="search_components_container">
               <SerialSearchComponent />
+              <ItemTypeSearch />
+              <PriceRange />
             </div>
             <ReactiveList
               componentId="results"
               dataField="RetailPrice"
               react={{
-                and: ["SerialSearch"],
+                and: ["SerialSearch", "ItemType", "PriceRange"],
                 // or: andQuery,
               }}
               renderResultStats={({ numberOfResults, time }) => (
