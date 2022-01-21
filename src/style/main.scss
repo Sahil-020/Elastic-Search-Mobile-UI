@@ -1,3 +1,56 @@
 .main_container {
     // padding: 6px;
+    .content {
+        .search_components_container {
+            padding: 8px 16px 16px;
+            .form_field {
+                height: 30px;
+                input {
+                    height: 30px !important;
+                    min-height: 30px !important;
+                }
+            }
+        }
+        .result_container {
+            display: flex;
+            flex-direction: column;
+            padding: 8px;
+            gap: 6px;
+            .item_container {
+                height: 150px;
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                border: 1px solid #9a9a9a;
+                .item_image {
+                    width: 30%;
+                    margin: auto;
+                    padding: 4px;
+                    img {
+                        max-width: 100%;
+                    }
+                }
+                .item_details {
+                    width: 70%;
+                    padding: 10px;
+                    text-align: left;
+                    .item_serial_style {
+                        h6 {
+                            text-align: left;
+                            font-size: 15px;
+                        }
+                    }
+                    .item_description,
+                    .item_metal,
+                    .item_type_subtype {
+                        font-size: 13px;
+                    }
+                    .item_description {
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
 }

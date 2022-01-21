@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { ReactiveList, ReactiveBase } from "@appbaseio/reactivesearch";
 import Results from "./Results";
-import SerialSearchComponent from "./search-components/SerialSearchComponent";
+import SerialSearchComponent from "../search-components/SerialSearchComponent";
+import {
+  JewelrySerialApp,
+  AppbaseAppUrl,
+  AppbaseCredentials,
+} from "../../utils/constants";
 
 class jewelrySearch extends Component {
   constructor(props) {
@@ -30,6 +35,7 @@ class jewelrySearch extends Component {
           )}
           render={({ data }) => <Results items={data} />}
         />
+        Hello
       </ReactiveBase>
     );
   }

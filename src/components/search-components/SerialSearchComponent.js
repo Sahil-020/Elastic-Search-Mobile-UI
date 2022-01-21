@@ -8,7 +8,8 @@ class SerialSearchComponent extends Component {
     return (
       <div>
         <DataSearch
-          title="Serial"
+          className="form_field"
+          // title="Serial"
           //   {
 
           //     // appType && appType === "customer" ? "Serial Number" : "Serial #"
@@ -24,9 +25,10 @@ class SerialSearchComponent extends Component {
           //   }
           dataField={SerialDataField}
           componentId="SerialSearch"
+          icon={false}
           // onValueChange={(value) => this.handleChange(value)}
           // onValueSelected={(value) => this.handleSelected(value)}
-          // iconPosition={appType && appType === "customer" ? "right" : "left"}
+          iconPosition={"right"}
         />
       </div>
     );
