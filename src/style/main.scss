@@ -1,12 +1,18 @@
 .main_container {
     // padding: 6px;
     .content {
+        // padding: 8px;
         .search_components_container {
             display: flex;
             flex-direction: column;
             row-gap: 20px;
             // align-items: center;
             padding: 20px 16px 16px;
+            position: sticky;
+            top: 0;
+            background: white;
+            border-bottom: 1px solid grey;
+            margin: 0px 0px 10px 0px;
             .form_field {
                 height: 42px;
                 width: 100%;
