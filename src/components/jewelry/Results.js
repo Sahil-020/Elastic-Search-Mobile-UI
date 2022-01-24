@@ -100,6 +100,7 @@ class Results extends Component {
               </Card.Title>
               <Card.Text>
                 <div className="item_description">{item.Description}</div>
+                <div className="item_brand">{item.Brand}</div>
                 <div className="item_type_subtype">
                   {item.ItemType && item.ItemSubtype
                     ? item.ItemSubtype

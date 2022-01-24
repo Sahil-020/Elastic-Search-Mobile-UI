@@ -23,6 +23,8 @@ import Results from "./jewelry/Results";
 import SerialSearchComponent from "./search-components/SerialSearchComponent";
 import ItemTypeSearch from "./search-components/ItemTypeSearch";
 import PriceRange from "./search-components/PriceRange";
+import KwiatOnly from "./search-components/KwiatOnly";
+import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
 
 class Main extends Component {
   constructor(props) {
@@ -71,12 +73,13 @@ class Main extends Component {
               <SerialSearchComponent />
               <ItemTypeSearch />
               <PriceRange />
+              <KwiatOnly />
             </div>
             <ReactiveList
               componentId="results"
               dataField="RetailPrice"
               react={{
-                and: ["SerialSearch", "ItemType", "PriceRange"],
+                and: ["SerialSearch", "ItemType", "PriceRange", "KwiatOnly"],
                 // or: andQuery,
               }}
               renderResultStats={({ numberOfResults, time }) => (
@@ -87,6 +90,9 @@ class Main extends Component {
               render={({ data }) => <Results items={data} />}
             />
           </ReactiveBase>
+        </div>
+        <div className="es-scroll-button">
+          <ScrollUpButton AnimationDuration={200} />
         </div>
         {/* */}
       </div>

@@ -11,7 +11,7 @@ class PriceRange extends Component {
       <RangeInput
         componentId="PriceRange"
         dataField={"RetailPrice"}
-        // className="form_field"
+        className="form_field"
         title="Price"
         showSlider={false}
         range={{
