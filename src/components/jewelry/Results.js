@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Card from "react-bootstrap/Card";
 
 class Results extends Component {
   constructor(props) {
@@ -48,36 +49,64 @@ class Results extends Component {
     return (
       <div className="result_container">
         {items.map((item, index) => (
-          <div className="item_container" key={index}>
-            <div className="item_image">
-              <img src={this.handleImage(item)} />
-            </div>
-            <div className="item_details">
-              <div className="item_serial_style">
-                <h6>
-                  {item.SerialNumber && item.StyleNumber
-                    ? `${item.SerialNumber} | ${item.StyleNumber}`
-                    : item.SerialNumber
-                    ? item.SerialNumber
-                    : item.StyleNumber
-                    ? item.StyleNumber
-                    : ``}
-                </h6>
-              </div>
-              <div className="item_description">{item.Description}</div>
-              <div className="item_type_subtype">
-                {item.ItemType && item.ItemSubtype
-                  ? item.ItemSubtype
-                  : item.ItemSubtype
-                  ? item.ItemSubtype
-                  : item.ItemType
-                  ? item.ItemType
-                  : ""}
-              </div>
-              <div className="item_metal">{item.Metal}</div>
-              <div className="item_price">{item.RetailPrice}</div>
-            </div>
-          </div>
+          // <div className="item_container" key={index}>
+          //   <div className="item_image">
+          //     <img src={this.handleImage(item)} />
+          //   </div>
+          //   <div className="item_details">
+          //     <div className="item_serial_style">
+          //       <h6>
+          //         {item.SerialNumber && item.StyleNumber
+          //           ? `${item.SerialNumber} | ${item.StyleNumber}`
+          //           : item.SerialNumber
+          //           ? item.SerialNumber
+          //           : item.StyleNumber
+          //           ? item.StyleNumber
+          //           : ``}
+          //       </h6>
+          //     </div>
+          //     <div className="item_description">{item.Description}</div>
+          //     <div className="item_type_subtype">
+          //       {item.ItemType && item.ItemSubtype
+          //         ? item.ItemSubtype
+          //         : item.ItemSubtype
+          //         ? item.ItemSubtype
+          //         : item.ItemType
+          //         ? item.ItemType
+          //         : ""}
+          //     </div>
+          //     <div className="item_metal">{item.Metal}</div>
+          //     <div className="item_price">{item.RetailPrice}</div>
+          //   </div>
+          // </div>
+          <Card key={index}>
+            <Card.Img variant="top" src={this.handleImage(item)} />
+            <Card.Body>
+              <Card.Title>
+                {item.SerialNumber && item.StyleNumber
+                  ? `${item.SerialNumber} | ${item.StyleNumber}`
+                  : item.SerialNumber
+                  ? item.SerialNumber
+                  : item.StyleNumber
+                  ? item.StyleNumber
+                  : ``}
+              </Card.Title>
+              <Card.Text>
+                <div className="item_description">{item.Description}</div>
+                <div className="item_type_subtype">
+                  {item.ItemType && item.ItemSubtype
+                    ? item.ItemSubtype
+                    : item.ItemSubtype
+                    ? item.ItemSubtype
+                    : item.ItemType
+                    ? item.ItemType
+                    : ""}
+                </div>
+                <div className="item_metal">{item.Metal}</div>
+                <div className="item_price">{item.RetailPrice}</div>
+              </Card.Text>
+            </Card.Body>
+          </Card>
         ))}
       </div>
     );

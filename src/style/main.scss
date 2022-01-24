@@ -1,3 +1,5 @@
+@import "~bootstrap/scss/bootstrap";
+
 .main_container {
     // padding: 6px;
     .content {
@@ -8,8 +10,8 @@
             row-gap: 20px;
             // align-items: center;
             padding: 20px 16px 16px;
-            position: sticky;
-            top: 0;
+            // position: sticky;
+            // top: 0;
             background: white;
             border-bottom: 1px solid grey;
             margin: 0px 0px 10px 0px;
@@ -26,8 +28,9 @@
         .result_container {
             display: flex;
             flex-direction: column;
+            margin-top: 20px;
             padding: 8px;
-            gap: 6px;
+            gap: 16px;
             .item_container {
                 height: 150px;
                 width: 100%;
@@ -61,6 +64,38 @@
                     }
                     .item_description {
                         font-weight: 600;
+                    }
+                }
+            }
+            .card {
+                height: 375px;
+                width: 250px;
+                margin: auto;
+                padding: 1rem 0.5rem 0.5rem;
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                // background-color: rgba(241, 241, 241, 0.876);
+                img {
+                    max-width: 50%;
+                    // max-height: 40%;
+                    margin: auto;
+                }
+                .card-body {
+                    padding: 1rem 0 0;
+
+                    .card-title.h5 {
+                        font-size: 1rem;
+                        // text-align: left;
+                    }
+                    .card-text {
+                        // text-align: left;
+                        padding: 4px 0px 0px;
+                        display: flex;
+                        flex-direction: column;
+                        row-gap: 5px;
+                        font-size: 13px;
+                        .item_description {
+                            font-size: 15px;
+                        }
                     }
                 }
             }
