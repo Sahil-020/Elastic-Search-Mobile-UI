@@ -80,7 +80,14 @@ class Results extends Component {
           //   </div>
           // </div>
           <Card key={index}>
-            <Card.Img variant="top" src={this.handleImage(item)} />
+            <Card.Img
+              variant="top"
+              src={this.handleImage(item)}
+              onError={(event) => {
+                event.target.src =
+                  "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg";
+              }}
+            />
             <Card.Body>
               <Card.Title>
                 {item.SerialNumber && item.StyleNumber

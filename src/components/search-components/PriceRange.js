@@ -1,4 +1,4 @@
-import { RangeSlider } from "@appbaseio/reactivesearch";
+import { RangeSlider, RangeInput } from "@appbaseio/reactivesearch";
 import React, { Component } from "react";
 
 class PriceRange extends Component {
@@ -8,10 +8,12 @@ class PriceRange extends Component {
   state = {};
   render() {
     return (
-      <RangeSlider
+      <RangeInput
         componentId="PriceRange"
         dataField={"RetailPrice"}
+        // className="form_field"
         title="Price"
+        showSlider={false}
         range={{
           start: 0,
           end: 10000000,

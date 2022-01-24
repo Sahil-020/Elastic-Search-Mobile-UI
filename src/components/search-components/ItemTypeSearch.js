@@ -12,6 +12,7 @@ class ItemTypeSearch extends Component {
         className="form_field"
         componentId="ItemType"
         dataField={"ItemType.keyword"}
+        title="Item - Type"
         size={100}
         showCount={false}
         showSearch={true}
