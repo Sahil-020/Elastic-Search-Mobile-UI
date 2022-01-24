@@ -92,7 +92,12 @@ class Main extends Component {
           </ReactiveBase>
         </div>
         <div className="es-scroll-button">
-          <ScrollUpButton AnimationDuration={200} />
+          <ScrollUpButton
+            EasingType="linear"
+            StopPosition={0}
+            ShowAtPosition={150}
+            AnimationDuration={200}
+          />
         </div>
         {/* */}
       </div>
