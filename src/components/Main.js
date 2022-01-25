@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import kwiat from "../Logo/kwiat-logo-removebg-preview.png";
-import { ReactiveList, ReactiveBase } from "@appbaseio/reactivesearch";
+import {
+  ReactiveList,
+  ReactiveBase,
+  SelectedFilters,
+} from "@appbaseio/reactivesearch";
 import {
   Nav,
   NavDropdown,
@@ -23,9 +27,19 @@ import jewelrySearch from "./jewelry/jewelrySearch";
 import Results from "./jewelry/Results";
 import SerialSearchComponent from "./search-components/SerialSearchComponent";
 import ItemTypeSearch from "./search-components/ItemTypeSearch";
-import PriceRange from "./search-components/PriceRange";
-import KwiatOnly from "./search-components/KwiatOnly";
 import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
+import ItemSubtype from "./search-components/ItemSubtype";
+import Collection from "./search-components/Collection";
+import SubCollection from "./search-components/SubCollection";
+import Maker from "./search-components/Maker";
+import RetailPriceRange from "./search-components/RetailPriceRange";
+import WholesalePriceRange from "./search-components/WholesalePriceRange";
+import DiamondCarats from "./search-components/DiamondCarat";
+import ColorCarat from "./search-components/ColorCarat";
+import KwiatOnly from "./search-components/KwiatOnly";
+import IsSold from "./search-components/IsSold";
+import FredLeightonOnly from "./search-components/FredLeightonOnly";
+import SearchCriteria from "./search-components/SearchCriteria";
 
 class Main extends Component {
   constructor(props) {
@@ -94,20 +108,58 @@ class Main extends Component {
                 <Offcanvas.Body>
                   <Accordion defaultActiveKey="0">
                     <Accordion.Item eventKey="0">
-                      <Accordion.Header>General Fields Filter</Accordion.Header>
+                      <Accordion.Header>General Fields</Accordion.Header>
                       <Accordion.Body>
                         <ItemTypeSearch />
+                        <ItemSubtype />
+                        <Collection />
+                        <SubCollection />
+                        <Maker />
+                      </Accordion.Body>
+                    </Accordion.Item>
+                    <Accordion.Item eventKey="1">
+                      <Accordion.Header>Range Fields</Accordion.Header>
+                      <Accordion.Body>
+                        <RetailPriceRange />
+                        <WholesalePriceRange />
+                        <DiamondCarats />
+                        <ColorCarat />
+                      </Accordion.Body>
+                    </Accordion.Item>
+                    <Accordion.Item eventKey="2">
+                      <Accordion.Header>Selection Fields</Accordion.Header>
+                      <Accordion.Body className="selection_fields">
+                        <KwiatOnly />
+                        <FredLeightonOnly />
+                        <IsSold />
                       </Accordion.Body>
                     </Accordion.Item>
                   </Accordion>
                 </Offcanvas.Body>
               </Offcanvas>
             </div>
+            {/* <SelectedFilters className="filters" /> */}
+            <SearchCriteria />
+
             <ReactiveList
               componentId="results"
               dataField="RetailPrice"
               react={{
-                and: ["SerialSearch", "ItemType", "PriceRange", "KwiatOnly"],
+                and: [
+                  "SerialSearch",
+                  "ItemType",
+                  "PriceRange",
+                  "KwiatOnly",
+                  "SubType",
+                  "Collection",
+                  "SubCollection",
+                  "Maker",
+                  "DiamondCarats",
+                  "ColorCarats",
+                  "KwiatOnly",
+                  "FredLeightonOnly",
+                  "IncludeSold",
+                ],
                 // or: andQuery,
               }}
               renderResultStats={({ numberOfResults, time }) => (

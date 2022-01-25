@@ -4,9 +4,30 @@ import { MultiDropdownList } from "@appbaseio/reactivesearch";
 class ItemTypeSearch extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      optionsSelected: [],
+    };
+    this.handleSelection = this.handleSelection.bind(this);
   }
-  state = {};
+
+  handleSelection(key) {
+    let { optionsSelected } = this.state;
+    if (optionsSelected.includes(key)) {
+      this.setState((prevState) => ({
+        optionsSelected: prevState.optionsSelected.filter(
+          (value) => value !== key
+        ),
+      }));
+    } else {
+      this.setState((prevState) => ({
+        optionsSelected: [...prevState.optionsSelected, key],
+      }));
+    }
+  }
+
   render() {
+    let { optionsSelected } = this.state;
+    console.log("optionsSelected: ", this.state.optionsSelected);
     return (
       <MultiDropdownList
         className="form_field"
@@ -17,40 +38,32 @@ class ItemTypeSearch extends Component {
         showCount={false}
         showSearch={true}
         sortBy="asc"
-        // renderListItem={(label) => (
-        //   <div className="filter_items">
-        //     {label !== "NULL" ? label : "None"}
-        //   </div>
-        // )}
         render={({ loading, error, data, handleChange }) => {
-          if (loading) {
-            return <div>Fetching Results.</div>;
-          }
-          if (error) {
-            return (
-              <div>
-                Something went wrong! Error details {JSON.stringify(error)}
-              </div>
-            );
-          }
+          // console.log("data : ", data);
           return (
             <div className="filter_options_container">
               {data.map((item) => (
                 <div
-                  className="filter_options"
+                  className={
+                    optionsSelected.includes(item.key)
+                      ? "filter_options_active"
+                      : "filter_options"
+                  }
                   onClick={(e) => {
                     handleChange(item.key);
-                    e.target.classList.toggle("filter_options_active");
+                    this.handleSelection(item.key);
+                    // console.log("item : ", item);
+                    e.currentTarget.classList.toggle("filter_options_active");
                   }}
                   key={item.key}
                 >
                   <span
                     onClick={(e) => {
-                      e.stopPropagation();
+                      // e.stopPropagation();
                       // if(e.target.clas)
-                      e.target.parentNode.classList.toggle(
-                        "filter_options_active"
-                      );
+                      // e.target.parentNode.classList.toggle(
+                      //   "filter_options_active"
+                      // );
                     }}
                   >
                     {item.key}

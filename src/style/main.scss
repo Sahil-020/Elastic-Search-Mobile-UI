@@ -2,13 +2,28 @@
 
 .main_container {
     // padding: 6px;
+    .navbar_container {
+        .navbar.navbar-light.bg-light {
+            .container-fluid {
+                .navbar-toggler {
+                    padding: 0.25rem 0.5rem;
+                    font-size: 1rem;
+                    line-height: 1;
+                    background-color: transparent;
+                    border: 1px solid transparent;
+                    border-radius: 0.25rem;
+                    transition: box-shadow 0.15s ease-in-out;
+                }
+            }
+        }
+    }
     .content {
         // padding: 8px;
         .search_components_container {
             display: flex;
             flex-direction: row;
             gap: 20px;
-            z-index: 10000;
+            z-index: 100;
             // align-items: center;
             padding: 20px 16px 16px;
             position: sticky;
@@ -17,14 +32,14 @@
             border-bottom: 1px solid grey;
             margin: 0px 0px 10px 0px;
             .form_field {
-                max-height: 34px;
+                max-height: 28px;
                 width: 80%;
                 input,
                 .css-ee3byn-Select {
-                    height: 34px !important;
-                    min-height: 34px !important;
+                    height: 28px !important;
+                    min-height: 28px !important;
                 }
-                ul {
+                > ul {
                     list-style-type: none !important;
                     display: block !important;
                     padding: 5px 0px;
@@ -50,6 +65,35 @@
                 width: 20%;
                 border: none;
                 cursor: pointer;
+            }
+        }
+
+        .selectedFilters {
+            margin: 8px 0;
+            > a {
+                background: #fff;
+                font-size: 12px;
+            }
+        }
+        .selected--filters--container {
+            display: flex;
+            padding: 0px 0px 0px 0px;
+            width: 100%;
+            height: 32px;
+            margin: 5px 0px;
+            overflow-y: hidden;
+            .clear-filter-btn,
+            .clear-all-btn {
+                font-size: 14px;
+                margin: 4px;
+                -webkit-appearance: none;
+                border: none;
+                outline: none;
+                background: transparent;
+                .clear--icon {
+                    margin-left: 6px;
+                    opacity: 0.7;
+                }
             }
         }
         .result_container {
@@ -140,7 +184,7 @@
 }
 
 .offcanvas-bottom {
-    height: 75vh !important;
+    height: 80vh !important;
     .offcanvas-header {
         padding: 1rem 1rem 0.5rem;
         .offcanvas-title.h5,
@@ -157,39 +201,46 @@
             .accordion-header,
             .accordion-button {
                 background-color: white !important;
+                border: white;
                 // @media (min-width: 768px) {
                 //     background-color: #f2f4f5;
                 // }
             }
             .accordion-button {
-                padding: 0.5rem 0.75rem;
+                padding: 0.75rem 0.75rem;
                 background-color: #f2f4f5;
                 // @media (min-width: 768px) {
                 //     width: 70%;
                 //     margin: auto;
                 // }
+                border-bottom: 1px solid grey !important;
+                border-radius: 0px !important;
+                outline: none;
                 font-weight: 600 !important;
                 color: black !important;
                 font-size: 14px;
-                border: white !important;
             }
             .accordion-button:focus {
                 box-shadow: none;
                 // color: #1b387d !important;
                 // font-weight: 700;
-                // border: none;
+                // border: white !important;
             }
 
             .accordion-button:not(.collapsed):after {
                 background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z'/%3E%3C/svg%3E") !important;
+                // border: white !important;
                 // font-size: 1.5rem;
                 // border: none;
             }
 
             .accordion-body {
-                height: 200px;
+                // height: 200px;
                 padding: 0.5rem 0.75rem;
                 background-color: white !important;
+                display: flex;
+                flex-direction: column;
+                row-gap: 12px;
                 .form_field {
                     // max-height: 34px;
                     // width: 80%;
@@ -201,7 +252,7 @@
                         height: 34px !important;
                         min-height: 34px !important;
                     }
-                    ul {
+                    > ul {
                         list-style-type: none !important;
                         display: block !important;
                         padding: 5px 0px;
@@ -210,15 +261,18 @@
                             display: flex;
                             align-items: center;
                             gap: 8px;
+                            max-height: 14px;
                             input {
-                                height: 18px;
-                                width: 18px;
+                                height: 14px !important;
+                                width: 14px;
                             }
                             span {
                                 // height: 18px;
+                                font-size: 14px;
+                                margin: 0px 0px 0px 0px;
                             }
                         }
-                        li:nth-child(2) {
+                        li:first-child {
                             display: none;
                         }
                     }
@@ -230,7 +284,8 @@
                             display: flex;
                             flex-wrap: wrap;
                             gap: 5px;
-                            .filter_options {
+                            .filter_options,
+                            .filter_options_active {
                                 width: fit-content;
                                 font-size: 10px;
                                 border: 0.5px solid #eeeeee;
@@ -240,11 +295,100 @@
                                 cursor: pointer;
                             }
                             .filter_options_active {
-                                border: 0.5px solid black;
+                                border: 0.5px solid black !important;
+                            }
+                        }
+                        .subtype_filter_options_container {
+                        }
+                        ul {
+                            list-style-type: none !important;
+                            display: block !important;
+                            padding: 5px;
+                            margin: 0;
+                            height: 100px;
+                            overflow: auto;
+                            border: 1px solid;
+                            border-radius: 4px;
+                            li {
+                                display: flex;
+                                align-items: center;
+                                gap: 7px;
+                                font-size: 12px;
+                                margin: 2px;
                             }
                         }
                     }
                 }
+                .price-range {
+                    margin-bottom: 8px;
+                    .price-range__input {
+                        display: flex;
+                        align-items: baseline;
+                        > div {
+                            width: 30%;
+                            > div {
+                                > input {
+                                    background: #fff;
+                                    padding: 5px;
+                                    @media screen and (-webkit-min-device-pixel-ratio: 0) {
+                                        height: 30px;
+                                    }
+                                }
+                            }
+                            > h2 {
+                                font-size: 14px;
+                                color: #58585a;
+                                line-height: 20px;
+                                display: block;
+                                max-width: 100%;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                            }
+                        }
+                        .price-range__input--price-input {
+                            width: 70%;
+                            height: 30px;
+                        }
+                    }
+                }
+                .carat-range-input {
+                    margin-bottom: 8px;
+                    div > div > input {
+                        background: #fff;
+                        padding: 5px;
+                    }
+                    display: flex;
+                    .carat-range-input__carat-slider {
+                        display: flex;
+                        align-items: center;
+                        vertical-align: middle;
+                        width: 30%;
+                        h2 {
+                            font-size: 14px;
+                            // font-family: "Proxima Nova Regular" !important;
+                            line-height: 30px;
+                            color: #58585a;
+                            margin: 0px;
+                            display: block;
+                            max-width: 100%;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                    }
+                    .carat-range-input__carat-input {
+                        width: 70%;
+                        height: 35px;
+                    }
+                }
+            }
+            .accordion-body.selection_fields {
+                padding: 0.5rem 0.75rem;
+                background-color: white !important;
+                display: flex;
+                flex-direction: column;
+                row-gap: 3px;
             }
         }
     }
