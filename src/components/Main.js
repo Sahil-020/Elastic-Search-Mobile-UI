@@ -119,7 +119,7 @@ class Main extends Component {
                     </Accordion.Item>
                     <Accordion.Item eventKey="1">
                       <Accordion.Header>Range Fields</Accordion.Header>
-                      <Accordion.Body>
+                      <Accordion.Body className="range_fields">
                         <RetailPriceRange />
                         <WholesalePriceRange />
                         <DiamondCarats />
