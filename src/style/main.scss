@@ -79,7 +79,7 @@
             display: flex;
             padding: 0px 0px 0px 0px;
             width: 100%;
-            height: 30px;
+            max-height: 30px;
             margin: 5px 0px;
             overflow-y: hidden;
             .clear-filter-btn,
@@ -104,77 +104,114 @@
                 background: white;
             }
         }
-        .result_container {
+        .es_results {
             display: flex;
             flex-direction: column;
-            margin-top: 20px;
-            padding: 8px;
-            gap: 16px;
-            .item_container {
-                height: 150px;
+            justify-content: space-around;
+            padding: 10px 5px 0px;
+            align-items: flex-end;
+            gap: 10px;
+            > button {
+                width: fit-content;
+                border: grey;
+                border-radius: 5px;
+                outline: none;
+                padding: 4px 10px;
+            }
+            .result_container,
+            .compact_result_container {
                 width: 100%;
                 display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                border: 1px solid #9a9a9a;
-                border-radius: 10px;
-                .item_image {
-                    width: 30%;
-                    margin: auto;
-                    padding: 4px;
-                    img {
-                        max-width: 100%;
-                    }
-                }
-                .item_details {
-                    width: 70%;
-                    padding: 10px;
-                    text-align: left;
-                    .item_serial_style {
-                        h6 {
-                            text-align: left;
-                            font-size: 15px;
+                flex-direction: column;
+                margin-top: 20px;
+                padding: 8px;
+                gap: 16px;
+                .item_container {
+                    height: 150px;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    border: 1px solid #9a9a9a;
+                    border-radius: 10px;
+                    .item_image {
+                        width: 30%;
+                        margin: auto;
+                        padding: 4px;
+                        img {
+                            max-width: 100%;
                         }
                     }
-                    .item_description,
-                    .item_metal,
-                    .item_type_subtype {
-                        font-size: 13px;
+                    .item_details {
+                        width: 70%;
+                        padding: 10px;
+                        text-align: left;
+                        .item_serial_style {
+                            h6 {
+                                text-align: left;
+                                font-size: 15px;
+                            }
+                        }
+                        .item_description,
+                        .item_metal,
+                        .item_type_subtype {
+                            font-size: 13px;
+                        }
+                        .item_description {
+                            font-weight: 600;
+                        }
                     }
-                    .item_description {
-                        font-weight: 600;
+                }
+                .card {
+                    height: 375px;
+                    width: 275px;
+                    margin: auto;
+                    padding: 1rem 0.5rem 0.5rem;
+                    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                    // background-color: rgba(241, 241, 241, 0.876);
+                    img {
+                        max-width: 60%;
+                        // max-height: 40%;
+                        margin: auto;
+                    }
+                    .card-body {
+                        padding: 1rem 0 0;
+
+                        .card-title.h5 {
+                            font-size: 1rem;
+                            // text-align: left;
+                        }
+                        .card-text {
+                            // text-align: left;
+                            padding: 4px 0px 0px;
+                            display: flex;
+                            flex-direction: column;
+                            row-gap: 5px;
+                            font-size: 13px;
+                            .item_description {
+                                font-size: 15px;
+                            }
+                        }
                     }
                 }
             }
+        }
+        .compact_result_container {
+            flex-direction: row !important;
+            flex-wrap: wrap;
             .card {
-                height: 375px;
-                width: 275px;
-                margin: auto;
-                padding: 1rem 0.5rem 0.5rem;
-                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-                // background-color: rgba(241, 241, 241, 0.876);
+                width: 30% !important;
+                height: 175px !important;
                 img {
-                    max-width: 60%;
-                    // max-height: 40%;
-                    margin: auto;
+                    max-width: 100% !important;
                 }
                 .card-body {
-                    padding: 1rem 0 0;
-
                     .card-title.h5 {
-                        font-size: 1rem;
+                        font-size: 0.75rem !important;
                         // text-align: left;
                     }
                     .card-text {
-                        // text-align: left;
-                        padding: 4px 0px 0px;
-                        display: flex;
-                        flex-direction: column;
-                        row-gap: 5px;
-                        font-size: 13px;
-                        .item_description {
-                            font-size: 15px;
-                        }
+                        display: none !important;
                     }
                 }
             }

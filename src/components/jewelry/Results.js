@@ -6,6 +6,19 @@ class Results extends Component {
     super(props);
     this.state = {};
     this.handleImage = this.handleImage.bind(this);
+    this.handleView = this.handleView.bind(this);
+  }
+
+  handleView(e) {
+    document
+      .getElementById("ES_Results")
+      .classList.toggle("compact_result_container");
+
+    if (e.target.innerHTML === "List") {
+      e.target.innerHTML = "Grid";
+    } else {
+      e.target.innerHTML = "List";
+    }
   }
   handleImage(item) {
     if (
@@ -47,75 +60,82 @@ class Results extends Component {
     let { items } = this.props;
     console.log("items : ", items);
     return (
-      <div className="result_container">
-        {items.map((item, index) => (
-          // <div className="item_container" key={index}>
-          //   <div className="item_image">
-          //     <img src={this.handleImage(item)} />
-          //   </div>
-          //   <div className="item_details">
-          //     <div className="item_serial_style">
-          //       <h6>
-          //         {item.SerialNumber && item.StyleNumber
-          //           ? `${item.SerialNumber} | ${item.StyleNumber}`
-          //           : item.SerialNumber
-          //           ? item.SerialNumber
-          //           : item.StyleNumber
-          //           ? item.StyleNumber
-          //           : ``}
-          //       </h6>
-          //     </div>
-          //     <div className="item_description">{item.Description}</div>
-          //     <div className="item_type_subtype">
-          //       {item.ItemType && item.ItemSubtype
-          //         ? item.ItemSubtype
-          //         : item.ItemSubtype
-          //         ? item.ItemSubtype
-          //         : item.ItemType
-          //         ? item.ItemType
-          //         : ""}
-          //     </div>
-          //     <div className="item_metal">{item.Metal}</div>
-          //     <div className="item_price">{item.RetailPrice}</div>
-          //   </div>
-          // </div>
-          <Card key={index}>
-            <Card.Img
-              variant="top"
-              src={this.handleImage(item)}
-              onError={(event) => {
-                event.target.src =
-                  "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg";
-              }}
-            />
-            <Card.Body>
-              <Card.Title>
-                {item.SerialNumber && item.StyleNumber
-                  ? `${item.SerialNumber} | ${item.StyleNumber}`
-                  : item.SerialNumber
-                  ? item.SerialNumber
-                  : item.StyleNumber
-                  ? item.StyleNumber
-                  : ``}
-              </Card.Title>
-              <Card.Text>
-                <div className="item_description">{item.Description}</div>
-                <div className="item_brand">{item.Brand}</div>
-                <div className="item_type_subtype">
-                  {item.ItemType && item.ItemSubtype
-                    ? item.ItemSubtype
-                    : item.ItemSubtype
-                    ? item.ItemSubtype
-                    : item.ItemType
-                    ? item.ItemType
-                    : ""}
-                </div>
-                <div className="item_metal">{item.Metal}</div>
-                <div className="item_price">{item.RetailPrice}</div>
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        ))}
+      <div className="es_results">
+        <button onClick={(e) => this.handleView(e)}>Grid</button>
+        <div
+          id="ES_Results"
+          className="result_container"
+          // className="compact_result_container"
+        >
+          {items.map((item, index) => (
+            // <div className="item_container" key={index}>
+            //   <div className="item_image">
+            //     <img src={this.handleImage(item)} />
+            //   </div>
+            //   <div className="item_details">
+            //     <div className="item_serial_style">
+            //       <h6>
+            //         {item.SerialNumber && item.StyleNumber
+            //           ? `${item.SerialNumber} | ${item.StyleNumber}`
+            //           : item.SerialNumber
+            //           ? item.SerialNumber
+            //           : item.StyleNumber
+            //           ? item.StyleNumber
+            //           : ``}
+            //       </h6>
+            //     </div>
+            //     <div className="item_description">{item.Description}</div>
+            //     <div className="item_type_subtype">
+            //       {item.ItemType && item.ItemSubtype
+            //         ? item.ItemSubtype
+            //         : item.ItemSubtype
+            //         ? item.ItemSubtype
+            //         : item.ItemType
+            //         ? item.ItemType
+            //         : ""}
+            //     </div>
+            //     <div className="item_metal">{item.Metal}</div>
+            //     <div className="item_price">{item.RetailPrice}</div>
+            //   </div>
+            // </div>
+            <Card key={index}>
+              <Card.Img
+                variant="top"
+                src={this.handleImage(item)}
+                onError={(event) => {
+                  event.target.src =
+                    "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg";
+                }}
+              />
+              <Card.Body>
+                <Card.Title>
+                  {item.SerialNumber && item.StyleNumber
+                    ? `${item.SerialNumber} | ${item.StyleNumber}`
+                    : item.SerialNumber
+                    ? item.SerialNumber
+                    : item.StyleNumber
+                    ? item.StyleNumber
+                    : ``}
+                </Card.Title>
+                <Card.Text>
+                  <div className="item_description">{item.Description}</div>
+                  <div className="item_brand">{item.Brand}</div>
+                  <div className="item_type_subtype">
+                    {item.ItemType && item.ItemSubtype
+                      ? item.ItemSubtype
+                      : item.ItemSubtype
+                      ? item.ItemSubtype
+                      : item.ItemType
+                      ? item.ItemType
+                      : ""}
+                  </div>
+                  <div className="item_metal">{item.Metal}</div>
+                  <div className="item_price">{item.RetailPrice}</div>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          ))}
+        </div>
       </div>
     );
   }
