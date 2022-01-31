@@ -27,7 +27,7 @@ class ItemTypeSearch extends Component {
 
   render() {
     let { optionsSelected } = this.state;
-    console.log("optionsSelected: ", this.state.optionsSelected);
+    // console.log("optionsSelected: ", this.state.optionsSelected);
     return (
       <MultiDropdownList
         className="form_field"

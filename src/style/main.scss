@@ -107,19 +107,25 @@
         .es_results {
             display: flex;
             flex-direction: column;
+            flex-wrap: wrap;
             justify-content: space-around;
             padding: 10px 5px 0px;
             align-items: flex-end;
             gap: 10px;
-            > button {
+            > button,
+            select {
                 width: fit-content;
                 border: grey;
                 border-radius: 5px;
                 outline: none;
                 padding: 4px 10px;
             }
+            > select {
+                border: solid 1px;
+            }
             .result_container,
-            .compact_result_container {
+            .Grid3_result_container,
+            .Grid2_result_container {
                 width: 100%;
                 display: flex;
                 flex-direction: column;
@@ -196,7 +202,9 @@
                 }
             }
         }
-        .compact_result_container {
+        .Grid3_result_container,
+        .Grid2_result_container {
+            display: flex;
             flex-direction: row !important;
             flex-wrap: wrap;
             .card {
@@ -212,6 +220,32 @@
                     }
                     .card-text {
                         display: none !important;
+                    }
+                }
+            }
+        }
+        .Grid2_result_container {
+            .card {
+                width: 45% !important;
+                height: 250px !important;
+                // margin: ;
+                img {
+                    max-width: 70% !important;
+                }
+                .card-body {
+                    .card-title.h5 {
+                        font-size: 0.9rem !important;
+                        // text-align: left;
+                    }
+                    .card-text {
+                        display: block !important;
+                        div.item_description {
+                            display: block !important;
+                            font-size: 12px !important;
+                        }
+                        > div {
+                            display: none !important;
+                        }
                     }
                 }
             }

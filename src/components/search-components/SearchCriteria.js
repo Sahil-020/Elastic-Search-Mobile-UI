@@ -7,6 +7,7 @@ class SearchCriteria extends Component {
       <div className="selected--filters--container">
         <SelectedFilters
           className="selectedFilters"
+          resetToDefault={true}
           render={(props) => {
             const { selectedValues, setValue, clearValues } = props;
             const clearFilter = (component) => {
@@ -22,7 +23,7 @@ class SearchCriteria extends Component {
                 setValue("IncludeCom", ["0"]);
                 setValue("LooseOnly", ["0", "1"]);
                 setValue("IncludeOpenJob", ["0"]);
-                this.props.callback();
+                // this.props.callback();
               } else if (
                 component === "LooseOnly" ||
                 component === "LooseAndRingsOnly"

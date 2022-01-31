@@ -4,21 +4,34 @@ import Card from "react-bootstrap/Card";
 class Results extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      // viewType: "List",
+    };
     this.handleImage = this.handleImage.bind(this);
-    this.handleView = this.handleView.bind(this);
+    // this.handleView = this.handleView.bind(this);
   }
 
   handleView(e) {
-    document
-      .getElementById("ES_Results")
-      .classList.toggle("compact_result_container");
-
-    if (e.target.innerHTML === "List") {
-      e.target.innerHTML = "Grid";
-    } else {
-      e.target.innerHTML = "List";
+    let value = e.target.value;
+    // document
+    //   .getElementById("ES_Results")
+    //   .classList.toggle("compact_result_container");
+    console.log("Selected value: ", value);
+    if (value === "List") {
+      document.getElementById("ES_Results").className = "result_container";
+    } else if (value === "Grid2") {
+      document.getElementById("ES_Results").className =
+        "Grid2_result_container";
+    } else if (value === "Grid3") {
+      document.getElementById("ES_Results").className =
+        "Grid3_result_container";
     }
+
+    // if (e.target.innerHTML === "List") {
+    //   e.target.innerHTML = "Grid";
+    // } else {
+    //   e.target.innerHTML = "List";
+    // }
   }
   handleImage(item) {
     if (
@@ -58,10 +71,15 @@ class Results extends Component {
   //   state = { items: this.props.items };
   render() {
     let { items } = this.props;
-    console.log("items : ", items);
+    // console.log("items : ", items);
     return (
       <div className="es_results">
-        <button onClick={(e) => this.handleView(e)}>Grid</button>
+        {/* <button onClick={(e) => this.handleView(e)}>Grid</button> */}
+        <select onChange={(e) => this.handleView(e)}>
+          <option value="List">List</option>
+          <option value="Grid2">Grid of 2</option>
+          <option value="Grid3">Grid of 3</option>
+        </select>
         <div
           id="ES_Results"
           className="result_container"
@@ -117,7 +135,7 @@ class Results extends Component {
                     ? item.StyleNumber
                     : ``}
                 </Card.Title>
-                <Card.Text>
+                <div className="card-text">
                   <div className="item_description">{item.Description}</div>
                   <div className="item_brand">{item.Brand}</div>
                   <div className="item_type_subtype">
@@ -131,7 +149,7 @@ class Results extends Component {
                   </div>
                   <div className="item_metal">{item.Metal}</div>
                   <div className="item_price">{item.RetailPrice}</div>
-                </Card.Text>
+                </div>
               </Card.Body>
             </Card>
           ))}

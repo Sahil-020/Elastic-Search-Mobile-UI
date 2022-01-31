@@ -46,11 +46,13 @@ class Main extends Component {
     super(props);
     this.state = {
       showFilters: false,
+      showResult: false,
     };
+    // this.clearFilters = this.clearFilters.bind(this)
   }
 
   render() {
-    let { showFilters } = this.state;
+    let { showFilters, showResult } = this.state;
     return (
       <div className="main_container">
         <div className="navbar_container">
@@ -106,7 +108,7 @@ class Main extends Component {
                   <Offcanvas.Title>Filters</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                  <Accordion defaultActiveKey="0">
+                  <Accordion>
                     <Accordion.Item eventKey="0">
                       <Accordion.Header>General Fields</Accordion.Header>
                       <Accordion.Body>
@@ -167,7 +169,9 @@ class Main extends Component {
                   {numberOfResults} results found in {time}ms
                 </label>
               )}
-              render={({ data }) => <Results items={data} />}
+              render={({ data }) => (
+                <Results showResult={showResult} items={data} />
+              )}
             />
           </ReactiveBase>
         </div>
