@@ -313,26 +313,26 @@
                 // img {
                 //     width: 80%;
                 // }
-                @media (min-width: 768px) {
-                    width: 70%;
-                    margin: auto;
-                }
+                // @media (min-width: 768px) {
+                //     width: 70%;
+                //     margin: auto;
+                // }
                 .image-gallery-slides {
                     .image-gallery-image,
                     iframe,
                     video {
-                        max-height: 60vh;
-                        min-height: 60vh;
+                        max-height: 40vh;
+                        min-height: 40vh;
                         width: 100%;
-                        @media (min-width: 768px) {
-                            max-height: 60vh;
-                        }
+                        // @media (min-width: 768px) {
+                        //     max-height: 60vh;
+                        // }
                     }
                     iframe,
                     video {
-                        @media (min-width: 768px) {
-                            min-height: 60vh;
-                        }
+                        // @media (min-width: 768px) {
+                        //     min-height: 60vh;
+                        // }
                     }
                 }
                 .image-gallery-thumbnails-wrapper.thumbnails-swipe-horizontal {
