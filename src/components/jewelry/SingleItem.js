@@ -158,39 +158,41 @@ class SingleItem extends Component {
           </label>{" "}
           USD
         </div>
-        <div className="single_item_details"></div>
-        <Table>
-          <tbody>
-            <tr>
-              <td>Brand</td>
-              <td>{item.Brand}</td>
-            </tr>
-            <tr>
-              <td>ItemType</td>
-              <td>{item.ItemType}</td>
-            </tr>
-            <tr>
-              <td>ItemSubtype</td>
-              <td>{item.ItemSubtype}</td>
-            </tr>
-            <tr>
-              <td>Collection</td>
-              <td>{item.Collection}</td>
-            </tr>
-            <tr>
-              <td>SubCollection</td>
-              <td>{item.SubCollection}</td>
-            </tr>
-            <tr>
-              <td>Maker</td>
-              <td>{item.Maker}</td>
-            </tr>
-            <tr>
-              <td>Metal</td>
-              <td>{item.Metal}</td>
-            </tr>
-          </tbody>
-        </Table>
+        <div className="single_item_details">
+          <h6>Details:</h6>
+          <Table>
+            <tbody>
+              <tr>
+                <td>Brand</td>
+                <td>{item.Brand}</td>
+              </tr>
+              <tr>
+                <td>ItemType</td>
+                <td>{item.ItemType}</td>
+              </tr>
+              <tr>
+                <td>ItemSubtype</td>
+                <td>{item.ItemSubtype}</td>
+              </tr>
+              <tr>
+                <td>Collection</td>
+                <td>{item.Collection}</td>
+              </tr>
+              <tr>
+                <td>SubCollection</td>
+                <td>{item.SubCollection}</td>
+              </tr>
+              <tr>
+                <td>Maker</td>
+                <td>{item.Maker}</td>
+              </tr>
+              <tr>
+                <td>Metal</td>
+                <td>{item.Metal}</td>
+              </tr>
+            </tbody>
+          </Table>
+        </div>
       </div>
     );
   }
