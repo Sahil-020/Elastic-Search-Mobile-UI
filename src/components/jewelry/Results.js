@@ -70,7 +70,7 @@ class Results extends Component {
   }
   //   state = { items: this.props.items };
   render() {
-    let { items } = this.props;
+    let { items, handleItemToView, toggleSingleItem } = this.props;
     // console.log("items : ", items);
     return (
       <div className="es_results">
@@ -116,7 +116,13 @@ class Results extends Component {
             //     <div className="item_price">{item.RetailPrice}</div>
             //   </div>
             // </div>
-            <Card key={index}>
+            <Card
+              key={index}
+              onClick={() => {
+                handleItemToView(item);
+                toggleSingleItem(true);
+              }}
+            >
               <Card.Img
                 variant="top"
                 src={this.handleImage(item)}

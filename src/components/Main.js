@@ -40,6 +40,7 @@ import KwiatOnly from "./search-components/KwiatOnly";
 import IsSold from "./search-components/IsSold";
 import FredLeightonOnly from "./search-components/FredLeightonOnly";
 import SearchCriteria from "./search-components/SearchCriteria";
+import SingleItem from "./jewelry/SingleItem";
 
 class Main extends Component {
   constructor(props) {
@@ -47,12 +48,30 @@ class Main extends Component {
     this.state = {
       showFilters: false,
       showResult: false,
+      showBasket: false,
+      showSingleItem: false,
+      basketItems: [],
+      itemToView: {},
     };
     // this.clearFilters = this.clearFilters.bind(this)
+    this.toggleBasket = this.toggleBasket.bind(this);
+    this.toggleSingleItem = this.toggleSingleItem.bind(this);
+    this.handleItemToView = this.handleItemToView.bind(this);
+  }
+
+  toggleBasket(value) {
+    this.setState({ showBasket: value, showSingleItem: false });
+  }
+  toggleSingleItem(value) {
+    this.setState({ showSingleItem: value, showBasket: false });
+  }
+  handleItemToView(value) {
+    this.setState({ itemToView: value });
   }
 
   render() {
-    let { showFilters, showResult } = this.state;
+    let { showFilters, showResult, showBasket, showSingleItem, itemToView } =
+      this.state;
     return (
       <div className="main_container">
         <div className="navbar_container">
@@ -61,6 +80,11 @@ class Main extends Component {
               <Navbar.Brand href="#">
                 <img src={kwiat} height="50px" width="80px"></img>
               </Navbar.Brand>
+              <img
+                src="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/open-basket.png"
+                onClick={() => this.toggleBasket(true)}
+              ></img>
+
               <Navbar.Toggle aria-controls="offcanvasNavbar" />
               <Navbar.Offcanvas
                 id="offcanvasNavbar"
@@ -85,95 +109,117 @@ class Main extends Component {
           </Navbar>
         </div>
         <div className="content">
-          <ReactiveBase
-            app={JewelrySerialApp}
-            url={AppbaseAppUrl}
-            credentials={AppbaseCredentials}
-          >
-            <div className="search_components_container">
-              <SerialSearchComponent />
-              <button onClick={() => this.setState({ showFilters: true })}>
-                Filters
-              </button>
-              {/* <ItemTypeSearch />
+          {!showBasket && !showSingleItem ? (
+            <ReactiveBase
+              app={JewelrySerialApp}
+              url={AppbaseAppUrl}
+              credentials={AppbaseCredentials}
+            >
+              <div className="search_components_container">
+                <SerialSearchComponent />
+                <button onClick={() => this.setState({ showFilters: true })}>
+                  Filters
+                </button>
+                {/* <ItemTypeSearch />
               <PriceRange />
               <KwiatOnly /> */}
 
-              <Offcanvas
-                show={showFilters}
-                onHide={() => this.setState({ showFilters: false })}
-                placement="bottom"
-              >
-                <Offcanvas.Header closeButton>
-                  <Offcanvas.Title>Filters</Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                  <Accordion>
-                    <Accordion.Item eventKey="0">
-                      <Accordion.Header>General Fields</Accordion.Header>
-                      <Accordion.Body>
-                        <ItemTypeSearch />
-                        <ItemSubtype />
-                        <Collection />
-                        <SubCollection />
-                        <Maker />
-                      </Accordion.Body>
-                    </Accordion.Item>
-                    <Accordion.Item eventKey="1">
-                      <Accordion.Header>Range Fields</Accordion.Header>
-                      <Accordion.Body className="range_fields">
-                        <RetailPriceRange />
-                        <WholesalePriceRange />
-                        <DiamondCarats />
-                        <ColorCarat />
-                      </Accordion.Body>
-                    </Accordion.Item>
-                    <Accordion.Item eventKey="2">
-                      <Accordion.Header>Selection Fields</Accordion.Header>
-                      <Accordion.Body className="selection_fields">
-                        <KwiatOnly />
-                        <FredLeightonOnly />
-                        <IsSold />
-                      </Accordion.Body>
-                    </Accordion.Item>
-                  </Accordion>
-                </Offcanvas.Body>
-              </Offcanvas>
-            </div>
-            {/* <SelectedFilters className="filters" /> */}
-            <SearchCriteria />
+                <Offcanvas
+                  show={showFilters}
+                  onHide={() => this.setState({ showFilters: false })}
+                  placement="bottom"
+                >
+                  <Offcanvas.Header closeButton>
+                    <Offcanvas.Title>Filters</Offcanvas.Title>
+                  </Offcanvas.Header>
+                  <Offcanvas.Body>
+                    <Accordion>
+                      <Accordion.Item eventKey="0">
+                        <Accordion.Header>General Fields</Accordion.Header>
+                        <Accordion.Body>
+                          <ItemTypeSearch />
+                          <ItemSubtype />
+                          <Collection />
+                          <SubCollection />
+                          <Maker />
+                        </Accordion.Body>
+                      </Accordion.Item>
+                      <Accordion.Item eventKey="1">
+                        <Accordion.Header>Range Fields</Accordion.Header>
+                        <Accordion.Body className="range_fields">
+                          <RetailPriceRange />
+                          <WholesalePriceRange />
+                          <DiamondCarats />
+                          <ColorCarat />
+                        </Accordion.Body>
+                      </Accordion.Item>
+                      <Accordion.Item eventKey="2">
+                        <Accordion.Header>Selection Fields</Accordion.Header>
+                        <Accordion.Body className="selection_fields">
+                          <KwiatOnly />
+                          <FredLeightonOnly />
+                          <IsSold />
+                        </Accordion.Body>
+                      </Accordion.Item>
+                    </Accordion>
+                  </Offcanvas.Body>
+                </Offcanvas>
+              </div>
+              {/* <SelectedFilters className="selectedFilters" /> */}
+              <SearchCriteria />
 
-            <ReactiveList
-              componentId="results"
-              dataField="RetailPrice"
-              react={{
-                and: [
-                  "SerialSearch",
-                  "ItemType",
-                  "PriceRange",
-                  "KwiatOnly",
-                  "SubType",
-                  "Collection",
-                  "SubCollection",
-                  "Maker",
-                  "DiamondCarats",
-                  "ColorCarats",
-                  "KwiatOnly",
-                  "FredLeightonOnly",
-                  "IncludeSold",
-                ],
-                // or: andQuery,
-              }}
-              renderResultStats={({ numberOfResults, time }) => (
-                <label>
-                  {numberOfResults} results found in {time}ms
-                </label>
-              )}
-              render={({ data }) => (
-                <Results showResult={showResult} items={data} />
-              )}
+              <ReactiveList
+                componentId="results"
+                dataField="RetailPrice"
+                react={{
+                  and: [
+                    "SerialSearch",
+                    "ItemType",
+                    "PriceRange",
+                    "KwiatOnly",
+                    "SubType",
+                    "Collection",
+                    "SubCollection",
+                    "Maker",
+                    "DiamondCarats",
+                    "ColorCarats",
+                    "KwiatOnly",
+                    "FredLeightonOnly",
+                    "IncludeSold",
+                  ],
+                  // or: andQuery,
+                }}
+                renderResultStats={({ numberOfResults, time }) => (
+                  <label>
+                    {numberOfResults} results found in {time}ms
+                  </label>
+                )}
+                render={({ data }) => (
+                  <Results
+                    showResult={showResult}
+                    items={data}
+                    toggleSingleItem={this.toggleSingleItem}
+                    handleItemToView={this.handleItemToView}
+                  />
+                )}
+              />
+            </ReactiveBase>
+          ) : showBasket ? (
+            <div className="basket">
+              <div className="basket_header">
+                <h5>Basket Details :</h5>
+                <button onClick={() => this.toggleBasket(false)}>X</button>
+              </div>
+            </div>
+          ) : showSingleItem ? (
+            <SingleItem
+              item={itemToView}
+              toggleSingleItem={this.toggleSingleItem}
+              handleItemToView={this.handleItemToView}
             />
-          </ReactiveBase>
+          ) : (
+            ``
+          )}
         </div>
         <div className="es-scroll-button">
           <ScrollUpButton
