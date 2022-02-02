@@ -3,6 +3,7 @@ import { Carousel } from "bootstrap";
 import ImageGallery from "react-image-gallery";
 import currencyFormatter from "currency-formatter";
 import { Table } from "react-bootstrap";
+import ItemSubtype from "./../search-components/ItemSubtype";
 
 class SingleItem extends Component {
   constructor(props) {
@@ -112,7 +113,8 @@ class SingleItem extends Component {
     // });
   }
   render() {
-    let { item, handleItemToView, toggleSingleItem } = this.props;
+    let { item, handleItemToView, toggleSingleItem, addItemToBasket } =
+      this.props;
     return (
       <div className="single_item_container">
         <div className="item_header_options">
@@ -125,7 +127,10 @@ class SingleItem extends Component {
               ? item.StyleNumber
               : ``}
           </h6>
-          <img src="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/add-to-basket.png"></img>
+          <img
+            src="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/add-to-basket.png"
+            onClick={() => addItemToBasket(item)}
+          ></img>
           <button
             onClick={() => {
               handleItemToView({});
@@ -155,41 +160,55 @@ class SingleItem extends Component {
                 precision: 0,
               })) ||
               ""}
-          </label>{" "}
+          </label>
           USD
         </div>
         <div className="single_item_details">
           <h6>Details:</h6>
           <Table>
             <tbody>
-              <tr>
-                <td>Brand</td>
-                <td>{item.Brand}</td>
-              </tr>
-              <tr>
-                <td>ItemType</td>
-                <td>{item.ItemType}</td>
-              </tr>
-              <tr>
-                <td>ItemSubtype</td>
-                <td>{item.ItemSubtype}</td>
-              </tr>
-              <tr>
-                <td>Collection</td>
-                <td>{item.Collection}</td>
-              </tr>
-              <tr>
-                <td>SubCollection</td>
-                <td>{item.SubCollection}</td>
-              </tr>
-              <tr>
-                <td>Maker</td>
-                <td>{item.Maker}</td>
-              </tr>
-              <tr>
-                <td>Metal</td>
-                <td>{item.Metal}</td>
-              </tr>
+              {item.Brand && (
+                <tr>
+                  <td>Brand</td>
+                  <td>{item.Brand}</td>
+                </tr>
+              )}
+              {item.ItemType && (
+                <tr>
+                  <td>ItemType</td>
+                  <td>{item.ItemType}</td>
+                </tr>
+              )}
+              {item.ItemSubtype && (
+                <tr>
+                  <td>ItemSubtype</td>
+                  <td>{item.ItemSubtype}</td>
+                </tr>
+              )}
+              {item.Collection && (
+                <tr>
+                  <td>Collection</td>
+                  <td>{item.Collection}</td>
+                </tr>
+              )}
+              {item.SubCollection && (
+                <tr>
+                  <td>SubCollection</td>
+                  <td>{item.SubCollection}</td>
+                </tr>
+              )}
+              {item.Metal && (
+                <tr>
+                  <td>Maker</td>
+                  <td>{item.Maker}</td>
+                </tr>
+              )}
+              {item.Maker && (
+                <tr>
+                  <td>Metal</td>
+                  <td>{item.Metal}</td>
+                </tr>
+              )}
             </tbody>
           </Table>
         </div>

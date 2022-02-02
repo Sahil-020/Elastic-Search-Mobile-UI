@@ -41,6 +41,9 @@ import IsSold from "./search-components/IsSold";
 import FredLeightonOnly from "./search-components/FredLeightonOnly";
 import SearchCriteria from "./search-components/SearchCriteria";
 import SingleItem from "./jewelry/SingleItem";
+import Basket from "./jewelry/Basket";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 class Main extends Component {
   constructor(props) {
@@ -52,11 +55,14 @@ class Main extends Component {
       showSingleItem: false,
       basketItems: [],
       itemToView: {},
+      basketItems: [],
     };
     // this.clearFilters = this.clearFilters.bind(this)
     this.toggleBasket = this.toggleBasket.bind(this);
     this.toggleSingleItem = this.toggleSingleItem.bind(this);
     this.handleItemToView = this.handleItemToView.bind(this);
+    this.addItemToBasket = this.addItemToBasket.bind(this);
+    this.removeItemFromBasket = this.removeItemFromBasket.bind(this);
   }
 
   toggleBasket(value) {
@@ -68,10 +74,52 @@ class Main extends Component {
   handleItemToView(value) {
     this.setState({ itemToView: value });
   }
+  addItemToBasket(item) {
+    let presentItem = this.state.basketItems.filter(
+      (basketItem) => JSON.stringify(basketItem) === JSON.stringify(item)
+    );
+    if (presentItem.length !== 0) {
+      toast.success(" Item already added ", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+        pauseOnHover: false,
+        theme: "colored",
+      });
+    } else {
+      this.setState((prevState) => ({
+        basketItems: [...prevState.basketItems, item],
+      }));
+      toast.success(" Item added ", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+        pauseOnHover: false,
+        theme: "colored",
+      });
+    }
+  }
+  removeItemFromBasket(item) {
+    this.setState((prevState) => ({
+      basketItems: prevState.basketItems.filter(
+        (basketItem) => JSON.stringify(basketItem) !== JSON.stringify(item)
+      ),
+    }));
+    toast.success(" Item removed ", {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 2000,
+      pauseOnHover: false,
+      theme: "colored",
+    });
+  }
 
   render() {
-    let { showFilters, showResult, showBasket, showSingleItem, itemToView } =
-      this.state;
+    let {
+      showFilters,
+      showResult,
+      showBasket,
+      showSingleItem,
+      itemToView,
+      basketItems,
+    } = this.state;
     return (
       <div className="main_container">
         <div className="navbar_container">
@@ -205,17 +253,17 @@ class Main extends Component {
               />
             </ReactiveBase>
           ) : showBasket ? (
-            <div className="basket">
-              <div className="basket_header">
-                <h5>Basket Details :</h5>
-                <button onClick={() => this.toggleBasket(false)}>X</button>
-              </div>
-            </div>
+            <Basket
+              toggleBasket={this.toggleBasket}
+              basketItems={basketItems}
+              removeItemFromBasket={this.removeItemFromBasket}
+            />
           ) : showSingleItem ? (
             <SingleItem
               item={itemToView}
               toggleSingleItem={this.toggleSingleItem}
               handleItemToView={this.handleItemToView}
+              addItemToBasket={this.addItemToBasket}
             />
           ) : (
             ``
@@ -230,6 +278,7 @@ class Main extends Component {
           />
         </div>
         {/* */}
+        <ToastContainer hideProgressBar={true} />
       </div>
     );
   }

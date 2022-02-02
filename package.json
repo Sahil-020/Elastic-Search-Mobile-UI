@@ -18,6 +18,7 @@
     "react-router-dom": "4.3.1",
     "react-scripts": "5.0.0",
     "react-scroll-up-button": "^1.6.4",
+    "react-toastify": "^8.1.1",
     "sass": "^1.49.0",
     "web-vitals": "^2.1.3"
   },

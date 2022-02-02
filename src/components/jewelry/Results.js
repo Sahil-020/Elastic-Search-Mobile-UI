@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
+import currencyFormatter from "currency-formatter";
 
 class Results extends Component {
   constructor(props) {
@@ -154,7 +155,15 @@ class Results extends Component {
                       : ""}
                   </div>
                   <div className="item_metal">{item.Metal}</div>
-                  <div className="item_price">{item.RetailPrice}</div>
+                  <div className="item_price">
+                    {" "}
+                    {(item.RetailPrice &&
+                      currencyFormatter.format(`${item.RetailPrice}`, {
+                        code: "USD",
+                        precision: 0,
+                      })) ||
+                      ""}
+                  </div>
                 </div>
               </Card.Body>
             </Card>
