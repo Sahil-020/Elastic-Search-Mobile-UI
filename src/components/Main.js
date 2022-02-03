@@ -252,6 +252,7 @@ class Main extends Component {
                     items={data}
                     toggleSingleItem={this.toggleSingleItem}
                     handleItemToView={this.handleItemToView}
+                    addItemToBasket={this.addItemToBasket}
                   />
                 )}
               />
@@ -261,7 +262,6 @@ class Main extends Component {
               toggleBasket={this.toggleBasket}
               basketItems={basketItems}
               removeItemFromBasket={this.removeItemFromBasket}
-              addItemToBasket={this.addItemToBasket}
             />
           ) : showSingleItem ? (
             <SingleItem

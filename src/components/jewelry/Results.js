@@ -151,9 +151,10 @@ class Results extends Component {
                 <img
                   src="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/add-to-basket.png"
                   onClick={(e) => {
-                    if (e.target === this) {
-                      addItemToBasket(item);
-                    }
+                    // if (e.target === this) {
+                    e.stopPropagation();
+                    addItemToBasket(item);
+                    // }
                   }}
                 ></img>
               </div>
