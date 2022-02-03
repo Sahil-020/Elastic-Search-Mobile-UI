@@ -5,11 +5,21 @@
     // padding: 6px;
     .navbar_container {
         .navbar.navbar-light.bg-light {
+            padding: 6px 0px;
             .container-fluid {
+                padding: 0px 8px;
+                gap: 15px;
                 .navbar-brand {
-                    width: 70%;
+                    width: 60%;
                     display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0;
+                    img {
+                        max-width: 100%;
+                    }
                 }
+
                 .navbar-toggler {
                     padding: 0.25rem 0.5rem;
                     font-size: 1rem;
@@ -132,15 +142,37 @@
             > select {
                 border: solid 1px;
             }
-            .result_container,
+            .result_view_options {
+                display: flex;
+                width: 100%;
+                gap: 12px;
+                padding: 5px;
+                align-items: center;
+                justify-content: flex-end;
+                margin-top: 8px;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.125) !important;
+                img {
+                    height: 16px !important;
+                    width: 16px !important;
+                }
+                img.active {
+                    height: 22px !important;
+                    width: 22px !important;
+                    // border: 1px solid grey;
+                    // border-radius: 5px;
+                    // padding: 2px;
+                }
+            }
+            .List_result_container,
+            .Grid_result_container,
             .Grid3_result_container,
             .Grid2_result_container {
                 width: 100%;
                 display: flex;
                 flex-direction: column;
-                margin-top: 20px;
-                padding: 8px;
-                gap: 16px;
+                // margin-top: 10px;
+                padding: 5px;
+                gap: 10px;
                 .item_container {
                     height: 150px;
                     width: 100%;
@@ -179,21 +211,43 @@
                 }
                 .card {
                     height: 375px;
-                    width: 275px;
+                    width: 300px;
                     margin: auto;
-                    padding: 1rem 0.5rem 0.5rem;
+                    padding: 10px 5px 5px;
                     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
                     // background-color: rgba(241, 241, 241, 0.876);
-                    img {
-                        max-width: 60%;
-                        // max-height: 40%;
-                        margin: auto;
+                    .result_action_group {
+                        display: flex !important;
+                        justify-content: flex-end;
+                        align-items: center;
+                        // width: 100%;
+                        img {
+                            height: 22px;
+                            width: 22px;
+                        }
+                    }
+                    .image_container {
+                        height: 35%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        img {
+                            max-width: 40%;
+                            // max-height: 40%;
+
+                            max-height: 100% !important;
+                        }
                     }
                     .card-body {
                         padding: 1rem 0 0;
+                        height: 60%;
 
                         .card-title.h5 {
                             font-size: 1rem;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 3px;
+                            align-items: center;
                             // text-align: left;
                         }
                         .card-text {
@@ -218,13 +272,17 @@
             flex-wrap: wrap;
             .card {
                 width: 30% !important;
-                height: 175px !important;
-                img {
-                    max-width: 100% !important;
+                height: 190px !important;
+                .image_container {
+                    height: 40% !important;
+                    img {
+                        max-width: 80% !important;
+                    }
                 }
                 .card-body {
                     .card-title.h5 {
                         font-size: 0.75rem !important;
+                        word-wrap: break-word;
                         // text-align: left;
                     }
                     .card-text {
@@ -238,12 +296,14 @@
                 width: 45% !important;
                 height: 250px !important;
                 // margin: ;
-                img {
-                    max-width: 70% !important;
+                .image_container {
+                    img {
+                        max-width: 70% !important;
+                    }
                 }
                 .card-body {
                     .card-title.h5 {
-                        font-size: 0.9rem !important;
+                        font-size: 0.75rem !important;
                         // text-align: left;
                     }
                     .card-text {
@@ -252,6 +312,76 @@
                             display: block !important;
                             font-size: 12px !important;
                         }
+                        > div {
+                            display: none !important;
+                        }
+                    }
+                }
+            }
+        }
+        .List_result_container {
+            padding: 0px !important;
+            gap: 6px !important;
+            .card {
+                width: 100% !important;
+                height: 100px !important;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                padding: 4px !important;
+                margin: 0px !important;
+                gap: 0px !important;
+                box-shadow: none !important;
+                border: none !important;
+                border-radius: 0px !important ;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.125) !important;
+                .result_action_group {
+                    display: flex !important;
+                    justify-content: flex-end;
+                    align-items: center;
+                    width: 100%;
+                    img {
+                        height: 20px !important;
+                        width: 20px !important;
+                    }
+                }
+
+                .image_container {
+                    width: 25%;
+                    height: 80% !important;
+                    img {
+                        max-width: 100% !important;
+                        margin: auto;
+                        // border: none !important;
+                        // max-height: none !important;
+                    }
+                }
+                .card-body {
+                    width: 70%;
+                    height: 80% !important;
+                    padding: 4px 8px !important;
+                    .card-title.h5 {
+                        font-size: 13px !important;
+                        display: flex;
+                        flex-direction: row !important;
+                        gap: 10px !important;
+                        align-items: center;
+                        text-align: left;
+                        margin: 0px !important;
+                    }
+                    .card-text {
+                        // text-align: left;
+                        padding: 4px;
+                        display: flex;
+                        flex-direction: column;
+                        row-gap: 5px;
+                        font-size: 13px;
+                        text-align: left;
+                        .item_description {
+                            font-size: 12px !important;
+                            display: block !important;
+                        }
+
                         > div {
                             display: none !important;
                         }

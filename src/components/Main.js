@@ -125,15 +125,19 @@ class Main extends Component {
         <div className="navbar_container">
           <Navbar bg="light" expand={false}>
             <Container fluid>
+              <Navbar.Toggle aria-controls="offcanvasNavbar" />
               <Navbar.Brand href="#">
-                <img src={kwiat} height="50px" width="80px"></img>
+                <img
+                  src="https://cdn4.kwiat.com/apps/kwiat-elastic-search/icons/KW-FL-Combined-Logos-Short-1000px.png"
+                  // height="40px"
+                  // width="120px"
+                ></img>
               </Navbar.Brand>
               <img
                 src="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/open-basket.png"
                 onClick={() => this.toggleBasket(true)}
               ></img>
 
-              <Navbar.Toggle aria-controls="offcanvasNavbar" />
               <Navbar.Offcanvas
                 id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel"
@@ -257,6 +261,7 @@ class Main extends Component {
               toggleBasket={this.toggleBasket}
               basketItems={basketItems}
               removeItemFromBasket={this.removeItemFromBasket}
+              addItemToBasket={this.addItemToBasket}
             />
           ) : showSingleItem ? (
             <SingleItem

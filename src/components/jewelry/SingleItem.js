@@ -10,6 +10,7 @@ class SingleItem extends Component {
     super(props);
     this.state = {};
     this.handleImageGallery = this.handleImageGallery.bind(this);
+    this.renderVideo = this.renderVideo.bind(this);
   }
 
   handleImageGallery(res) {
@@ -61,39 +62,39 @@ class SingleItem extends Component {
           imgName: res.shape,
         });
       }
-      //   if (res.EditorialVideo) {
-      //     imgArr.push({
-      //       thumbnail:
-      //         "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Video-Icon-Stock-Black.svg",
-      //       original:
-      //         "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Video-Icon-Stock-Black.svg",
-      //       embedUrl: res.EditorialVideo,
-      //       // description: "Render custom slides (such as videos)",
-      //       renderItem: this.renderVideo.bind(this),
-      //     });
-      //   }
-      //   if (res.SerialVideoLink) {
-      //     imgArr.push({
-      //       thumbnail:
-      //         "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Video-Icon-Stock-Black.svg",
-      //       original:
-      //         "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Video-Icon-Stock-Black.svg",
-      //       embedUrl: res.SerialVideoLink,
-      //       // description: "Render custom slides (such as videos)",
-      //       renderItem: this.renderVideo.bind(this),
-      //     });
-      //   }
-      //   if (res.StyleVideoLink) {
-      //     imgArr.push({
-      //       thumbnail:
-      //         "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Video-Icon-Stock-Black.svg",
-      //       original:
-      //         "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Video-Icon-Stock-Black.svg",
-      //       embedUrl: res.StyleVideoLink,
-      //       // description: "Render custom slides (such as videos)",
-      //       renderItem: this.renderVideo.bind(this),
-      //     });
-      //   }
+      if (res.EditorialVideo) {
+        imgArr.push({
+          thumbnail:
+            "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Video-Icon-Stock-Black.svg",
+          original:
+            "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Video-Icon-Stock-Black.svg",
+          embedUrl: res.EditorialVideo,
+          // description: "Render custom slides (such as videos)",
+          renderItem: this.renderVideo.bind(this),
+        });
+      }
+      if (res.SerialVideoLink) {
+        imgArr.push({
+          thumbnail:
+            "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Video-Icon-Stock-Black.svg",
+          original:
+            "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Video-Icon-Stock-Black.svg",
+          embedUrl: res.SerialVideoLink,
+          // description: "Render custom slides (such as videos)",
+          renderItem: this.renderVideo.bind(this),
+        });
+      }
+      if (res.StyleVideoLink) {
+        imgArr.push({
+          thumbnail:
+            "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Video-Icon-Stock-Black.svg",
+          original:
+            "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Video-Icon-Stock-Black.svg",
+          embedUrl: res.StyleVideoLink,
+          // description: "Render custom slides (such as videos)",
+          renderItem: this.renderVideo.bind(this),
+        });
+      }
 
       for (let i = 1; i < 6; i++) {
         var field = "WebImage" + i;
@@ -112,6 +113,29 @@ class SingleItem extends Component {
     //   imgArr: imgArr,
     // });
   }
+  renderVideo(item) {
+    return (
+      <div className="video-wrapper">
+        {/* <a
+          className="close-video"
+          onClick={this._toggleShowVideo.bind(this, item.embedUrl)}
+        ></a> */}
+        <iframe
+          // width="350"
+          // height="300"
+          src={`${item.embedUrl}?autoplay=1`}
+          // src={`https://iframe.videodelivery.net/${item.embedUrl}`}
+          style={{ border: "none" }}
+          allowFullScreen="true"
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+        ></iframe>
+        {/* <video autoPlay>
+          <source src={item.embedUrl} type="video/mp4" />
+        </video> */}
+      </div>
+    );
+  }
+
   render() {
     let { item, handleItemToView, toggleSingleItem, addItemToBasket } =
       this.props;

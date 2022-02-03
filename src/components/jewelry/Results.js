@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import currencyFormatter from "currency-formatter";
+import Grid2 from "../../assets/icons/grid-two-up-16.png";
+import Grid3 from "../../assets/icons/grid-three-up-16.png";
+import Grid1 from "../../assets/icons/square-16.png";
+import ListView from "../../assets/icons/list-2-16.png";
+import $ from "jquery";
 
 class Results extends Component {
   constructor(props) {
@@ -12,20 +17,24 @@ class Results extends Component {
     // this.handleView = this.handleView.bind(this);
   }
 
-  handleView(e) {
-    let value = e.target.value;
+  handleView(e, value) {
+    // let value = e.target.value;
     // document
     //   .getElementById("ES_Results")
     //   .classList.toggle("compact_result_container");
+    $(".result_view_options").children().removeClass("active");
     console.log("Selected value: ", value);
-    if (value === "List") {
-      document.getElementById("ES_Results").className = "result_container";
+    e.target.className = "active";
+    if (value === "Grid1") {
+      document.getElementById("ES_Results").className = "Grid_result_container";
     } else if (value === "Grid2") {
       document.getElementById("ES_Results").className =
         "Grid2_result_container";
     } else if (value === "Grid3") {
       document.getElementById("ES_Results").className =
         "Grid3_result_container";
+    } else if (value === "List") {
+      document.getElementById("ES_Results").className = "List_result_container";
     }
 
     // if (e.target.innerHTML === "List") {
@@ -71,19 +80,30 @@ class Results extends Component {
   }
   //   state = { items: this.props.items };
   render() {
-    let { items, handleItemToView, toggleSingleItem } = this.props;
+    let { items, handleItemToView, toggleSingleItem, addItemToBasket } =
+      this.props;
     // console.log("items : ", items);
     return (
       <div className="es_results">
         {/* <button onClick={(e) => this.handleView(e)}>Grid</button> */}
-        <select onChange={(e) => this.handleView(e)}>
+        <div className="result_view_options">
+          <img
+            className="active"
+            src={ListView}
+            onClick={(e) => this.handleView(e, "List")}
+          />
+          <img src={Grid1} onClick={(e) => this.handleView(e, "Grid1")} />
+          <img src={Grid2} onClick={(e) => this.handleView(e, "Grid2")} />
+          <img src={Grid3} onClick={(e) => this.handleView(e, "Grid3")} />
+        </div>
+        {/* <select onChange={(e) => this.handleView(e)}>
           <option value="List">List</option>
           <option value="Grid2">Grid of 2</option>
           <option value="Grid3">Grid of 3</option>
-        </select>
+        </select> */}
         <div
           id="ES_Results"
-          className="result_container"
+          className="List_result_container"
           // className="compact_result_container"
         >
           {items.map((item, index) => (
@@ -119,28 +139,48 @@ class Results extends Component {
             // </div>
             <Card
               key={index}
-              onClick={() => {
+              onClick={(e) => {
+                // if (e.target !== this) {
+                //   return;
+                // }
                 handleItemToView(item);
                 toggleSingleItem(true);
               }}
             >
-              <Card.Img
-                variant="top"
-                src={this.handleImage(item)}
-                onError={(event) => {
-                  event.target.src =
-                    "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg";
-                }}
-              />
+              <div className="result_action_group">
+                <img
+                  src="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/add-to-basket.png"
+                  onClick={(e) => {
+                    if (e.target === this) {
+                      addItemToBasket(item);
+                    }
+                  }}
+                ></img>
+              </div>
+              <div className="image_container">
+                <Card.Img
+                  variant="top"
+                  src={this.handleImage(item)}
+                  onError={(event) => {
+                    event.target.src =
+                      "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg";
+                  }}
+                />
+              </div>
               <Card.Body>
                 <Card.Title>
-                  {item.SerialNumber && item.StyleNumber
-                    ? `${item.SerialNumber} | ${item.StyleNumber}`
-                    : item.SerialNumber
-                    ? item.SerialNumber
-                    : item.StyleNumber
-                    ? item.StyleNumber
-                    : ``}
+                  {item.SerialNumber && item.StyleNumber ? (
+                    <>
+                      <span>{item.SerialNumber}</span>{" "}
+                      <span> {item.StyleNumber}</span>
+                    </>
+                  ) : item.SerialNumber ? (
+                    item.SerialNumber
+                  ) : item.StyleNumber ? (
+                    item.StyleNumber
+                  ) : (
+                    ``
+                  )}
                 </Card.Title>
                 <div className="card-text">
                   <div className="item_description">{item.Description}</div>
