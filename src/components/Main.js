@@ -64,6 +64,7 @@ import TiaraOnly from "./search-components/TiaraOnly";
 import FLRoundOnly from "./search-components/FLRoundOnly";
 import AshokaOnly from "./search-components/AshokaOnly";
 import KWCushionOnly from "./search-components/KWCushionOnly";
+import { data } from "../assets/icons/Sampledata";
 
 class Main extends Component {
   constructor(props) {
@@ -76,6 +77,7 @@ class Main extends Component {
       basketItems: [],
       itemToView: {},
       basketItems: [],
+      result: data,
     };
     // this.clearFilters = this.clearFilters.bind(this)
     this.toggleBasket = this.toggleBasket.bind(this);
@@ -308,7 +310,8 @@ class Main extends Component {
                 render={({ data }) => (
                   <Results
                     showResult={showResult}
-                    items={data}
+                    // items={data}
+                    items={this.state.result}
                     toggleSingleItem={this.toggleSingleItem}
                     handleItemToView={this.handleItemToView}
                     addItemToBasket={this.addItemToBasket}
