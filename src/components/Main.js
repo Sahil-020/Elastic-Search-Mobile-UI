@@ -45,6 +45,25 @@ import Basket from "./jewelry/Basket";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Results2 from "./jewelry/Results2";
+import CenterShape from "./search-components/CenterShape";
+import Metal from "./search-components/Metal";
+import Period from "./search-components/Period";
+import RfidSearch from "./search-components/RfidSearch";
+import Keyword from "./search-components/Keyword";
+import WRShape from "./search-components/WRShape";
+import WRSetting from "./search-components/WRSetting";
+import EternPart from "./search-components/EternPart";
+import Warehouse from "./search-components/Warehouse";
+import MemoOut from "./search-components/MemoOut";
+import RingSizeRange from "./search-components/RingSizeRange";
+import PurchasDateRange from "./search-components/PurchaseDateRange";
+import IsCom from "./search-components/IsCom";
+import IsVirtual from "./search-components/IsVirtual";
+import IsSemimount from "./search-components/IsSemimount";
+import TiaraOnly from "./search-components/TiaraOnly";
+import FLRoundOnly from "./search-components/FLRoundOnly";
+import AshokaOnly from "./search-components/AshokaOnly";
+import KWCushionOnly from "./search-components/KWCushionOnly";
 
 class Main extends Component {
   constructor(props) {
@@ -194,7 +213,17 @@ class Main extends Component {
                           <ItemSubtype />
                           <Collection />
                           <SubCollection />
+                          <CenterShape />
+                          <Metal />
+                          <Period />
                           <Maker />
+                          <RfidSearch />
+                          <Keyword />
+                          <WRShape />
+                          <WRSetting />
+                          <EternPart />
+                          <Warehouse />
+                          <MemoOut />
                         </Accordion.Body>
                       </Accordion.Item>
                       <Accordion.Item eventKey="1">
@@ -204,6 +233,8 @@ class Main extends Component {
                           <WholesalePriceRange />
                           <DiamondCarats />
                           <ColorCarat />
+                          <RingSizeRange />
+                          <PurchasDateRange />
                         </Accordion.Body>
                       </Accordion.Item>
                       <Accordion.Item eventKey="2">
@@ -212,6 +243,13 @@ class Main extends Component {
                           <KwiatOnly />
                           <FredLeightonOnly />
                           <IsSold />
+                          <IsCom />
+                          <IsVirtual />
+                          <IsSemimount />
+                          <TiaraOnly />
+                          <FLRoundOnly />
+                          <AshokaOnly />
+                          <KWCushionOnly />
                         </Accordion.Body>
                       </Accordion.Item>
                     </Accordion>
@@ -233,12 +271,32 @@ class Main extends Component {
                     "SubType",
                     "Collection",
                     "SubCollection",
+                    "CenterSahape",
                     "Maker",
+                    "Metal",
+                    "Period",
+                    "RFID_Search",
+                    "SearchKeyword",
+                    "WRShape",
+                    "WRSetting",
+                    "EternPart",
+                    "Warehouse",
+                    "MemoOut",
                     "DiamondCarats",
                     "ColorCarats",
+                    "RingSizeRange",
+                    "PurchaseDate",
                     "KwiatOnly",
                     "FredLeightonOnly",
                     "IncludeSold",
+                    "IncludeCom",
+                    "ExcludeVirtual",
+                    "IncludeRTV",
+                    "IncludeSemimount",
+                    "TiaraOnly",
+                    "FLRoundOnly",
+                    "AshokaOnly",
+                    "KWCushionOnly",
                   ],
                   // or: andQuery,
                 }}
@@ -248,20 +306,20 @@ class Main extends Component {
                   </label>
                 )}
                 render={({ data }) => (
-                  // <Results
-                  //   showResult={showResult}
-                  //   items={data}
-                  //   toggleSingleItem={this.toggleSingleItem}
-                  //   handleItemToView={this.handleItemToView}
-                  //   addItemToBasket={this.addItemToBasket}
-                  // />
-                  <Results2
+                  <Results
                     showResult={showResult}
                     items={data}
                     toggleSingleItem={this.toggleSingleItem}
                     handleItemToView={this.handleItemToView}
                     addItemToBasket={this.addItemToBasket}
                   />
+                  // <Results2
+                  //   showResult={showResult}
+                  //   items={data}
+                  //   toggleSingleItem={this.toggleSingleItem}
+                  //   handleItemToView={this.handleItemToView}
+                  //   addItemToBasket={this.addItemToBasket}
+                  // />
                 )}
               />
             </ReactiveBase>

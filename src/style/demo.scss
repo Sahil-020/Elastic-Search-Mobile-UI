@@ -109,7 +109,8 @@
                         height: 80% !important;
                         padding: 4px 4px 4px 12px !important;
                         .card-title.h5 {
-                            font-size: 13px !important;
+                            font-size: 14px !important;
+                            font-weight: bold;
                             display: flex;
                             flex-direction: row !important;
                             gap: 10px !important;
@@ -156,6 +157,10 @@
                 display: flex;
                 flex-direction: column;
                 row-gap: 20px;
+
+                .table {
+                    font-size: 12px;
+                }
             }
         }
     }

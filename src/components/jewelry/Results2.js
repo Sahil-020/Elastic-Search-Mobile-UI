@@ -12,6 +12,8 @@ import AccordionItem from "react-bootstrap/esm/AccordionItem";
 import AccordionHeader from "react-bootstrap/esm/AccordionHeader";
 import "../../style/demo.scss";
 import AccordionBody from "react-bootstrap/esm/AccordionBody";
+import isEmpty from "lodash/isEmpty";
+import { Table } from "react-bootstrap";
 
 function CustomAccordianToggle({ children, eventKey }) {
   const OnClick = useAccordionButton(eventKey, () => {
@@ -38,8 +40,85 @@ class Results2 extends Component {
       // viewType: "List",
     };
     this.handleImage = this.handleImage.bind(this);
+    this.isValueEmpty = this.isValueEmpty.bind(this);
+    this.isMultipleValueEmpty = this.isMultipleValueEmpty.bind(this);
     // this.customAccordianToggle = this.customAccordianToggle.bind(this);
     // this.handleView = this.handleView.bind(this);
+  }
+
+  isValueEmpty(res) {
+    // console.log("res & name :", res, name);
+    let result = "";
+    if (!isEmpty(res) && res !== "0.00") {
+      // result = `${name} : ${res}`;
+      result = res;
+    }
+    // else {
+    //   result = `${name} : null`;
+    // }
+    // console.log("result : ", result);
+    return result;
+  }
+  isMultipleValueEmpty(res, expr) {
+    let result = "";
+    switch (expr) {
+      case "CenterDetails":
+        if (!isEmpty(res.CenterShape)) {
+          result = `Center Details:
+          ${(res.CenterCaratWeight && res.CenterCaratWeight + " cts") || ""}
+          ${res.CenterShape || ""} ${
+            (res.CenterColor && res.CenterColor + " /") || ""
+          }
+          ${(res.CenterClarity && res.CenterClarity + " /") || ""} ${
+            res.CenterCut || ""
+          } ${res.CenterEnhancement || ""} ${
+            (res.CenterOrigin && res.CenterOrigin + " - #") || ""
+          }  ${res.CenterStoneNbr || ""}`;
+        }
+        break;
+
+      case "WholesalePrice":
+        result =
+          (res.WholesalePrice &&
+            currencyFormatter.format(`${res.WholesalePrice}`, {
+              code: "USD",
+              precision: 0,
+            })) ||
+          "";
+
+        break;
+
+      case "ItemSubtype":
+        if (!isEmpty(res.ItemSubtype)) {
+          result = res.ItemSubtype;
+        } else {
+          result = res.ItemType || "";
+        }
+        break;
+      case "RetailPrice":
+        if (!isEmpty(res)) {
+          result = currencyFormatter.format(`${res}`, {
+            code: "USD",
+            precision: 0,
+          });
+        }
+        break;
+      case "ColorClarity":
+        result = `${res.Color || ""}
+          ${res.Color && res.Clarity ? "/" : ""}
+          ${res.Clarity || ""}
+        `;
+        break;
+      case "DiamondDetails":
+        result = `${res.DiamondDetails || ""}
+          ${res.DiamondDetails && res.ColorComment ? " & " : ""}
+          ${res.ColorComment || ""}
+        `;
+        break;
+      default:
+        return result.trim();
+    }
+    return result.trim();
   }
 
   handleView(e, value) {
@@ -167,7 +246,12 @@ class Results2 extends Component {
                       />
                     </div>
                     <Card.Body>
-                      <Card.Title>
+                      <Card.Title
+                        onClick={() => {
+                          handleItemToView(item);
+                          toggleSingleItem(true);
+                        }}
+                      >
                         {item.SerialNumber && item.StyleNumber ? (
                           <>
                             <span>{item.SerialNumber}</span>{" "}
@@ -222,7 +306,66 @@ class Results2 extends Component {
                     </Card.Body>
                   </Card>
                 </AccordionHeader>
-                <AccordionBody>Body</AccordionBody>
+                <AccordionBody>
+                  <Table>
+                    <tbody>
+                      <tr>
+                        {item.ItemSubtype && <td>{item.ItemSubtype}</td>}
+                        {item.DiamondCarats ||
+                          (item.ColorCarats && (
+                            <td>
+                              {item.DiamondCarats &&
+                                `${item.DiamondCarats} cts dia`}{" "}
+                              {item.Colorcarats &&
+                                `${item.ColorCarats} cts color`}
+                            </td>
+                          ))}
+
+                        {item.Maker && <td>{item.Maker}</td>}
+                        {item.RingSize && <td> {item.RingSize}</td>}
+                      </tr>
+                      <tr>
+                        {item.Collection && <td>{item.Collection}</td>}
+                        {item.Color && (
+                          <td>
+                            {this.isMultipleValueEmpty(
+                              item,
+                              "ColorClarity"
+                            ).replace(/\s+/g, " ")}
+                          </td>
+                        )}
+                        {item.Period && (
+                          <td>{this.isValueEmpty(item.Period)}</td>
+                        )}
+                        {item.Length ||
+                          item.BangleSize ||
+                          (item.Diameter && (
+                            <td>
+                              {this.isValueEmpty(item.Length)}
+                              {this.isValueEmpty(item.BangleSize)}
+                              {this.isValueEmpty(item.Diameter)}
+                              {this.isValueEmpty(item.HoopDiameter)}
+                            </td>
+                          ))}
+                      </tr>
+                      <tr>
+                        {item.Metal && <td>{this.isValueEmpty(item.Metal)}</td>}
+                        <td>
+                          {this.isMultipleValueEmpty(
+                            item,
+                            "DiamondDetails"
+                          ).replace(/\s+/g, " ")}
+                        </td>
+                        {item.CircaDate && (
+                          <td>{this.isValueEmpty(item.CircaDate)}</td>
+                        )}
+                        {item.WidthOD && (
+                          <td>{this.isValueEmpty(item.WidthOD)}</td>
+                        )}
+                      </tr>
+                    </tbody>
+                  </Table>
+                </AccordionBody>
               </AccordionItem>
             );
           })}
