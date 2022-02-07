@@ -324,7 +324,7 @@
             gap: 6px !important;
             .card {
                 width: 100% !important;
-                height: 100px !important;
+                height: 120px !important;
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
@@ -359,7 +359,7 @@
                 .card-body {
                     width: 70%;
                     height: 80% !important;
-                    padding: 4px 8px !important;
+                    padding: 4px 4px 4px 12px !important;
                     .card-title.h5 {
                         font-size: 13px !important;
                         display: flex;
@@ -380,6 +380,17 @@
                         .item_description {
                             font-size: 12px !important;
                             display: block !important;
+                        }
+                        .accordion {
+                            display: block !important;
+                            .card {
+                                display: flex;
+                                flex-direction: column;
+                                .card-header {
+                                    text-align: right;
+                                    padding: 0px;
+                                }
+                            }
                         }
 
                         > div {

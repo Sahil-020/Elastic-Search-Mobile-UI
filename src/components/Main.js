@@ -44,6 +44,7 @@ import SingleItem from "./jewelry/SingleItem";
 import Basket from "./jewelry/Basket";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Results2 from "./jewelry/Results2";
 
 class Main extends Component {
   constructor(props) {
@@ -247,7 +248,14 @@ class Main extends Component {
                   </label>
                 )}
                 render={({ data }) => (
-                  <Results
+                  // <Results
+                  //   showResult={showResult}
+                  //   items={data}
+                  //   toggleSingleItem={this.toggleSingleItem}
+                  //   handleItemToView={this.handleItemToView}
+                  //   addItemToBasket={this.addItemToBasket}
+                  // />
+                  <Results2
                     showResult={showResult}
                     items={data}
                     toggleSingleItem={this.toggleSingleItem}

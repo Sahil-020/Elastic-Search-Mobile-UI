@@ -1,0 +1,162 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
+
+.es_results2 {
+    .result_view_options {
+        display: flex;
+        width: 100%;
+        gap: 12px;
+        padding: 5px;
+        align-items: center;
+        justify-content: flex-end;
+        margin-top: 8px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.125) !important;
+        img {
+            height: 16px !important;
+            width: 16px !important;
+        }
+        img.active {
+            height: 22px !important;
+            width: 22px !important;
+            // border: 1px solid grey;
+            // border-radius: 5px;
+            // padding: 2px;
+        }
+    }
+    .accordion {
+        padding: 0.7rem 0.5rem;
+        .accordion-item {
+            // border-color: white;
+            background-color: #f2f4f5 !important;
+            border: white !important;
+            border-bottom: 1px solid grey !important;
+            .accordion-header,
+            .accordion-button {
+                background-color: white !important;
+                border: white;
+                color: black !important;
+                // @media (min-width: 768px) {
+                //     background-color: #f2f4f5;
+                // }
+            }
+            .accordion-button {
+                padding: 0.5rem 0.25rem;
+                background-color: #f2f4f5;
+                flex-direction: column !important;
+                // @media (min-width: 768px) {
+                //     width: 70%;
+                //     margin: auto;
+                // }
+                // border-bottom: 1px solid grey !important;
+            }
+            .accordion-button:focus {
+                box-shadow: none;
+                // color: #1b387d !important;
+                // font-weight: 700;
+                // border: white !important;
+            }
+            .accordion-button::after {
+                content: "+";
+                width: 12px;
+                height: 12px;
+                background-image: none;
+                transition: none !important;
+                transform: none !important;
+                position: relative;
+                color: #3976c5;
+            }
+
+            .accordion-button {
+                .card {
+                    width: 100% !important;
+                    height: 120px !important;
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    padding: 0px !important;
+                    margin: 0px !important;
+                    gap: 0px !important;
+                    box-shadow: none !important;
+                    border: none !important;
+                    border-radius: 0px !important ;
+                    // border-bottom: 1px solid rgba(0, 0, 0, 0.125) !important;
+                    .result_action_group {
+                        display: flex !important;
+                        justify-content: flex-end;
+                        align-items: center;
+                        width: 100%;
+                        img {
+                            height: 20px !important;
+                            width: 20px !important;
+                        }
+                    }
+
+                    .image_container {
+                        width: 25%;
+                        height: 80% !important;
+                        display: flex;
+                        align-items: center;
+
+                        img {
+                            max-width: 100% !important;
+
+                            // border: none !important;
+                            // max-height: none !important;
+                        }
+                    }
+                    .card-body {
+                        width: 70%;
+                        height: 80% !important;
+                        padding: 4px 4px 4px 12px !important;
+                        .card-title.h5 {
+                            font-size: 13px !important;
+                            display: flex;
+                            flex-direction: row !important;
+                            gap: 10px !important;
+                            align-items: center;
+                            text-align: left;
+                            margin: 0px !important;
+                        }
+                        .card-text {
+                            // text-align: left;
+                            padding: 4px;
+                            display: flex;
+                            flex-direction: column;
+                            row-gap: 5px;
+                            font-size: 13px;
+                            text-align: left;
+                            .item_description {
+                                font-size: 12px !important;
+                                display: block !important;
+                            }
+                            .accordion {
+                                display: block !important;
+                                .card {
+                                    display: flex;
+                                    flex-direction: column;
+                                    .card-header {
+                                        text-align: right;
+                                        padding: 0px;
+                                    }
+                                }
+                            }
+
+                            > div {
+                                display: none !important;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .accordion-body {
+                // height: 200px;
+                padding: 0.25rem 0.25rem;
+                background-color: white !important;
+                display: flex;
+                flex-direction: column;
+                row-gap: 20px;
+            }
+        }
+    }
+}
