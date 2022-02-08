@@ -590,12 +590,19 @@
                     text-align: left;
                     padding: 0 0.5rem;
                 }
-                .table {
-                    tr {
-                        border: white !important;
-                        td {
-                            text-align: left;
-                            font-size: 14px;
+                table {
+                    max-height: 266px !important;
+                    overflow: hidden;
+                    tbody {
+                        tr {
+                            border: white !important;
+                            td {
+                                text-align: left;
+                                font-size: 13px;
+                            }
+                            td:first-child {
+                                width: 35%;
+                            }
                         }
                     }
                 }
