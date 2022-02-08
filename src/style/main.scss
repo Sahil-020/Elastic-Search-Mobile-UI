@@ -584,24 +584,59 @@
                 }
             }
             .single_item_details {
-                display: flex;
-                flex-direction: column;
-                h6 {
-                    text-align: left;
-                    padding: 0 0.5rem;
-                }
-                table {
-                    max-height: 266px !important;
-                    overflow: hidden;
-                    tbody {
-                        tr {
-                            border: white !important;
-                            td {
-                                text-align: left;
-                                font-size: 13px;
+                // display: flex;
+                // flex-direction: column;
+                .accordion {
+                    .accordion-item {
+                        border: none;
+                        // border-bottom: 1px solid black;
+                        .accordion-header {
+                            .accordion-button,
+                            .accordion-button:focus {
+                                padding: 10px 8px;
+                                font-size: 15px;
+                                font-weight: 500;
+                                color: #373636 !important;
+                                outline: none !important;
+                                background: white !important;
+                                border: none !important ;
+                                box-shadow: none !important;
+                                border-bottom: 1px solid #9b9b9b !important;
+                                // border-top: 1px solid black !important;
                             }
-                            td:first-child {
-                                width: 35%;
+                            .accordion-button::after {
+                                content: "+";
+                                width: 12px;
+                                height: 12px;
+                                background-image: none;
+                                transition: none !important;
+                                transform: none !important;
+                                position: relative;
+                                color: #373636;
+                            }
+                        }
+                        .accordion-body {
+                            padding: 8px;
+                            h6 {
+                                text-align: left;
+                                padding: 0 0.5rem;
+                            }
+                            table {
+                                max-height: 266px !important;
+                                overflow: hidden;
+                                tbody {
+                                    tr {
+                                        border: white !important;
+                                        td {
+                                            text-align: left;
+                                            font-size: 13px;
+                                            color: #373636 !important;
+                                        }
+                                        td:first-child {
+                                            width: 35%;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -629,6 +664,7 @@
             font-size: 18px;
         }
     }
+
     .offcanvas-body {
         padding: 0.5rem 0.75rem;
         .accordion-item {

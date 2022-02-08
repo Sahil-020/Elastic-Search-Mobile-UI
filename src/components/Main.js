@@ -310,8 +310,8 @@ class Main extends Component {
                 render={({ data }) => (
                   <Results
                     showResult={showResult}
-                    // items={data}
-                    items={this.state.result}
+                    items={data}
+                    // items={this.state.result}
                     toggleSingleItem={this.toggleSingleItem}
                     handleItemToView={this.handleItemToView}
                     addItemToBasket={this.addItemToBasket}
