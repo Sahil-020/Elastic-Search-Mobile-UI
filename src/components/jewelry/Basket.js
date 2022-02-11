@@ -12,7 +12,7 @@ class Basket extends Component {
     this.state = {
       items: this.props.basketItems,
       basketDetails: {
-        basketNo: 1001,
+        basketNo: "New",
         description: "",
         internalNotes: "",
         customer: "",
@@ -153,7 +153,7 @@ class Basket extends Component {
         </div>
         <div className="basket_header">
           <div className="basket_orderNo">
-            <label>Baske No</label>
+            <label>Basket No</label>
             <span>{this.state.basketDetails.basketNo}</span>
           </div>
           <Accordion>
