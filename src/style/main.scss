@@ -3,31 +3,87 @@
 
 .main_container {
     // padding: 6px;
-    .navbar_container {
-        .navbar.navbar-light.bg-light {
-            padding: 6px 0px;
-            .container-fluid {
-                padding: 0px 8px;
-                gap: 15px;
+    // .navbar_container {
+    //     .navbar.navbar-light.bg-light {
+    //         padding: 10px 25px 5px;
+    //         background-color: #f8f9f9 !important;
+    //         .container-fluid {
+    //             padding: 0px 0px;
+    //             gap: 15px;
+    //             .navbar-brand {
+    //                 width: 60%;
+    //                 display: flex;
+    //                 align-items: center;
+    //                 justify-content: center;
+    //                 margin: 0;
+    //                 img {
+    //                     max-width: 100%;
+    //                 }
+    //             }
+
+    //             .navbar-toggler {
+    //                 padding: 0;
+    //                 font-size: 1rem;
+    //                 line-height: 1;
+    //                 background-color: transparent;
+    //                 border: 1px solid transparent;
+    //                 border-radius: 0.25rem;
+    //                 transition: box-shadow 0.15s ease-in-out;
+    //             }
+    //         }
+    //     }
+    // }
+
+    .header {
+        .navbar.navbar-expand.navbar-light.bg-light {
+            padding: 10px 25px 5px;
+            background-color: #f8f9f9 !important;
+
+            .container {
+                padding: 0px;
+                display: flex;
+                flex-direction: column;
+                flex-wrap: inherit;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
                 .navbar-brand {
-                    width: 60%;
                     display: flex;
+                    flex-direction: row;
                     align-items: center;
-                    justify-content: center;
-                    margin: 0;
+                    padding: 0px;
+                    margin: 0px;
+                    gap: 10%;
                     img {
-                        max-width: 100%;
+                        max-width: 50%;
+                    }
+                    .basket_button {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        width: 50%;
+                        img {
+                            height: 22px;
+                            width: 22px;
+                        }
                     }
                 }
+                .navbar-nav {
+                    width: 100%;
+                    gap: 15px;
+                    .nav-link {
+                        font-size: 12px;
+                        background: white;
 
-                .navbar-toggler {
-                    padding: 0.25rem 0.5rem;
-                    font-size: 1rem;
-                    line-height: 1;
-                    background-color: transparent;
-                    border: 1px solid transparent;
-                    border-radius: 0.25rem;
-                    transition: box-shadow 0.15s ease-in-out;
+                        font-weight: 500;
+                        border-radius: 57px;
+                        padding: 6px 10px;
+                    }
+                    .nav-link.active {
+                        background: #2e4053;
+                        color: white;
+                        font-weight: 700;
+                    }
                 }
             }
         }
@@ -40,12 +96,13 @@
             gap: 20px;
             z-index: 100;
             // align-items: center;
-            padding: 20px 16px 16px;
+            padding: 8px 25px;
             position: sticky;
             top: 0;
             background: white;
-            border-bottom: 1px solid grey;
-            margin: 0px 0px 10px 0px;
+            // border-bottom: 1px solid grey;
+            // margin: 0px 0px 10px 0px;
+            background-color: #f8f9f9 !important;
             .form_field {
                 max-height: 28px;
                 width: 80%;
@@ -53,6 +110,9 @@
                 .css-ee3byn-Select {
                     height: 28px !important;
                     min-height: 28px !important;
+                }
+                .css-1k0hmue-IconWrapper svg.search-icon {
+                    fill: #34495e;
                 }
                 > ul {
                     list-style-type: none !important;
@@ -123,6 +183,42 @@
                 white-space: nowrap !important;
             }
         }
+        .result_status_view_option_container {
+            display: flex;
+            width: 100%;
+            padding: 8px 25px;
+            flex-direction: row;
+            align-items: center;
+            background-color: #f8f9f9 !important;
+
+            label {
+                width: 60%;
+                text-align: left;
+                color: #34495e;
+                font-weight: 600;
+            }
+            .result_view_options {
+                display: flex;
+                width: 40%;
+                gap: 12px;
+                padding: 5px;
+                align-items: center;
+                justify-content: flex-end;
+                // margin-top: 8px;
+                // border-bottom: 1px solid rgba(0, 0, 0, 0.125) !important;
+                img {
+                    height: 16px !important;
+                    width: 16px !important;
+                }
+                img.active {
+                    height: 22px !important;
+                    width: 22px !important;
+                    // border: 1px solid grey;
+                    // border-radius: 5px;
+                    // padding: 2px;
+                }
+            }
+        }
         .es_results {
             display: flex;
             flex-direction: column;
@@ -142,27 +238,7 @@
             > select {
                 border: solid 1px;
             }
-            .result_view_options {
-                display: flex;
-                width: 100%;
-                gap: 12px;
-                padding: 5px;
-                align-items: center;
-                justify-content: flex-end;
-                margin-top: 8px;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.125) !important;
-                img {
-                    height: 16px !important;
-                    width: 16px !important;
-                }
-                img.active {
-                    height: 22px !important;
-                    width: 22px !important;
-                    // border: 1px solid grey;
-                    // border-radius: 5px;
-                    // padding: 2px;
-                }
-            }
+
             .List_result_container,
             .Grid_result_container,
             .Grid3_result_container,

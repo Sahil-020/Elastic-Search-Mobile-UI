@@ -189,8 +189,7 @@ class Results2 extends Component {
     // console.log("items : ", items);
     return (
       <div className="es_results2">
-        {/* <button onClick={(e) => this.handleView(e)}>Grid</button> */}
-        <div className="result_view_options">
+        {/* <div className="result_view_options">
           <img
             className="active"
             src={ListView}
@@ -199,12 +198,8 @@ class Results2 extends Component {
           <img src={Grid1} onClick={(e) => this.handleView(e, "Grid1")} />
           <img src={Grid2} onClick={(e) => this.handleView(e, "Grid2")} />
           <img src={Grid3} onClick={(e) => this.handleView(e, "Grid3")} />
-        </div>
-        {/* <select onChange={(e) => this.handleView(e)}>
-          <option value="List">List</option>
-          <option value="Grid2">Grid of 2</option>
-          <option value="Grid3">Grid of 3</option>
-        </select> */}
+        </div> */}
+
         <Accordion>
           {items.map((item, index) => {
             console.log("index :", index);

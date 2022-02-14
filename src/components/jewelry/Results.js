@@ -106,8 +106,7 @@ class Results extends Component {
     // console.log("items : ", items);
     return (
       <div className="es_results">
-        {/* <button onClick={(e) => this.handleView(e)}>Grid</button> */}
-        <div className="result_view_options">
+        {/* <div className="result_view_options">
           <img
             className="active"
             src={ListView}
@@ -116,48 +115,14 @@ class Results extends Component {
           <img src={Grid1} onClick={(e) => this.handleView(e, "Grid1")} />
           <img src={Grid2} onClick={(e) => this.handleView(e, "Grid2")} />
           <img src={Grid3} onClick={(e) => this.handleView(e, "Grid3")} />
-        </div>
-        {/* <select onChange={(e) => this.handleView(e)}>
-          <option value="List">List</option>
-          <option value="Grid2">Grid of 2</option>
-          <option value="Grid3">Grid of 3</option>
-        </select> */}
+        </div> */}
+
         <div
           id="ES_Results"
           className="List_result_container"
           // className="compact_result_container"
         >
           {items.map((item, index) => (
-            // <div className="item_container" key={index}>
-            //   <div className="item_image">
-            //     <img src={this.handleImage(item)} />
-            //   </div>
-            //   <div className="item_details">
-            //     <div className="item_serial_style">
-            //       <h6>
-            //         {item.SerialNumber && item.StyleNumber
-            //           ? `${item.SerialNumber} | ${item.StyleNumber}`
-            //           : item.SerialNumber
-            //           ? item.SerialNumber
-            //           : item.StyleNumber
-            //           ? item.StyleNumber
-            //           : ``}
-            //       </h6>
-            //     </div>
-            //     <div className="item_description">{item.Description}</div>
-            //     <div className="item_type_subtype">
-            //       {item.ItemType && item.ItemSubtype
-            //         ? item.ItemSubtype
-            //         : item.ItemSubtype
-            //         ? item.ItemSubtype
-            //         : item.ItemType
-            //         ? item.ItemType
-            //         : ""}
-            //     </div>
-            //     <div className="item_metal">{item.Metal}</div>
-            //     <div className="item_price">{item.RetailPrice}</div>
-            //   </div>
-            // </div>
             <Card
               key={index}
               onClick={(e) => {
@@ -226,19 +191,6 @@ class Results extends Component {
                       })) ||
                       ""}
                   </div>
-                  {/* <Accordion>
-                    <Card>
-                      <Card.Header>
-                        <CustomAccordianToggle eventKey="0">
-                          {" "}
-                          +{" "}
-                        </CustomAccordianToggle>
-                      </Card.Header>
-                      <Accordion.Collapse eventKey="0">
-                        <Card.Body>Hello! I'm the body</Card.Body>
-                      </Accordion.Collapse>
-                    </Card>
-                  </Accordion> */}
                 </div>
               </Card.Body>
             </Card>

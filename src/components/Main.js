@@ -65,6 +65,12 @@ import FLRoundOnly from "./search-components/FLRoundOnly";
 import AshokaOnly from "./search-components/AshokaOnly";
 import KWCushionOnly from "./search-components/KWCushionOnly";
 import { data } from "../assets/icons/Sampledata";
+import Grid2 from "../assets/icons/grid-two-up-16.png";
+import Grid3 from "../assets/icons/grid-three-up-16.png";
+import Grid1 from "../assets/icons/square-16.png";
+import ListView from "../assets/icons/list-2-16.png";
+import $ from "jquery";
+import Header from "./header";
 
 class Main extends Component {
   constructor(props) {
@@ -85,6 +91,33 @@ class Main extends Component {
     this.handleItemToView = this.handleItemToView.bind(this);
     this.addItemToBasket = this.addItemToBasket.bind(this);
     this.removeItemFromBasket = this.removeItemFromBasket.bind(this);
+    this.handleView = this.handleView.bind(this);
+  }
+  handleView(e, value) {
+    // let value = e.target.value;
+    // document
+    //   .getElementById("ES_Results")
+    //   .classList.toggle("compact_result_container");
+    $(".result_view_options").children().removeClass("active");
+    console.log("Selected value: ", value);
+    e.target.className = "active";
+    if (value === "Grid1") {
+      document.getElementById("ES_Results").className = "Grid_result_container";
+    } else if (value === "Grid2") {
+      document.getElementById("ES_Results").className =
+        "Grid2_result_container";
+    } else if (value === "Grid3") {
+      document.getElementById("ES_Results").className =
+        "Grid3_result_container";
+    } else if (value === "List") {
+      document.getElementById("ES_Results").className = "List_result_container";
+    }
+
+    // if (e.target.innerHTML === "List") {
+    //   e.target.innerHTML = "Grid";
+    // } else {
+    //   e.target.innerHTML = "List";
+    // }
   }
 
   toggleBasket(value) {
@@ -145,7 +178,7 @@ class Main extends Component {
     return (
       <div className="main_container">
         <div className="navbar_container">
-          <Navbar bg="light" expand={false}>
+          {/* <Navbar bg="light" expand={false}>
             <Container fluid>
               <Navbar.Toggle aria-controls="offcanvasNavbar" />
               <Navbar.Brand href="#">
@@ -180,7 +213,8 @@ class Main extends Component {
                 </Offcanvas.Body>
               </Navbar.Offcanvas>
             </Container>
-          </Navbar>
+          </Navbar> */}
+          <Header toggleBasket={this.toggleBasket} />
         </div>
         <div className="content">
           {!showBasket && !showSingleItem ? (
@@ -259,7 +293,7 @@ class Main extends Component {
                 </Offcanvas>
               </div>
               {/* <SelectedFilters className="selectedFilters" /> */}
-              <SearchCriteria />
+              {/* <SearchCriteria /> */}
 
               <ReactiveList
                 componentId="results"
@@ -303,9 +337,30 @@ class Main extends Component {
                   // or: andQuery,
                 }}
                 renderResultStats={({ numberOfResults, time }) => (
-                  <label>
-                    {numberOfResults} results found in {time}ms
-                  </label>
+                  <div className="result_status_view_option_container">
+                    <label>
+                      {numberOfResults} results found in {time}ms
+                    </label>
+                    <div className="result_view_options">
+                      <img
+                        className="active"
+                        src={ListView}
+                        onClick={(e) => this.handleView(e, "List")}
+                      />
+                      <img
+                        src={Grid1}
+                        onClick={(e) => this.handleView(e, "Grid1")}
+                      />
+                      <img
+                        src={Grid2}
+                        onClick={(e) => this.handleView(e, "Grid2")}
+                      />
+                      <img
+                        src={Grid3}
+                        onClick={(e) => this.handleView(e, "Grid3")}
+                      />
+                    </div>
+                  </div>
                 )}
                 render={({ data }) => (
                   <Results
