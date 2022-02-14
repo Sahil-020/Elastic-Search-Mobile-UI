@@ -55,16 +55,16 @@
                     margin: 0px;
                     gap: 10%;
                     img {
-                        max-width: 50%;
+                        max-width: 60%;
                     }
                     .basket_button {
                         display: flex;
                         align-items: center;
                         justify-content: flex-end;
-                        width: 50%;
+                        width: 40%;
                         img {
-                            height: 22px;
-                            width: 22px;
+                            height: 25px;
+                            width: 25px;
                         }
                     }
                 }
@@ -72,8 +72,9 @@
                     width: 100%;
                     gap: 15px;
                     padding: 10px;
+                    overflow: auto;
                     .nav-link {
-                        font-size: 12px;
+                        font-size: 13px;
                         background: white;
                         white-space: nowrap;
                         font-weight: 500;
