@@ -37,7 +37,7 @@
     .header {
         .navbar.navbar-expand.navbar-light.bg-light {
             padding: 10px 25px 10px;
-            background-color: #f8f9f9 !important;
+            background-color: #f2f4f4 !important;
 
             .container {
                 padding: 0px;
@@ -101,10 +101,10 @@
             padding: 10px 25px;
             position: sticky;
             top: 0;
-            background: white;
+            // background: white;
             // border-bottom: 1px solid grey;
             // margin: 0px 0px 10px 0px;
-            background-color: #f8f9f9 !important;
+            background-color: #f2f4f4 !important;
             .form_field {
                 max-height: 28px;
                 width: 80%;
@@ -200,7 +200,7 @@
         .result_status_view_option_container {
             display: flex;
             width: 100%;
-            padding: 8px 25px;
+            padding: 15px 25px;
             flex-direction: row;
             align-items: center;
             // background-color: #f8f9f9 !important;
@@ -239,7 +239,7 @@
             flex-direction: column;
             flex-wrap: wrap;
             justify-content: space-around;
-            padding: 10px 5px 0px;
+            padding: 10px 15px 0px;
             align-items: flex-end;
             gap: 10px;
             > button,
@@ -326,7 +326,7 @@
                             max-width: 40%;
                             // max-height: 40%;
 
-                            max-height: 100% !important;
+                            // max-height: 100% !important;
                         }
                     }
                     .card-body {
@@ -419,74 +419,80 @@
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
-                padding: 4px !important;
+                padding: 10px 0px !important;
                 margin: 0px !important;
-                gap: 0px !important;
+                gap: 10px !important;
                 box-shadow: none !important;
                 border: none !important;
                 border-radius: 0px !important ;
                 border-bottom: 1px solid rgba(0, 0, 0, 0.125) !important;
-                .result_action_group {
-                    display: flex !important;
-                    justify-content: flex-end;
-                    align-items: center;
-                    width: 100%;
-                    img {
-                        height: 20px !important;
-                        width: 20px !important;
-                    }
-                }
 
                 .image_container {
                     width: 25%;
-                    height: 80% !important;
+                    height: 100% !important;
                     img {
                         max-width: 100% !important;
                         margin: auto;
                         // border: none !important;
-                        // max-height: none !important;
+                        max-height: none !important;
                     }
                 }
                 .card-body {
-                    width: 70%;
-                    height: 80% !important;
-                    padding: 4px 4px 4px 12px !important;
+                    width: 60%;
+                    height: 100% !important;
+                    padding: 0px !important;
                     .card-title.h5 {
-                        font-size: 13px !important;
+                        font-size: 12px !important;
                         display: flex;
                         flex-direction: row !important;
                         gap: 10px !important;
                         align-items: center;
                         text-align: left;
                         margin: 0px !important;
+                        color: #808b96;
+                        font-weight: 400;
                     }
                     .card-text {
                         // text-align: left;
                         padding: 4px;
                         display: flex;
                         flex-direction: column;
-                        row-gap: 5px;
+                        row-gap: 15px !important;
                         font-size: 13px;
                         text-align: left;
+                        color: #34495e;
+
                         .item_description {
                             font-size: 12px !important;
                             display: block !important;
-                        }
-                        .accordion {
-                            display: block !important;
-                            .card {
-                                display: flex;
-                                flex-direction: column;
-                                .card-header {
-                                    text-align: right;
-                                    padding: 0px;
-                                }
-                            }
+                            font-weight: 500;
+                            line-height: 1.5em;
+                            max-height: 3em;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            // white-space: nowrap;
                         }
 
+                        .item_price {
+                            display: block !important;
+
+                            font-size: 16px;
+                            font-weight: 700;
+                        }
                         > div {
                             display: none !important;
                         }
+                    }
+                }
+                .result_action_group {
+                    display: flex !important;
+                    justify-content: flex-end;
+                    align-items: flex-end;
+                    width: 5%;
+                    height: 100% !important;
+                    img {
+                        height: 20px !important;
+                        width: 20px !important;
                     }
                 }
             }

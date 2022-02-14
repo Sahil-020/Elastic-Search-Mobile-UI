@@ -133,17 +133,6 @@ class Results extends Component {
                 toggleSingleItem(true);
               }}
             >
-              <div className="result_action_group">
-                <img
-                  src="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/add-to-basket.png"
-                  onClick={(e) => {
-                    // if (e.target === this) {
-                    e.stopPropagation();
-                    addItemToBasket(item);
-                    // }
-                  }}
-                ></img>
-              </div>
               <div className="image_container">
                 <Card.Img
                   variant="top"
@@ -158,7 +147,7 @@ class Results extends Component {
                 <Card.Title>
                   {item.SerialNumber && item.StyleNumber ? (
                     <>
-                      <span>{item.SerialNumber}</span>{" "}
+                      <span>{item.SerialNumber}</span> |
                       <span> {item.StyleNumber}</span>
                     </>
                   ) : item.SerialNumber ? (
@@ -193,6 +182,17 @@ class Results extends Component {
                   </div>
                 </div>
               </Card.Body>
+              <div className="result_action_group">
+                <img
+                  src="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/add-to-basket.png"
+                  onClick={(e) => {
+                    // if (e.target === this) {
+                    e.stopPropagation();
+                    addItemToBasket(item);
+                    // }
+                  }}
+                ></img>
+              </div>
             </Card>
           ))}
         </div>
