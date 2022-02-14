@@ -239,7 +239,7 @@
             flex-direction: column;
             flex-wrap: wrap;
             justify-content: space-around;
-            padding: 10px 15px 0px;
+            padding: 10px 20px 0px;
             align-items: flex-end;
             gap: 10px;
             > button,
@@ -308,9 +308,10 @@
                     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
                     // background-color: rgba(241, 241, 241, 0.876);
                     .result_action_group {
-                        display: flex !important;
+                        // display: flex !important;
                         justify-content: flex-end;
                         align-items: center;
+                        display: none;
                         // width: 100%;
                         img {
                             height: 22px;
@@ -438,7 +439,7 @@
                     }
                 }
                 .card-body {
-                    width: 60%;
+                    width: 55%;
                     height: 100% !important;
                     padding: 0px !important;
                     .card-title.h5 {
@@ -485,12 +486,17 @@
                     }
                 }
                 .result_action_group {
-                    display: flex !important;
-                    justify-content: flex-end;
-                    align-items: flex-end;
-                    width: 5%;
+                    // display: flex !important;
+                    // justify-content: flex-end;
+                    // align-items: flex-end;
+                    display: block !important;
+                    position: relative !important;
+                    width: 7%;
                     height: 100% !important;
                     img {
+                        position: absolute !important;
+                        bottom: 0;
+                        left: 0;
                         height: 20px !important;
                         width: 20px !important;
                     }
