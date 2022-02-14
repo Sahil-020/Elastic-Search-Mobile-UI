@@ -178,7 +178,8 @@ class Results extends Component {
                         code: "USD",
                         precision: 0,
                       })) ||
-                      ""}
+                      ""}{" "}
+                    USD
                   </div>
                 </div>
               </Card.Body>
