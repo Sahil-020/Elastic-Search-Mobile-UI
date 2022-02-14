@@ -203,13 +203,14 @@
             padding: 8px 25px;
             flex-direction: row;
             align-items: center;
-            background-color: #f8f9f9 !important;
+            // background-color: #f8f9f9 !important;
 
             label {
                 width: 60%;
                 text-align: left;
                 color: #34495e;
                 font-weight: 600;
+                font-size: 14px;
             }
             .result_view_options {
                 display: flex;
