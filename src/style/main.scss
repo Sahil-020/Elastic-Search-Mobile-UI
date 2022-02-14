@@ -46,7 +46,7 @@
                 flex-wrap: inherit;
                 align-items: center;
                 justify-content: space-between;
-                gap: 15px;
+                gap: 8px;
                 .navbar-brand {
                     display: flex;
                     flex-direction: row;
@@ -71,10 +71,11 @@
                 .navbar-nav {
                     width: 100%;
                     gap: 15px;
+                    padding: 10px;
                     .nav-link {
                         font-size: 12px;
                         background: white;
-
+                        white-space: nowrap;
                         font-weight: 500;
                         border-radius: 57px;
                         padding: 6px 10px;
