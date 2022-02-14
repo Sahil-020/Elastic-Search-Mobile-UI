@@ -36,7 +36,7 @@
 
     .header {
         .navbar.navbar-expand.navbar-light.bg-light {
-            padding: 10px 25px 5px;
+            padding: 10px 25px 10px;
             background-color: #f8f9f9 !important;
 
             .container {
@@ -46,7 +46,7 @@
                 flex-wrap: inherit;
                 align-items: center;
                 justify-content: space-between;
-                gap: 10px;
+                gap: 15px;
                 .navbar-brand {
                     display: flex;
                     flex-direction: row;
@@ -96,7 +96,7 @@
             gap: 20px;
             z-index: 100;
             // align-items: center;
-            padding: 8px 25px;
+            padding: 10px 25px;
             position: sticky;
             top: 0;
             background: white;
@@ -110,6 +110,18 @@
                 .css-ee3byn-Select {
                     height: 28px !important;
                     min-height: 28px !important;
+                    width: 100%;
+                    line-height: 1.5;
+
+                    padding: 8px 12px;
+                    border: 1.5px solid #e2e2e2;
+                    background-color: #fafafa;
+                    font-size: 0.9rem;
+                    outline: #e2e2e2;
+                    height: 100%;
+                    padding-right: 36px;
+                    padding-right: 36px;
+                    padding-right: 66px;
                 }
                 .css-1k0hmue-IconWrapper svg.search-icon {
                     fill: #34495e;
