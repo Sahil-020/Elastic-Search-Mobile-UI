@@ -147,7 +147,7 @@ class Results extends Component {
                 <Card.Title>
                   {item.SerialNumber && item.StyleNumber ? (
                     <>
-                      <span>{item.SerialNumber}</span> |
+                      <span>{item.SerialNumber}</span>|
                       <span> {item.StyleNumber}</span>
                     </>
                   ) : item.SerialNumber ? (
