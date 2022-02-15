@@ -140,7 +140,7 @@ class Results extends Component {
                 toggleSingleItem(true);
               }}
             >
-              {viewType === "Grid1" && (
+              {["Grid1", "Grid2", "Grid3"].includes(viewType) && (
                 <Card.Title>
                   {item.SerialNumber && item.StyleNumber ? (
                     <>

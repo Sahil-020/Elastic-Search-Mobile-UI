@@ -254,64 +254,31 @@
                 border: solid 1px;
             }
 
-            .List_result_container,
+            // .List_result_container,
             .Grid_result_container,
             .Grid3_result_container,
             .Grid2_result_container {
                 width: 100%;
                 display: flex;
                 flex-direction: column;
+                align-items: center;
+                justify-content: center;
                 // margin-top: 10px;
                 // padding: 5px;
                 gap: 10px;
-                .item_container {
-                    height: 150px;
-                    width: 100%;
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    border: 1px solid #9a9a9a;
-                    border-radius: 10px;
-                    .item_image {
-                        width: 30%;
-                        margin: auto;
-                        padding: 4px;
-                        img {
-                            max-width: 100%;
-                        }
-                    }
-                    .item_details {
-                        width: 70%;
-                        padding: 10px;
-                        text-align: left;
-                        .item_serial_style {
-                            h6 {
-                                text-align: left;
-                                font-size: 15px;
-                            }
-                        }
-                        .item_description,
-                        .item_metal,
-                        .item_type_subtype {
-                            font-size: 13px;
-                        }
-                        .item_description {
-                            font-weight: 600;
-                        }
-                    }
-                }
+
                 .card {
                     height: 270px;
                     width: 320px;
-                    margin: auto;
+                    // margin: auto;
                     padding: 10px 25px;
                     gap: 10px;
-                    font-family: "Circular-Loom";
-
+                    font-family: "Circular-Loom" !important;
+                    border-radius: 0px;
                     // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
                     // background-color: rgba(241, 241, 241, 0.876);
                     .card-title.h5 {
-                        font-size: 14px !important;
+                        font-size: 14px;
                         display: flex;
                         flex-direction: row !important;
                         gap: 5px !important;
@@ -323,18 +290,7 @@
                         font-weight: 400;
                         height: 15px;
                     }
-                    .result_action_group {
-                        // display: flex !important;
-                        display: none;
-                        justify-content: flex-end;
-                        align-items: center;
-                        display: none;
-                        // width: 100%;
-                        img {
-                            height: 22px;
-                            width: 22px;
-                        }
-                    }
+
                     .image_container {
                         height: 135px;
                         display: flex;
@@ -378,8 +334,20 @@
                             }
                             .item_price {
                                 font-size: 17px;
-                                font-weight: 700;
+                                font-weight: 800;
                             }
+                        }
+                    }
+                    .result_action_group {
+                        // display: flex !important;
+                        display: none !important;
+                        justify-content: flex-end;
+                        align-items: center;
+
+                        // width: 100%;
+                        img {
+                            height: 22px;
+                            width: 22px;
                         }
                     }
                 }
@@ -406,31 +374,41 @@
                     //     // text-align: left;
                     // }
                     .card-text {
-                        display: none !important;
+                        // display: none !important;
                     }
                 }
             }
         }
         .Grid2_result_container {
+            justify-content: space-between;
+            // padding: 10px 20px !important;
+            gap: 10px;
             .card {
-                width: 45% !important;
+                width: 48% !important;
                 height: 250px !important;
-                // margin: ;
+                margin: 0px !important;
+                padding: 10px !important;
+                .card-title.h5 {
+                    height: 30px !important;
+                    font-size: 11px !important;
+                    flex-wrap: wrap !important;
+                    // text-align: left;
+                }
                 .image_container {
                     img {
                         max-width: 70% !important;
                     }
                 }
                 .card-body {
-                    // .card-title.h5 {
-                    //     font-size: 0.75rem !important;
-                    //     // text-align: left;
-                    // }
                     .card-text {
-                        display: block !important;
-                        div.item_description {
+                        // display: block !important;
+                        div.item_description,
+                        div.item_price {
                             display: block !important;
                             font-size: 12px !important;
+                        }
+                        div.item_price {
+                            font-size: 16px !important;
                         }
                         > div {
                             display: none !important;
