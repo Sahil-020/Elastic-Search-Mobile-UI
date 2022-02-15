@@ -305,7 +305,7 @@
                     }
                     .card-body {
                         padding: 0rem 0 0;
-                        height: 50px;
+                        // height: 50px;
                         color: #34495e;
 
                         // .card-title.h5 {
@@ -324,7 +324,7 @@
                             row-gap: 10px;
                             font-size: 13px;
                             .item_description {
-                                font-size: 14px !important;
+                                font-size: 14px;
                                 display: block !important;
                                 font-weight: 500;
                                 line-height: 1.5em;
@@ -358,48 +358,59 @@
             display: flex;
             flex-direction: row !important;
             flex-wrap: wrap;
+            justify-content: space-between !important;
+            gap: 6px !important;
             .card {
-                width: 30% !important;
-                height: 190px !important;
+                width: 32% !important;
+                height: 160px !important;
+                padding: 10px 5px !important;
+                gap: 5px !important;
+                .card-title.h5 {
+                    height: 25% !important;
+                    font-size: 7.5px !important;
+                    font-weight: 700 !important;
+                    flex-wrap: wrap !important;
+                }
                 .image_container {
-                    height: 40% !important;
+                    height: 70% !important;
                     img {
                         max-width: 80% !important;
                     }
                 }
                 .card-body {
-                    // .card-title.h5 {
-                    //     font-size: 0.75rem !important;
-                    //     word-wrap: break-word;
-                    //     // text-align: left;
-                    // }
+                    height: 15%;
                     .card-text {
-                        // display: none !important;
+                        div.item_price {
+                            font-size: 11px !important;
+                        }
                     }
                 }
             }
         }
         .Grid2_result_container {
-            justify-content: space-between;
+            // justify-content: space-between !important;
             // padding: 10px 20px !important;
             gap: 10px;
             .card {
                 width: 48% !important;
-                height: 250px !important;
+                height: 260px !important;
                 margin: 0px !important;
                 padding: 10px !important;
                 .card-title.h5 {
-                    height: 30px !important;
+                    height: 12% !important;
                     font-size: 11px !important;
                     flex-wrap: wrap !important;
-                    // text-align: left;
+                    font-weight: 500 !important;
                 }
                 .image_container {
+                    height: 55% !important;
                     img {
                         max-width: 70% !important;
+                        margin: auto;
                     }
                 }
                 .card-body {
+                    height: 20% !important;
                     .card-text {
                         // display: block !important;
                         div.item_description,

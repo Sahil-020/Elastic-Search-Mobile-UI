@@ -185,7 +185,9 @@ class Results extends Component {
                 )}
 
                 <div className="card-text">
-                  <div className="item_description">{item.Description}</div>
+                  {viewType !== "Grid3" && (
+                    <div className="item_description">{item.Description}</div>
+                  )}
                   {/* <div className="item_brand">{item.Brand}</div>
                   <div className="item_type_subtype">
                     {item.ItemType && item.ItemSubtype
@@ -209,17 +211,19 @@ class Results extends Component {
                   </div>
                 </div>
               </Card.Body>
-              <div className="result_action_group">
-                <img
-                  src="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/add-to-basket.png"
-                  onClick={(e) => {
-                    // if (e.target === this) {
-                    e.stopPropagation();
-                    addItemToBasket(item);
-                    // }
-                  }}
-                ></img>
-              </div>
+              {viewType === "List" && (
+                <div className="result_action_group">
+                  <img
+                    src="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/add-to-basket.png"
+                    onClick={(e) => {
+                      // if (e.target === this) {
+                      e.stopPropagation();
+                      addItemToBasket(item);
+                      // }
+                    }}
+                  ></img>
+                </div>
+              )}
             </Card>
           ))}
         </div>
