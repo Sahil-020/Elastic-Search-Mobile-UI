@@ -36,7 +36,7 @@
 
     .header {
         .navbar.navbar-expand.navbar-light.bg-light {
-            padding: 10px 25px 10px;
+            padding: 10px 20px 10px;
             background-color: #f2f4f4 !important;
 
             .container {
@@ -98,7 +98,7 @@
             gap: 20px;
             z-index: 100;
             // align-items: center;
-            padding: 10px 25px;
+            padding: 10px 20px;
             position: sticky;
             top: 0;
             // background: white;
@@ -200,13 +200,13 @@
         .result_status_view_option_container {
             display: flex;
             width: 100%;
-            padding: 15px 25px;
+            padding: 15px 20px;
             flex-direction: row;
             align-items: center;
             // background-color: #f8f9f9 !important;
 
             label {
-                width: 60%;
+                width: 70%;
                 text-align: left;
                 color: #34495e;
                 font-weight: 600;
@@ -214,7 +214,7 @@
             }
             .result_view_options {
                 display: flex;
-                width: 40%;
+                width: 30%;
                 gap: 12px;
                 padding: 5px;
                 align-items: center;
@@ -468,7 +468,7 @@
                             display: block !important;
                             font-weight: 500;
                             line-height: 1.5em;
-                            max-height: 3em;
+                            height: 3em;
                             overflow: hidden;
                             text-overflow: ellipsis;
                             // white-space: nowrap;

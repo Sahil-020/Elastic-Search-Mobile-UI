@@ -11,7 +11,7 @@ class SerialSearchComponent extends Component {
         // title="Serial"
         showClear
         debounce={250}
-        placeholder="Enter Serial"
+        placeholder="Enter Serial Number..."
         dataField={SerialDataField}
         componentId="SerialSearch"
         icon={false}
