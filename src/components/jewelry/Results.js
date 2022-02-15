@@ -39,12 +39,14 @@ class Results extends Component {
   }
 
   handleView(e, value) {
+    // console.log("result element : ", $("#ES_Results").className);
+
     // let value = e.target.value;
     // document
     //   .getElementById("ES_Results")
     //   .classList.toggle("compact_result_container");
     $(".result_view_options").children().removeClass("active");
-    console.log("Selected value: ", value);
+    // console.log("Selected value: ", value);
     e.target.className = "active";
     if (value === "Grid1") {
       document.getElementById("ES_Results").className = "Grid_result_container";
@@ -101,8 +103,13 @@ class Results extends Component {
   }
   //   state = { items: this.props.items };
   render() {
-    let { items, handleItemToView, toggleSingleItem, addItemToBasket } =
-      this.props;
+    let {
+      items,
+      handleItemToView,
+      toggleSingleItem,
+      addItemToBasket,
+      viewType,
+    } = this.props;
     // console.log("items : ", items);
     return (
       <div className="es_results">
@@ -133,17 +140,7 @@ class Results extends Component {
                 toggleSingleItem(true);
               }}
             >
-              <div className="image_container">
-                <Card.Img
-                  variant="top"
-                  src={this.handleImage(item)}
-                  onError={(event) => {
-                    event.target.src =
-                      "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg";
-                  }}
-                />
-              </div>
-              <Card.Body>
+              {viewType === "Grid1" && (
                 <Card.Title>
                   {item.SerialNumber && item.StyleNumber ? (
                     <>
@@ -158,9 +155,38 @@ class Results extends Component {
                     ``
                   )}
                 </Card.Title>
+              )}
+              <div className="image_container">
+                <Card.Img
+                  variant="top"
+                  src={this.handleImage(item)}
+                  onError={(event) => {
+                    event.target.src =
+                      "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg";
+                  }}
+                />
+              </div>
+              <Card.Body>
+                {viewType === "List" && (
+                  <Card.Title>
+                    {item.SerialNumber && item.StyleNumber ? (
+                      <>
+                        <span>{item.SerialNumber}</span>|
+                        <span> {item.StyleNumber}</span>
+                      </>
+                    ) : item.SerialNumber ? (
+                      item.SerialNumber
+                    ) : item.StyleNumber ? (
+                      item.StyleNumber
+                    ) : (
+                      ``
+                    )}
+                  </Card.Title>
+                )}
+
                 <div className="card-text">
                   <div className="item_description">{item.Description}</div>
-                  <div className="item_brand">{item.Brand}</div>
+                  {/* <div className="item_brand">{item.Brand}</div>
                   <div className="item_type_subtype">
                     {item.ItemType && item.ItemSubtype
                       ? item.ItemSubtype
@@ -170,7 +196,7 @@ class Results extends Component {
                       ? item.ItemType
                       : ""}
                   </div>
-                  <div className="item_metal">{item.Metal}</div>
+                  <div className="item_metal">{item.Metal}</div> */}
                   <div className="item_price">
                     {" "}
                     {(item.RetailPrice &&

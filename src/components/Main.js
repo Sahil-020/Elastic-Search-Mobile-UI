@@ -84,6 +84,7 @@ class Main extends Component {
       itemToView: {},
       basketItems: [],
       result: data,
+      viewType: "List",
     };
     // this.clearFilters = this.clearFilters.bind(this)
     this.toggleBasket = this.toggleBasket.bind(this);
@@ -94,12 +95,19 @@ class Main extends Component {
     this.handleView = this.handleView.bind(this);
   }
   handleView(e, value) {
+    console.log(
+      "result element : ",
+      document.getElementById("ES_Results").className,
+      "\n Type : ",
+      typeof document.getElementById("ES_Results").className
+    );
     // let value = e.target.value;
     // document
     //   .getElementById("ES_Results")
     //   .classList.toggle("compact_result_container");
     $(".result_view_options").children().removeClass("active");
-    console.log("Selected value: ", value);
+    // console.log("Selected value: ", value);
+    this.setState({ viewType: value });
     e.target.className = "active";
     if (value === "Grid1") {
       document.getElementById("ES_Results").className = "Grid_result_container";
@@ -366,6 +374,7 @@ class Main extends Component {
                   <Results
                     showResult={showResult}
                     // items={data}
+                    viewType={this.state.viewType}
                     items={this.state.result}
                     toggleSingleItem={this.toggleSingleItem}
                     handleItemToView={this.handleItemToView}
