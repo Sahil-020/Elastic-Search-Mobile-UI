@@ -223,19 +223,10 @@ class SingleItem extends Component {
     return (
       <div className="single_item_container">
         <div className="item_header_options">
-          <h6>
-            {item.SerialNumber && item.StyleNumber
-              ? `${item.SerialNumber} | ${item.StyleNumber}`
-              : item.SerialNumber
-              ? item.SerialNumber
-              : item.StyleNumber
-              ? item.StyleNumber
-              : ``}
-          </h6>
-          <img
+          {/* <img
             src="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/add-to-basket.png"
             onClick={() => addItemToBasket(item)}
-          ></img>
+          ></img> */}
           <button
             onClick={() => {
               handleItemToView({});
@@ -245,29 +236,42 @@ class SingleItem extends Component {
             X
           </button>
         </div>
-        <div className="single_item_description">{item.Description}</div>
-        <div className="image_container">
-          <ImageGallery
-            items={this.handleImageGallery(item)}
-            showFullscreenButton={false}
-            showPlayButton={false}
-            showNav={false}
-            onErrorImageURL="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg"
-            showThumbnails={false}
-            showBullets={true}
-          />
+
+        <div className="item_short_detail">
+          <div className="image_container">
+            <ImageGallery
+              items={this.handleImageGallery(item)}
+              showFullscreenButton={false}
+              showPlayButton={false}
+              showNav={false}
+              onErrorImageURL="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg"
+              showThumbnails={false}
+              showBullets={true}
+            />
+          </div>
+          <h6>
+            {item.SerialNumber && item.StyleNumber
+              ? `${item.SerialNumber} | ${item.StyleNumber}`
+              : item.SerialNumber
+              ? item.SerialNumber
+              : item.StyleNumber
+              ? item.StyleNumber
+              : ``}
+          </h6>
+          <div className="single_item_description">{item.Description}</div>
+          <div className="single_item_price">
+            <label>
+              {(item.RetailPrice &&
+                currencyFormatter.format(`${item.RetailPrice}`, {
+                  code: "USD",
+                  precision: 0,
+                })) ||
+                ""}
+            </label>
+            USD
+          </div>
         </div>
-        <div className="single_item_price">
-          <label>
-            {(item.RetailPrice &&
-              currencyFormatter.format(`${item.RetailPrice}`, {
-                code: "USD",
-                precision: 0,
-              })) ||
-              ""}
-          </label>
-          USD
-        </div>
+
         <div className="single_item_details">
           <Accordion defaultActiveKey="0">
             <AccordionItem eventKey="0">
@@ -279,52 +283,67 @@ class SingleItem extends Component {
                   <tbody>
                     {item.Brand && (
                       <tr>
-                        <td>Brand</td>
+                        <td>
+                          <li>Brand</li>
+                        </td>
                         <td>{item.Brand}</td>
                       </tr>
                     )}
                     {item.ItemType && (
                       <tr>
-                        <td>Item Type</td>
+                        <td>
+                          <li>Item Type</li>
+                        </td>
                         <td>{item.ItemType}</td>
                       </tr>
                     )}
                     {item.ItemSubtype && (
                       <tr>
-                        <td>Item Subtype</td>
                         <td>
-                          {" "}
+                          <li>Item Subtype</li>
+                        </td>
+                        <td>
                           {this.isMultipleValueEmpty(item, "ItemSubtype")}
                         </td>
                       </tr>
                     )}
                     {item.Collection && (
                       <tr>
-                        <td>Collection</td>
+                        <td>
+                          <li>Collection</li>
+                        </td>
                         <td> {this.isValueEmpty(item.Collection)}</td>
                       </tr>
                     )}
                     {item.SubCollection && (
                       <tr>
-                        <td>Sub Collection</td>
+                        <td>
+                          <li>Sub Collection</li>
+                        </td>
                         <td>{item.SubCollection}</td>
                       </tr>
                     )}
                     {item.Metal && (
                       <tr>
-                        <td>Maker</td>
+                        <td>
+                          <li>Maker</li>
+                        </td>
                         <td>{this.isValueEmpty(item.Metal)}</td>
                       </tr>
                     )}
                     {item.Maker && (
                       <tr>
-                        <td>Metal</td>
+                        <td>
+                          <li>Metal</li>
+                        </td>
                         <td> {this.isValueEmpty(item.Maker)}</td>
                       </tr>
                     )}
                     {this.isValueEmpty(item.DiamondCarats) && (
                       <tr>
-                        <td>Diamond Carats</td>
+                        <td>
+                          <li>Diamond Carats</li>
+                        </td>
                         <td>
                           {this.isValueEmpty(item.DiamondCarats)}{" "}
                           {this.isValueEmpty(item.DiamondCarats)
@@ -335,7 +354,9 @@ class SingleItem extends Component {
                     )}
                     {this.isValueEmpty(item.ColorCarats) && (
                       <tr>
-                        <td>Color Carats</td>
+                        <td>
+                          <li>Color Carats</li>
+                        </td>
                         <td>
                           {this.isValueEmpty(item.ColorCarats)}{" "}
                           {this.isValueEmpty(item.ColorCarats)
@@ -346,13 +367,17 @@ class SingleItem extends Component {
                     )}
                     {item.RingSize && (
                       <tr>
-                        <td>Ring Size</td>
+                        <td>
+                          <li>Ring Size</li>
+                        </td>
                         <td>{this.isValueEmpty(item.RingSize)}</td>
                       </tr>
                     )}
                     {item.Color && (
                       <tr>
-                        <td>Color</td>
+                        <td>
+                          <li>Color</li>
+                        </td>
                         <td>
                           {this.isMultipleValueEmpty(
                             item,
@@ -363,40 +388,51 @@ class SingleItem extends Component {
                     )}
                     {item.Period && (
                       <tr>
-                        <td>Period</td>
+                        <td>
+                          <li>Period</li>
+                        </td>
                         <td> {this.isValueEmpty(item.Period)}</td>
                       </tr>
                     )}
                     {item.Length && (
                       <tr>
-                        <td>Length</td>
+                        <td>
+                          <li>Length</li>
+                        </td>
                         <td> {this.isValueEmpty(item.Length)}</td>
                       </tr>
                     )}
                     {item.BangleSize && (
                       <tr>
-                        <td>Bangle Size</td>
+                        <td>
+                          <li>Bangle Size</li>
+                        </td>
                         <td>{this.isValueEmpty(item.BangleSize)}</td>
                       </tr>
                     )}
                     {item.Diameter && (
                       <tr>
-                        <td>Diameter</td>
+                        <td>
+                          <li>Diameter</li>
+                        </td>
                         <td>{this.isValueEmpty(item.Diameter)}</td>
                       </tr>
                     )}
 
                     {item.HoopDiameter && (
                       <tr>
-                        <td>Hoop Diameter</td>
+                        <td>
+                          <li>Hoop Diameter</li>
+                        </td>
                         <td>{this.isValueEmpty(item.HoopDiameter)}</td>
                       </tr>
                     )}
                     {item.ColorComment && (
                       <tr>
-                        <td>Diamond Details</td>
                         <td>
-                          {" "}
+                          <li>Diamond Details</li>
+                        </td>
+                        <td>
                           {this.isMultipleValueEmpty(
                             item,
                             "DiamondDetails"
@@ -406,19 +442,25 @@ class SingleItem extends Component {
                     )}
                     {item.CircaDate && (
                       <tr>
-                        <td>Circa Date</td>
+                        <td>
+                          <li>Circa Date</li>
+                        </td>
                         <td>{this.isValueEmpty(item.CircaDate)}</td>
                       </tr>
                     )}
                     {item.WidthOD && (
                       <tr>
-                        <td>Width OD</td>
+                        <td>
+                          <li>Width OD</li>
+                        </td>
                         <td>{this.isValueEmpty(item.WidthOD)}</td>
                       </tr>
                     )}
                     {this.isMultipleValueEmpty(item, "CenterDetails") && (
                       <tr>
-                        <td>Center Details</td>
+                        <td>
+                          <li>Center Details</li>
+                        </td>
                         <td>
                           {this.isMultipleValueEmpty(item, "CenterDetails")}
                         </td>
@@ -437,9 +479,10 @@ class SingleItem extends Component {
                   <tbody>
                     {item.RetailPrice && (
                       <tr>
-                        <td>Retail Price</td>
                         <td>
-                          {" "}
+                          <li>Retail Price</li>
+                        </td>
+                        <td>
                           {this.isMultipleValueEmpty(
                             item.RetailPrice,
                             "RetailPrice"
@@ -449,16 +492,19 @@ class SingleItem extends Component {
                     )}
                     {item.WholesalePrice && (
                       <tr>
-                        <td>Wholesale Price</td>
                         <td>
-                          {" "}
+                          <li>Wholesale Price</li>
+                        </td>
+                        <td>
                           {this.isMultipleValueEmpty(item, "WholesalePrice")}
                         </td>
                       </tr>
                     )}
                     {item.PricingDate && (
                       <tr>
-                        <td>Pricing Date</td>
+                        <td>
+                          <li>Pricing Date</li>
+                        </td>
                         <td>
                           {this.isValueEmpty(item.PricingDate)
                             ? moment(new Date(`${item.PricingDate}`)).format(
@@ -481,9 +527,10 @@ class SingleItem extends Component {
                   <tbody>
                     {(item.SerialStatus || item.Warehouse) && (
                       <tr>
-                        <td>Status</td>
                         <td>
-                          {" "}
+                          <li>Status</li>
+                        </td>
+                        <td>
                           {this.isValueEmpty(item.Warehouse)}
                           {item.Warehouse !== item.SerialStatus &&
                           this.isValueEmpty(item.Warehouse) &&
@@ -499,9 +546,10 @@ class SingleItem extends Component {
                     )}
                     {(item.StatusCustomer || item.MemoOutCustomer) && (
                       <tr>
-                        <td>Customer Status</td>
                         <td>
-                          {" "}
+                          <li>Customer Status</li>
+                        </td>
+                        <td>
                           {item.MemoOutCustomer
                             ? this.isValueEmpty(item.MemoOutCustomer)
                             : item.StatusCustomer
@@ -513,7 +561,9 @@ class SingleItem extends Component {
                     {this.isValueEmpty(item.StatusRefNbr) &&
                       this.isValueEmpty(item.StatusDate) && (
                         <tr>
-                          <td>Date/Ref #</td>
+                          <td>
+                            <li>Date/Ref #</li>
+                          </td>
                           <td>
                             {this.isValueEmpty(item.StatusDate)
                               ? moment(new Date(`${item.StatusDate}`)).format(
@@ -526,7 +576,9 @@ class SingleItem extends Component {
                       )}
                     {this.isValueEmpty(item.StatusDate) && !item.StatusRefNbr && (
                       <tr>
-                        <td>Date/Ref #</td>
+                        <td>
+                          <li>Date/Ref #</li>
+                        </td>
                         <td>
                           moment(new Date(`${item.StatusDate}
                           `)).format("MM/DD/YYYY")
@@ -547,19 +599,25 @@ class SingleItem extends Component {
                   <tbody>
                     {item.HoldBy && (
                       <tr>
-                        <td>Hold By</td>
+                        <td>
+                          <li>Hold By</li>
+                        </td>
                         <td>{this.isValueEmpty(item.HoldBy)}</td>
                       </tr>
                     )}
                     {item.HoldCustomerName && (
                       <tr>
-                        <td>Hold Customer Name</td>
+                        <td>
+                          <li>Hold Customer Name</li>
+                        </td>
                         <td>{this.isValueEmpty(item.HoldCustomerName)}</td>
                       </tr>
                     )}
                     {item.HoldDate && (
                       <tr>
-                        <td>Hold Date</td>
+                        <td>
+                          <li>Hold Date</li>
+                        </td>
                         <td>
                           {this.isValueEmpty(item.HoldDate)
                             ? moment(new Date(`${item.HoldDate}`)).format(
@@ -571,7 +629,9 @@ class SingleItem extends Component {
                     )}
                     {item.ReleaseDate && (
                       <tr>
-                        <td>Release Date</td>
+                        <td>
+                          <li>Release Date</li>
+                        </td>
                         <td>
                           {" "}
                           {this.isValueEmpty(item.ReleaseDate)
@@ -585,7 +645,9 @@ class SingleItem extends Component {
 
                     {item.HoldText && (
                       <tr>
-                        <td>Hold Text</td>
+                        <td>
+                          <li>Hold Text</li>
+                        </td>
                         <td>{this.isValueEmpty(item.HoldText)}</td>
                       </tr>
                     )}
@@ -594,6 +656,9 @@ class SingleItem extends Component {
               </AccordionBody>
             </AccordionItem>
           </Accordion>
+        </div>
+        <div className="add_to_basket">
+          <button onClick={() => addItemToBasket(item)}>Add to Cart</button>
         </div>
       </div>
     );
