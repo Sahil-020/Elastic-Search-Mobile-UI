@@ -268,7 +268,6 @@ class SingleItem extends Component {
                 })) ||
                 ""}
             </label>
-            USD
           </div>
         </div>
 
