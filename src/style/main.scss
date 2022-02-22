@@ -983,7 +983,7 @@
                 // display: flex;
                 // flex-direction: column;
                 .accordion {
-                    padding: 0px 25px;
+                    padding: 0px 25px 10px;
                     background: white;
                     color: #34495e;
                     .accordion-item {
@@ -992,9 +992,9 @@
                         .accordion-header {
                             .accordion-button,
                             .accordion-button:focus {
-                                padding: 10px 0px;
-                                font-size: 16px;
-                                font-weight: 700;
+                                padding: 15px 0px;
+                                font-size: 0.9rem;
+                                font-weight: 900;
                                 color: #34495e !important;
                                 outline: none !important;
                                 background: white !important;
