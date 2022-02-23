@@ -12,7 +12,7 @@ import { useHistory, useLocation } from "react-router-dom";
 
 export default function Results(props) {
   let { items, viewType, handleBackButton } = props;
-  console.log("items : ", items);
+  // console.log("items : ", items);
 
   const history = useHistory();
   const location = useLocation();
