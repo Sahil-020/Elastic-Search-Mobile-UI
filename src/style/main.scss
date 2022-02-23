@@ -396,6 +396,7 @@
                     height: 260px !important;
                     margin: 0px !important;
                     padding: 10px !important;
+                    gap: 6px !important;
                     .card-title.h5 {
                         height: 12% !important;
                         font-size: 11px !important;
@@ -405,7 +406,7 @@
                     .image_container {
                         height: 55% !important;
                         img {
-                            max-width: 70% !important;
+                            max-width: 50% !important;
                             margin: auto;
                         }
                     }
@@ -853,7 +854,7 @@
         .single_item_container {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 15px;
             padding: 10px 0px;
             background-color: #f2f4f4 !important;
             font-family: "Circular-Loom" !important;
@@ -1047,27 +1048,27 @@
                         }
                     }
                 }
-                .accordion::last-child {
-                    padding: 0px 25px;
-                    background: white;
-                    color: #34495e;
-                    .accordion-item {
-                        border: none;
-                        // border-bottom: 1px solid #d0d3d4;
-                        .accordion-header {
-                            .accordion-button,
-                            .accordion-button:focus {
-                                border-bottom: white;
-                            }
-                        }
-                    }
-                }
+                // .accordion::last-child {
+                //     padding: 0px 25px;
+                //     background: white;
+                //     color: #34495e;
+                //     .accordion-item {
+                //         border: none;
+                //         // border-bottom: 1px solid #d0d3d4;
+                //         .accordion-header {
+                //             .accordion-button,
+                //             .accordion-button:focus {
+                //                 border-bottom: white;
+                //             }
+                //         }
+                //     }
+                // }
             }
             .add_to_basket {
-                padding: 15px;
+                padding: 10px 25px;
                 button {
                     background: #34495e;
-                    width: 70%;
+                    width: 100%;
                     height: 38px;
                     color: white;
                     border: none;
@@ -1090,10 +1091,12 @@
 .offcanvas-bottom {
     height: 80vh !important;
     .offcanvas-header {
-        padding: 1rem 1rem 0.5rem;
-        .offcanvas-title.h5,
+        // padding: 1rem 1rem 0.5rem;
+        .offcanvas-title.h5 {
+            font-size: 16px;
+        }
         button {
-            font-size: 18px;
+            font-size: 10px;
         }
     }
 

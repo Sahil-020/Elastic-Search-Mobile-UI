@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { Carousel } from "bootstrap";
 import ImageGallery from "react-image-gallery";
 import currencyFormatter from "currency-formatter";
@@ -8,18 +8,54 @@ import moment from "moment";
 import AccordionItem from "react-bootstrap/esm/AccordionItem";
 import AccordionHeader from "react-bootstrap/esm/AccordionHeader";
 import AccordionBody from "react-bootstrap/esm/AccordionBody";
+import { useParams } from "react-router-dom";
+import {
+  JewelrySerialApp,
+  DiamondSerialApp,
+  GemstoneSerialApp,
+  AppbaseAppUrl,
+  AppbaseCredentials,
+} from "../../utils/constants";
+import Appbase from "appbase-js";
+import { result } from "lodash";
 
-class SingleItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-    this.handleImageGallery = this.handleImageGallery.bind(this);
-    this.renderVideo = this.renderVideo.bind(this);
-    this.isValueEmpty = this.isValueEmpty.bind(this);
-    this.isMultipleValueEmpty = this.isMultipleValueEmpty.bind(this);
-  }
+export default function SingleItem(props) {
+  let { handleItemToView, toggleSingleItem, addItemToBasket } = props;
+  let { id } = useParams();
 
-  isValueEmpty(res) {
+  const [item, setItem] = useState({});
+
+  const getItem = async () => {
+    let app = [JewelrySerialApp, DiamondSerialApp, GemstoneSerialApp];
+    let result = false;
+    for (let i = 0; i < app.length; i++) {
+      let appbaseRef = Appbase({
+        url: AppbaseAppUrl,
+        app: app[i],
+        credentials: AppbaseCredentials,
+      });
+
+      await appbaseRef
+        .get({
+          type: "_doc",
+          id: id,
+        })
+        .then((response) => {
+          // console.log("Success: ", response);
+          if (response.found && response.found === true) {
+            setItem(response._source);
+            result = true;
+          }
+        })
+        .catch((error) => {
+          console.log("Error: ", error);
+        });
+      if (result) {
+        break;
+      }
+    }
+  };
+  const isValueEmpty = (res) => {
     // console.log("res & name :", res, name);
     let result = "";
     if (!isEmpty(res) && res !== "0.00") {
@@ -31,8 +67,8 @@ class SingleItem extends Component {
     // }
     // console.log("result : ", result);
     return result;
-  }
-  isMultipleValueEmpty(res, expr) {
+  };
+  const isMultipleValueEmpty = (res, expr) => {
     let result = "";
     switch (expr) {
       case "CenterDetails":
@@ -92,10 +128,10 @@ class SingleItem extends Component {
         return result.trim();
     }
     return result.trim();
-  }
+  };
 
-  handleImageGallery(res) {
-    console.log("inside handleImageGallery");
+  const handleImageGallery = (res) => {
+    // console.log("inside handleImageGallery");
     var imgArr = [];
     if (res) {
       function showShapeImage(shape) {
@@ -151,7 +187,7 @@ class SingleItem extends Component {
             "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Video-Icon-Stock-Black.svg",
           embedUrl: res.EditorialVideo,
           // description: "Render custom slides (such as videos)",
-          renderItem: this.renderVideo.bind(this),
+          renderItem: renderVideo.bind(this),
         });
       }
       if (res.SerialVideoLink) {
@@ -162,7 +198,7 @@ class SingleItem extends Component {
             "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Video-Icon-Stock-Black.svg",
           embedUrl: res.SerialVideoLink,
           // description: "Render custom slides (such as videos)",
-          renderItem: this.renderVideo.bind(this),
+          renderItem: renderVideo.bind(this),
         });
       }
       if (res.StyleVideoLink) {
@@ -173,7 +209,7 @@ class SingleItem extends Component {
             "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Video-Icon-Stock-Black.svg",
           embedUrl: res.StyleVideoLink,
           // description: "Render custom slides (such as videos)",
-          renderItem: this.renderVideo.bind(this),
+          renderItem: renderVideo.bind(this),
         });
       }
 
@@ -193,8 +229,8 @@ class SingleItem extends Component {
     // this.setState({
     //   imgArr: imgArr,
     // });
-  }
-  renderVideo(item) {
+  };
+  const renderVideo = (item) => {
     return (
       <div className="video-wrapper">
         {/* <a
@@ -215,453 +251,423 @@ class SingleItem extends Component {
         </video> */}
       </div>
     );
-  }
+  };
 
-  render() {
-    let { item, handleItemToView, toggleSingleItem, addItemToBasket } =
-      this.props;
-    return (
-      <div className="single_item_container">
-        <div className="item_header_options">
-          {/* <img
-            src="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/add-to-basket.png"
-            onClick={() => addItemToBasket(item)}
-          ></img> */}
-          <button
-            onClick={() => {
-              handleItemToView({});
-              toggleSingleItem(false);
-            }}
-          >
-            X
-          </button>
+  useEffect(() => {
+    getItem();
+  }, []);
+
+  return (
+    // <label>{id}</label>
+    <div className="single_item_container">
+      <div className="item_short_detail">
+        <div className="image_container">
+          <ImageGallery
+            items={handleImageGallery(item)}
+            showFullscreenButton={false}
+            showPlayButton={false}
+            showNav={false}
+            onErrorImageURL="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg"
+            showThumbnails={false}
+            showBullets={true}
+          />
         </div>
-
-        <div className="item_short_detail">
-          <div className="image_container">
-            <ImageGallery
-              items={this.handleImageGallery(item)}
-              showFullscreenButton={false}
-              showPlayButton={false}
-              showNav={false}
-              onErrorImageURL="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg"
-              showThumbnails={false}
-              showBullets={true}
-            />
-          </div>
-          <h6>
-            {item.SerialNumber && item.StyleNumber
-              ? `${item.SerialNumber} | ${item.StyleNumber}`
-              : item.SerialNumber
-              ? item.SerialNumber
-              : item.StyleNumber
-              ? item.StyleNumber
-              : ``}
-          </h6>
-          <div className="single_item_description">{item.Description}</div>
-          <div className="single_item_price">
-            <label>
-              {(item.RetailPrice &&
-                currencyFormatter.format(`${item.RetailPrice}`, {
-                  code: "USD",
-                  precision: 0,
-                })) ||
-                ""}
-            </label>
-          </div>
+        <h6>
+          {item.SerialNumber && item.StyleNumber
+            ? `${item.SerialNumber} | ${item.StyleNumber}`
+            : item.SerialNumber
+            ? item.SerialNumber
+            : item.StyleNumber
+            ? item.StyleNumber
+            : ``}
+        </h6>
+        <div className="single_item_description">{item.Description}</div>
+        <div className="single_item_price">
+          <label>
+            {(item.RetailPrice &&
+              currencyFormatter.format(`${item.RetailPrice}`, {
+                code: "USD",
+                precision: 0,
+              })) ||
+              ""}
+          </label>
         </div>
+      </div>
 
-        <div className="single_item_details">
-          <Accordion defaultActiveKey="0">
-            <AccordionItem eventKey="0">
-              {/* <h6> */}
-              <AccordionHeader>Details:</AccordionHeader>
-              {/* </h6> */}
-              <AccordionBody>
-                <Table>
-                  <tbody>
-                    {item.Brand && (
-                      <tr>
-                        <td>
-                          <li>Brand</li>
-                        </td>
-                        <td>{item.Brand}</td>
-                      </tr>
-                    )}
-                    {item.ItemType && (
-                      <tr>
-                        <td>
-                          <li>Item Type</li>
-                        </td>
-                        <td>{item.ItemType}</td>
-                      </tr>
-                    )}
-                    {item.ItemSubtype && (
-                      <tr>
-                        <td>
-                          <li>Item Subtype</li>
-                        </td>
-                        <td>
-                          {this.isMultipleValueEmpty(item, "ItemSubtype")}
-                        </td>
-                      </tr>
-                    )}
-                    {item.Collection && (
-                      <tr>
-                        <td>
-                          <li>Collection</li>
-                        </td>
-                        <td> {this.isValueEmpty(item.Collection)}</td>
-                      </tr>
-                    )}
-                    {item.SubCollection && (
-                      <tr>
-                        <td>
-                          <li>Sub Collection</li>
-                        </td>
-                        <td>{item.SubCollection}</td>
-                      </tr>
-                    )}
-                    {item.Metal && (
-                      <tr>
-                        <td>
-                          <li>Maker</li>
-                        </td>
-                        <td>{this.isValueEmpty(item.Metal)}</td>
-                      </tr>
-                    )}
-                    {item.Maker && (
-                      <tr>
-                        <td>
-                          <li>Metal</li>
-                        </td>
-                        <td> {this.isValueEmpty(item.Maker)}</td>
-                      </tr>
-                    )}
-                    {this.isValueEmpty(item.DiamondCarats) && (
-                      <tr>
-                        <td>
-                          <li>Diamond Carats</li>
-                        </td>
-                        <td>
-                          {this.isValueEmpty(item.DiamondCarats)}{" "}
-                          {this.isValueEmpty(item.DiamondCarats)
-                            ? " cts dia "
-                            : ""}
-                        </td>
-                      </tr>
-                    )}
-                    {this.isValueEmpty(item.ColorCarats) && (
-                      <tr>
-                        <td>
-                          <li>Color Carats</li>
-                        </td>
-                        <td>
-                          {this.isValueEmpty(item.ColorCarats)}{" "}
-                          {this.isValueEmpty(item.ColorCarats)
-                            ? " cts color "
-                            : ""}
-                        </td>
-                      </tr>
-                    )}
-                    {item.RingSize && (
-                      <tr>
-                        <td>
-                          <li>Ring Size</li>
-                        </td>
-                        <td>{this.isValueEmpty(item.RingSize)}</td>
-                      </tr>
-                    )}
-                    {item.Color && (
-                      <tr>
-                        <td>
-                          <li>Color</li>
-                        </td>
-                        <td>
-                          {this.isMultipleValueEmpty(
-                            item,
-                            "ColorClarity"
-                          ).replace(/\s+/g, " ")}
-                        </td>
-                      </tr>
-                    )}
-                    {item.Period && (
-                      <tr>
-                        <td>
-                          <li>Period</li>
-                        </td>
-                        <td> {this.isValueEmpty(item.Period)}</td>
-                      </tr>
-                    )}
-                    {item.Length && (
-                      <tr>
-                        <td>
-                          <li>Length</li>
-                        </td>
-                        <td> {this.isValueEmpty(item.Length)}</td>
-                      </tr>
-                    )}
-                    {item.BangleSize && (
-                      <tr>
-                        <td>
-                          <li>Bangle Size</li>
-                        </td>
-                        <td>{this.isValueEmpty(item.BangleSize)}</td>
-                      </tr>
-                    )}
-                    {item.Diameter && (
-                      <tr>
-                        <td>
-                          <li>Diameter</li>
-                        </td>
-                        <td>{this.isValueEmpty(item.Diameter)}</td>
-                      </tr>
-                    )}
+      <div className="single_item_details">
+        <Accordion defaultActiveKey="0">
+          <AccordionItem eventKey="0">
+            {/* <h6> */}
+            <AccordionHeader>Details:</AccordionHeader>
+            {/* </h6> */}
+            <AccordionBody>
+              <Table>
+                <tbody>
+                  {item.Brand && (
+                    <tr>
+                      <td>
+                        <li>Brand</li>
+                      </td>
+                      <td>{item.Brand}</td>
+                    </tr>
+                  )}
+                  {item.ItemType && (
+                    <tr>
+                      <td>
+                        <li>Item Type</li>
+                      </td>
+                      <td>{item.ItemType}</td>
+                    </tr>
+                  )}
+                  {item.ItemSubtype && (
+                    <tr>
+                      <td>
+                        <li>Item Subtype</li>
+                      </td>
+                      <td>{isMultipleValueEmpty(item, "ItemSubtype")}</td>
+                    </tr>
+                  )}
+                  {item.Collection && (
+                    <tr>
+                      <td>
+                        <li>Collection</li>
+                      </td>
+                      <td> {isValueEmpty(item.Collection)}</td>
+                    </tr>
+                  )}
+                  {item.SubCollection && (
+                    <tr>
+                      <td>
+                        <li>Sub Collection</li>
+                      </td>
+                      <td>{item.SubCollection}</td>
+                    </tr>
+                  )}
+                  {item.Metal && (
+                    <tr>
+                      <td>
+                        <li>Maker</li>
+                      </td>
+                      <td>{isValueEmpty(item.Metal)}</td>
+                    </tr>
+                  )}
+                  {item.Maker && (
+                    <tr>
+                      <td>
+                        <li>Metal</li>
+                      </td>
+                      <td> {isValueEmpty(item.Maker)}</td>
+                    </tr>
+                  )}
+                  {isValueEmpty(item.DiamondCarats) && (
+                    <tr>
+                      <td>
+                        <li>Diamond Carats</li>
+                      </td>
+                      <td>
+                        {isValueEmpty(item.DiamondCarats)}{" "}
+                        {isValueEmpty(item.DiamondCarats) ? " cts dia " : ""}
+                      </td>
+                    </tr>
+                  )}
+                  {isValueEmpty(item.ColorCarats) && (
+                    <tr>
+                      <td>
+                        <li>Color Carats</li>
+                      </td>
+                      <td>
+                        {isValueEmpty(item.ColorCarats)}{" "}
+                        {isValueEmpty(item.ColorCarats) ? " cts color " : ""}
+                      </td>
+                    </tr>
+                  )}
+                  {item.RingSize && (
+                    <tr>
+                      <td>
+                        <li>Ring Size</li>
+                      </td>
+                      <td>{isValueEmpty(item.RingSize)}</td>
+                    </tr>
+                  )}
+                  {item.Color && (
+                    <tr>
+                      <td>
+                        <li>Color</li>
+                      </td>
+                      <td>
+                        {isMultipleValueEmpty(item, "ColorClarity").replace(
+                          /\s+/g,
+                          " "
+                        )}
+                      </td>
+                    </tr>
+                  )}
+                  {item.Period && (
+                    <tr>
+                      <td>
+                        <li>Period</li>
+                      </td>
+                      <td> {isValueEmpty(item.Period)}</td>
+                    </tr>
+                  )}
+                  {item.Length && (
+                    <tr>
+                      <td>
+                        <li>Length</li>
+                      </td>
+                      <td> {isValueEmpty(item.Length)}</td>
+                    </tr>
+                  )}
+                  {item.BangleSize && (
+                    <tr>
+                      <td>
+                        <li>Bangle Size</li>
+                      </td>
+                      <td>{isValueEmpty(item.BangleSize)}</td>
+                    </tr>
+                  )}
+                  {item.Diameter && (
+                    <tr>
+                      <td>
+                        <li>Diameter</li>
+                      </td>
+                      <td>{isValueEmpty(item.Diameter)}</td>
+                    </tr>
+                  )}
 
-                    {item.HoopDiameter && (
-                      <tr>
-                        <td>
-                          <li>Hoop Diameter</li>
-                        </td>
-                        <td>{this.isValueEmpty(item.HoopDiameter)}</td>
-                      </tr>
-                    )}
-                    {item.ColorComment && (
-                      <tr>
-                        <td>
-                          <li>Diamond Details</li>
-                        </td>
-                        <td>
-                          {this.isMultipleValueEmpty(
-                            item,
-                            "DiamondDetails"
-                          ).replace(/\s+/g, " ")}
-                        </td>
-                      </tr>
-                    )}
-                    {item.CircaDate && (
-                      <tr>
-                        <td>
-                          <li>Circa Date</li>
-                        </td>
-                        <td>{this.isValueEmpty(item.CircaDate)}</td>
-                      </tr>
-                    )}
-                    {item.WidthOD && (
-                      <tr>
-                        <td>
-                          <li>Width OD</li>
-                        </td>
-                        <td>{this.isValueEmpty(item.WidthOD)}</td>
-                      </tr>
-                    )}
-                    {this.isMultipleValueEmpty(item, "CenterDetails") && (
-                      <tr>
-                        <td>
-                          <li>Center Details</li>
-                        </td>
-                        <td>
-                          {this.isMultipleValueEmpty(item, "CenterDetails")}
-                        </td>
-                      </tr>
-                    )}
-                  </tbody>
-                </Table>
-              </AccordionBody>
-            </AccordionItem>
-            <AccordionItem eventKey="1">
-              {/* <h6> */}
-              <AccordionHeader>Pricing Details:</AccordionHeader>
-              {/* </h6> */}
-              <AccordionBody>
-                <Table>
-                  <tbody>
-                    {item.RetailPrice && (
-                      <tr>
-                        <td>
-                          <li>Retail Price</li>
-                        </td>
-                        <td>
-                          {this.isMultipleValueEmpty(
-                            item.RetailPrice,
-                            "RetailPrice"
-                          )}
-                        </td>
-                      </tr>
-                    )}
-                    {item.WholesalePrice && (
-                      <tr>
-                        <td>
-                          <li>Wholesale Price</li>
-                        </td>
-                        <td>
-                          {this.isMultipleValueEmpty(item, "WholesalePrice")}
-                        </td>
-                      </tr>
-                    )}
-                    {item.PricingDate && (
-                      <tr>
-                        <td>
-                          <li>Pricing Date</li>
-                        </td>
-                        <td>
-                          {this.isValueEmpty(item.PricingDate)
-                            ? moment(new Date(`${item.PricingDate}`)).format(
-                                "MM/DD/YYYY"
-                              )
-                            : ""}
-                        </td>
-                      </tr>
-                    )}
-                  </tbody>
-                </Table>
-              </AccordionBody>
-            </AccordionItem>
-            <AccordionItem eventKey="2">
-              {/* <h6> */}
-              <AccordionHeader>Status Details:</AccordionHeader>
-              {/* </h6> */}
-              <AccordionBody>
-                <Table>
-                  <tbody>
-                    {(item.SerialStatus || item.Warehouse) && (
-                      <tr>
-                        <td>
-                          <li>Status</li>
-                        </td>
-                        <td>
-                          {this.isValueEmpty(item.Warehouse)}
-                          {item.Warehouse !== item.SerialStatus &&
-                          this.isValueEmpty(item.Warehouse) &&
-                          this.isValueEmpty(item.SerialStatus)
-                            ? "/"
-                            : ""}
-                          {item.IsVirtual === "1" ? "Virtual - " : ""}
-                          {item.IsPhantom === "1" ? "Phantom - " : ""}
-                          {item.Warehouse !== item.SerialStatus &&
-                            this.isValueEmpty(item.SerialStatus)}
-                        </td>
-                      </tr>
-                    )}
-                    {(item.StatusCustomer || item.MemoOutCustomer) && (
-                      <tr>
-                        <td>
-                          <li>Customer Status</li>
-                        </td>
-                        <td>
-                          {item.MemoOutCustomer
-                            ? this.isValueEmpty(item.MemoOutCustomer)
-                            : item.StatusCustomer
-                            ? this.isValueEmpty(item.StatusCustomer)
-                            : ""}
-                        </td>
-                      </tr>
-                    )}
-                    {this.isValueEmpty(item.StatusRefNbr) &&
-                      this.isValueEmpty(item.StatusDate) && (
-                        <tr>
-                          <td>
-                            <li>Date/Ref #</li>
-                          </td>
-                          <td>
-                            {this.isValueEmpty(item.StatusDate)
-                              ? moment(new Date(`${item.StatusDate}`)).format(
-                                  "MM/DD/YYYY"
-                                )
-                              : ""}
-                            &nbsp;-&nbsp;{item.StatusRefNbr}
-                          </td>
-                        </tr>
-                      )}
-                    {this.isValueEmpty(item.StatusDate) && !item.StatusRefNbr && (
+                  {item.HoopDiameter && (
+                    <tr>
+                      <td>
+                        <li>Hoop Diameter</li>
+                      </td>
+                      <td>{isValueEmpty(item.HoopDiameter)}</td>
+                    </tr>
+                  )}
+                  {item.ColorComment && (
+                    <tr>
+                      <td>
+                        <li>Diamond Details</li>
+                      </td>
+                      <td>
+                        {isMultipleValueEmpty(item, "DiamondDetails").replace(
+                          /\s+/g,
+                          " "
+                        )}
+                      </td>
+                    </tr>
+                  )}
+                  {item.CircaDate && (
+                    <tr>
+                      <td>
+                        <li>Circa Date</li>
+                      </td>
+                      <td>{isValueEmpty(item.CircaDate)}</td>
+                    </tr>
+                  )}
+                  {item.WidthOD && (
+                    <tr>
+                      <td>
+                        <li>Width OD</li>
+                      </td>
+                      <td>{isValueEmpty(item.WidthOD)}</td>
+                    </tr>
+                  )}
+                  {isMultipleValueEmpty(item, "CenterDetails") && (
+                    <tr>
+                      <td>
+                        <li>Center Details</li>
+                      </td>
+                      <td>{isMultipleValueEmpty(item, "CenterDetails")}</td>
+                    </tr>
+                  )}
+                </tbody>
+              </Table>
+            </AccordionBody>
+          </AccordionItem>
+          <AccordionItem eventKey="1">
+            {/* <h6> */}
+            <AccordionHeader>Pricing Details:</AccordionHeader>
+            {/* </h6> */}
+            <AccordionBody>
+              <Table>
+                <tbody>
+                  {item.RetailPrice && (
+                    <tr>
+                      <td>
+                        <li>Retail Price</li>
+                      </td>
+                      <td>
+                        {isMultipleValueEmpty(item.RetailPrice, "RetailPrice")}
+                      </td>
+                    </tr>
+                  )}
+                  {item.WholesalePrice && (
+                    <tr>
+                      <td>
+                        <li>Wholesale Price</li>
+                      </td>
+                      <td>{isMultipleValueEmpty(item, "WholesalePrice")}</td>
+                    </tr>
+                  )}
+                  {item.PricingDate && (
+                    <tr>
+                      <td>
+                        <li>Pricing Date</li>
+                      </td>
+                      <td>
+                        {isValueEmpty(item.PricingDate)
+                          ? moment(new Date(`${item.PricingDate}`)).format(
+                              "MM/DD/YYYY"
+                            )
+                          : ""}
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </Table>
+            </AccordionBody>
+          </AccordionItem>
+          <AccordionItem eventKey="2">
+            {/* <h6> */}
+            <AccordionHeader>Status Details:</AccordionHeader>
+            {/* </h6> */}
+            <AccordionBody>
+              <Table>
+                <tbody>
+                  {(item.SerialStatus || item.Warehouse) && (
+                    <tr>
+                      <td>
+                        <li>Status</li>
+                      </td>
+                      <td>
+                        {isValueEmpty(item.Warehouse)}
+                        {item.Warehouse !== item.SerialStatus &&
+                        isValueEmpty(item.Warehouse) &&
+                        isValueEmpty(item.SerialStatus)
+                          ? "/"
+                          : ""}
+                        {item.IsVirtual === "1" ? "Virtual - " : ""}
+                        {item.IsPhantom === "1" ? "Phantom - " : ""}
+                        {item.Warehouse !== item.SerialStatus &&
+                          isValueEmpty(item.SerialStatus)}
+                      </td>
+                    </tr>
+                  )}
+                  {(item.StatusCustomer || item.MemoOutCustomer) && (
+                    <tr>
+                      <td>
+                        <li>Customer Status</li>
+                      </td>
+                      <td>
+                        {item.MemoOutCustomer
+                          ? isValueEmpty(item.MemoOutCustomer)
+                          : item.StatusCustomer
+                          ? isValueEmpty(item.StatusCustomer)
+                          : ""}
+                      </td>
+                    </tr>
+                  )}
+                  {isValueEmpty(item.StatusRefNbr) &&
+                    isValueEmpty(item.StatusDate) && (
                       <tr>
                         <td>
                           <li>Date/Ref #</li>
                         </td>
                         <td>
-                          moment(new Date(`${item.StatusDate}
-                          `)).format("MM/DD/YYYY")
-                        </td>
-                      </tr>
-                    )}
-                  </tbody>
-                </Table>
-              </AccordionBody>
-            </AccordionItem>
-
-            <AccordionItem eventKey="3">
-              {/* <h6> */}
-              <AccordionHeader>Hold Notes Details:</AccordionHeader>
-              {/* </h6> */}
-              <AccordionBody>
-                <Table>
-                  <tbody>
-                    {item.HoldBy && (
-                      <tr>
-                        <td>
-                          <li>Hold By</li>
-                        </td>
-                        <td>{this.isValueEmpty(item.HoldBy)}</td>
-                      </tr>
-                    )}
-                    {item.HoldCustomerName && (
-                      <tr>
-                        <td>
-                          <li>Hold Customer Name</li>
-                        </td>
-                        <td>{this.isValueEmpty(item.HoldCustomerName)}</td>
-                      </tr>
-                    )}
-                    {item.HoldDate && (
-                      <tr>
-                        <td>
-                          <li>Hold Date</li>
-                        </td>
-                        <td>
-                          {this.isValueEmpty(item.HoldDate)
-                            ? moment(new Date(`${item.HoldDate}`)).format(
+                          {isValueEmpty(item.StatusDate)
+                            ? moment(new Date(`${item.StatusDate}`)).format(
                                 "MM/DD/YYYY"
                               )
                             : ""}
+                          &nbsp;-&nbsp;{item.StatusRefNbr}
                         </td>
                       </tr>
                     )}
-                    {item.ReleaseDate && (
-                      <tr>
-                        <td>
-                          <li>Release Date</li>
-                        </td>
-                        <td>
-                          {" "}
-                          {this.isValueEmpty(item.ReleaseDate)
-                            ? moment(new Date(`${item.ReleaseDate}`)).format(
-                                "MM/DD/YYYY"
-                              )
-                            : ""}
-                        </td>
-                      </tr>
-                    )}
+                  {isValueEmpty(item.StatusDate) && !item.StatusRefNbr && (
+                    <tr>
+                      <td>
+                        <li>Date/Ref #</li>
+                      </td>
+                      <td>
+                        moment(new Date(`${item.StatusDate}
+                        `)).format("MM/DD/YYYY")
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </Table>
+            </AccordionBody>
+          </AccordionItem>
 
-                    {item.HoldText && (
-                      <tr>
-                        <td>
-                          <li>Hold Text</li>
-                        </td>
-                        <td>{this.isValueEmpty(item.HoldText)}</td>
-                      </tr>
-                    )}
-                  </tbody>
-                </Table>
-              </AccordionBody>
-            </AccordionItem>
-          </Accordion>
-        </div>
-        <div className="add_to_basket">
-          <button onClick={() => addItemToBasket(item)}>Add to Cart</button>
-        </div>
+          <AccordionItem eventKey="3">
+            {/* <h6> */}
+            <AccordionHeader>Hold Notes Details:</AccordionHeader>
+            {/* </h6> */}
+            <AccordionBody>
+              <Table>
+                <tbody>
+                  {item.HoldBy && (
+                    <tr>
+                      <td>
+                        <li>Hold By</li>
+                      </td>
+                      <td>{isValueEmpty(item.HoldBy)}</td>
+                    </tr>
+                  )}
+                  {item.HoldCustomerName && (
+                    <tr>
+                      <td>
+                        <li>Hold Customer Name</li>
+                      </td>
+                      <td>{isValueEmpty(item.HoldCustomerName)}</td>
+                    </tr>
+                  )}
+                  {item.HoldDate && (
+                    <tr>
+                      <td>
+                        <li>Hold Date</li>
+                      </td>
+                      <td>
+                        {isValueEmpty(item.HoldDate)
+                          ? moment(new Date(`${item.HoldDate}`)).format(
+                              "MM/DD/YYYY"
+                            )
+                          : ""}
+                      </td>
+                    </tr>
+                  )}
+                  {item.ReleaseDate && (
+                    <tr>
+                      <td>
+                        <li>Release Date</li>
+                      </td>
+                      <td>
+                        {isValueEmpty(item.ReleaseDate)
+                          ? moment(new Date(`${item.ReleaseDate}`)).format(
+                              "MM/DD/YYYY"
+                            )
+                          : ""}
+                      </td>
+                    </tr>
+                  )}
+
+                  {item.HoldText && (
+                    <tr>
+                      <td>
+                        <li>Hold Text</li>
+                      </td>
+                      <td>{isValueEmpty(item.HoldText)}</td>
+                    </tr>
+                  )}
+                </tbody>
+              </Table>
+            </AccordionBody>
+          </AccordionItem>
+        </Accordion>
       </div>
-    );
-  }
+      <div className="add_to_basket">
+        <button onClick={() => addItemToBasket(item)}>Add to Cart</button>
+      </div>
+    </div>
+  );
 }
-
-export default SingleItem;
