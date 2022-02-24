@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import kwiat from "../Logo/kwiat-logo-removebg-preview.png";
 import {
   ReactiveList,
   ReactiveBase,
@@ -9,7 +8,7 @@ import { Offcanvas, Accordion } from "react-bootstrap";
 import {
   AppbaseAppUrl,
   AppbaseCredentials,
-  JewelrySerialApp,
+  DiamondSerialApp,
 } from "../../utils/constants";
 import Results from "../Results/Results";
 import SerialSearchComponent from "../search-components/SerialSearchComponent";
@@ -26,8 +25,7 @@ import KwiatOnly from "../search-components/KwiatOnly";
 import IsSold from "../search-components/IsSold";
 import FredLeightonOnly from "../search-components/FredLeightonOnly";
 import SearchCriteria from "../search-components/SearchCriteria";
-
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CenterShape from "../search-components/CenterShape";
 import Metal from "../search-components/Metal";
@@ -55,8 +53,7 @@ import Grid1 from "../../assets/icons/square-16.png";
 import ListView from "../../assets/icons/list-2-16.png";
 import $ from "jquery";
 import Navigation from "../Navigation";
-
-class JewelryMain extends Component {
+class DiamondMain extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -75,7 +72,10 @@ class JewelryMain extends Component {
       "\n Type : ",
       typeof document.getElementById("ES_Results").className
     );
-
+    // let value = e.target.value;
+    // document
+    //   .getElementById("ES_Results")
+    //   .classList.toggle("compact_result_container");
     $(".result_view_options").children().removeClass("active");
     // console.log("Selected value: ", value);
     this.setState({ viewType: value });
@@ -91,6 +91,12 @@ class JewelryMain extends Component {
     } else if (value === "List") {
       document.getElementById("ES_Results").className = "List_result_container";
     }
+
+    // if (e.target.innerHTML === "List") {
+    //   e.target.innerHTML = "Grid";
+    // } else {
+    //   e.target.innerHTML = "List";
+    // }
   }
 
   render() {
@@ -104,7 +110,7 @@ class JewelryMain extends Component {
         </div>
         <div className="content">
           <ReactiveBase
-            app={JewelrySerialApp}
+            app={DiamondSerialApp}
             url={AppbaseAppUrl}
             credentials={AppbaseCredentials}
           >
@@ -249,6 +255,7 @@ class JewelryMain extends Component {
                   items={data}
                   viewType={this.state.viewType}
                   // items={this.state.result}
+
                   handleBackButton={handleBackButton}
                 />
               )}
@@ -260,4 +267,4 @@ class JewelryMain extends Component {
   }
 }
 
-export default JewelryMain;
+export default DiamondMain;

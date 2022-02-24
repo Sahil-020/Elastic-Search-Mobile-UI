@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import kwiat from "../Logo/kwiat-logo-removebg-preview.png";
 import {
   ReactiveList,
   ReactiveBase,
@@ -9,7 +8,7 @@ import { Offcanvas, Accordion } from "react-bootstrap";
 import {
   AppbaseAppUrl,
   AppbaseCredentials,
-  JewelrySerialApp,
+  GemstoneSerialApp,
 } from "../../utils/constants";
 import Results from "../Results/Results";
 import SerialSearchComponent from "../search-components/SerialSearchComponent";
@@ -26,7 +25,6 @@ import KwiatOnly from "../search-components/KwiatOnly";
 import IsSold from "../search-components/IsSold";
 import FredLeightonOnly from "../search-components/FredLeightonOnly";
 import SearchCriteria from "../search-components/SearchCriteria";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CenterShape from "../search-components/CenterShape";
@@ -56,7 +54,7 @@ import ListView from "../../assets/icons/list-2-16.png";
 import $ from "jquery";
 import Navigation from "../Navigation";
 
-class JewelryMain extends Component {
+class GemstoneMain extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -104,7 +102,7 @@ class JewelryMain extends Component {
         </div>
         <div className="content">
           <ReactiveBase
-            app={JewelrySerialApp}
+            app={GemstoneSerialApp}
             url={AppbaseAppUrl}
             credentials={AppbaseCredentials}
           >
@@ -260,4 +258,4 @@ class JewelryMain extends Component {
   }
 }
 
-export default JewelryMain;
+export default GemstoneMain;

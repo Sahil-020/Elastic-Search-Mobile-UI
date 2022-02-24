@@ -17,7 +17,6 @@ import {
   AppbaseCredentials,
 } from "../../utils/constants";
 import Appbase from "appbase-js";
-import { result } from "lodash";
 
 export default function SingleItem(props) {
   let { handleItemToView, toggleSingleItem, addItemToBasket } = props;
@@ -26,6 +25,7 @@ export default function SingleItem(props) {
   const [item, setItem] = useState({});
 
   const getItem = async () => {
+    console.log("Inside get item");
     let app = [JewelrySerialApp, DiamondSerialApp, GemstoneSerialApp];
     let result = false;
     for (let i = 0; i < app.length; i++) {
@@ -255,7 +255,7 @@ export default function SingleItem(props) {
 
   useEffect(() => {
     getItem();
-  }, []);
+  }, [id]);
 
   return (
     // <label>{id}</label>
@@ -295,7 +295,7 @@ export default function SingleItem(props) {
       </div>
 
       <div className="single_item_details">
-        <Accordion defaultActiveKey="0">
+        <Accordion>
           <AccordionItem eventKey="0">
             {/* <h6> */}
             <AccordionHeader>Details:</AccordionHeader>
