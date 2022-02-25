@@ -416,7 +416,7 @@
                     display: flex;
                     flex-direction: row;
                     flex-wrap: wrap;
-                    padding: 10px 0px !important;
+                    padding: 15px 0px 10px !important;
                     margin: 0px !important;
                     gap: 7px !important;
                     box-shadow: none !important;
@@ -443,12 +443,12 @@
                             display: flex;
                             flex-direction: row !important;
                             justify-content: flex-start !important;
-                            gap: 5px !important;
+                            gap: 2px !important;
                             align-items: center;
                             text-align: left;
                             margin: 0px !important;
                             color: #808b96;
-                            font-weight: 400;
+                            font-weight: 700;
                             span {
                                 white-space: nowrap;
                             }
@@ -464,7 +464,7 @@
                             color: #34495e;
 
                             .item_description {
-                                font-size: 12px !important;
+                                font-size: 13px !important;
                                 display: block !important;
                                 font-weight: 500;
                                 line-height: 1.5em;
@@ -495,7 +495,7 @@
                         height: 100% !important;
                         img {
                             position: absolute !important;
-                            bottom: 0;
+                            top: 0;
                             left: 0;
                             height: 20px !important;
                             width: 20px !important;
