@@ -246,7 +246,7 @@
                 gap: 10px;
 
                 .card {
-                    height: 450px;
+                    height: 400px;
                     width: 100%;
                     padding: 10px 25px;
                     gap: 10px;
@@ -278,7 +278,7 @@
                             max-width: 100%;
                             // max-height: 40%;
 
-                            // max-height: 100% !important;
+                            max-height: 100% !important;
                         }
                     }
                     .card-body {
@@ -318,7 +318,7 @@
                     }
                     .result_action_group {
                         // display: flex !important;
-                        display: none !important;
+                        display: flex !important;
                         justify-content: flex-end;
                         align-items: center;
 
@@ -431,7 +431,7 @@
                             max-width: 100% !important;
                             margin: auto;
                             // border: none !important;
-                            max-height: none !important;
+                            max-height: 100% !important;
                         }
                     }
                     .card-body {
@@ -439,7 +439,7 @@
                         height: 100% !important;
                         padding: 0px !important;
                         .card-title.h5 {
-                            font-size: 11px !important;
+                            font-size: 13px !important;
                             display: flex;
                             flex-direction: row !important;
                             justify-content: flex-start !important;
