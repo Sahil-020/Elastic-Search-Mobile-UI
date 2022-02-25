@@ -599,70 +599,72 @@ export default function SingleItem(props) {
             </AccordionBody>
           </AccordionItem>
 
-          <AccordionItem eventKey="3">
-            {/* <h6> */}
-            <AccordionHeader>Hold Notes Details:</AccordionHeader>
-            {/* </h6> */}
-            <AccordionBody>
-              <Table>
-                <tbody>
-                  {item.HoldBy && (
-                    <tr>
-                      <td>
-                        <li>Hold By</li>
-                      </td>
-                      <td>{isValueEmpty(item.HoldBy)}</td>
-                    </tr>
-                  )}
-                  {item.HoldCustomerName && (
-                    <tr>
-                      <td>
-                        <li>Hold Customer Name</li>
-                      </td>
-                      <td>{isValueEmpty(item.HoldCustomerName)}</td>
-                    </tr>
-                  )}
-                  {item.HoldDate && (
-                    <tr>
-                      <td>
-                        <li>Hold Date</li>
-                      </td>
-                      <td>
-                        {isValueEmpty(item.HoldDate)
-                          ? moment(new Date(`${item.HoldDate}`)).format(
-                              "MM/DD/YYYY"
-                            )
-                          : ""}
-                      </td>
-                    </tr>
-                  )}
-                  {item.ReleaseDate && (
-                    <tr>
-                      <td>
-                        <li>Release Date</li>
-                      </td>
-                      <td>
-                        {isValueEmpty(item.ReleaseDate)
-                          ? moment(new Date(`${item.ReleaseDate}`)).format(
-                              "MM/DD/YYYY"
-                            )
-                          : ""}
-                      </td>
-                    </tr>
-                  )}
+          {item.HoldText && (
+            <AccordionItem eventKey="3">
+              {/* <h6> */}
+              <AccordionHeader>Hold Notes Details:</AccordionHeader>
+              {/* </h6> */}
+              <AccordionBody>
+                <Table>
+                  <tbody>
+                    {item.HoldBy && (
+                      <tr>
+                        <td>
+                          <li>Hold By</li>
+                        </td>
+                        <td>{isValueEmpty(item.HoldBy)}</td>
+                      </tr>
+                    )}
+                    {item.HoldCustomerName && (
+                      <tr>
+                        <td>
+                          <li>Hold Customer Name</li>
+                        </td>
+                        <td>{isValueEmpty(item.HoldCustomerName)}</td>
+                      </tr>
+                    )}
+                    {item.HoldDate && (
+                      <tr>
+                        <td>
+                          <li>Hold Date</li>
+                        </td>
+                        <td>
+                          {isValueEmpty(item.HoldDate)
+                            ? moment(new Date(`${item.HoldDate}`)).format(
+                                "MM/DD/YYYY"
+                              )
+                            : ""}
+                        </td>
+                      </tr>
+                    )}
+                    {item.ReleaseDate && (
+                      <tr>
+                        <td>
+                          <li>Release Date</li>
+                        </td>
+                        <td>
+                          {isValueEmpty(item.ReleaseDate)
+                            ? moment(new Date(`${item.ReleaseDate}`)).format(
+                                "MM/DD/YYYY"
+                              )
+                            : ""}
+                        </td>
+                      </tr>
+                    )}
 
-                  {item.HoldText && (
-                    <tr>
-                      <td>
-                        <li>Hold Text</li>
-                      </td>
-                      <td>{isValueEmpty(item.HoldText)}</td>
-                    </tr>
-                  )}
-                </tbody>
-              </Table>
-            </AccordionBody>
-          </AccordionItem>
+                    {item.HoldText && (
+                      <tr>
+                        <td>
+                          <li>Hold Text</li>
+                        </td>
+                        <td>{isValueEmpty(item.HoldText)}</td>
+                      </tr>
+                    )}
+                  </tbody>
+                </Table>
+              </AccordionBody>
+            </AccordionItem>
+          )}
         </Accordion>
       </div>
       <div className="add_to_basket">

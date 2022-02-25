@@ -22,7 +22,7 @@ class Keyword extends Component {
         autosuggest={false}
         queryFormat="and"
         searchOperators={true}
-        iconPosition="left"
+        iconPosition="right"
       />
     );
   }

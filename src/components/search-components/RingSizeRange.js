@@ -13,7 +13,7 @@ class RingSizeRange extends Component {
           "slider-container": "carat-range-input__carat-slider",
           "input-container": "carat-range-input__carat-input",
         }}
-        title="Ring Size:"
+        title="Ring Size"
         componentId="RingSizeRange"
         showSlider={false}
         dataField="RingSizeValue"

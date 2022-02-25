@@ -8,7 +8,7 @@ class PurchasDateRange extends Component {
   render() {
     return (
       <DateRange
-        className="carat-range-input"
+        className="date-range-input"
         componentId="PurchaseDate"
         dataField="NewInStockDate"
         title="InStock Date"

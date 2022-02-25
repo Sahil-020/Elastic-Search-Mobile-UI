@@ -58,6 +58,7 @@ class RfidSearch extends Component {
             e.target.select();
           }
         }}
+        iconPosition="right"
         // onChange={(value) => this.setState({ value: value })}
         // onValueChange={(value) => this.handleChange(value)}
         // onValueSelected={(value) => this.handleSelected(value)}
