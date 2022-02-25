@@ -489,14 +489,15 @@
                         // display: flex !important;
                         // justify-content: flex-end;
                         // align-items: flex-end;
-                        display: block !important;
+                        display: grid !important;
                         position: relative !important;
                         width: 7%;
                         height: 100% !important;
                         img {
-                            position: absolute !important;
-                            top: 0;
-                            left: 0;
+                            // position: absolute !important;
+                            // top: 0;
+                            // left: 0;
+                            margin: auto;
                             height: 20px !important;
                             width: 20px !important;
                         }
