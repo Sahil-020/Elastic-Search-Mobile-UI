@@ -1001,6 +1001,7 @@
                         }
                         .accordion-button:not(.collapsed)::after {
                             content: "-";
+                            padding: 0px 7px;
                         }
                     }
                     .accordion-body {
