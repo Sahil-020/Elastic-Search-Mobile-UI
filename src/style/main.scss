@@ -246,9 +246,8 @@
                 gap: 10px;
 
                 .card {
-                    height: 270px;
+                    height: 450px;
                     width: 100%;
-                    // margin: auto;
                     padding: 10px 25px;
                     gap: 10px;
                     font-family: "Circular-Loom" !important;
@@ -256,7 +255,7 @@
                     // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
                     // background-color: rgba(241, 241, 241, 0.876);
                     .card-title.h5 {
-                        font-size: 12px;
+                        font-size: 14px;
                         display: flex;
                         flex-direction: row !important;
                         gap: 5px !important;
@@ -265,17 +264,18 @@
                         text-align: left;
                         margin: 0px !important;
                         color: #808b96;
-                        font-weight: 400;
-                        height: 15px;
+                        font-weight: 700;
+                        height: 5%;
                     }
 
                     .image_container {
-                        height: 135px;
+                        height: 70%;
                         display: flex;
                         align-items: center;
                         justify-content: center;
+                        width: 100%;
                         img {
-                            max-width: 50%;
+                            max-width: 100%;
                             // max-height: 40%;
 
                             // max-height: 100% !important;
@@ -283,7 +283,7 @@
                     }
                     .card-body {
                         padding: 0rem 0 0;
-                        // height: 50px;
+                        height: 25%;
                         color: #34495e;
 
                         // .card-title.h5 {
@@ -302,7 +302,7 @@
                             row-gap: 10px;
                             font-size: 13px;
                             .item_description {
-                                font-size: 14px;
+                                font-size: 16px;
                                 display: block !important;
                                 font-weight: 500;
                                 line-height: 1.5em;
@@ -311,7 +311,7 @@
                                 text-overflow: ellipsis;
                             }
                             .item_price {
-                                font-size: 17px;
+                                font-size: 19px;
                                 font-weight: 800;
                             }
                         }
