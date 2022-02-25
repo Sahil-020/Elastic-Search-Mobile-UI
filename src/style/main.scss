@@ -371,31 +371,31 @@
                 gap: 10px !important;
                 .card {
                     width: 48% !important;
-                    height: 260px !important;
+                    height: 300px !important;
                     margin: 0px !important;
                     padding: 10px !important;
                     gap: 6px !important;
                     .card-title.h5 {
-                        height: 12% !important;
-                        font-size: 10px !important;
+                        height: 10% !important;
+                        font-size: 13px !important;
                         flex-wrap: wrap !important;
-                        font-weight: 500 !important;
+                        font-weight: 800 !important;
                     }
                     .image_container {
-                        height: 55% !important;
+                        height: 60% !important;
                         img {
-                            max-width: 50% !important;
+                            max-width: 70% !important;
                             margin: auto;
                         }
                     }
                     .card-body {
-                        height: 20% !important;
+                        height: 25% !important;
                         .card-text {
                             // display: block !important;
                             div.item_description,
                             div.item_price {
                                 display: block !important;
-                                font-size: 12px !important;
+                                font-size: 13px !important;
                             }
                             div.item_price {
                                 font-size: 16px !important;
