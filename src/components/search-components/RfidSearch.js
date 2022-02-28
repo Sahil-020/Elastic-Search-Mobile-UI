@@ -8,39 +8,7 @@ class RfidSearch extends Component {
     this.state = {
       value: "",
     };
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSelected = this.handleSelected.bind(this);
-    // this.handleCustomQuery = this.handleCustomQuery.bind(this);
   }
-  // handleCustomQuery(value) {
-  //   // console.log("Value :", value);
-  //   if (value) {
-  //     return {
-  //       query: {
-  //         multi_match: {
-  //           query: value,
-  //           fields: RFID,
-  //           type: "phrase",
-  //           operator: "and",
-  //         },
-  //       },
-  //     };
-  //   }
-  // }
-
-  // handleChange(value) {
-  //   if (!value) {
-  //     this.props.rfidSearchChanged("NOT_ACTIVE");
-  //     return;
-  //   }
-  //   this.props.rfidSearchChanged("ACTIVE");
-  // }
-  // handleSelected(value) {
-  //   if (value) {
-  //     this.props.rfidSearchSelected(true);
-  //     // this.setState({ value: "" });
-  //   }
-  // }
 
   render() {
     return (
@@ -53,15 +21,15 @@ class RfidSearch extends Component {
         dataField={RFID}
         componentId="RFID_Search"
         // value={this.state.value}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            e.target.select();
-          }
-        }}
+        // onKeyDown={(e) => {
+        //   if (e.key === "Enter") {
+        //     e.target.select();
+        //   }
+        // }}
         iconPosition="right"
         // onChange={(value) => this.setState({ value: value })}
         // onValueChange={(value) => this.handleChange(value)}
-        // onValueSelected={(value) => this.handleSelected(value)}
+        onValueSelected={(value) => this.props.handleRfidSearchSignal(value)}
       />
     );
   }

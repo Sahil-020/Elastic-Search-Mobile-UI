@@ -55,6 +55,8 @@ import Grid1 from "../../assets/icons/square-16.png";
 import ListView from "../../assets/icons/list-2-16.png";
 import $ from "jquery";
 import Navigation from "../Navigation";
+import SoldCustomerSearch from "../search-components/SoldCustomerSearch";
+import StyleNumber from "../search-components/StyleNumber";
 
 class JewelryMain extends Component {
   constructor(props) {
@@ -63,11 +65,30 @@ class JewelryMain extends Component {
       showFilters: false,
       result: data,
       viewType: "List",
+      soldCustSignal: false,
+      serialSearchSignal: false,
+      rfidSearchSignal: false,
     };
     // this.clearFilters = this.clearFilters.bind(this)
-
+    this.defaultQuery = this.defaultQuery.bind(this);
     this.handleView = this.handleView.bind(this);
+    this.handleSoldCustSignal = this.handleSoldCustSignal.bind(this);
+    this.handleSerialSearchSignal = this.handleSerialSearchSignal.bind(this);
+
+    this.handleRfidSearchSignal = this.handleRfidSearchSignal.bind(this);
   }
+
+  handleSoldCustSignal(value) {
+    this.setState({ soldCustSignal: value });
+  }
+  handleRfidSearchSignal(value) {
+    this.setState({ rfidSearchSignal: value });
+  }
+
+  handleSerialSearchSignal(value) {
+    this.setState({ serialSearchSignal: value });
+  }
+
   handleView(e, value) {
     console.log(
       "result element : ",
@@ -92,11 +113,64 @@ class JewelryMain extends Component {
       document.getElementById("ES_Results").className = "List_result_container";
     }
   }
+  defaultQuery() {
+    return {
+      track_total_hits: true,
+      query: {
+        match: { ItemStatus: "Active" },
+      },
+    };
+  }
 
   render() {
-    let { showFilters } = this.state;
+    let { showFilters, serialSearchSignal, rfidSearchSignal, soldCustSignal } =
+      this.state;
     let { handleBackButton } = this.props;
-    console.log();
+    // console.log();
+    let andQuery = [];
+    if (serialSearchSignal) {
+      andQuery = ["SerialSearch"];
+    } else if (soldCustSignal) {
+      andQuery = ["SoldCust"];
+    } else if (rfidSearchSignal) {
+      andQuery = ["RFID_Search"];
+    } else {
+      andQuery = [
+        "StyleNumber",
+        "ItemType",
+        "KwiatOnly",
+        "SubType",
+        "Collection",
+        "SubCollection",
+        "CenterSahape",
+        "Maker",
+        "Metal",
+        "Period",
+        "SearchKeyword",
+        "WRShape",
+        "WRSetting",
+        "EternPart",
+        "Warehouse",
+        "MemoOut",
+        "RetailPriceRange",
+        "WholeSalePriceRange",
+        "DiamondCarats",
+        "ColorCarats",
+        "RingSizeRange",
+        "PurchaseDate",
+        "KwiatOnly",
+        "FredLeightonOnly",
+        "IncludeSold",
+        "IncludeCom",
+        "ExcludeVirtual",
+        "IncludeRTV",
+        "IncludeSemimount",
+        "TiaraOnly",
+        "FLRoundOnly",
+        "AshokaOnly",
+        "KWCushionOnly",
+      ];
+    }
     return (
       <>
         <div className="navbar_container">
@@ -109,7 +183,9 @@ class JewelryMain extends Component {
             credentials={AppbaseCredentials}
           >
             <div className="search_components_container">
-              <SerialSearchComponent />
+              <SerialSearchComponent
+                handleSerialSearchSignal={this.handleSerialSearchSignal}
+              />
               <button onClick={() => this.setState({ showFilters: true })}>
                 Filters
               </button>
@@ -127,6 +203,7 @@ class JewelryMain extends Component {
                     <Accordion.Item eventKey="0">
                       <Accordion.Header>General Fields</Accordion.Header>
                       <Accordion.Body>
+                        <StyleNumber />
                         <ItemTypeSearch />
                         <ItemSubtype />
                         <Collection />
@@ -135,13 +212,18 @@ class JewelryMain extends Component {
                         <Metal />
                         <Period />
                         <Maker />
-                        <RfidSearch />
+                        <RfidSearch
+                          handleRfidSearchSignal={this.handleRfidSearchSignal}
+                        />
                         <Keyword />
                         <WRShape />
                         <WRSetting />
                         <EternPart />
                         <Warehouse />
                         <MemoOut />
+                        <SoldCustomerSearch
+                          handleSoldCustSignal={this.handleRfidSearchSignal}
+                        />
                       </Accordion.Body>
                     </Accordion.Item>
                     <Accordion.Item eventKey="1">
@@ -181,41 +263,7 @@ class JewelryMain extends Component {
               componentId="results"
               dataField="RetailPrice"
               react={{
-                and: [
-                  "SerialSearch",
-                  "ItemType",
-                  "PriceRange",
-                  "KwiatOnly",
-                  "SubType",
-                  "Collection",
-                  "SubCollection",
-                  "CenterSahape",
-                  "Maker",
-                  "Metal",
-                  "Period",
-                  "RFID_Search",
-                  "SearchKeyword",
-                  "WRShape",
-                  "WRSetting",
-                  "EternPart",
-                  "Warehouse",
-                  "MemoOut",
-                  "DiamondCarats",
-                  "ColorCarats",
-                  "RingSizeRange",
-                  "PurchaseDate",
-                  "KwiatOnly",
-                  "FredLeightonOnly",
-                  "IncludeSold",
-                  "IncludeCom",
-                  "ExcludeVirtual",
-                  "IncludeRTV",
-                  "IncludeSemimount",
-                  "TiaraOnly",
-                  "FLRoundOnly",
-                  "AshokaOnly",
-                  "KWCushionOnly",
-                ],
+                and: andQuery,
                 // or: andQuery,
               }}
               renderResultStats={({ numberOfResults, time }) => (
@@ -252,6 +300,7 @@ class JewelryMain extends Component {
                   handleBackButton={handleBackButton}
                 />
               )}
+              defaultQuery={() => this.defaultQuery()}
             />
           </ReactiveBase>
         </div>

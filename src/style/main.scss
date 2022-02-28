@@ -344,22 +344,22 @@
                     padding: 10px 5px !important;
                     gap: 5px !important;
                     .card-title.h5 {
-                        height: 11% !important;
-                        font-size: 7px !important;
+                        height: 15% !important;
+                        font-size: 8px !important;
                         font-weight: 900 !important;
                         flex-wrap: wrap !important;
                     }
                     .image_container {
-                        height: 70% !important;
+                        height: 65% !important;
                         img {
-                            max-width: 80% !important;
+                            max-width: 75% !important;
                         }
                     }
                     .card-body {
                         height: 15%;
                         .card-text {
                             div.item_price {
-                                font-size: 11px !important;
+                                font-size: 13px !important;
                             }
                         }
                     }
@@ -1291,12 +1291,12 @@
                                     // content: "";
                                     // position: absolute;
                                     // background-color: transparent;
-                                    /* top: 50%; */
+                                    top: 0;
                                     /* left: 0; */
                                     /* width: 8px; */
                                     /* height: 4px; */
                                     /* margin-top: -4px; */
-                                    /* border-style: solid; */
+                                    border: none;
                                     /* border-color: #0B6AFF; */
                                     /* border-width: 0 0 2px 2px; */
                                     /* border-radius: 0; */

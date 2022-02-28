@@ -3,7 +3,9 @@ import { DataSearch } from "@appbaseio/reactivesearch";
 import { SerialDataField } from "../../utils/constants";
 
 class SerialSearchComponent extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <DataSearch
@@ -16,6 +18,7 @@ class SerialSearchComponent extends Component {
         componentId="SerialSearch"
         icon={false}
         iconPosition={"right"}
+        onValueSelected={(value) => this.props.handleSerialSearchSignal(true)}
       />
     );
   }

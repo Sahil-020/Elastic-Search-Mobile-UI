@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { RangeInput } from "@appbaseio/reactivesearch";
+import RangeFilterWithSelect from "../HOC_Components/RangeFilterWithSelect";
 
 class RetailPriceRange extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class RetailPriceRange extends Component {
             "slider-container": "price-slider-container",
             "input-container": "price-range__input--price-input",
           }}
-          title="Retail Price"
+          title={"Retail"}
           componentId="RetailPriceRange"
           dataField={"RetailPrice"}
           showSlider={false}
@@ -46,9 +47,10 @@ class RetailPriceRange extends Component {
             start: "$",
             end: "$",
           }}
+          onValueChange={(value) => this.handleSelected(value)}
         />
       </div>
     );
   }
 }
-export default RetailPriceRange;
+export default RangeFilterWithSelect(RetailPriceRange);

@@ -8,6 +8,7 @@ import { Offcanvas, Accordion } from "react-bootstrap";
 import {
   AppbaseAppUrl,
   AppbaseCredentials,
+  DiamondCaratWeight,
   DiamondSerialApp,
 } from "../../utils/constants";
 import Results from "../Results/Results";
@@ -42,6 +43,9 @@ import ListView from "../../assets/icons/list-2-16.png";
 import $ from "jquery";
 import Navigation from "../Navigation";
 import Shape from "./../search-components/Shape";
+import MountedNumberStock from "../search-components/MountedNumberStock";
+import StyleNumber from "../search-components/StyleNumber";
+import DiamondCaratWeightComponent from "./search_components/DiamondCartWeight";
 class DiamondMain extends Component {
   constructor(props) {
     super(props);
@@ -49,10 +53,28 @@ class DiamondMain extends Component {
       showFilters: false,
       result: data,
       viewType: "List",
+      serialSearchSignal: false,
+      rfidSearchSignal: false,
+      mountedSearchSignal: false,
     };
     // this.clearFilters = this.clearFilters.bind(this)
-
+    this.defaultQuery = this.defaultQuery.bind(this);
     this.handleView = this.handleView.bind(this);
+    this.handleSerialSearchSignal = this.handleSerialSearchSignal.bind(this);
+    this.handleRfidSearchSignal = this.handleRfidSearchSignal.bind(this);
+    this.handleMountedSearchSignal = this.handleMountedSearchSignal.bind(this);
+  }
+
+  handleMountedSearchSignal(value) {
+    this.setState({ mountedSearchSignal: value });
+  }
+
+  handleRfidSearchSignal(value) {
+    this.setState({ rfidSearchSignal: value });
+  }
+
+  handleSerialSearchSignal(value) {
+    this.setState({ serialSearchSignal: value });
   }
   handleView(e, value) {
     console.log(
@@ -87,11 +109,56 @@ class DiamondMain extends Component {
     //   e.target.innerHTML = "List";
     // }
   }
+  defaultQuery() {
+    return {
+      track_total_hits: true,
+      query: {
+        match: { ItemStatus: "Active" },
+      },
+    };
+  }
 
   render() {
-    let { showFilters } = this.state;
+    let {
+      showFilters,
+      serialSearchSignal,
+      rfidSearchSignal,
+      mountedSearchSignal,
+    } = this.state;
     let { handleBackButton } = this.props;
-    console.log();
+    // console.log();
+    let andQuery = [];
+    if (serialSearchSignal) {
+      andQuery = ["SerialSearch"];
+    } else if (mountedSearchSignal) {
+      andQuery = ["MountedNumberStock"];
+    } else if (rfidSearchSignal) {
+      andQuery = ["RFID_Search"];
+    } else {
+      andQuery = [
+        "StyleNumber",
+        "Shape",
+        "MountedNumberStock",
+        "DiamondCaratWeight",
+        "Warehouse",
+        "MemoOut",
+        "DiamondCarats",
+        "ColorCarats",
+        "RingSizeRange",
+        "PurchaseDate",
+        "KwiatOnly",
+        "FredLeightonOnly",
+        "IncludeSold",
+        "IncludeCom",
+        "ExcludeVirtual",
+        "IncludeRTV",
+        "IncludeSemimount",
+        "TiaraOnly",
+        "FLRoundOnly",
+        "AshokaOnly",
+        "KWCushionOnly",
+      ];
+    }
     return (
       <>
         <div className="navbar_container">
@@ -104,7 +171,9 @@ class DiamondMain extends Component {
             credentials={AppbaseCredentials}
           >
             <div className="search_components_container">
-              <SerialSearchComponent />
+              <SerialSearchComponent
+                handleSerialSearchSignal={this.handleSerialSearchSignal}
+              />
               <button onClick={() => this.setState({ showFilters: true })}>
                 Filters
               </button>
@@ -122,8 +191,16 @@ class DiamondMain extends Component {
                     <Accordion.Item eventKey="0">
                       <Accordion.Header>General Fields</Accordion.Header>
                       <Accordion.Body>
+                        <StyleNumber />
                         <Shape />
-                        <RfidSearch />
+                        <MountedNumberStock
+                          handleMountedSearchSignal={
+                            this.handleMountedSearchSignal
+                          }
+                        />
+                        <RfidSearch
+                          handleRfidSearchSignal={this.handleRfidSearchSignal}
+                        />
                         <Warehouse />
                         <MemoOut />
                       </Accordion.Body>
@@ -131,6 +208,10 @@ class DiamondMain extends Component {
                     <Accordion.Item eventKey="1">
                       <Accordion.Header>Range Fields</Accordion.Header>
                       <Accordion.Body className="range_fields">
+                        <DiamondCaratWeightComponent
+                          data={DiamondCaratWeight}
+                        />
+
                         <RetailPriceRange />
                         <WholesalePriceRange />
                         <DiamondCarats />
@@ -167,8 +248,8 @@ class DiamondMain extends Component {
               react={{
                 and: [
                   "SerialSearch",
-                  "PriceRange",
                   "Shape",
+                  "MountedNumberStock",
                   "SearchKeyword",
                   "Warehouse",
                   "MemoOut",

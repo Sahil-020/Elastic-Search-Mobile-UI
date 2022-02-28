@@ -51,7 +51,7 @@ class Shape extends Component {
   render() {
     return (
       <MultiDropdownList
-        className="form-field"
+        className="form_field"
         title="Shape"
         componentId="Shape"
         dataField={"Shape.keyword"}
