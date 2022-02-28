@@ -341,18 +341,18 @@
                 .card {
                     width: 31% !important;
                     height: 160px !important;
-                    padding: 10px 5px !important;
-                    gap: 7px !important;
+                    padding: 10px 0px !important;
+                    gap: 10px !important;
                     .card-title.h5 {
                         height: 15% !important;
-                        font-size: 8.5px !important;
+                        font-size: 8px !important;
                         font-weight: 900 !important;
                         flex-wrap: wrap !important;
                         column-gap: 2px !important;
                         row-gap: 0px !important;
                     }
                     .image_container {
-                        height: 65% !important;
+                        height: 60% !important;
                         img {
                             max-width: 75% !important;
                         }
