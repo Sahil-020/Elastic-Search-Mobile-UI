@@ -12,11 +12,6 @@ import {
 } from "../../utils/constants";
 import Results from "../Results/Results";
 import SerialSearchComponent from "../search-components/SerialSearchComponent";
-import ItemTypeSearch from "../search-components/ItemTypeSearch";
-import ItemSubtype from "../search-components/ItemSubtype";
-import Collection from "../search-components/Collection";
-import SubCollection from "../search-components/SubCollection";
-import Maker from "../search-components/Maker";
 import RetailPriceRange from "../search-components/RetailPriceRange";
 import WholesalePriceRange from "../search-components/WholesalePriceRange";
 import DiamondCarats from "../search-components/DiamondCarat";
@@ -27,14 +22,7 @@ import FredLeightonOnly from "../search-components/FredLeightonOnly";
 import SearchCriteria from "../search-components/SearchCriteria";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import CenterShape from "../search-components/CenterShape";
-import Metal from "../search-components/Metal";
-import Period from "../search-components/Period";
 import RfidSearch from "../search-components/RfidSearch";
-import Keyword from "../search-components/Keyword";
-import WRShape from "../search-components/WRShape";
-import WRSetting from "../search-components/WRSetting";
-import EternPart from "../search-components/EternPart";
 import Warehouse from "../search-components/Warehouse";
 import MemoOut from "../search-components/MemoOut";
 import RingSizeRange from "../search-components/RingSizeRange";
@@ -53,6 +41,7 @@ import Grid1 from "../../assets/icons/square-16.png";
 import ListView from "../../assets/icons/list-2-16.png";
 import $ from "jquery";
 import Navigation from "../Navigation";
+import Shape from "./../search-components/Shape";
 class DiamondMain extends Component {
   constructor(props) {
     super(props);
@@ -133,19 +122,8 @@ class DiamondMain extends Component {
                     <Accordion.Item eventKey="0">
                       <Accordion.Header>General Fields</Accordion.Header>
                       <Accordion.Body>
-                        <ItemTypeSearch />
-                        <ItemSubtype />
-                        <Collection />
-                        <SubCollection />
-                        <CenterShape />
-                        <Metal />
-                        <Period />
-                        <Maker />
+                        <Shape />
                         <RfidSearch />
-                        <Keyword />
-                        <WRShape />
-                        <WRSetting />
-                        <EternPart />
                         <Warehouse />
                         <MemoOut />
                       </Accordion.Body>
