@@ -50,26 +50,24 @@ class Shape extends Component {
 
   render() {
     return (
-      <div className="shape form-field-wrap">
-        <MultiDropdownList
-          className="form-field"
-          title="Shape"
-          componentId="Shape"
-          dataField={"Shape.keyword"}
-          size={100}
-          showCount={false}
-          showSearch={true}
-          // sortBy="asc"
-          transformData={(list) => {
-            var ordered_array;
-            ordered_array = this.mapOrder(list, item_order, "key");
-            return ordered_array;
-          }}
-          renderListItem={(label) => (
-            <div>{label !== "NULL" ? label : "None"}</div>
-          )}
-        />
-      </div>
+      <MultiDropdownList
+        className="form-field"
+        title="Shape"
+        componentId="Shape"
+        dataField={"Shape.keyword"}
+        size={100}
+        showCount={false}
+        showSearch={true}
+        // sortBy="asc"
+        transformData={(list) => {
+          var ordered_array;
+          ordered_array = this.mapOrder(list, item_order, "key");
+          return ordered_array;
+        }}
+        renderListItem={(label) => (
+          <div>{label !== "NULL" ? label : "None"}</div>
+        )}
+      />
     );
   }
 }

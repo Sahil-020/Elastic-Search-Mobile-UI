@@ -250,7 +250,7 @@
                     width: 100%;
                     padding: 10px 25px;
                     gap: 10px;
-                    font-family: "Circular-Loom" !important;
+                    // font-family: "Circular-Loom" !important;
                     border-radius: 0px;
                     // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
                     // background-color: rgba(241, 241, 241, 0.876);
@@ -345,8 +345,8 @@
                     gap: 5px !important;
                     .card-title.h5 {
                         height: 11% !important;
-                        font-size: 6px !important;
-                        font-weight: 700 !important;
+                        font-size: 7px !important;
+                        font-weight: 900 !important;
                         flex-wrap: wrap !important;
                     }
                     .image_container {
@@ -377,7 +377,7 @@
                     gap: 6px !important;
                     .card-title.h5 {
                         height: 10% !important;
-                        font-size: 12px !important;
+                        font-size: 11px !important;
                         flex-wrap: wrap !important;
                         font-weight: 800 !important;
                     }
