@@ -44,7 +44,7 @@ import PurchasDateRange from "./search-components/PurchaseDateRange";
 import IsCom from "./search-components/IsCom";
 import IsVirtual from "../search-components/IsVirtual";
 import IsSemimount from "./search-components/IsSemimount";
-import TiaraOnly from "./search-components/TiaraOnly";
+import TiaraOnly from "../search-components/TiaraOnly";
 import FLRoundOnly from "../search-components/FLRoundOnly";
 import AshokaOnly from "./search-components/AshokaOnly";
 import KWCushionOnly from "../search-components/KWCushionOnly";
