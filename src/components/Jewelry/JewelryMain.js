@@ -197,6 +197,7 @@ class JewelryMain extends Component {
               >
                 <Offcanvas.Header closeButton>
                   <Offcanvas.Title>Filters</Offcanvas.Title>
+                  <SearchCriteria />
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                   <Accordion>
@@ -257,7 +258,7 @@ class JewelryMain extends Component {
               </Offcanvas>
             </div>
             {/* <SelectedFilters className="selectedFilters" /> */}
-            <SearchCriteria />
+            {/* <SearchCriteria /> */}
 
             <ReactiveList
               componentId="results"

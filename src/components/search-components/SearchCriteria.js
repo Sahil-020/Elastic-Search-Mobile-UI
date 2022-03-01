@@ -119,9 +119,9 @@ class SearchCriteria extends Component {
               //   </button>
               // );
             });
-            if (filters.every((item) => item === null)) {
-              return filters;
-            }
+            // if (filters.every((item) => item === null)) {
+            //   return filters;
+            // }
             filters.push(
               Object.assign(
                 <button
@@ -129,7 +129,7 @@ class SearchCriteria extends Component {
                   className="clear-all-btn"
                   onClick={() => clearFilter("clearAll")}
                 >
-                  Clear All
+                  Reset filters
                 </button>
               )
             );
