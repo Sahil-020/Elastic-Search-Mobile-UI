@@ -11,7 +11,7 @@ class KwiatOnly extends Component {
         showSearch={false}
         sortBy="asc"
         render={({ data, value, handleChange }) => {
-          console.log("data : ", data);
+          // console.log("data : ", data);
           var checkedFlag;
           if (value === "1") {
             checkedFlag = true;
