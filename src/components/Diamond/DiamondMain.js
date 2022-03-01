@@ -256,6 +256,7 @@ class DiamondMain extends Component {
                 and: andQuery,
                 // or: andQuery,
               }}
+              defaultQuery={() => this.defaultQuery()}
               renderResultStats={({ numberOfResults, time }) => (
                 <div className="result_status_view_option_container">
                   <label>
