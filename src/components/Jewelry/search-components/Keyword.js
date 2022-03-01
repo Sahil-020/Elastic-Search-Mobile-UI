@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { DataSearch } from "@appbaseio/reactivesearch";
-import { KeywordsSearch } from "../../utils/constants";
+import { KeywordsSearch } from "../../../utils/constants";
 
 class Keyword extends Component {
   constructor(props) {

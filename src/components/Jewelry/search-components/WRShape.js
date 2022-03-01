@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { MultiDropdownList } from "@appbaseio/reactivesearch";
-import { WRShapeSerial } from "../../utils/constants";
+import { WRShapeSerial } from "../../../utils/constants";
 
 class WRShape extends Component {
   render() {

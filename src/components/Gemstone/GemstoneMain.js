@@ -9,43 +9,23 @@ import {
   AppbaseAppUrl,
   AppbaseCredentials,
   GemstoneSerialApp,
+  GemstoneKeywordSearch,
 } from "../../utils/constants";
 import Results from "../Results/Results";
 import SerialSearchComponent from "../search-components/SerialSearchComponent";
-import ItemTypeSearch from "../search-components/ItemTypeSearch";
-import ItemSubtype from "../search-components/ItemSubtype";
-import Collection from "../search-components/Collection";
-import SubCollection from "../search-components/SubCollection";
-import Maker from "../search-components/Maker";
+
 import RetailPriceRange from "../search-components/RetailPriceRange";
 import WholesalePriceRange from "../search-components/WholesalePriceRange";
-import DiamondCarats from "../search-components/DiamondCarat";
-import ColorCarat from "../search-components/ColorCarat";
-import KwiatOnly from "../search-components/KwiatOnly";
+
 import IsSold from "../search-components/IsSold";
-import FredLeightonOnly from "../search-components/FredLeightonOnly";
 import SearchCriteria from "../search-components/SearchCriteria";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import CenterShape from "../search-components/CenterShape";
-import Metal from "../search-components/Metal";
-import Period from "../search-components/Period";
 import RfidSearch from "../search-components/RfidSearch";
-import Keyword from "../search-components/Keyword";
-import WRShape from "../search-components/WRShape";
-import WRSetting from "../search-components/WRSetting";
-import EternPart from "../search-components/EternPart";
 import Warehouse from "../search-components/Warehouse";
 import MemoOut from "../search-components/MemoOut";
-import RingSizeRange from "../search-components/RingSizeRange";
-import PurchasDateRange from "../search-components/PurchaseDateRange";
-import IsCom from "../search-components/IsCom";
 import IsVirtual from "../search-components/IsVirtual";
-import IsSemimount from "../search-components/IsSemimount";
-import TiaraOnly from "../search-components/TiaraOnly";
-import FLRoundOnly from "../search-components/FLRoundOnly";
-import AshokaOnly from "../search-components/AshokaOnly";
-import KWCushionOnly from "../search-components/KWCushionOnly";
+import GemstoneShape from "./search-components/GemstoneShape";
 import { data } from "../../assets/icons/Sampledata";
 import Grid2 from "../../assets/icons/grid-two-up-16.png";
 import Grid3 from "../../assets/icons/grid-three-up-16.png";
@@ -53,6 +33,15 @@ import Grid1 from "../../assets/icons/square-16.png";
 import ListView from "../../assets/icons/list-2-16.png";
 import $ from "jquery";
 import Navigation from "../Navigation";
+import StyleNumber from "../search-components/StyleNumber";
+import MountedNumberStock from "../search-components/MountedNumberStock";
+import CaratWeight from "./search-components/CaratWeight";
+import GemstoneType from "./search-components/GemstoneType";
+import CountryofOrigin from "./search-components/CountryofOrigin";
+import GemEnhancement from "./search-components/GemEnhancement";
+import Report from "../search-components/Report";
+import LooseOnly from "../search-components/LooseOnly";
+import IsRtv from "../search-components/IsRtv";
 
 class GemstoneMain extends Component {
   constructor(props) {
@@ -61,10 +50,28 @@ class GemstoneMain extends Component {
       showFilters: false,
       result: data,
       viewType: "List",
+      serialSearchSignal: false,
+      rfidSearchSignal: false,
+      mountedSearchSignal: false,
     };
     // this.clearFilters = this.clearFilters.bind(this)
 
     this.handleView = this.handleView.bind(this);
+    this.defaultQuery = this.defaultQuery.bind(this);
+    this.handleSerialSearchSignal = this.handleSerialSearchSignal.bind(this);
+    this.handleRfidSearchSignal = this.handleRfidSearchSignal.bind(this);
+    this.handleMountedSearchSignal = this.handleMountedSearchSignal.bind(this);
+  }
+  handleMountedSearchSignal(value) {
+    this.setState({ mountedSearchSignal: value });
+  }
+
+  handleRfidSearchSignal(value) {
+    this.setState({ rfidSearchSignal: value });
+  }
+
+  handleSerialSearchSignal(value) {
+    this.setState({ serialSearchSignal: value });
   }
   handleView(e, value) {
     console.log(
@@ -90,11 +97,52 @@ class GemstoneMain extends Component {
       document.getElementById("ES_Results").className = "List_result_container";
     }
   }
+  defaultQuery() {
+    return {
+      track_total_hits: true,
+      query: {
+        match: { ItemStatus: "Active" },
+      },
+    };
+  }
 
   render() {
-    let { showFilters } = this.state;
+    let {
+      showFilters,
+      serialSearchSignal,
+      mountedSearchSignal,
+      rfidSearchSignal,
+    } = this.state;
     let { handleBackButton } = this.props;
-    console.log();
+    // console.log();
+    let andQuery = [];
+    if (serialSearchSignal) {
+      andQuery = ["SerialSearch"];
+    } else if (mountedSearchSignal) {
+      andQuery = ["MountedNumberStock"];
+    } else if (rfidSearchSignal) {
+      andQuery = ["RFID_Search"];
+    } else {
+      andQuery = [
+        "StyleNumber",
+        "GemstoneShape",
+        "MountedNumberStock",
+        "GemstoneType",
+        "CountryofOrigin",
+        "GemEnhancement",
+        "Warehouse",
+        "MemoOut",
+        "RFID_Search",
+        "Report",
+        "CaratWeight",
+        "RetailPriceRange",
+        "WholeSalePriceRange",
+        "LooseOnly",
+        "IncludeSold",
+        "ExcludeVirtual",
+        "IncludeRTV",
+      ];
+    }
     return (
       <>
         <div className="navbar_container">
@@ -125,47 +173,39 @@ class GemstoneMain extends Component {
                     <Accordion.Item eventKey="0">
                       <Accordion.Header>General Fields</Accordion.Header>
                       <Accordion.Body>
-                        <ItemTypeSearch />
-                        <ItemSubtype />
-                        <Collection />
-                        <SubCollection />
-                        <CenterShape />
-                        <Metal />
-                        <Period />
-                        <Maker />
-                        <RfidSearch />
-                        <Keyword />
-                        <WRShape />
-                        <WRSetting />
-                        <EternPart />
+                        <StyleNumber />
+                        <GemstoneShape />
+                        <MountedNumberStock
+                          handleMountedSearchSignal={
+                            this.handleMountedSearchSignal
+                          }
+                        />
+                        <GemstoneType />
+                        <CountryofOrigin />
+                        <GemEnhancement />
                         <Warehouse />
                         <MemoOut />
+                        <RfidSearch
+                          handleRfidSearchSignal={this.handleRfidSearchSignal}
+                        />
+                        <Report data={GemstoneKeywordSearch} />
                       </Accordion.Body>
                     </Accordion.Item>
                     <Accordion.Item eventKey="1">
                       <Accordion.Header>Range Fields</Accordion.Header>
                       <Accordion.Body className="range_fields">
+                        <CaratWeight />
                         <RetailPriceRange />
                         <WholesalePriceRange />
-                        <DiamondCarats />
-                        <ColorCarat />
-                        <RingSizeRange />
-                        <PurchasDateRange />
                       </Accordion.Body>
                     </Accordion.Item>
                     <Accordion.Item eventKey="2">
                       <Accordion.Header>Selection Fields</Accordion.Header>
                       <Accordion.Body className="selection_fields">
-                        <KwiatOnly />
-                        <FredLeightonOnly />
+                        <LooseOnly />
                         <IsSold />
-                        <IsCom />
                         <IsVirtual />
-                        <IsSemimount />
-                        <TiaraOnly />
-                        <FLRoundOnly />
-                        <AshokaOnly />
-                        <KWCushionOnly />
+                        <IsRtv />
                       </Accordion.Body>
                     </Accordion.Item>
                   </Accordion>
@@ -179,43 +219,10 @@ class GemstoneMain extends Component {
               componentId="results"
               dataField="RetailPrice"
               react={{
-                and: [
-                  "SerialSearch",
-                  "ItemType",
-                  "PriceRange",
-                  "KwiatOnly",
-                  "SubType",
-                  "Collection",
-                  "SubCollection",
-                  "CenterSahape",
-                  "Maker",
-                  "Metal",
-                  "Period",
-                  "RFID_Search",
-                  "SearchKeyword",
-                  "WRShape",
-                  "WRSetting",
-                  "EternPart",
-                  "Warehouse",
-                  "MemoOut",
-                  "DiamondCarats",
-                  "ColorCarats",
-                  "RingSizeRange",
-                  "PurchaseDate",
-                  "KwiatOnly",
-                  "FredLeightonOnly",
-                  "IncludeSold",
-                  "IncludeCom",
-                  "ExcludeVirtual",
-                  "IncludeRTV",
-                  "IncludeSemimount",
-                  "TiaraOnly",
-                  "FLRoundOnly",
-                  "AshokaOnly",
-                  "KWCushionOnly",
-                ],
+                and: andQuery,
                 // or: andQuery,
               }}
+              defaultQuery={() => this.defaultQuery()}
               renderResultStats={({ numberOfResults, time }) => (
                 <div className="result_status_view_option_container">
                   <label>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { DataSearch, SingleList } from "@appbaseio/reactivesearch";
-import { SoldCustomer } from "../../utils/constants";
+import { SoldCustomer } from "../../../utils/constants";
 
 class SoldCustomerSearch extends Component {
   constructor(props) {

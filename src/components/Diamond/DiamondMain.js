@@ -9,31 +9,23 @@ import {
   AppbaseAppUrl,
   AppbaseCredentials,
   DiamondCaratWeight,
+  DiamondSearchKeyword,
   DiamondSerialApp,
 } from "../../utils/constants";
 import Results from "../Results/Results";
 import SerialSearchComponent from "../search-components/SerialSearchComponent";
 import RetailPriceRange from "../search-components/RetailPriceRange";
 import WholesalePriceRange from "../search-components/WholesalePriceRange";
-import DiamondCarats from "../search-components/DiamondCarat";
-import ColorCarat from "../search-components/ColorCarat";
-import KwiatOnly from "../search-components/KwiatOnly";
 import IsSold from "../search-components/IsSold";
-import FredLeightonOnly from "../search-components/FredLeightonOnly";
 import SearchCriteria from "../search-components/SearchCriteria";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RfidSearch from "../search-components/RfidSearch";
 import Warehouse from "../search-components/Warehouse";
 import MemoOut from "../search-components/MemoOut";
-import RingSizeRange from "../search-components/RingSizeRange";
-import PurchasDateRange from "../search-components/PurchaseDateRange";
-import IsCom from "../search-components/IsCom";
 import IsVirtual from "../search-components/IsVirtual";
-import IsSemimount from "../search-components/IsSemimount";
 import TiaraOnly from "../search-components/TiaraOnly";
 import FLRoundOnly from "../search-components/FLRoundOnly";
-import AshokaOnly from "../search-components/AshokaOnly";
 import KWCushionOnly from "../search-components/KWCushionOnly";
 import { data } from "../../assets/icons/Sampledata";
 import Grid2 from "../../assets/icons/grid-two-up-16.png";
@@ -42,10 +34,21 @@ import Grid1 from "../../assets/icons/square-16.png";
 import ListView from "../../assets/icons/list-2-16.png";
 import $ from "jquery";
 import Navigation from "../Navigation";
-import Shape from "./../search-components/Shape";
+import Shape from "./search-components/Shape";
 import MountedNumberStock from "../search-components/MountedNumberStock";
 import StyleNumber from "../search-components/StyleNumber";
-import DiamondCaratWeightComponent from "./search_components/DiamondCartWeight";
+import DiamondCaratWeightComponent from "./search-components/DiamondCartWeight";
+import DiamondColorRange from "./search-components/DiamondColorRange";
+import DiamondClarityRange from "./search-components/DiamondClarityRange";
+import DiamondCutRange from "./search-components/DiamondCutRange";
+import StoneRatio from "./search-components/StoneRatio";
+import FancyColor from "./search-components/FancyColor";
+import FancyColorIntensity from "./search-components/FancyColorIntensity";
+import Report from "../search-components/Report";
+import LooseOnly from "../search-components/LooseOnly";
+import LooseAndRingsOnly from "./search-components/LooseAndRingsOnly";
+import IsRtv from "../search-components/IsRtv";
+import FLCushionsOnly from "./search-components/FLCusionsOnly";
 class DiamondMain extends Component {
   constructor(props) {
     super(props);
@@ -139,23 +142,25 @@ class DiamondMain extends Component {
         "StyleNumber",
         "Shape",
         "MountedNumberStock",
-        "DiamondCaratWeight",
+        "FancyColor",
+        "FancyColorIntensity",
         "Warehouse",
         "MemoOut",
-        "DiamondCarats",
-        "ColorCarats",
-        "RingSizeRange",
-        "PurchaseDate",
-        "KwiatOnly",
-        "FredLeightonOnly",
+        "RFID_Search",
+        "Report",
+        "DiamondCaratWeight",
+        "DiamondColorRange",
+        "DiamondClarityRange",
+        "DiamondCutRange",
+        "StoneRatio",
+        "LooseOnly",
+        "LooseAndRingsOnly",
         "IncludeSold",
-        "IncludeCom",
         "ExcludeVirtual",
         "IncludeRTV",
-        "IncludeSemimount",
         "TiaraOnly",
         "FLRoundOnly",
-        "AshokaOnly",
+        "FLCushionsOnly",
         "KWCushionOnly",
       ];
     }
@@ -198,11 +203,14 @@ class DiamondMain extends Component {
                             this.handleMountedSearchSignal
                           }
                         />
+                        <FancyColor />
+                        <FancyColorIntensity />
+                        <Warehouse />
+                        <MemoOut />
                         <RfidSearch
                           handleRfidSearchSignal={this.handleRfidSearchSignal}
                         />
-                        <Warehouse />
-                        <MemoOut />
+                        <Report data={DiamondSearchKeyword} />
                       </Accordion.Body>
                     </Accordion.Item>
                     <Accordion.Item eventKey="1">
@@ -211,27 +219,26 @@ class DiamondMain extends Component {
                         <DiamondCaratWeightComponent
                           data={DiamondCaratWeight}
                         />
+                        <DiamondColorRange />
+                        <DiamondClarityRange />
+                        <DiamondCutRange />
+                        <StoneRatio />
 
                         <RetailPriceRange />
                         <WholesalePriceRange />
-                        <DiamondCarats />
-                        <ColorCarat />
-                        <RingSizeRange />
-                        <PurchasDateRange />
                       </Accordion.Body>
                     </Accordion.Item>
                     <Accordion.Item eventKey="2">
                       <Accordion.Header>Selection Fields</Accordion.Header>
                       <Accordion.Body className="selection_fields">
-                        <KwiatOnly />
-                        <FredLeightonOnly />
+                        <LooseOnly />
+                        <LooseAndRingsOnly />
                         <IsSold />
-                        <IsCom />
                         <IsVirtual />
-                        <IsSemimount />
+                        <IsRtv />
                         <TiaraOnly />
                         <FLRoundOnly />
-                        <AshokaOnly />
+                        <FLCushionsOnly />
                         <KWCushionOnly />
                       </Accordion.Body>
                     </Accordion.Item>
@@ -246,29 +253,7 @@ class DiamondMain extends Component {
               componentId="results"
               dataField="RetailPrice"
               react={{
-                and: [
-                  "SerialSearch",
-                  "Shape",
-                  "MountedNumberStock",
-                  "SearchKeyword",
-                  "Warehouse",
-                  "MemoOut",
-                  "DiamondCarats",
-                  "ColorCarats",
-                  "RingSizeRange",
-                  "PurchaseDate",
-                  "KwiatOnly",
-                  "FredLeightonOnly",
-                  "IncludeSold",
-                  "IncludeCom",
-                  "ExcludeVirtual",
-                  "IncludeRTV",
-                  "IncludeSemimount",
-                  "TiaraOnly",
-                  "FLRoundOnly",
-                  "AshokaOnly",
-                  "KWCushionOnly",
-                ],
+                and: andQuery,
                 // or: andQuery,
               }}
               renderResultStats={({ numberOfResults, time }) => (
