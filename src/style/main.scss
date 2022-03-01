@@ -342,6 +342,9 @@
                         img {
                             height: 22px;
                             width: 22px;
+                            position: absolute;
+                            top: 2%;
+                            right: 3%;
                         }
                     }
                 }
@@ -381,6 +384,12 @@
                             }
                         }
                     }
+                    .result_action_group {
+                        img {
+                            height: 15px;
+                            width: 15px;
+                        }
+                    }
                 }
             }
             .Grid2_result_container {
@@ -411,7 +420,8 @@
                         .card-text {
                             // display: block !important;
                             div.item_description,
-                            div.item_price {
+                            div.item_price,
+                            div {
                                 display: block !important;
                                 font-size: 13px !important;
                             }
@@ -421,6 +431,12 @@
                             > div {
                                 display: none !important;
                             }
+                        }
+                    }
+                    .result_action_group {
+                        img {
+                            height: 18px;
+                            width: 18px;
                         }
                     }
                 }
