@@ -283,6 +283,7 @@ class DiamondMain extends Component {
                   </div>
                 </div>
               )}
+              // scrollOnChange={false}
               render={({ data }) => (
                 <Results
                   items={data}

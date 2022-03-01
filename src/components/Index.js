@@ -3,9 +3,10 @@ import Header from "./Header";
 import JewelryMain from "./Jewelry/JewelryMain";
 import { ToastContainer, toast } from "react-toastify";
 import { Switch, Route, Redirect } from "react-router-dom";
-import SingleItem from "./Jewelry/SingleItem";
+import SingleItem from "./Basket/SingleItem";
 import DiamondMain from "./Diamond/DiamondMain";
 import GemstoneMain from "./Gemstone/GemstoneMain";
+import ScrollToTop from "react-scroll-to-top";
 
 class Index extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class Index extends Component {
   render() {
     return (
       <div className="main_container">
+        <ScrollToTop smooth />
         <Header
           showBackButton={this.state.showBackButton}
           handleBackButton={this.handleBackButton}

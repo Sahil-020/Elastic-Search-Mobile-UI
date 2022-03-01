@@ -2,6 +2,22 @@
 @import "~react-image-gallery/styles/scss/image-gallery.scss";
 
 .main_container {
+    .styles_scroll-to-top__2A70v {
+        /* border-radius: 5%; */
+        background-color: lightgrey;
+        right: 40px;
+        bottom: 40px;
+        position: fixed;
+        z-index: 2;
+        cursor: pointer;
+        border-radius: 22px;
+        width: 42px;
+        height: 40px;
+        transition: opacity 1s ease-in-out;
+        box-shadow: 0 9px 25px 0 rgb(132 128 177 / 28%);
+        border: none;
+        outline: none;
+    }
     .navbar.navbar-expand.navbar-light.bg-light {
         padding: 10px 20px 10px;
         background-color: #f2f4f4 !important;

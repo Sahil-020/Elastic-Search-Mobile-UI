@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Nav, Navbar, Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { Link } from "react-router-dom";
 import $ from "jquery";
 
 export default function Navigation(props) {
@@ -14,11 +15,13 @@ export default function Navigation(props) {
   return (
     <Nav>
       <LinkContainer to="/JewelrySerial">
+        {/* <Link to="/JewelrySerial"> */}
         <Nav.Link
           // className="active"
           onClick={(e) => handleNavLinks(e)}
         >
           Jewelry Serial
+          {/* </Link> */}
         </Nav.Link>
       </LinkContainer>
       {/* <Nav.Link onClick={(e) => handleNavLinks(e)}>

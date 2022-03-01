@@ -257,7 +257,7 @@ class JewelryMain extends Component {
               </Offcanvas>
             </div>
             {/* <SelectedFilters className="selectedFilters" /> */}
-            {/* <SearchCriteria /> */}
+            <SearchCriteria />
 
             <ReactiveList
               componentId="results"

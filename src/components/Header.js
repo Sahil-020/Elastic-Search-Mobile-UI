@@ -9,7 +9,7 @@ export default function Header(props) {
   const history = useHistory();
 
   const handleBack = () => {
-    // console.log("location : ", location);
+    console.log("location : ", location);
     handleBackButton(false);
     let path = location.pathname;
     let parentLocation;
@@ -21,7 +21,9 @@ export default function Header(props) {
       }
     }
     parentLocation = path.substring(0, lastIndex);
-    history.push(parentLocation);
+    // history.push(parentLocation);
+    // history.goBack();
+    window.history.pushState("", "", `${parentLocation}`);
   };
   useEffect(() => {
     let count = 0;

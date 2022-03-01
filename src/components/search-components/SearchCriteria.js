@@ -108,16 +108,16 @@ class SearchCriteria extends Component {
                   return `${label}: ${value}`;
                 }
               };
-              return (
-                <button
-                  key={component}
-                  className="clear-filter-btn"
-                  onClick={() => clearFilter(component)}
-                >
-                  {checkIncludeLabel(filterValue.label, filterValue.value)}
-                  <span className="clear--icon">x</span>
-                </button>
-              );
+              // return (
+              //   <button
+              //     key={component}
+              //     className="clear-filter-btn"
+              //     onClick={() => clearFilter(component)}
+              //   >
+              //     {checkIncludeLabel(filterValue.label, filterValue.value)}
+              //     <span className="clear--icon">x</span>
+              //   </button>
+              // );
             });
             if (filters.every((item) => item === null)) {
               return filters;
