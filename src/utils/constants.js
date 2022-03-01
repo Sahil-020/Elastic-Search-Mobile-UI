@@ -90,7 +90,7 @@ const WRShapeStyle = "WRStoneShape.keyword";
 
 const DiamondSearchKeyword = ["LabReportNbr"];
 const DiamondCaratWeight = "DiamondCaratWeight";
-const StoneRatio = "StoneRatio";
+const StoneRatioField = "StoneRatio";
 
 // Gemstone
 
@@ -107,7 +107,7 @@ export {
   StyleDataField,
   SerialDataField,
   DiamondCaratWeight,
-  StoneRatio,
+  StoneRatioField,
   KeywordsSearch,
   SoldCustomer,
   RFID,

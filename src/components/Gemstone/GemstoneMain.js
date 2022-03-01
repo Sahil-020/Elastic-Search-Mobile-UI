@@ -167,6 +167,7 @@ class GemstoneMain extends Component {
               >
                 <Offcanvas.Header closeButton>
                   <Offcanvas.Title>Filters</Offcanvas.Title>
+                  <SearchCriteria />
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                   <Accordion>

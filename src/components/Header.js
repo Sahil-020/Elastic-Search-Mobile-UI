@@ -9,21 +9,20 @@ export default function Header(props) {
   const history = useHistory();
 
   const handleBack = () => {
-    console.log("location : ", location);
+    // console.log("location : ", location);
     handleBackButton(false);
-    let path = location.pathname;
-    let parentLocation;
-    let lastIndex;
-    for (let i = path.length - 1; i >= 0; i--) {
-      if (path[i] === "/") {
-        lastIndex = i;
-        break;
-      }
-    }
-    parentLocation = path.substring(0, lastIndex);
+    // let path = location.pathname;
+    // let parentLocation;
+    // let lastIndex;
+    // for (let i = path.length - 1; i >= 0; i--) {
+    //   if (path[i] === "/") {
+    //     lastIndex = i;
+    //     break;
+    //   }
+    // }
+    // parentLocation = path.substring(0, lastIndex);
     // history.push(parentLocation);
-    // history.goBack();
-    window.history.pushState("", "", `${parentLocation}`);
+    history.goBack();
   };
   useEffect(() => {
     let count = 0;

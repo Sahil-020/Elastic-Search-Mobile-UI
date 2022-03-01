@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { RangeInput } from "@appbaseio/reactivesearch";
 import RangeFilterWithSelect from "../../HOC_Components/RangeFilterWithSelect";
-
+import { StoneRatioField } from "../../../utils/constants";
 class StoneRatio extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +31,7 @@ class StoneRatio extends Component {
           title="Stone Ratio"
           componentId="StoneRatio"
           showSlider={false}
-          dataField={this.props.data}
+          dataField={StoneRatioField}
           range={{
             start: 1,
             end: 3,
