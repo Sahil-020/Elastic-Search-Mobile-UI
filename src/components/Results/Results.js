@@ -70,7 +70,7 @@ export default function Results(props) {
               // toggleSingleItem(true);
               // showItem(item._id);
               dispatch(toggleSingleView({ show: true, item: item }));
-              handleBackButton(true);
+              // handleBackButton(true);
             }}
           >
             {["Grid1", "Grid2", "Grid3"].includes(viewType) && (
