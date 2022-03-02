@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import currencyFormatter from "currency-formatter";
 import { useHistory, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleSingleView } from "../actions";
 
 export default function Results(props) {
   let { items, viewType, handleBackButton } = props;
   // console.log("items : ", items);
-
+  const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
 
@@ -66,7 +68,8 @@ export default function Results(props) {
               // }
               // handleItemToView(item);
               // toggleSingleItem(true);
-              showItem(item._id);
+              // showItem(item._id);
+              dispatch(toggleSingleView({ show: true, item: item }));
               handleBackButton(true);
             }}
           >

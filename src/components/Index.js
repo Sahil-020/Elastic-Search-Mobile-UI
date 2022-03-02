@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Header from "./Header";
 import JewelryMain from "./Jewelry/JewelryMain";
-import { ToastContainer, toast } from "react-toastify";
 import { Switch, Route, Redirect } from "react-router-dom";
 import SingleItem from "./Basket/SingleItem";
 import DiamondMain from "./Diamond/DiamondMain";
@@ -56,7 +55,7 @@ class Index extends Component {
               />
             )}
           />
-          <Route
+          {/* <Route
             exact
             path="/GemstoneSerial"
             render={(props) => (
@@ -73,9 +72,9 @@ class Index extends Component {
               "/GemstoneSerial/:id",
             ]}
             render={(props) => <SingleItem {...props} />}
-          />
+          /> */}
         </Switch>
-        <ToastContainer hideProgressBar={true} />
+        <SingleItem />
       </div>
     );
   }

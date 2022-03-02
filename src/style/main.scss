@@ -869,241 +869,265 @@
             }
         }
     }
-    .single_item_container {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        padding: 5px 0px 10px;
-        background-color: #f2f4f4 !important;
-        font-family: "Circular-Loom" !important;
-        .item_header_options {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding: 0px 10px;
-            gap: 5px;
 
-            img {
-                width: 5%;
-            }
-            button {
-                width: 5%;
-                border: none;
-                outline: none;
-                font-size: 22px;
-                background-color: inherit;
-            }
-        }
-
-        .item_short_detail {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-items: center;
-            gap: 6px;
-            color: #34495e;
-            padding: 0px 25px;
-            .image_container {
-                width: 100%;
-                padding: 0px 0px 0px;
-                min-height: 40vh;
-                // background: white;
-                margin: 0px 0px 5px 0px;
-                // img {
-                //     width: 80%;
-                // }
-                // @media (min-width: 768px) {
-                //     width: 70%;
-                //     margin: auto;
-                // }
-                .image-gallery-slides {
-                    .image-gallery-image,
-                    iframe,
-                    video {
-                        max-height: 40vh;
-                        min-height: 40vh;
-                        width: 100%;
-                        // @media (min-width: 768px) {
-                        //     max-height: 60vh;
-                        // }
-                    }
-                    iframe,
-                    video {
-                        // @media (min-width: 768px) {
-                        //     min-height: 60vh;
-                        // }
-                    }
-                }
-                .image-gallery-thumbnails-wrapper.thumbnails-swipe-horizontal {
-                    padding: 10px;
-                    // @media (min-width: 1080px) {
-                    //     width: 70%;
-                    //     margin: auto;
-                    // }
-                    .image-gallery-thumbnails {
-                        display: grid;
-                        .image-gallery-thumbnails-container {
-                            float: left;
-                            .image-gallery-thumbnail {
-                                width: 52px;
-                                height: 52px;
-                                margin: 0px 4px;
-                                @media (min-width: 768px) {
-                                    width: 82px;
-                                    height: 82px;
-                                }
-                                @media (min-width: 1440px) {
-                                    width: 86px;
-                                    height: 86px;
-                                }
-                                outline: none;
-                                border: 1px solid #acacac;
-                            }
-                            .image-gallery-thumbnail.active,
-                            .image-gallery-thumbnail:focus,
-                            .image-gallery-thumbnail:hover {
-                                outline: none;
-                                border: 1px solid #1c3279;
-                            }
-                        }
-                    }
-                }
-            }
-            h6 {
-                width: 100%;
-                font-size: 16px;
-                text-align: left;
-                margin: 0px !important;
-                color: #808b96 !important;
-                font-weight: 400;
-                // height: 15px;
-            }
-            .single_item_description {
-                text-align: left;
-                font-size: 17px;
-                width: 100%;
-            }
-            .single_item_price {
-                width: 100%;
-                // margin: 10px 0px 25px 0px;
-                display: flex;
-                align-items: center;
-                justify-content: flex-start;
-                grid-column-gap: 5px;
-                column-gap: 5px;
-
-                label {
-                    font-size: 26px;
-                    // color: #31406f;
-                    // font-family: serif;
-                    font-weight: 900;
-                }
-            }
-        }
-        .single_item_details {
-            // display: flex;
-            // flex-direction: column;
-            .accordion {
-                padding: 0px 20px 10px;
-                background: white;
-                color: #34495e;
-                .accordion-item {
-                    border: none;
-                    // border-bottom: 1px solid #d0d3d4;
-                    .accordion-header {
-                        .accordion-button,
-                        .accordion-button:focus {
-                            padding: 15px 0px;
-                            font-size: 15px;
-                            font-weight: 700;
-                            color: #34495e !important;
-                            outline: none !important;
-                            background: white !important;
-                            border: none !important ;
-                            box-shadow: none !important;
-                            border-bottom: 1px solid #d0d3d4 !important;
-                            // border-top: 1px solid black !important;
-                        }
-                        .accordion-button::after {
-                            content: "+";
-                            background-image: none;
-                            transition: none !important;
-                            transform: none !important;
-                            position: relative;
-                            color: #34495e;
-                            padding: 0px 4px;
-                            outline: none;
-                            background: #f2f4f4;
-                        }
-                        .accordion-button:not(.collapsed)::after {
-                            content: "-";
-                            padding: 0px 7px;
-                        }
-                    }
-                    .accordion-body {
-                        padding: 10px 0px;
-                        h6 {
-                            text-align: left;
-                            padding: 0 0.5rem;
-                        }
-                        table {
-                            // max-height: 266px !important;
-                            // width: 100%;
-                            // height: 100%;
-                            display: block;
-                            margin: 0;
-                            overflow: hidden;
-                            tbody {
-                                display: block;
-
-                                tr {
-                                    display: flex;
-                                    gap: 5px;
-                                    border: white !important;
-                                    td {
-                                        display: block;
-                                        text-align: left;
-                                        font-size: 14px;
-                                        padding: 5px 0px;
-                                        white-space: wrap;
-                                        color: #34495e !important;
-                                        li::marker {
-                                            color: #808b96 !important;
-                                        }
-                                    }
-                                    td:first-child {
-                                        width: 45%;
-                                    }
-                                    td:nth-child(2) {
-                                        width: 50%;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        .add_to_basket {
-            padding: 10px 25px;
-            button {
-                background: #34495e;
-                width: 100%;
-                height: 40px;
-                color: white;
-                border: none;
-                outline: none;
-                font-size: 18px;
-                font-weight: 600;
-            }
-        }
-    }
     .es-scroll-button {
         .ScrollUpButton__Container {
             border: 5px solid lightgrey !important;
             // margin-right: 12px;
             > svg {
                 fill: lightgrey;
+            }
+        }
+    }
+}
+.single_item_modal {
+    .modal-dialog {
+        .modal-content {
+            background-color: #f2f4f4 !important;
+            .modal-header {
+                padding: 0;
+                border: none;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                .btn-close {
+                    position: relative;
+                    font-size: 10px;
+                    padding: 10px;
+                    position: relative;
+                    margin: 0;
+                }
+            }
+            .modal-body {
+                .single_item_container {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+                    padding: 5px 0px 10px;
+                    background-color: #f2f4f4 !important;
+                    font-family: "Circular-Loom" !important;
+                    .item_header_options {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        padding: 0px 10px;
+                        gap: 5px;
+
+                        img {
+                            width: 5%;
+                        }
+                        button {
+                            width: 5%;
+                            border: none;
+                            outline: none;
+                            font-size: 22px;
+                            background-color: inherit;
+                        }
+                    }
+
+                    .item_short_detail {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-items: center;
+                        gap: 6px;
+                        color: #34495e;
+                        padding: 0px 25px;
+                        .image_container {
+                            width: 100%;
+                            padding: 0px 0px 0px;
+                            min-height: 40vh;
+                            // background: white;
+                            margin: 0px 0px 5px 0px;
+                            // img {
+                            //     width: 80%;
+                            // }
+                            // @media (min-width: 768px) {
+                            //     width: 70%;
+                            //     margin: auto;
+                            // }
+                            .image-gallery-slides {
+                                .image-gallery-image,
+                                iframe,
+                                video {
+                                    max-height: 40vh;
+                                    min-height: 40vh;
+                                    width: 100%;
+                                    // @media (min-width: 768px) {
+                                    //     max-height: 60vh;
+                                    // }
+                                }
+                                iframe,
+                                video {
+                                    // @media (min-width: 768px) {
+                                    //     min-height: 60vh;
+                                    // }
+                                }
+                            }
+                            .image-gallery-thumbnails-wrapper.thumbnails-swipe-horizontal {
+                                padding: 10px;
+                                // @media (min-width: 1080px) {
+                                //     width: 70%;
+                                //     margin: auto;
+                                // }
+                                .image-gallery-thumbnails {
+                                    display: grid;
+                                    .image-gallery-thumbnails-container {
+                                        float: left;
+                                        .image-gallery-thumbnail {
+                                            width: 52px;
+                                            height: 52px;
+                                            margin: 0px 4px;
+                                            @media (min-width: 768px) {
+                                                width: 82px;
+                                                height: 82px;
+                                            }
+                                            @media (min-width: 1440px) {
+                                                width: 86px;
+                                                height: 86px;
+                                            }
+                                            outline: none;
+                                            border: 1px solid #acacac;
+                                        }
+                                        .image-gallery-thumbnail.active,
+                                        .image-gallery-thumbnail:focus,
+                                        .image-gallery-thumbnail:hover {
+                                            outline: none;
+                                            border: 1px solid #1c3279;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        h6 {
+                            width: 100%;
+                            font-size: 16px;
+                            text-align: left;
+                            margin: 0px !important;
+                            color: #808b96 !important;
+                            font-weight: 400;
+                            // height: 15px;
+                        }
+                        .single_item_description {
+                            text-align: left;
+                            font-size: 17px;
+                            width: 100%;
+                        }
+                        .single_item_price {
+                            width: 100%;
+                            // margin: 10px 0px 25px 0px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: flex-start;
+                            grid-column-gap: 5px;
+                            column-gap: 5px;
+
+                            label {
+                                font-size: 26px;
+                                // color: #31406f;
+                                // font-family: serif;
+                                font-weight: 900;
+                            }
+                        }
+                    }
+                    .single_item_details {
+                        // display: flex;
+                        // flex-direction: column;
+                        .accordion {
+                            padding: 0px 20px 10px;
+                            background: white;
+                            color: #34495e;
+                            .accordion-item {
+                                border: none;
+                                // border-bottom: 1px solid #d0d3d4;
+                                .accordion-header {
+                                    .accordion-button,
+                                    .accordion-button:focus {
+                                        padding: 15px 0px;
+                                        font-size: 15px;
+                                        font-weight: 700;
+                                        color: #34495e !important;
+                                        outline: none !important;
+                                        background: white !important;
+                                        border: none !important ;
+                                        box-shadow: none !important;
+                                        border-bottom: 1px solid #d0d3d4 !important;
+                                        // border-top: 1px solid black !important;
+                                    }
+                                    .accordion-button::after {
+                                        content: "+";
+                                        background-image: none;
+                                        transition: none !important;
+                                        transform: none !important;
+                                        position: relative;
+                                        color: #34495e;
+                                        padding: 0px 4px;
+                                        outline: none;
+                                        background: #f2f4f4;
+                                    }
+                                    .accordion-button:not(.collapsed)::after {
+                                        content: "-";
+                                        padding: 0px 7px;
+                                    }
+                                }
+                                .accordion-body {
+                                    padding: 10px 0px;
+                                    h6 {
+                                        text-align: left;
+                                        padding: 0 0.5rem;
+                                    }
+                                    table {
+                                        // max-height: 266px !important;
+                                        // width: 100%;
+                                        // height: 100%;
+                                        display: block;
+                                        margin: 0;
+                                        overflow: hidden;
+                                        tbody {
+                                            display: block;
+
+                                            tr {
+                                                display: flex;
+                                                gap: 5px;
+                                                border: white !important;
+                                                td {
+                                                    display: block;
+                                                    text-align: left;
+                                                    font-size: 14px;
+                                                    padding: 5px 0px;
+                                                    white-space: wrap;
+                                                    color: #34495e !important;
+                                                    li::marker {
+                                                        color: #808b96 !important;
+                                                    }
+                                                }
+                                                td:first-child {
+                                                    width: 45%;
+                                                }
+                                                td:nth-child(2) {
+                                                    width: 50%;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .add_to_basket {
+                        padding: 10px 25px;
+                        button {
+                            background: #34495e;
+                            width: 100%;
+                            height: 40px;
+                            color: white;
+                            border: none;
+                            outline: none;
+                            font-size: 18px;
+                            font-weight: 600;
+                        }
+                    }
+                }
             }
         }
     }

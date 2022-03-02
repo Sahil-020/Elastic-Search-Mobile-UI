@@ -41,7 +41,7 @@ export default function Header(props) {
     <Navbar bg="light" variant="light">
       <Container>
         <Navbar.Brand href="#home">
-          {showBackButton && (
+          {/* {showBackButton && (
             <img
               height="20"
               width="20"
@@ -50,7 +50,7 @@ export default function Header(props) {
                 handleBack();
               }}
             ></img>
-          )}
+          )} */}
           <img
             src="https://cdn4.kwiat.com/apps/kwiat-elastic-search/icons/KW-FL-Combined-Logos-Short-1000px.png"
             // height="40px"
