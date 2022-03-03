@@ -55,7 +55,7 @@ class Index extends Component {
               />
             )}
           />
-          {/* <Route
+          <Route
             exact
             path="/GemstoneSerial"
             render={(props) => (
@@ -65,7 +65,7 @@ class Index extends Component {
               />
             )}
           />
-          <Route
+          {/*} <Route
             path={[
               "/JewelrySerial/:id",
               "/DiamondSerial/:id",

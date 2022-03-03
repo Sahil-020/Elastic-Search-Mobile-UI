@@ -26,7 +26,6 @@ import KwiatOnly from "./search-components/KwiatOnly";
 import IsSold from "../search-components/IsSold";
 import FredLeightonOnly from "./search-components/FredLeightonOnly";
 import SearchCriteria from "../search-components/SearchCriteria";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CenterShape from "./search-components/CenterShape";
@@ -49,14 +48,21 @@ import FLRoundOnly from "../search-components/FLRoundOnly";
 import AshokaOnly from "./search-components/AshokaOnly";
 import KWCushionOnly from "../search-components/KWCushionOnly";
 import { data } from "../../assets/icons/Sampledata";
-import Grid2 from "../../assets/icons/grid-two-up-16.png";
-import Grid3 from "../../assets/icons/grid-three-up-16.png";
-import Grid1 from "../../assets/icons/square-16.png";
-import ListView from "../../assets/icons/list-2-16.png";
 import $ from "jquery";
 import Navigation from "../Navigation";
 import SoldCustomerSearch from "./search-components/SoldCustomerSearch";
 import StyleNumber from "../search-components/StyleNumber";
+import Basket from "../Basket/Basket";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { toggleBasket } from "../actions";
+import HandleView from "./../OtherComponents/HandleView";
+
+const mapStateToProps = (state) => {
+  return {
+    basket: state.basket,
+  };
+};
 
 class JewelryMain extends Component {
   constructor(props) {
@@ -125,7 +131,7 @@ class JewelryMain extends Component {
   render() {
     let { showFilters, serialSearchSignal, rfidSearchSignal, soldCustSignal } =
       this.state;
-    let { handleBackButton } = this.props;
+    let { basket, toggleBasket } = this.props;
     // console.log();
     let andQuery = [];
     if (serialSearchSignal) {
@@ -268,46 +274,45 @@ class JewelryMain extends Component {
                 // or: andQuery,
               }}
               renderResultStats={({ numberOfResults, time }) => (
-                <div className="result_status_view_option_container">
-                  <label>
-                    {numberOfResults} results found in {time}ms
-                  </label>
-                  <div className="result_view_options">
-                    <img
-                      className="active"
-                      src={ListView}
-                      onClick={(e) => this.handleView(e, "List")}
-                    />
-                    <img
-                      src={Grid1}
-                      onClick={(e) => this.handleView(e, "Grid1")}
-                    />
-                    <img
-                      src={Grid2}
-                      onClick={(e) => this.handleView(e, "Grid2")}
-                    />
-                    <img
-                      src={Grid3}
-                      onClick={(e) => this.handleView(e, "Grid3")}
-                    />
-                  </div>
-                </div>
+                <HandleView
+                  numberOfResults={numberOfResults}
+                  time={time}
+                  handleView={this.handleView}
+                />
               )}
               render={({ data }) => (
                 <Results
                   items={data}
                   viewType={this.state.viewType}
                   // items={this.state.result}
-                  handleBackButton={handleBackButton}
+                  // handleBackButton={handleBackButton}
                 />
               )}
               defaultQuery={() => this.defaultQuery()}
             />
           </ReactiveBase>
         </div>
+        <Offcanvas
+          show={basket.show}
+          onHide={() => toggleBasket({ show: false })}
+          placement="bottom"
+          className="basket_offcanvas"
+        >
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title>Basket</Offcanvas.Title>
+            <span>...</span>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <Basket />
+          </Offcanvas.Body>
+        </Offcanvas>
       </>
     );
   }
 }
 
-export default JewelryMain;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ toggleBasket }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(JewelryMain);

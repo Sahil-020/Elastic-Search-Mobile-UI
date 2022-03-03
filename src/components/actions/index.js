@@ -1,6 +1,7 @@
 import {
   TOGGLE_IFRAME_MODAL,
   TOGGLE_SINGLE_VIEW_MODAL,
+  TOGGLE_BASKET,
   SETAPPTYPE,
   ADD_TO_CART,
   REMOVE_FROM_CART,
@@ -22,6 +23,12 @@ export function toggleIframeModal(payload) {
   return {
     type: TOGGLE_IFRAME_MODAL,
     payload,
+  };
+}
+export function toggleBasket({ show }) {
+  return {
+    type: TOGGLE_BASKET,
+    payload: { show },
   };
 }
 export function toggleSingleView({ show, item }) {

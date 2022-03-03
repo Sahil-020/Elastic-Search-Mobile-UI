@@ -2,9 +2,14 @@ import React, { Component, useEffect } from "react";
 import { Nav, Navbar, Container } from "react-bootstrap";
 import BackIcon from "../assets/icons/left-arrow.png";
 import { useHistory, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleBasket } from "./actions";
 
 export default function Header(props) {
   let { showBackButton, handleBackButton } = props;
+  const basket = useSelector((state) => state.basket);
+  const dispatch = useDispatch();
+
   const location = useLocation();
   const history = useHistory();
 
@@ -59,7 +64,7 @@ export default function Header(props) {
           <div className="basket_button">
             <img
               src="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/open-basket.png"
-              // onClick={() => toggleBasket(true)}
+              onClick={() => dispatch(toggleBasket({ show: true }))}
             ></img>
           </div>
         </Navbar.Brand>{" "}

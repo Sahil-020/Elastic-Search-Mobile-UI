@@ -1,6 +1,7 @@
 // Action types per module
 export const TOGGLE_IFRAME_MODAL = "TOGGLE_IFRAME_MODAL";
 export const TOGGLE_SINGLE_VIEW_MODAL = "TOGGLE_SINGLE_VIEW_MODAL";
+export const TOGGLE_BASKET = "TOGGLE_BASKET";
 export const SETAPPTYPE = "SETAPPTYPE";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";

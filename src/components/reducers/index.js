@@ -3,6 +3,7 @@ import { connectRouter } from "connected-react-router";
 import {
   TOGGLE_IFRAME_MODAL,
   TOGGLE_SINGLE_VIEW_MODAL,
+  TOGGLE_BASKET,
   SETAPPTYPE,
   ADD_TO_CART,
   REMOVE_FROM_CART,
@@ -29,6 +30,9 @@ let defaultState = {
 let defaultSingleViewState = {
   show: false,
   item: {},
+};
+let defaultBasketState = {
+  show: false,
 };
 let defaultAppState = {
   app: "original",
@@ -67,6 +71,17 @@ let defaultSortOption = {
   basketSortOption: [],
 };
 
+function basket(state = defaultBasketState, action) {
+  let { payload } = action;
+  switch (action.type) {
+    case TOGGLE_BASKET:
+      return Object.assign({}, state, {
+        show: payload.show,
+      });
+    default:
+      return state;
+  }
+}
 function singleViewModal(state = defaultSingleViewState, action) {
   let { payload } = action;
   switch (action.type) {
@@ -338,6 +353,7 @@ export default // (history) =>
 combineReducers({
   iframeModal,
   singleViewModal,
+  basket,
   AppType,
   cartActions,
   basketInputChange,

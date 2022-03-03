@@ -27,10 +27,6 @@ import MemoOut from "../search-components/MemoOut";
 import IsVirtual from "../search-components/IsVirtual";
 import GemstoneShape from "./search-components/GemstoneShape";
 import { data } from "../../assets/icons/Sampledata";
-import Grid2 from "../../assets/icons/grid-two-up-16.png";
-import Grid3 from "../../assets/icons/grid-three-up-16.png";
-import Grid1 from "../../assets/icons/square-16.png";
-import ListView from "../../assets/icons/list-2-16.png";
 import $ from "jquery";
 import Navigation from "../Navigation";
 import StyleNumber from "../search-components/StyleNumber";
@@ -42,6 +38,16 @@ import GemEnhancement from "./search-components/GemEnhancement";
 import Report from "../search-components/Report";
 import LooseOnly from "../search-components/LooseOnly";
 import IsRtv from "../search-components/IsRtv";
+import HandleView from "./../OtherComponents/HandleView";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { toggleBasket } from "../actions";
+import Basket from "./../Basket/Basket";
+const mapStateToProps = (state) => {
+  return {
+    basket: state.basket,
+  };
+};
 
 class GemstoneMain extends Component {
   constructor(props) {
@@ -113,7 +119,7 @@ class GemstoneMain extends Component {
       mountedSearchSignal,
       rfidSearchSignal,
     } = this.state;
-    let { handleBackButton } = this.props;
+    let { handleBackButton, basket, toggleBasket } = this.props;
     // console.log();
     let andQuery = [];
     if (serialSearchSignal) {
@@ -225,30 +231,11 @@ class GemstoneMain extends Component {
               }}
               defaultQuery={() => this.defaultQuery()}
               renderResultStats={({ numberOfResults, time }) => (
-                <div className="result_status_view_option_container">
-                  <label>
-                    {numberOfResults} results found in {time}ms
-                  </label>
-                  <div className="result_view_options">
-                    <img
-                      className="active"
-                      src={ListView}
-                      onClick={(e) => this.handleView(e, "List")}
-                    />
-                    <img
-                      src={Grid1}
-                      onClick={(e) => this.handleView(e, "Grid1")}
-                    />
-                    <img
-                      src={Grid2}
-                      onClick={(e) => this.handleView(e, "Grid2")}
-                    />
-                    <img
-                      src={Grid3}
-                      onClick={(e) => this.handleView(e, "Grid3")}
-                    />
-                  </div>
-                </div>
+                <HandleView
+                  numberOfResults={numberOfResults}
+                  time={time}
+                  handleView={this.handleView}
+                />
               )}
               render={({ data }) => (
                 <Results
@@ -261,9 +248,25 @@ class GemstoneMain extends Component {
             />
           </ReactiveBase>
         </div>
+        <Offcanvas
+          show={basket.show}
+          onHide={() => toggleBasket({ show: false })}
+          placement="bottom"
+          className="basket_offcanvas"
+        >
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title>Basket</Offcanvas.Title>
+            <span>...</span>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <Basket />
+          </Offcanvas.Body>
+        </Offcanvas>
       </>
     );
   }
 }
-
-export default GemstoneMain;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ toggleBasket }, dispatch);
+};
+export default connect(mapStateToProps, mapDispatchToProps)(GemstoneMain);

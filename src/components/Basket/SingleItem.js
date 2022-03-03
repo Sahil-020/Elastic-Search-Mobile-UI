@@ -18,7 +18,8 @@ import {
 } from "../../utils/constants";
 import Appbase from "appbase-js";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleSingleView } from "../actions";
+import { toggleSingleView, addToCart } from "../actions";
+import { useSwipeable } from "react-swipeable";
 
 export default function SingleItem(props) {
   let { handleItemToView, toggleSingleItem, addItemToBasket } = props;
@@ -26,6 +27,11 @@ export default function SingleItem(props) {
 
   const { show, item } = useSelector((state) => state.singleViewModal);
   const dispatch = useDispatch();
+
+  const handlers = useSwipeable({
+    onSwiped: (eventData) =>
+      dispatch(toggleSingleView({ show: false, item: {} })),
+  });
 
   // const [item, setItem] = useState({});
 
@@ -276,6 +282,7 @@ export default function SingleItem(props) {
       size="lg"
       show={show}
       onHide={() => onModalHide()}
+      {...handlers}
     >
       <Modal.Header closeButton></Modal.Header>
       <Modal.Body>
@@ -697,7 +704,9 @@ export default function SingleItem(props) {
             </Accordion>
           </div>
           <div className="add_to_basket">
-            <button onClick={() => addItemToBasket(item)}>Add to Cart</button>
+            <button onClick={() => dispatch(addToCart({ product: item }))}>
+              Add to Cart
+            </button>
           </div>
         </div>
       </Modal.Body>
