@@ -341,7 +341,7 @@
                             border: none;
                             width: fit-content;
                             height: fit-content;
-                            padding: 4px;
+                            padding: 2px;
                             margin: auto;
                             background-color: #f2f4f4 !important;
                             position: absolute;
@@ -411,10 +411,12 @@
                     padding: 10px !important;
                     gap: 6px !important;
                     .card-title.h5 {
-                        height: 10% !important;
-                        font-size: 11px !important;
+                        height: 15% !important;
+                        font-size: 8px !important;
+                        font-weight: 900 !important;
                         flex-wrap: wrap !important;
-                        font-weight: 800 !important;
+                        column-gap: 2px !important;
+                        row-gap: 0px !important;
                     }
                     .image_container {
                         height: 60% !important;
@@ -443,8 +445,8 @@
                     }
                     .result_action_group {
                         img {
-                            height: 18px;
-                            width: 18px;
+                            height: 16px;
+                            width: 16px;
                         }
                     }
                 }

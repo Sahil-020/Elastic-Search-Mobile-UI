@@ -80,7 +80,7 @@ export default function Results(props) {
                   {item.SerialNumber && item.StyleNumber ? (
                     <>
                       <span>{item.SerialNumber}</span>
-                      {viewType !== "Grid2" && "|"}
+                      {viewType !== "Grid2" || viewType !== "Grid3" ? "|" : ""}
                       <span> {item.StyleNumber}</span>
                     </>
                   ) : item.SerialNumber ? (
