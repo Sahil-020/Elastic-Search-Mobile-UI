@@ -200,10 +200,15 @@ class DiamondMain extends Component {
                   <SearchCriteria />
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                  <Accordion>
+                  <Accordion defaultActiveKey="0">
                     <Accordion.Item eventKey="0">
                       <Accordion.Header>General Fields</Accordion.Header>
                       <Accordion.Body>
+                        <SerialSearchComponent
+                          handleSerialSearchSignal={
+                            this.handleSerialSearchSignal
+                          }
+                        />
                         <StyleNumber />
                         <Shape />
                         <MountedNumberStock

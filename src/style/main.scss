@@ -467,6 +467,15 @@
                     border-radius: 0px !important ;
                     border-bottom: 1px solid rgba(0, 0, 0, 0.125) !important;
 
+                    .item_no {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 12px;
+                        font-weight: 600;
+                        // color: #808b96;
+                        color: #34495e;
+                    }
                     .image_container {
                         width: 25%;
                         height: 100% !important;
@@ -1054,7 +1063,8 @@
                                     // content: "";
                                     // position: absolute;
                                     // background-color: transparent;
-                                    top: 0;
+                                    top: -9px;
+                                    font-size: 20px;
                                     /* left: 0; */
                                     /* width: 8px; */
                                     /* height: 4px; */
@@ -1069,6 +1079,13 @@
                                     transform: rotate(-45deg) scale(1);
                                     -webkit-transition: all 200ms ease-out;
                                     transition: all 200ms ease-out;
+                                }
+                            }
+                            li.active {
+                                background-color: #34495e !important;
+                                color: white;
+                                .css-1yjrvfv-Tick::after {
+                                    color: white;
                                 }
                             }
                         }
@@ -1679,6 +1696,12 @@
                         border: none !important;
                         border-radius: 0px !important ;
                         border-bottom: 1px solid rgba(0, 0, 0, 0.125) !important;
+                        .item_no {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 12px;
+                        }
 
                         .image_container {
                             width: 25%;

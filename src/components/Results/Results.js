@@ -92,6 +92,11 @@ export default function Results(props) {
                   )}
                 </Card.Title>
               )}
+              {viewType === "List" && (
+                <div className="item_no">
+                  <span>{index + 1}</span>
+                </div>
+              )}
               <div className="image_container">
                 <Card.Img
                   variant="top"
