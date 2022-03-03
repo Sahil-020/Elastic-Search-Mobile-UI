@@ -94,7 +94,7 @@ export default function Results(props) {
               )}
               {viewType === "List" && (
                 <div className="item_no">
-                  <span>{index + 1}</span>
+                  <span>{index + 1}.</span>
                 </div>
               )}
               <div className="image_container">
