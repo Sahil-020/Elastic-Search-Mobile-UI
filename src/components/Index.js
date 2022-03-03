@@ -6,6 +6,7 @@ import SingleItem from "./Basket/SingleItem";
 import DiamondMain from "./Diamond/DiamondMain";
 import GemstoneMain from "./Gemstone/GemstoneMain";
 import ScrollToTop from "react-scroll-to-top";
+import Arrow from "../assets/icons/arrow-151-24.png";
 
 class Index extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class Index extends Component {
   render() {
     return (
       <div className="main_container">
-        <ScrollToTop smooth />
+        <ScrollToTop component={<img src={Arrow}></img>} smooth />
         <Header
           showBackButton={this.state.showBackButton}
           handleBackButton={this.handleBackButton}

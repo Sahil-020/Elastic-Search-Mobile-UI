@@ -79,7 +79,8 @@ export default function Results(props) {
                 <Card.Title>
                   {item.SerialNumber && item.StyleNumber ? (
                     <>
-                      <span>{item.SerialNumber}</span>|
+                      <span>{item.SerialNumber}</span>
+                      {viewType !== "Grid2" && "|"}
                       <span> {item.StyleNumber}</span>
                     </>
                   ) : item.SerialNumber ? (

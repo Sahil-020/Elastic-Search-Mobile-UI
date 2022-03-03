@@ -309,20 +309,32 @@ export default function SingleItem(props) {
                 : ``}
             </h6>
             <div className="single_item_description">{item.Description}</div>
-            <div className="single_item_price">
-              <label>
-                {(item.RetailPrice &&
-                  currencyFormatter.format(`${item.RetailPrice}`, {
+            {item.RetailPrice && (
+              <div className="single_item_price">
+                <label>
+                  {currencyFormatter.format(`${item.RetailPrice}`, {
                     code: "USD",
                     precision: 0,
-                  })) ||
-                  ""}
-              </label>
-            </div>
+                  }) || ""}
+                </label>{" "}
+                (Retail Price)
+              </div>
+            )}
+            {item.WholesalePrice && (
+              <div className="single_item_price">
+                <label>
+                  {currencyFormatter.format(`${item.WholesalePrice}`, {
+                    code: "USD",
+                    precision: 0,
+                  }) || ""}
+                </label>{" "}
+                (Wholesale Price)
+              </div>
+            )}
           </div>
 
           <div className="single_item_details">
-            <Accordion>
+            <Accordion defaultActiveKey="0">
               <AccordionItem eventKey="0">
                 {/* <h6> */}
                 <AccordionHeader>Details:</AccordionHeader>
