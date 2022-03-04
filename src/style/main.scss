@@ -320,7 +320,9 @@
                             font-size: 13px;
                             .item_description {
                                 font-size: 16px;
-                                display: block !important;
+                                // display: block !important;
+                                display: flex !important;
+                                flex-direction: column;
                                 font-weight: 500;
                                 line-height: 1.5em;
                                 height: 3em;
@@ -439,8 +441,10 @@
                             // display: block !important;
                             div.item_description,
                             div {
-                                display: block !important;
+                                // display: block !important;
                                 font-size: 13px !important;
+                                display: flex !important;
+                                flex-direction: column;
                             }
                             div.item_price {
                                 display: flex !important;
@@ -544,12 +548,18 @@
 
                             .item_description {
                                 font-size: 13px !important;
-                                display: block !important;
+                                // display: block !important;
                                 font-weight: 500;
                                 line-height: 1.5em;
                                 height: 3em;
                                 overflow: hidden;
                                 text-overflow: ellipsis;
+                                display: flex !important;
+                                flex-direction: column;
+
+                                span:first-child {
+                                    // width: 100%;
+                                }
                                 // white-space: nowrap;
                             }
 

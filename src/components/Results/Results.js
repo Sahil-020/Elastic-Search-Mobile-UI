@@ -171,14 +171,15 @@ export default function Results(props) {
                     ) : item.transformType === "DiamondSerial" ? (
                       <div className="item_description">
                         <span>
+                          {item.Shape && item.Shape !== null
+                            ? `${item.Shape} ${item.GemstoneType || ""}`
+                            : ""}
+                        </span>
+                        <span>
                           {" "}
                           {isValueEmpty(item.DiamondCaratWeight) &&
-                          isMultipleValueEmpty(item, "DiamondColorRange") &&
-                          item.Shape &&
-                          item.Shape !== null
-                            ? ` ${item.Shape} ${
-                                item.GemstoneType || ""
-                              } | ${Number(item.DiamondCaratWeight).toFixed(
+                          isMultipleValueEmpty(item, "DiamondColorRange")
+                            ? `${Number(item.DiamondCaratWeight).toFixed(
                                 2
                               )}cts | ${isMultipleValueEmpty(
                                 item,
@@ -188,13 +189,30 @@ export default function Results(props) {
                             ? `${Number(item.DiamondCaratWeight).toFixed(2)}cts`
                             : isMultipleValueEmpty(item, "DiamondColorRange")
                             ? isMultipleValueEmpty(item, "DiamondColorRange")
-                            : item.Shape && item.Shape !== null
-                            ? `${item.Shape} ${item.GemstoneType || ""}`
                             : ""}
                         </span>
                       </div>
-                    ) : item.transformType == "GemstoneSerial" ? (
-                      <div className="item_description">Gemstone</div>
+                    ) : item.transformType === "GemstoneSerial" ? (
+                      <div className="item_description">
+                        <span>
+                          {isValueEmpty(item.Shape)
+                            ? `${item.Shape} ${item.GemstoneType}`
+                            : ""}
+                        </span>
+                        <span>
+                          {" "}
+                          {isValueEmpty(item.CountryofOrigin) &&
+                          isValueEmpty(item.GemEnhancement)
+                            ? ` ${isValueEmpty(
+                                item.CountryofOrigin
+                              )} | ${isValueEmpty(item.GemEnhancement)} `
+                            : isValueEmpty(item.CountryofOrigin)
+                            ? `${isValueEmpty(item.CountryofOrigin)}`
+                            : isValueEmpty(item.GemEnhancement)
+                            ? isValueEmpty(item.GemEnhancement)
+                            : ""}
+                        </span>
+                      </div>
                     ) : (
                       ""
                     )
