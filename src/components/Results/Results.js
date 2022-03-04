@@ -8,7 +8,7 @@ import { toggleSingleView, addToCart, removeFromCart } from "../actions";
 export default function Results(props) {
   let { items, viewType, handleBackButton } = props;
   const basket = useSelector((state) => state.basket);
-  // console.log("items : ", items);
+  console.log("viewType : ", viewType);
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
@@ -80,7 +80,7 @@ export default function Results(props) {
                   {item.SerialNumber && item.StyleNumber ? (
                     <>
                       <span>{item.SerialNumber}</span>
-                      {viewType !== "Grid2" || viewType !== "Grid3" ? "|" : ""}
+                      {viewType === "Grid1" ? "|" : ""}
                       <span> {item.StyleNumber}</span>
                     </>
                   ) : item.SerialNumber ? (
@@ -130,13 +130,28 @@ export default function Results(props) {
                     <div className="item_description">{item.Description}</div>
                   )}
                   <div className="item_price">
-                    {" "}
-                    {(item.RetailPrice &&
-                      currencyFormatter.format(`${item.RetailPrice}`, {
-                        code: "USD",
-                        precision: 0,
-                      })) ||
-                      ""}{" "}
+                    {item.RetailPrice ? (
+                      <>
+                        {currencyFormatter.format(`${item.RetailPrice}`, {
+                          code: "USD",
+                          precision: 0,
+                        }) || ""}
+                        <sup>(R)</sup>
+                      </>
+                    ) : (
+                      ""
+                    )}{" "}
+                    {item.WholesalePrice ? (
+                      <>
+                        {currencyFormatter.format(`${item.WholesalePrice}`, {
+                          code: "USD",
+                          precision: 0,
+                        }) || ""}
+                        <sup>(W)</sup>
+                      </>
+                    ) : (
+                      ""
+                    )}{" "}
                   </div>
                 </div>
               </Card.Body>

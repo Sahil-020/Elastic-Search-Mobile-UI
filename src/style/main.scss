@@ -276,7 +276,8 @@
                         flex-direction: row !important;
                         gap: 2px !important;
                         align-items: center;
-                        // justify-content: center;
+                        justify-content: center;
+                        // align-items: center !important;
                         text-align: left;
                         margin: 0px !important;
                         color: #808b96;
@@ -346,7 +347,7 @@
                             background-color: #f2f4f4 !important;
                             position: absolute;
                             top: 2%;
-                            right: 3%;
+                            right: 2%;
 
                             // width: 100%;
                             img {
@@ -367,7 +368,7 @@
                 gap: 6px !important;
                 .card {
                     width: 31% !important;
-                    height: 160px !important;
+                    height: 200px !important;
                     padding: 10px 0px !important;
                     gap: 10px !important;
                     .card-title.h5 {
@@ -377,6 +378,7 @@
                         flex-wrap: wrap !important;
                         column-gap: 2px !important;
                         row-gap: 0px !important;
+                        padding: 15px 0px 0px;
                     }
                     .image_container {
                         height: 60% !important;
@@ -393,9 +395,13 @@
                         }
                     }
                     .result_action_group {
-                        img {
-                            height: 15px;
-                            width: 15px;
+                        button {
+                            top: 1% !important;
+                            right: 1% !important;
+                            img {
+                                height: 14px !important;
+                                width: 14px !important;
+                            }
                         }
                     }
                 }
@@ -412,16 +418,18 @@
                     gap: 6px !important;
                     .card-title.h5 {
                         height: 15% !important;
-                        font-size: 8px !important;
+                        font-size: 12px !important;
                         font-weight: 900 !important;
                         flex-wrap: wrap !important;
-                        column-gap: 2px !important;
+                        column-gap: 0px !important;
                         row-gap: 0px !important;
+                        align-items: flex-end;
+                        padding: 8px 0px 0px;
                     }
                     .image_container {
                         height: 60% !important;
                         img {
-                            max-width: 70% !important;
+                            max-width: 100% !important;
                             margin: auto;
                         }
                     }
@@ -430,13 +438,14 @@
                         .card-text {
                             // display: block !important;
                             div.item_description,
-                            div.item_price,
                             div {
                                 display: block !important;
                                 font-size: 13px !important;
                             }
                             div.item_price {
+                                display: flex !important;
                                 font-size: 16px !important;
+                                padding: 7px 0px 0px;
                             }
                             > div {
                                 display: none !important;
@@ -444,9 +453,12 @@
                         }
                     }
                     .result_action_group {
-                        img {
-                            height: 16px;
-                            width: 16px;
+                        button {
+                            top: 1% !important;
+                            img {
+                                height: 16px !important;
+                                width: 16px !important;
+                            }
                         }
                     }
                 }
