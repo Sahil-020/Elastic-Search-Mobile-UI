@@ -6,9 +6,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleSingleView, addToCart, removeFromCart } from "../actions";
 
 export default function Results(props) {
-  let { items, viewType, handleBackButton } = props;
+  let {
+    items,
+    viewType,
+    handleBackButton,
+    isValueEmpty,
+    isMultipleValueEmpty,
+  } = props;
   const basket = useSelector((state) => state.basket);
-  console.log("viewType : ", viewType);
+  console.log("items : ", items);
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
@@ -77,18 +83,26 @@ export default function Results(props) {
             >
               {["Grid1", "Grid2", "Grid3"].includes(viewType) && (
                 <Card.Title>
-                  {item.SerialNumber && item.StyleNumber ? (
+                  {item.transformType === "JewelrySerial" ||
+                  !item.transformType ? (
                     <>
-                      <span>{item.SerialNumber}</span>
-                      {viewType === "Grid1" ? "|" : ""}
-                      <span> {item.StyleNumber}</span>
+                      {" "}
+                      {item.SerialNumber && item.StyleNumber ? (
+                        <>
+                          <span>{item.SerialNumber}</span>
+                          {viewType === "Grid1" ? "|" : ""}
+                          <span> {item.StyleNumber}</span>
+                        </>
+                      ) : item.SerialNumber ? (
+                        item.SerialNumber
+                      ) : item.StyleNumber ? (
+                        item.StyleNumber
+                      ) : (
+                        ``
+                      )}
                     </>
-                  ) : item.SerialNumber ? (
-                    item.SerialNumber
-                  ) : item.StyleNumber ? (
-                    item.StyleNumber
                   ) : (
-                    ``
+                    <>{item.SerialNumber}</>
                   )}
                 </Card.Title>
               )}
@@ -106,49 +120,107 @@ export default function Results(props) {
                       "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg";
                   }}
                 />
+                {/* <span>
+                  {item.IsSold === "1" ? "Sold" : ""}
+                  {item.IsRtv === "1" ? "RTV" : ""}
+                  {item.SerialStatus === "In Production" ? "In Production" : ""}
+                  {item.IsSemimount === "1" ? "Semimount" : ""}
+                  {item.SerialStatus === "Adjusted Out" ? "Adjusted Out" : ""}
+                  {item.IsMounted === "1" && item.IsSold !== "1"
+                    ? "mounted"
+                    : ""}
+                  {item.isOpenJob === "1" && item.PONumber !== null
+                    ? `ON ORDER`
+                    : ""}
+                  {item.isOpenJob === "1" && item.PONumber === null
+                    ? `STOCK CREATE`
+                    : ""}
+                </span> */}
               </div>
               <Card.Body>
                 {viewType === "List" && (
                   <Card.Title>
-                    {item.SerialNumber && item.StyleNumber ? (
+                    {item.transformType === "JewelrySerial" ||
+                    !item.transformType ? (
                       <>
-                        <span>{item.SerialNumber}</span>|
-                        <span> {item.StyleNumber}</span>
+                        {" "}
+                        {item.SerialNumber && item.StyleNumber ? (
+                          <>
+                            <span>{item.SerialNumber}</span>|
+                            <span> {item.StyleNumber}</span>
+                          </>
+                        ) : item.SerialNumber ? (
+                          item.SerialNumber
+                        ) : item.StyleNumber ? (
+                          item.StyleNumber
+                        ) : (
+                          ``
+                        )}
                       </>
-                    ) : item.SerialNumber ? (
-                      item.SerialNumber
-                    ) : item.StyleNumber ? (
-                      item.StyleNumber
                     ) : (
-                      ``
+                      <>{item.SerialNumber}</>
                     )}
                   </Card.Title>
                 )}
 
                 <div className="card-text">
-                  {viewType !== "Grid3" && (
-                    <div className="item_description">{item.Description}</div>
+                  {viewType !== "Grid3" ? (
+                    item.transformType === "JewelrySerial" ||
+                    !item.transformType ? (
+                      <div className="item_description">{item.Description}</div>
+                    ) : item.transformType === "DiamondSerial" ? (
+                      <div className="item_description">
+                        <span>
+                          {" "}
+                          {isValueEmpty(item.DiamondCaratWeight) &&
+                          isMultipleValueEmpty(item, "DiamondColorRange") &&
+                          item.Shape &&
+                          item.Shape !== null
+                            ? ` ${item.Shape} ${
+                                item.GemstoneType || ""
+                              } | ${Number(item.DiamondCaratWeight).toFixed(
+                                2
+                              )}cts | ${isMultipleValueEmpty(
+                                item,
+                                "DiamondColorRange"
+                              )} `
+                            : isValueEmpty(item.DiamondCaratWeight)
+                            ? `${Number(item.DiamondCaratWeight).toFixed(2)}cts`
+                            : isMultipleValueEmpty(item, "DiamondColorRange")
+                            ? isMultipleValueEmpty(item, "DiamondColorRange")
+                            : item.Shape && item.Shape !== null
+                            ? `${item.Shape} ${item.GemstoneType || ""}`
+                            : ""}
+                        </span>
+                      </div>
+                    ) : item.transformType == "GemstoneSerial" ? (
+                      <div className="item_description">Gemstone</div>
+                    ) : (
+                      ""
+                    )
+                  ) : (
+                    ""
                   )}
                   <div className="item_price">
                     {item.RetailPrice ? (
-                      <>
+                      <span>
                         {currencyFormatter.format(`${item.RetailPrice}`, {
                           code: "USD",
                           precision: 0,
                         }) || ""}
                         <sup>(R)</sup>
-                      </>
+                      </span>
                     ) : (
                       ""
                     )}{" "}
                     {item.WholesalePrice ? (
-                      <>
+                      <span>
                         {currencyFormatter.format(`${item.WholesalePrice}`, {
                           code: "USD",
                           precision: 0,
                         }) || ""}
                         <sup>(W)</sup>
-                      </>
+                      </span>
                     ) : (
                       ""
                     )}{" "}

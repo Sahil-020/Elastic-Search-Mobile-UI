@@ -11,6 +11,8 @@ import {
   AppbaseCredentials,
   JewelrySerialApp,
 } from "../../utils/constants";
+import isEmpty from "lodash/isEmpty";
+import currencyFormatter from "currency-formatter";
 import Results from "../Results/Results";
 import SerialSearchComponent from "../search-components/SerialSearchComponent";
 import ItemTypeSearch from "./search-components/ItemTypeSearch";
@@ -57,6 +59,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { toggleBasket } from "../actions";
 import HandleView from "./../OtherComponents/HandleView";
+import IsOpenJob from "../search-components/IsOpenJob";
 
 const mapStateToProps = (state) => {
   return {
@@ -70,6 +73,7 @@ class JewelryMain extends Component {
     this.state = {
       showFilters: false,
       result: data,
+      checked: false,
       viewType: "List",
       soldCustSignal: false,
       serialSearchSignal: false,
@@ -80,8 +84,95 @@ class JewelryMain extends Component {
     this.handleView = this.handleView.bind(this);
     this.handleSoldCustSignal = this.handleSoldCustSignal.bind(this);
     this.handleSerialSearchSignal = this.handleSerialSearchSignal.bind(this);
-
     this.handleRfidSearchSignal = this.handleRfidSearchSignal.bind(this);
+    this.isValueEmpty = this.isMultipleValueEmpty.bind(this);
+    this.isMultipleValueEmpty = this.isMultipleValueEmpty.bind(this);
+    this.onCheckSelect = this.onCheckSelect.bind(this);
+  }
+
+  onCheckSelect(value) {
+    this.setState({
+      checked: value,
+    });
+  }
+
+  isValueEmpty(res) {
+    // console.log("res & name :", res, name);
+    let result = "";
+    if (!isEmpty(res) && res !== "0.00") {
+      // result = `${name} : ${res}`;
+      result = res;
+    }
+    // else {
+    //   result = `${name} : null`;
+    // }
+    // console.log("result : ", result);
+    return result;
+  }
+  isMultipleValueEmpty(res, expr) {
+    let { checked } = this.state;
+    let result = "";
+    switch (expr) {
+      case "CenterDetails":
+        if (!isEmpty(res.CenterShape)) {
+          result = `Center Details:
+          ${(res.CenterCaratWeight && res.CenterCaratWeight + " cts") || ""}
+          ${res.CenterShape || ""} ${
+            (res.CenterColor && res.CenterColor + " /") || ""
+          }
+          ${(res.CenterClarity && res.CenterClarity + " /") || ""} ${
+            res.CenterCut || ""
+          } ${res.CenterEnhancement || ""} ${
+            (res.CenterOrigin && res.CenterOrigin + " - #") || ""
+          }  ${res.CenterStoneNbr || ""}`;
+        }
+        break;
+
+      case "WholesalePrice":
+        if (checked === true) {
+          result = res.WholesalePriceCode || "";
+        } else {
+          result =
+            (res.WholesalePrice &&
+              currencyFormatter.format(`${res.WholesalePrice}`, {
+                code: "USD",
+                precision: 0,
+              })) ||
+            "";
+        }
+        break;
+
+      case "ItemSubtype":
+        if (!isEmpty(res.ItemSubtype)) {
+          result = res.ItemSubtype;
+        } else {
+          result = res.ItemType || "";
+        }
+        break;
+      case "RetailPrice":
+        if (!isEmpty(res)) {
+          result = currencyFormatter.format(`${res}`, {
+            code: "USD",
+            precision: 0,
+          });
+        }
+        break;
+      case "ColorClarity":
+        result = `${res.Color || ""}
+          ${res.Color && res.Clarity ? "/" : ""}
+          ${res.Clarity || ""}
+        `;
+        break;
+      case "DiamondDetails":
+        result = `${res.DiamondDetails || ""}
+          ${res.DiamondDetails && res.ColorComment ? " & " : ""}
+          ${res.ColorComment || ""}
+        `;
+        break;
+      default:
+        return result.trim();
+    }
+    return result.trim();
   }
 
   handleSoldCustSignal(value) {
@@ -171,6 +262,7 @@ class JewelryMain extends Component {
         "ExcludeVirtual",
         "IncludeRTV",
         "IncludeSemimount",
+        "IncludeOpenJob",
         "TiaraOnly",
         "FLRoundOnly",
         "AshokaOnly",
@@ -258,6 +350,7 @@ class JewelryMain extends Component {
                         <IsCom />
                         <IsVirtual />
                         <IsSemimount />
+                        <IsOpenJob />
                         <TiaraOnly />
                         <FLRoundOnly />
                         <AshokaOnly />
@@ -289,6 +382,8 @@ class JewelryMain extends Component {
                 <Results
                   items={data}
                   viewType={this.state.viewType}
+                  isValueEmpty={this.isValueEmpty}
+                  isMultipleValueEmpty={this.isMultipleValueEmpty}
                   // items={this.state.result}
                   // handleBackButton={handleBackButton}
                 />

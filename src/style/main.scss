@@ -412,12 +412,12 @@
                 gap: 10px !important;
                 .card {
                     width: 48% !important;
-                    height: 300px !important;
+                    height: 350px !important;
                     margin: 0px !important;
                     padding: 10px !important;
                     gap: 6px !important;
                     .card-title.h5 {
-                        height: 15% !important;
+                        height: 10% !important;
                         font-size: 12px !important;
                         font-weight: 900 !important;
                         flex-wrap: wrap !important;
@@ -427,14 +427,14 @@
                         padding: 8px 0px 0px;
                     }
                     .image_container {
-                        height: 60% !important;
+                        height: 55% !important;
                         img {
                             max-width: 100% !important;
                             margin: auto;
                         }
                     }
                     .card-body {
-                        height: 25% !important;
+                        height: 30% !important;
                         .card-text {
                             // display: block !important;
                             div.item_description,
@@ -444,6 +444,9 @@
                             }
                             div.item_price {
                                 display: flex !important;
+                                flex-direction: column;
+                                align-items: center;
+                                // justify-content: flex-end;
                                 font-size: 16px !important;
                                 padding: 7px 0px 0px;
                             }
@@ -498,6 +501,16 @@
                             margin: auto;
                             // border: none !important;
                             max-height: 100% !important;
+                        }
+                        span {
+                            width: 25%;
+                            padding: 2px 10px;
+                            position: absolute;
+                            bottom: 3%;
+                            left: 7%;
+                            background: #34495e;
+                            color: #f2f4f4;
+                            font-size: 12px;
                         }
                     }
                     .card-body {

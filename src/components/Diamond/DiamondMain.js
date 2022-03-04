@@ -13,6 +13,8 @@ import {
   DiamondSerialApp,
 } from "../../utils/constants";
 import Results from "../Results/Results";
+import isEmpty from "lodash/isEmpty";
+import currencyFormatter from "currency-formatter";
 import SerialSearchComponent from "../search-components/SerialSearchComponent";
 import RetailPriceRange from "../search-components/RetailPriceRange";
 import WholesalePriceRange from "../search-components/WholesalePriceRange";
@@ -63,6 +65,7 @@ class DiamondMain extends Component {
       showFilters: false,
       result: data,
       viewType: "List",
+      checked: false,
       serialSearchSignal: false,
       rfidSearchSignal: false,
       mountedSearchSignal: false,
@@ -73,8 +76,88 @@ class DiamondMain extends Component {
     this.handleSerialSearchSignal = this.handleSerialSearchSignal.bind(this);
     this.handleRfidSearchSignal = this.handleRfidSearchSignal.bind(this);
     this.handleMountedSearchSignal = this.handleMountedSearchSignal.bind(this);
+    this.isValueEmpty = this.isValueEmpty.bind(this);
+    this.isMultipleValueEmpty = this.isMultipleValueEmpty.bind(this);
+    this.onCheckSelect = this.onCheckSelect.bind(this);
   }
 
+  onCheckSelect(value) {
+    this.setState({
+      checked: value,
+    });
+  }
+  isValueEmpty(res) {
+    let result = "";
+    if (!isEmpty(res) && res !== "NaN") {
+      result = res;
+    }
+    return result;
+  }
+  isMultipleValueEmpty(res, expr) {
+    let { checked } = this.state;
+    let result = "";
+    switch (expr) {
+      case "Measurements":
+        if (!isEmpty(res.Length)) {
+          result = `${res.Length && res.Length + " x"}  ${
+            res.Width && res.Width + " x"
+          }  ${res.Depth}`;
+        }
+        break;
+      case "Polish":
+        result = `${res.Polish || ""}
+            ${res.Polish && res.Symmetry ? "/" : ""}
+            ${res.Symmetry || ""}
+          `;
+        break;
+      case "GradingLab":
+        if (!isEmpty(res.GradingLab))
+          result = `${res.GradingLab} -  ${res.LabReportNbr || ""}`;
+        break;
+      case "StoneFluoresence":
+        result = `${res.StoneFluoresence || ""}
+          ${res.StoneFluoresenceColor || ""}`;
+        break;
+      case "DiamondColorRange":
+        result = `${
+          this.isValueEmpty(res.DiamondColorRange)
+            ? res.DiamondColorRange + "/"
+            : res.FancyColorGIA || ""
+        }
+          ${res.DiamondClarityRange || ""}
+        `;
+        break;
+      case "WholesalePriceCode":
+        if (checked === true) {
+          result = res.WholesalePriceCode || "";
+        } else {
+          result =
+            (res.WholesalePrice &&
+              currencyFormatter.format(`${res.WholesalePrice}`, {
+                code: "USD",
+                precision: 0,
+              })) ||
+            "";
+        }
+        break;
+      case "WholesalePerCaratCode":
+        if (checked === true) {
+          result = res.WholesalePerCaratCode;
+        } else {
+          result =
+            (res.WholesalePerCarat &&
+              currencyFormatter.format(`${res.WholesalePerCarat}`, {
+                code: "USD",
+                precision: 0,
+              })) ||
+            "";
+        }
+        break;
+      default:
+        return result;
+    }
+    return result;
+  }
   handleMountedSearchSignal(value) {
     this.setState({ mountedSearchSignal: value });
   }
@@ -282,6 +365,8 @@ class DiamondMain extends Component {
                 <Results
                   items={data}
                   viewType={this.state.viewType}
+                  isValueEmpty={this.isValueEmpty}
+                  isMultipleValueEmpty={this.isMultipleValueEmpty}
                   // items={this.state.result}
 
                   handleBackButton={handleBackButton}

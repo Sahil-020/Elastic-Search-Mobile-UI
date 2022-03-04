@@ -43,6 +43,8 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { toggleBasket } from "../actions";
 import Basket from "./../Basket/Basket";
+import isEmpty from "lodash/isEmpty";
+import currencyFormatter from "currency-formatter";
 const mapStateToProps = (state) => {
   return {
     basket: state.basket,
@@ -56,6 +58,7 @@ class GemstoneMain extends Component {
       showFilters: false,
       result: data,
       viewType: "List",
+      checked: false,
       serialSearchSignal: false,
       rfidSearchSignal: false,
       mountedSearchSignal: false,
@@ -67,6 +70,60 @@ class GemstoneMain extends Component {
     this.handleSerialSearchSignal = this.handleSerialSearchSignal.bind(this);
     this.handleRfidSearchSignal = this.handleRfidSearchSignal.bind(this);
     this.handleMountedSearchSignal = this.handleMountedSearchSignal.bind(this);
+    this.isValueEmpty = this.isValueEmpty.bind(this);
+    this.isMultipleValueEmpty = this.isMultipleValueEmpty.bind(this);
+  }
+
+  isValueEmpty(res) {
+    let result = "";
+    if (!isEmpty(res)) {
+      result = res;
+    }
+    return result;
+  }
+  isMultipleValueEmpty(res, expr) {
+    let { checked } = this.state;
+    let result = "";
+    switch (expr) {
+      case "WholesalePrice":
+        if (checked === true) {
+          result = res.WholesalePriceCode || "";
+        } else {
+          result =
+            (res.WholesalePrice &&
+              currencyFormatter.format(`${res.WholesalePrice}`, {
+                code: "USD",
+                precision: 0,
+              })) ||
+            "";
+        }
+        break;
+      case "WholesalePerCarat":
+        if (checked === true) {
+          result = res.WholesalePerCaratCode || "";
+        } else {
+          result =
+            (res.WholesalePerCarat &&
+              currencyFormatter.format(`${res.WholesalePerCarat}`, {
+                code: "USD",
+                precision: 0,
+              })) ||
+            "";
+        }
+        break;
+
+      case "RetailPrice":
+        if (!isEmpty(res)) {
+          result = currencyFormatter.format(`${res}`, {
+            code: "USD",
+            precision: 0,
+          });
+        }
+        break;
+      default:
+        return result;
+    }
+    return result;
   }
   handleMountedSearchSignal(value) {
     this.setState({ mountedSearchSignal: value });
@@ -246,6 +303,8 @@ class GemstoneMain extends Component {
                 <Results
                   items={data}
                   viewType={this.state.viewType}
+                  isValueEmpty={this.isValueEmpty}
+                  isMultipleValueEmpty={this.isMultipleValueEmpty}
                   // items={this.state.result}
                   handleBackButton={handleBackButton}
                 />
