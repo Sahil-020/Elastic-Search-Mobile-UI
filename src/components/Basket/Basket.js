@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import { removeFromCart } from "./../actions/index";
 import HandleView from "../OtherComponents/HandleView";
 import $ from "jquery";
+import isEmpty from "lodash/isEmpty";
 
 const mapStateToProps = (state) => {
   return {
@@ -36,7 +37,16 @@ class Basket extends Component {
       allBasketDetails: [],
     };
     this.handleView = this.handleView.bind(this);
+    // this.isValueEmpty = this.isValueEmpty.bind(this);
   }
+  // isValueEmpty(res) {
+  //   let result = "";
+  //   if (!isEmpty(res) && res !== "NaN") {
+  //     result = res;
+  //   }
+  //   // console.log("result :", result);
+  //   return result;
+  // }
   handleView(e, value) {
     console.log(
       "result element : ",
@@ -50,25 +60,39 @@ class Basket extends Component {
     this.setState({ viewType: value });
     e.target.className = "active";
     if (value === "Grid1") {
-      document.getElementById("ES_Results").className = "Grid_result_container";
+      document.getElementById("ES_Results_Baskets").className =
+        "Grid_result_container";
     } else if (value === "Grid2") {
-      document.getElementById("ES_Results").className =
+      document.getElementById("ES_Results_Baskets").className =
         "Grid2_result_container";
     } else if (value === "Grid3") {
-      document.getElementById("ES_Results").className =
+      document.getElementById("ES_Results_Baskets").className =
         "Grid3_result_container";
     } else if (value === "List") {
-      document.getElementById("ES_Results").className = "List_result_container";
+      document.getElementById("ES_Results_Baskets").className =
+        "List_result_container";
     }
   }
 
   render() {
-    let { items } = this.props;
+    let { items, isValueEmpty, isMultipleValueEmpty } = this.props;
     // let { allBaskets, items } = this.state;
     return (
       <div className="basket_container" id="basket">
         <HandleView handleView={this.handleView} items={items} />
-        <Results items={items} />
+        <div className="es_basket_results">
+          <div
+            id="ES_Results_Baskets"
+            className="List_result_container"
+            // className="compact_result_container"
+          >
+            <Results
+              items={items}
+              isValueEmpty={isValueEmpty}
+              isMultipleValueEmpty={isMultipleValueEmpty}
+            />
+          </div>
+        </div>
       </div>
     );
   }

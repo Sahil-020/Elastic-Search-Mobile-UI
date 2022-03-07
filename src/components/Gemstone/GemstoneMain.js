@@ -315,14 +315,22 @@ class GemstoneMain extends Component {
                 />
               )}
               render={({ data }) => (
-                <Results
-                  items={data}
-                  viewType={this.state.viewType}
-                  isValueEmpty={this.isValueEmpty}
-                  isMultipleValueEmpty={this.isMultipleValueEmpty}
-                  // items={this.state.result}
-                  handleBackButton={handleBackButton}
-                />
+                <div className="es_results">
+                  <div
+                    id="ES_Results"
+                    className="List_result_container"
+                    // className="compact_result_container"
+                  >
+                    <Results
+                      items={data}
+                      viewType={this.state.viewType}
+                      isValueEmpty={this.isValueEmpty}
+                      isMultipleValueEmpty={this.isMultipleValueEmpty}
+                      // items={this.state.result}
+                      handleBackButton={handleBackButton}
+                    />
+                  </div>
+                </div>
               )}
             />
           </ReactiveBase>
@@ -334,11 +342,14 @@ class GemstoneMain extends Component {
           className="basket_offcanvas"
         >
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title>Basket</Offcanvas.Title>
+            <Offcanvas.Title>Basket list</Offcanvas.Title>
             <span>...</span>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <Basket />
+            <Basket
+              isValueEmpty={this.isValueEmpty}
+              isMultipleValueEmpty={this.isMultipleValueEmpty}
+            />
           </Offcanvas.Body>
         </Offcanvas>
       </>

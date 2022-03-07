@@ -896,7 +896,7 @@
 }
 
 .offcanvas-backdrop {
-    background-color: #082157;
+    background-color: #082157 !important;
 }
 
 .offcanvas {
@@ -1481,13 +1481,37 @@
 .basket_offcanvas {
     height: 100vh !important;
     .offcanvas-header {
+        justify-content: flex-start;
+        padding: 15px 20px;
+        .offcanvas-title.h5 {
+            width: 95%;
+            font-size: 18px;
+            text-align: center;
+            padding: 0px 0px 0px 5%;
+        }
+        .btn-close {
+            position: absolute;
+            left: 4%;
+            padding: 0;
+            background: transparent url("../assets/icons/left-arrow.png") center/25px auto no-repeat !important;
+            width: 10%;
+            height: 4%;
+        }
+        span {
+            width: 4%;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
     }
+
     .offcanvas-body {
+        padding: 0px;
         .basket_container {
             .result_status_view_option_container {
                 display: flex;
                 width: 100%;
-                padding: 15px 20px;
+                padding: 15px 20px 5px;
                 flex-direction: row;
                 align-items: center;
                 // background-color: #f8f9f9 !important;
@@ -1521,7 +1545,7 @@
                     }
                 }
             }
-            .es_results {
+            .es_basket_results {
                 display: flex;
                 flex-direction: column;
                 flex-wrap: wrap;
@@ -1569,7 +1593,8 @@
                             flex-direction: row !important;
                             gap: 2px !important;
                             align-items: center;
-                            // justify-content: center;
+                            justify-content: center;
+                            // align-items: center !important;
                             text-align: left;
                             margin: 0px !important;
                             color: #808b96;
@@ -1612,7 +1637,9 @@
                                 font-size: 13px;
                                 .item_description {
                                     font-size: 16px;
-                                    display: block !important;
+                                    // display: block !important;
+                                    display: flex !important;
+                                    flex-direction: column;
                                     font-weight: 500;
                                     line-height: 1.5em;
                                     height: 3em;
@@ -1634,12 +1661,12 @@
                                 border: none;
                                 width: fit-content;
                                 height: fit-content;
-                                padding: 4px;
+                                padding: 2px;
                                 margin: auto;
                                 background-color: #f2f4f4 !important;
                                 position: absolute;
                                 top: 2%;
-                                right: 3%;
+                                right: 2%;
 
                                 // width: 100%;
                                 img {
@@ -1660,7 +1687,7 @@
                     gap: 6px !important;
                     .card {
                         width: 31% !important;
-                        height: 160px !important;
+                        height: 200px !important;
                         padding: 10px 0px !important;
                         gap: 10px !important;
                         .card-title.h5 {
@@ -1670,6 +1697,7 @@
                             flex-wrap: wrap !important;
                             column-gap: 2px !important;
                             row-gap: 0px !important;
+                            padding: 15px 0px 0px;
                         }
                         .image_container {
                             height: 60% !important;
@@ -1686,9 +1714,13 @@
                             }
                         }
                         .result_action_group {
-                            img {
-                                height: 15px;
-                                width: 15px;
+                            button {
+                                top: 1% !important;
+                                right: 1% !important;
+                                img {
+                                    height: 14px !important;
+                                    width: 14px !important;
+                                }
                             }
                         }
                     }
@@ -1699,35 +1731,45 @@
                     gap: 10px !important;
                     .card {
                         width: 48% !important;
-                        height: 300px !important;
+                        height: 350px !important;
                         margin: 0px !important;
                         padding: 10px !important;
                         gap: 6px !important;
                         .card-title.h5 {
                             height: 10% !important;
-                            font-size: 11px !important;
+                            font-size: 12px !important;
+                            font-weight: 900 !important;
                             flex-wrap: wrap !important;
-                            font-weight: 800 !important;
+                            column-gap: 0px !important;
+                            row-gap: 0px !important;
+                            align-items: flex-end;
+                            padding: 8px 0px 0px;
                         }
                         .image_container {
-                            height: 60% !important;
+                            height: 55% !important;
                             img {
-                                max-width: 70% !important;
+                                max-width: 100% !important;
                                 margin: auto;
                             }
                         }
                         .card-body {
-                            height: 25% !important;
+                            height: 30% !important;
                             .card-text {
                                 // display: block !important;
                                 div.item_description,
-                                div.item_price,
                                 div {
-                                    display: block !important;
+                                    // display: block !important;
                                     font-size: 13px !important;
+                                    display: flex !important;
+                                    flex-direction: column;
                                 }
                                 div.item_price {
+                                    display: flex !important;
+                                    flex-direction: column;
+                                    align-items: center;
+                                    // justify-content: flex-end;
                                     font-size: 16px !important;
+                                    padding: 7px 0px 0px;
                                 }
                                 > div {
                                     display: none !important;
@@ -1735,9 +1777,12 @@
                             }
                         }
                         .result_action_group {
-                            img {
-                                height: 18px;
-                                width: 18px;
+                            button {
+                                top: 1% !important;
+                                img {
+                                    height: 16px !important;
+                                    width: 16px !important;
+                                }
                             }
                         }
                     }
@@ -1759,13 +1804,16 @@
                         border: none !important;
                         border-radius: 0px !important ;
                         border-bottom: 1px solid rgba(0, 0, 0, 0.125) !important;
+
                         .item_no {
                             display: flex;
                             align-items: center;
                             justify-content: center;
                             font-size: 12px;
+                            font-weight: 600;
+                            // color: #808b96;
+                            color: #34495e;
                         }
-
                         .image_container {
                             width: 25%;
                             height: 100% !important;
@@ -1774,6 +1822,16 @@
                                 margin: auto;
                                 // border: none !important;
                                 max-height: 100% !important;
+                            }
+                            span {
+                                width: 25%;
+                                padding: 2px 10px;
+                                position: absolute;
+                                bottom: 3%;
+                                left: 7%;
+                                background: #34495e;
+                                color: #f2f4f4;
+                                font-size: 12px;
                             }
                         }
                         .card-body {
@@ -1807,12 +1865,18 @@
 
                                 .item_description {
                                     font-size: 13px !important;
-                                    display: block !important;
+                                    // display: block !important;
                                     font-weight: 500;
                                     line-height: 1.5em;
                                     height: 3em;
                                     overflow: hidden;
                                     text-overflow: ellipsis;
+                                    display: flex !important;
+                                    flex-direction: column;
+
+                                    span:first-child {
+                                        // width: 100%;
+                                    }
                                     // white-space: nowrap;
                                 }
 

@@ -63,67 +63,68 @@ export default function Results(props) {
   };
 
   return (
-    <div className="es_results">
-      <div
-        id="ES_Results"
-        className="List_result_container"
-        // className="compact_result_container"
-      >
-        {items &&
-          items.map((item, index) => (
-            <Card
-              key={index}
-              onClick={(e) => {
-                // if (e.target !== this) {
-                //   return;
-                // }
-                // handleItemToView(item);
-                // toggleSingleItem(true);
-                // showItem(item._id);
-                dispatch(toggleSingleView({ show: true, item: item }));
-                // handleBackButton(true);
-              }}
-            >
-              {["Grid1", "Grid2", "Grid3"].includes(viewType) && (
-                <Card.Title>
-                  {item.transformType === "JewelrySerial" ||
-                  !item.transformType ? (
-                    <>
-                      {" "}
-                      {item.SerialNumber && item.StyleNumber ? (
-                        <>
-                          <span>{item.SerialNumber}</span>
-                          {viewType === "Grid1" ? "|" : ""}
-                          <span> {item.StyleNumber}</span>
-                        </>
-                      ) : item.SerialNumber ? (
-                        item.SerialNumber
-                      ) : item.StyleNumber ? (
-                        item.StyleNumber
-                      ) : (
-                        ``
-                      )}
-                    </>
-                  ) : (
-                    <>{item.SerialNumber}</>
-                  )}
-                </Card.Title>
-              )}
-              {viewType === "List" && (
-                <div className="item_no">
-                  <span>{index + 1}.</span>
-                </div>
-              )}
-              <div className="image_container">
-                <Card.Img
-                  variant="top"
-                  src={handleImage(item)}
-                  onError={(event) => {
-                    event.target.src =
-                      "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg";
-                  }}
-                />
-                {/* <span>
+    // <div className="es_results">
+    //   <div
+    //     id="ES_Results"
+    //     className="List_result_container"
+    //     // className="compact_result_container"
+    //   >
+    <>
+      {items &&
+        items.map((item, index) => (
+          <Card
+            key={index}
+            onClick={(e) => {
+              // if (e.target !== this) {
+              //   return;
+              // }
+              // handleItemToView(item);
+              // toggleSingleItem(true);
+              // showItem(item._id);
+              dispatch(toggleSingleView({ show: true, item: item }));
+              // handleBackButton(true);
+            }}
+          >
+            {["Grid1", "Grid2", "Grid3"].includes(viewType) && (
+              <Card.Title>
+                {item.transformType === "JewelrySerial" ||
+                !item.transformType ? (
+                  <>
+                    {" "}
+                    {item.SerialNumber && item.StyleNumber ? (
+                      <>
+                        <span>{item.SerialNumber}</span>
+                        {viewType === "Grid1" ? "|" : ""}
+                        <span> {item.StyleNumber}</span>
+                      </>
+                    ) : item.SerialNumber ? (
+                      item.SerialNumber
+                    ) : item.StyleNumber ? (
+                      item.StyleNumber
+                    ) : (
+                      ``
+                    )}
+                  </>
+                ) : (
+                  <>{item.SerialNumber}</>
+                )}
+              </Card.Title>
+            )}
+            {viewType === "List" && (
+              <div className="item_no">
+                <span>{index + 1}.</span>
+              </div>
+            )}
+            <div className="image_container">
+              <Card.Img
+                variant="top"
+                src={handleImage(item)}
+                onError={(event) => {
+                  event.target.src =
+                    "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg";
+                }}
+              />
+              {/* <span>
                   {item.IsSold === "1" ? "Sold" : ""}
                   {item.IsRtv === "1" ? "RTV" : ""}
                   {item.SerialStatus === "In Production" ? "In Production" : ""}
@@ -139,145 +140,146 @@ export default function Results(props) {
                     ? `STOCK CREATE`
                     : ""}
                 </span> */}
-              </div>
-              <Card.Body>
-                {viewType === "List" && (
-                  <Card.Title>
-                    {item.transformType === "JewelrySerial" ||
-                    !item.transformType ? (
-                      <>
-                        {" "}
-                        {item.SerialNumber && item.StyleNumber ? (
-                          <>
-                            <span>{item.SerialNumber}</span>|
-                            <span> {item.StyleNumber}</span>
-                          </>
-                        ) : item.SerialNumber ? (
-                          item.SerialNumber
-                        ) : item.StyleNumber ? (
-                          item.StyleNumber
-                        ) : (
-                          ``
-                        )}
-                      </>
-                    ) : (
-                      <>{item.SerialNumber}</>
-                    )}
-                  </Card.Title>
-                )}
+            </div>
+            <Card.Body>
+              {viewType === "List" && (
+                <Card.Title>
+                  {item.transformType === "JewelrySerial" ||
+                  !item.transformType ? (
+                    <>
+                      {" "}
+                      {item.SerialNumber && item.StyleNumber ? (
+                        <>
+                          <span>{item.SerialNumber}</span>|
+                          <span> {item.StyleNumber}</span>
+                        </>
+                      ) : item.SerialNumber ? (
+                        item.SerialNumber
+                      ) : item.StyleNumber ? (
+                        item.StyleNumber
+                      ) : (
+                        ``
+                      )}
+                    </>
+                  ) : (
+                    <>{item.SerialNumber}</>
+                  )}
+                </Card.Title>
+              )}
 
-                <div className="card-text">
-                  {viewType !== "Grid3" ? (
-                    item.transformType === "JewelrySerial" ||
-                    !item.transformType ? (
-                      <div className="item_description">{item.Description}</div>
-                    ) : item.transformType === "DiamondSerial" ? (
-                      <div className="item_description">
-                        <span>
-                          {item.Shape && item.Shape !== null
-                            ? `${item.Shape} ${item.GemstoneType || ""}`
-                            : ""}
-                        </span>
-                        <span>
-                          {" "}
-                          {isValueEmpty(item.DiamondCaratWeight) &&
-                          isMultipleValueEmpty(item, "DiamondColorRange")
-                            ? `${Number(item.DiamondCaratWeight).toFixed(
-                                2
-                              )}cts | ${isMultipleValueEmpty(
-                                item,
-                                "DiamondColorRange"
-                              )} `
-                            : isValueEmpty(item.DiamondCaratWeight)
-                            ? `${Number(item.DiamondCaratWeight).toFixed(2)}cts`
-                            : isMultipleValueEmpty(item, "DiamondColorRange")
-                            ? isMultipleValueEmpty(item, "DiamondColorRange")
-                            : ""}
-                        </span>
-                      </div>
-                    ) : item.transformType === "GemstoneSerial" ? (
-                      <div className="item_description">
-                        <span>
-                          {isValueEmpty(item.Shape)
-                            ? `${item.Shape} ${item.GemstoneType}`
-                            : ""}
-                        </span>
-                        <span>
-                          {" "}
-                          {isValueEmpty(item.CountryofOrigin) &&
-                          isValueEmpty(item.GemEnhancement)
-                            ? ` ${isValueEmpty(
-                                item.CountryofOrigin
-                              )} | ${isValueEmpty(item.GemEnhancement)} `
-                            : isValueEmpty(item.CountryofOrigin)
-                            ? `${isValueEmpty(item.CountryofOrigin)}`
-                            : isValueEmpty(item.GemEnhancement)
-                            ? isValueEmpty(item.GemEnhancement)
-                            : ""}
-                        </span>
-                      </div>
-                    ) : (
-                      ""
-                    )
+              <div className="card-text">
+                {viewType !== "Grid3" ? (
+                  item.transformType === "JewelrySerial" ||
+                  !item.transformType ? (
+                    <div className="item_description">{item.Description}</div>
+                  ) : item.transformType === "DiamondSerial" ? (
+                    <div className="item_description">
+                      <span>
+                        {item.Shape && item.Shape !== null
+                          ? `${item.Shape} ${item.GemstoneType || ""}`
+                          : ""}
+                      </span>
+                      <span>
+                        {" "}
+                        {isValueEmpty(item.DiamondCaratWeight) &&
+                        isMultipleValueEmpty(item, "DiamondColorRange")
+                          ? `${Number(item.DiamondCaratWeight).toFixed(
+                              2
+                            )}cts | ${isMultipleValueEmpty(
+                              item,
+                              "DiamondColorRange"
+                            )} `
+                          : isValueEmpty(item.DiamondCaratWeight)
+                          ? `${Number(item.DiamondCaratWeight).toFixed(2)}cts`
+                          : isMultipleValueEmpty(item, "DiamondColorRange")
+                          ? isMultipleValueEmpty(item, "DiamondColorRange")
+                          : ""}
+                      </span>
+                    </div>
+                  ) : item.transformType === "GemstoneSerial" ? (
+                    <div className="item_description">
+                      <span>
+                        {isValueEmpty(item.Shape)
+                          ? `${item.Shape} ${item.GemstoneType}`
+                          : ""}
+                      </span>
+                      <span>
+                        {" "}
+                        {isValueEmpty(item.CountryofOrigin) &&
+                        isValueEmpty(item.GemEnhancement)
+                          ? ` ${isValueEmpty(
+                              item.CountryofOrigin
+                            )} | ${isValueEmpty(item.GemEnhancement)} `
+                          : isValueEmpty(item.CountryofOrigin)
+                          ? `${isValueEmpty(item.CountryofOrigin)}`
+                          : isValueEmpty(item.GemEnhancement)
+                          ? isValueEmpty(item.GemEnhancement)
+                          : ""}
+                      </span>
+                    </div>
                   ) : (
                     ""
-                  )}
-                  <div className="item_price">
-                    {item.RetailPrice ? (
-                      <span>
-                        {currencyFormatter.format(`${item.RetailPrice}`, {
-                          code: "USD",
-                          precision: 0,
-                        }) || ""}
-                        <sup>(R)</sup>
-                      </span>
-                    ) : (
-                      ""
-                    )}{" "}
-                    {item.WholesalePrice && showWholesale ? (
-                      <span>
-                        {currencyFormatter.format(`${item.WholesalePrice}`, {
-                          code: "USD",
-                          precision: 0,
-                        }) || ""}
-                        <sup>(W)</sup>
-                      </span>
-                    ) : (
-                      ""
-                    )}{" "}
-                  </div>
-                </div>
-              </Card.Body>
-              {/* {viewType === "List" && ( */}
-              <div className="result_action_group">
-                <button>
-                  {!basket.show ? (
-                    <img
-                      src="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/add-to-basket.png"
-                      onClick={(e) => {
-                        // if (e.target === this) {
-                        e.stopPropagation();
-                        dispatch(addToCart({ product: item }));
-                        // addItemToBasket(item);
-                        // }
-                      }}
-                    ></img>
-                  ) : (
-                    <span
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        dispatch(removeFromCart(item));
-                      }}
-                    >
-                      -
+                  )
+                ) : (
+                  ""
+                )}
+                <div className="item_price">
+                  {item.RetailPrice ? (
+                    <span>
+                      {currencyFormatter.format(`${item.RetailPrice}`, {
+                        code: "USD",
+                        precision: 0,
+                      }) || ""}
+                      <sup>(R)</sup>
                     </span>
-                  )}
-                </button>
+                  ) : (
+                    ""
+                  )}{" "}
+                  {item.WholesalePrice && showWholesale ? (
+                    <span>
+                      {currencyFormatter.format(`${item.WholesalePrice}`, {
+                        code: "USD",
+                        precision: 0,
+                      }) || ""}
+                      <sup>(W)</sup>
+                    </span>
+                  ) : (
+                    ""
+                  )}{" "}
+                </div>
               </div>
-              {/* )} */}
-            </Card>
-          ))}
-      </div>
-    </div>
+            </Card.Body>
+            {/* {viewType === "List" && ( */}
+            <div className="result_action_group">
+              <button>
+                {!basket.show ? (
+                  <img
+                    src="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/add-to-basket.png"
+                    onClick={(e) => {
+                      // if (e.target === this) {
+                      e.stopPropagation();
+                      dispatch(addToCart({ product: item }));
+                      // addItemToBasket(item);
+                      // }
+                    }}
+                  ></img>
+                ) : (
+                  <span
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      dispatch(removeFromCart(item));
+                    }}
+                  >
+                    -
+                  </span>
+                )}
+              </button>
+            </div>
+            {/* )} */}
+          </Card>
+        ))}
+    </>
+    //   </div>
+    // </div>
   );
 }
