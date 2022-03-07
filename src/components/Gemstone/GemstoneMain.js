@@ -45,6 +45,8 @@ import { toggleBasket } from "../actions";
 import Basket from "./../Basket/Basket";
 import isEmpty from "lodash/isEmpty";
 import currencyFormatter from "currency-formatter";
+import ShowCode from "../OtherComponents/ShowCode";
+import HandleWholesale from "../OtherComponents/HandleWholesale";
 const mapStateToProps = (state) => {
   return {
     basket: state.basket,
@@ -72,6 +74,12 @@ class GemstoneMain extends Component {
     this.handleMountedSearchSignal = this.handleMountedSearchSignal.bind(this);
     this.isValueEmpty = this.isValueEmpty.bind(this);
     this.isMultipleValueEmpty = this.isMultipleValueEmpty.bind(this);
+    this.onCheckSelect = this.onCheckSelect.bind(this);
+  }
+  onCheckSelect(value) {
+    this.setState({
+      checked: value,
+    });
   }
 
   isValueEmpty(res) {
@@ -218,11 +226,18 @@ class GemstoneMain extends Component {
             credentials={AppbaseCredentials}
           >
             <div className="search_components_container">
-              <SerialSearchComponent />
-              <button onClick={() => this.setState({ showFilters: true })}>
-                Filters
-              </button>
-
+              <div className="showcode_container">
+                <ShowCode onCheck={this.onCheckSelect} />
+                <HandleWholesale />
+              </div>
+              <div className="serial_search_container">
+                <SerialSearchComponent
+                  handleSerialSearchSignal={this.handleSerialSearchSignal}
+                />
+                <button onClick={() => this.setState({ showFilters: true })}>
+                  Filters
+                </button>
+              </div>
               <Offcanvas
                 show={showFilters}
                 onHide={() => this.setState({ showFilters: false })}

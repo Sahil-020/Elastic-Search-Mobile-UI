@@ -52,6 +52,8 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { toggleBasket } from "../actions";
 import Basket from "./../Basket/Basket";
+import ShowCode from "../OtherComponents/ShowCode";
+import HandleWholesale from "../OtherComponents/HandleWholesale";
 const mapStateToProps = (state) => {
   return {
     basket: state.basket,
@@ -266,13 +268,18 @@ class DiamondMain extends Component {
             credentials={AppbaseCredentials}
           >
             <div className="search_components_container">
-              <SerialSearchComponent
-                handleSerialSearchSignal={this.handleSerialSearchSignal}
-              />
-              <button onClick={() => this.setState({ showFilters: true })}>
-                Filters
-              </button>
-
+              <div className="showcode_container">
+                <ShowCode onCheck={this.onCheckSelect} />
+                <HandleWholesale />
+              </div>
+              <div className="serial_search_container">
+                <SerialSearchComponent
+                  handleSerialSearchSignal={this.handleSerialSearchSignal}
+                />
+                <button onClick={() => this.setState({ showFilters: true })}>
+                  Filters
+                </button>
+              </div>
               <Offcanvas
                 show={showFilters}
                 onHide={() => this.setState({ showFilters: false })}

@@ -27,6 +27,9 @@ export default function SingleItem(props) {
   let { id } = useParams();
 
   const { show, item } = useSelector((state) => state.singleViewModal);
+  const showWholesale = useSelector(
+    (state) => state.basketInputChange.showWholesale
+  );
   const dispatch = useDispatch();
 
   const handlers = useSwipeable({
@@ -365,7 +368,7 @@ export default function SingleItem(props) {
                 (Retail Price)
               </div>
             )}
-            {item.WholesalePrice && (
+            {item.WholesalePrice && showWholesale && (
               <div className="single_item_price">
                 <label>
                   {currencyFormatter.format(`${item.WholesalePrice}`, {

@@ -109,10 +109,14 @@
                     justify-content: space-around;
                     gap: 5px;
                     input[type="checkbox"] {
+                        height: 14px;
+                        width: 14px;
+                        border-color: #808b96;
                     }
                     label {
                         margin: 0;
-                        font-size: 12px;
+                        font-size: 14px;
+                        color: #808b96;
                     }
                 }
             }

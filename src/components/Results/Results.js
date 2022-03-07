@@ -14,6 +14,9 @@ export default function Results(props) {
     isMultipleValueEmpty,
   } = props;
   const basket = useSelector((state) => state.basket);
+  const showWholesale = useSelector(
+    (state) => state.basketInputChange.showWholesale
+  );
   console.log("items : ", items);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -231,7 +234,7 @@ export default function Results(props) {
                     ) : (
                       ""
                     )}{" "}
-                    {item.WholesalePrice ? (
+                    {item.WholesalePrice && showWholesale ? (
                       <span>
                         {currencyFormatter.format(`${item.WholesalePrice}`, {
                           code: "USD",
