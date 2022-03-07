@@ -11,7 +11,7 @@ function App() {
       <Router forceRefresh={false}>
         <Index />
       </Router>
-      <ToastContainer hideProgressBar={true} />
+      <ToastContainer hideProgressBar={true} position="bottom-center" />
     </div>
   );
 }

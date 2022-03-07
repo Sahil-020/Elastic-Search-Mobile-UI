@@ -20,6 +20,7 @@ import Appbase from "appbase-js";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleSingleView, addToCart } from "../actions";
 import { useSwipeable } from "react-swipeable";
+import { FieldData } from "./../OtherComponents/FieldData";
 
 export default function SingleItem(props) {
   let { handleItemToView, toggleSingleItem, addItemToBasket } = props;
@@ -265,6 +266,50 @@ export default function SingleItem(props) {
   };
   const onModalHide = () => {
     dispatch(toggleSingleView({ show: false, item: {} }));
+  };
+  const handleReports = (type) => {
+    let { resultData } = this.state;
+    if (type === "jpg") {
+      if (resultData.ReportJpgUrls) {
+        // console.log(
+        //   "jpg",
+        //   resultData.ReportJpgUrls.split("|").map((value) =>
+        //     value.replace(" ", "")
+        //   )
+        // );
+        return resultData.ReportJpgUrls.split("|").map((value) =>
+          value.replace(" ", "")
+        );
+      }
+      return [];
+    }
+    if (type === "pdf") {
+      if (resultData.ReportPdfUrls) {
+        // console.log(
+        //   "pdf",
+        //   resultData.ReportPdfUrls.split("|").map((value) =>
+        //     value.replace(" ", "")
+        //   )
+        // );
+        return resultData.ReportPdfUrls.split("|").map((value) =>
+          value.replace(" ", "")
+        );
+      }
+      return [];
+    }
+
+    // let fileIdNames = res.FileIdNames;
+    // let fileData = fileIdNames.split("|");
+    // // console.log("fileData: ", fileData);
+    // if (fileData.length === 1) {
+    //   let fileID = fileData[0].slice(fileData[0].indexOf(":") + 1);
+    //   // console.log("fileID: ", fileID);
+    //   window
+    //     .open(BaseURL + "/Frames/GetFile.ashx?fileID=" + fileID, "_blank")
+    //     .focus();
+    // } else {
+    //   this.setState({ fileData, showFileModal: true });
+    // }
   };
 
   // useEffect(() => {
@@ -712,6 +757,47 @@ export default function SingleItem(props) {
                     </Table>
                   </AccordionBody>
                 </AccordionItem>
+              )}
+              {Object.keys(FieldData.CertifiedDiamondReports)
+                .map((key, Index) => item[key])
+                .filter((value) => ![undefined, null, ""].includes(value))
+                .length !== 0 ? (
+                <Accordion.Item eventKey="4">
+                  <Accordion.Button id="Certificate">
+                    CERTIFIED DIAMOND REPORT
+                  </Accordion.Button>
+                  <Accordion.Body>
+                    {/* {Object.keys(FieldData.CertifiedDiamondReports).map(
+                        (key, Index) => {
+                          if (resultData[key]) {
+                            return (
+                              <div className="field_data" key={key}>
+                                <label>
+                                  {FieldData.CertifiedDiamondReports[key].label}{" "}
+                                  :
+                                </label>
+                                <label>{resultData[key]}</label>
+                              </div>
+                            );
+                          } else return <></>;
+                        }
+                      )} */}
+                    {this.handleReports("jpg").map((jpg, index) => (
+                      <img
+                        className="report_img"
+                        src={jpg}
+                        onClick={() =>
+                          window.open(
+                            this.handleReports("pdf")[index],
+                            "_blank"
+                          )
+                        }
+                      />
+                    ))}
+                  </Accordion.Body>
+                </Accordion.Item>
+              ) : (
+                <></>
               )}
             </Accordion>
           </div>

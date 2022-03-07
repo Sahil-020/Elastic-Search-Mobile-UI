@@ -140,18 +140,20 @@ function cartActions(state = defaultCartProduct, action) {
       );
       if (index === -1) {
         toast.success("Added to basket !", {
-          position: toast.POSITION.TOP_CENTER,
+          // position: toast.POSITION.TOP_CENTER,
           autoClose: 2000,
           pauseOnHover: false,
+          theme: "colored",
         });
         return {
           items: [UpdatedItems, ...state.items],
         };
       } else {
         toast.success("Already added !", {
-          position: toast.POSITION.TOP_CENTER,
+          // position: toast.POSITION.TOP_CENTER,
           autoClose: 2000,
           pauseOnHover: false,
+          theme: "colored",
         });
         return {
           items: state.items,

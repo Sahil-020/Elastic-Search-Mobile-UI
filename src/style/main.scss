@@ -19,7 +19,7 @@
         outline: none;
     }
     .navbar.navbar-expand.navbar-light.bg-light {
-        padding: 10px 20px 10px;
+        padding: 10px 20px 5px;
         background-color: #f2f4f4 !important;
 
         .container {
@@ -55,8 +55,8 @@
     }
     .navbar_container {
         background-color: #f2f4f4 !important;
-        height: 60px;
-        padding: 10px 20px;
+        height: 45px;
+        padding: 5px 20px;
         .nav {
             flex-direction: column;
             flex-wrap: wrap;
@@ -88,66 +88,88 @@
         // padding: 8px;
         .search_components_container {
             display: flex;
-            flex-direction: row;
-            gap: 20px;
+            flex-direction: column;
+            gap: 10px;
             z-index: 100;
             // align-items: center;
-            padding: 10px 20px;
+            padding: 5px 20px 10px;
             position: sticky;
             top: 0;
             // background: white;
             // border-bottom: 1px solid grey;
             // margin: 0px 0px 10px 0px;
             background-color: #f2f4f4 !important;
-            .form_field {
-                max-height: 28px;
-                width: 80%;
-                input,
-                .css-ee3byn-Select {
-                    height: 28px !important;
-                    min-height: 28px !important;
-                    width: 100%;
-                    line-height: 1.5;
-
-                    padding: 8px 12px;
-                    border: 1.5px solid #e2e2e2;
-                    background-color: #fafafa;
-                    font-size: 0.9rem;
-                    outline: #e2e2e2;
-                    height: 100%;
-                    padding-right: 36px;
-                    padding-right: 36px;
-                    padding-right: 66px;
-                }
-                .css-1k0hmue-IconWrapper svg.search-icon {
-                    fill: #34495e;
-                }
-                > ul {
-                    list-style-type: none !important;
-                    display: block !important;
-                    padding: 5px 0px;
-                    margin: 0;
-                    li {
-                        display: flex;
-                        align-items: center;
-                        gap: 8px;
-                        input {
-                            height: 18px;
-                            width: 18px;
-                        }
-                        span {
-                            // height: 18px;
-                        }
+            .showcode_container {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                .show-code {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+                    gap: 5px;
+                    input[type="checkbox"] {
                     }
-                    li:nth-child(2) {
-                        display: none;
+                    label {
+                        margin: 0;
+                        font-size: 12px;
                     }
                 }
             }
-            button {
-                width: 20%;
-                border: none;
-                cursor: pointer;
+            .serial_search_container {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                .form_field {
+                    max-height: 28px;
+                    width: 80%;
+                    input,
+                    .css-ee3byn-Select {
+                        height: 28px !important;
+                        min-height: 28px !important;
+                        width: 100%;
+                        line-height: 1.5;
+
+                        padding: 8px 12px;
+                        border: 1.5px solid #e2e2e2;
+                        background-color: #fafafa;
+                        font-size: 0.9rem;
+                        outline: #e2e2e2;
+                        height: 100%;
+                        padding-right: 36px;
+                        padding-right: 36px;
+                        padding-right: 66px;
+                    }
+                    .css-1k0hmue-IconWrapper svg.search-icon {
+                        fill: #34495e;
+                    }
+                    > ul {
+                        list-style-type: none !important;
+                        display: block !important;
+                        padding: 5px 0px;
+                        margin: 0;
+                        li {
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                            input {
+                                height: 18px;
+                                width: 18px;
+                            }
+                            span {
+                                // height: 18px;
+                            }
+                        }
+                        li:nth-child(2) {
+                            display: none;
+                        }
+                    }
+                }
+                button {
+                    width: 20%;
+                    border: none;
+                    cursor: pointer;
+                }
             }
         }
 
