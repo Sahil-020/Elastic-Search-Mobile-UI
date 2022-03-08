@@ -62,6 +62,7 @@ import HandleView from "./../OtherComponents/HandleView";
 import IsOpenJob from "../search-components/IsOpenJob";
 import ShowCode from "../OtherComponents/ShowCode";
 import HandleWholesale from "../OtherComponents/HandleWholesale";
+import Options from "../../assets/icons/Options.png";
 
 const mapStateToProps = (state) => {
   return {
@@ -420,7 +421,7 @@ class JewelryMain extends Component {
         >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>Basket list</Offcanvas.Title>
-            <span>...</span>
+            <img src={Options}></img>
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Basket

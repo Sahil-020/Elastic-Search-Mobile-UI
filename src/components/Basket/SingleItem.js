@@ -23,7 +23,13 @@ import { useSwipeable } from "react-swipeable";
 import { FieldData } from "./../OtherComponents/FieldData";
 
 export default function SingleItem(props) {
-  let { handleItemToView, toggleSingleItem, addItemToBasket } = props;
+  let {
+    handleItemToView,
+    toggleSingleItem,
+    addItemToBasket,
+    isValueEmpty,
+    isMultipleValueEmpty,
+  } = props;
   let { id } = useParams();
 
   const { show, item } = useSelector((state) => state.singleViewModal);
@@ -70,80 +76,80 @@ export default function SingleItem(props) {
   //     }
   //   }
   // };
-  const isValueEmpty = (res) => {
-    // console.log("res & name :", res, name);
-    let result = "";
-    if (!isEmpty(res) && res !== "0.00") {
-      // result = `${name} : ${res}`;
-      result = res;
-    }
-    // else {
-    //   result = `${name} : null`;
-    // }
-    // console.log("result : ", result);
-    return result;
-  };
-  const isMultipleValueEmpty = (res, expr) => {
-    let result = "";
-    switch (expr) {
-      case "CenterDetails":
-        if (!isEmpty(res.CenterShape)) {
-          result = `Center Details:
-          ${(res.CenterCaratWeight && res.CenterCaratWeight + " cts") || ""}
-          ${res.CenterShape || ""} ${
-            (res.CenterColor && res.CenterColor + " /") || ""
-          }
-          ${(res.CenterClarity && res.CenterClarity + " /") || ""} ${
-            res.CenterCut || ""
-          } ${res.CenterEnhancement || ""} ${
-            (res.CenterOrigin && res.CenterOrigin + " - #") || ""
-          }  ${res.CenterStoneNbr || ""}`;
-        }
-        break;
+  // const isValueEmpty = (res) => {
+  //   // console.log("res & name :", res, name);
+  //   let result = "";
+  //   if (!isEmpty(res) && res !== "0.00") {
+  //     // result = `${name} : ${res}`;
+  //     result = res;
+  //   }
+  //   // else {
+  //   //   result = `${name} : null`;
+  //   // }
+  //   // console.log("result : ", result);
+  //   return result;
+  // };
+  // const isMultipleValueEmpty = (res, expr) => {
+  //   let result = "";
+  //   switch (expr) {
+  //     case "CenterDetails":
+  //       if (!isEmpty(res.CenterShape)) {
+  //         result = `Center Details:
+  //         ${(res.CenterCaratWeight && res.CenterCaratWeight + " cts") || ""}
+  //         ${res.CenterShape || ""} ${
+  //           (res.CenterColor && res.CenterColor + " /") || ""
+  //         }
+  //         ${(res.CenterClarity && res.CenterClarity + " /") || ""} ${
+  //           res.CenterCut || ""
+  //         } ${res.CenterEnhancement || ""} ${
+  //           (res.CenterOrigin && res.CenterOrigin + " - #") || ""
+  //         }  ${res.CenterStoneNbr || ""}`;
+  //       }
+  //       break;
 
-      case "WholesalePrice":
-        result =
-          (res.WholesalePrice &&
-            currencyFormatter.format(`${res.WholesalePrice}`, {
-              code: "USD",
-              precision: 0,
-            })) ||
-          "";
+  //     case "WholesalePrice":
+  //       result =
+  //         (res.WholesalePrice &&
+  //           currencyFormatter.format(`${res.WholesalePrice}`, {
+  //             code: "USD",
+  //             precision: 0,
+  //           })) ||
+  //         "";
 
-        break;
+  //       break;
 
-      case "ItemSubtype":
-        if (!isEmpty(res.ItemSubtype)) {
-          result = res.ItemSubtype;
-        } else {
-          result = res.ItemType || "";
-        }
-        break;
-      case "RetailPrice":
-        if (!isEmpty(res)) {
-          result = currencyFormatter.format(`${res}`, {
-            code: "USD",
-            precision: 0,
-          });
-        }
-        break;
-      case "ColorClarity":
-        result = `${res.Color || ""}
-          ${res.Color && res.Clarity ? "/" : ""}
-          ${res.Clarity || ""}
-        `;
-        break;
-      case "DiamondDetails":
-        result = `${res.DiamondDetails || ""}
-          ${res.DiamondDetails && res.ColorComment ? " & " : ""}
-          ${res.ColorComment || ""}
-        `;
-        break;
-      default:
-        return result.trim();
-    }
-    return result.trim();
-  };
+  //     case "ItemSubtype":
+  //       if (!isEmpty(res.ItemSubtype)) {
+  //         result = res.ItemSubtype;
+  //       } else {
+  //         result = res.ItemType || "";
+  //       }
+  //       break;
+  //     case "RetailPrice":
+  //       if (!isEmpty(res)) {
+  //         result = currencyFormatter.format(`${res}`, {
+  //           code: "USD",
+  //           precision: 0,
+  //         });
+  //       }
+  //       break;
+  //     case "ColorClarity":
+  //       result = `${res.Color || ""}
+  //         ${res.Color && res.Clarity ? "/" : ""}
+  //         ${res.Clarity || ""}
+  //       `;
+  //       break;
+  //     case "DiamondDetails":
+  //       result = `${res.DiamondDetails || ""}
+  //         ${res.DiamondDetails && res.ColorComment ? " & " : ""}
+  //         ${res.ColorComment || ""}
+  //       `;
+  //       break;
+  //     default:
+  //       return result.trim();
+  //   }
+  //   return result.trim();
+  // };
 
   const handleImageGallery = (res) => {
     // console.log("inside handleImageGallery");
@@ -370,12 +376,7 @@ export default function SingleItem(props) {
             )}
             {item.WholesalePrice && showWholesale && (
               <div className="single_item_price">
-                <label>
-                  {currencyFormatter.format(`${item.WholesalePrice}`, {
-                    code: "USD",
-                    precision: 0,
-                  }) || ""}
-                </label>{" "}
+                <label>{isMultipleValueEmpty(item, "WholesalePrice")}</label>{" "}
                 (Wholesale Price)
               </div>
             )}

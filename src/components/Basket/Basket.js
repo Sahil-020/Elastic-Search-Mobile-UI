@@ -12,6 +12,12 @@ import { removeFromCart } from "./../actions/index";
 import HandleView from "../OtherComponents/HandleView";
 import $ from "jquery";
 import isEmpty from "lodash/isEmpty";
+import BasketForm from "./BasketForm";
+import Back from "../../assets/icons/BAck.png";
+import Email from "../../assets/icons/Email.png";
+import Print from "../../assets/icons/Print.png";
+import Save from "../../assets/icons/Save.png";
+import Clear from "../../assets/icons/Clear.png";
 
 const mapStateToProps = (state) => {
   return {
@@ -31,22 +37,20 @@ class Basket extends Component {
         customer: "",
         contact: "",
         occassion: "",
+        showBasketForm: false,
       },
       allBaskets: [],
       basketToOpen: "",
       allBasketDetails: [],
     };
     this.handleView = this.handleView.bind(this);
-    // this.isValueEmpty = this.isValueEmpty.bind(this);
+    this.handleShowBasketForm = this.handleShowBasketForm.bind(this);
   }
-  // isValueEmpty(res) {
-  //   let result = "";
-  //   if (!isEmpty(res) && res !== "NaN") {
-  //     result = res;
-  //   }
-  //   // console.log("result :", result);
-  //   return result;
-  // }
+
+  handleShowBasketForm(value) {
+    this.setState({ showBasketForm: value });
+  }
+
   handleView(e, value) {
     console.log(
       "result element : ",
@@ -78,22 +82,39 @@ class Basket extends Component {
     let { items, isValueEmpty, isMultipleValueEmpty } = this.props;
     // let { allBaskets, items } = this.state;
     return (
-      <div className="basket_container" id="basket">
-        <HandleView handleView={this.handleView} items={items} />
-        <div className="es_basket_results">
-          <div
-            id="ES_Results_Baskets"
-            className="List_result_container"
-            // className="compact_result_container"
-          >
-            <Results
-              items={items}
-              isValueEmpty={isValueEmpty}
-              isMultipleValueEmpty={isMultipleValueEmpty}
-            />
+      <>
+        <div className="basket_container" id="basket">
+          <HandleView handleView={this.handleView} items={items} />
+          <div className="es_basket_results">
+            <div
+              id="ES_Results_Baskets"
+              className="List_result_container"
+              // className="compact_result_container"
+            >
+              <Results
+                items={items}
+                isValueEmpty={isValueEmpty}
+                isMultipleValueEmpty={isMultipleValueEmpty}
+              />
+            </div>
+          </div>
+          <div className="basket_primary_action_container">
+            <button>
+              <img src={Print}></img>
+            </button>
+            <button>
+              <img src={Email}></img>
+            </button>
+            <button onClick={() => this.handleShowBasketForm(true)}>
+              <img src={Save}></img> Save
+            </button>
           </div>
         </div>
-      </div>
+        <BasketForm
+          handleShowBasketForm={this.handleShowBasketForm}
+          show={this.state.showBasketForm}
+        />
+      </>
     );
   }
 }

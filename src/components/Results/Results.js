@@ -4,6 +4,7 @@ import currencyFormatter from "currency-formatter";
 import { useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleSingleView, addToCart, removeFromCart } from "../actions";
+import SingleItem from "../Basket/SingleItem";
 
 export default function Results(props) {
   let {
@@ -112,7 +113,7 @@ export default function Results(props) {
             )}
             {viewType === "List" && (
               <div className="item_no">
-                <span>{index + 1}.</span>
+                <span>{index + 1}</span>
               </div>
             )}
             <div className="image_container">
@@ -237,10 +238,7 @@ export default function Results(props) {
                   )}{" "}
                   {item.WholesalePrice && showWholesale ? (
                     <span>
-                      {currencyFormatter.format(`${item.WholesalePrice}`, {
-                        code: "USD",
-                        precision: 0,
-                      }) || ""}
+                      {isMultipleValueEmpty(item, "WholesalePrice")}
                       <sup>(W)</sup>
                     </span>
                   ) : (
@@ -278,6 +276,10 @@ export default function Results(props) {
             {/* )} */}
           </Card>
         ))}
+      <SingleItem
+        isValueEmpty={isValueEmpty}
+        isMultipleValueEmpty={isMultipleValueEmpty}
+      />
     </>
     //   </div>
     // </div>

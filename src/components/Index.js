@@ -75,7 +75,6 @@ class Index extends Component {
             render={(props) => <SingleItem {...props} />}
           /> */}
         </Switch>
-        <SingleItem />
       </div>
     );
   }
