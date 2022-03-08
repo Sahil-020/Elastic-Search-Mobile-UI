@@ -4,6 +4,7 @@ import BackIcon from "../assets/icons/left-arrow.png";
 import { useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleBasket } from "./actions";
+import Basket from "../assets/icons/basket_white.png";
 
 export default function Header(props) {
   let { showBackButton, handleBackButton } = props;
@@ -63,7 +64,7 @@ export default function Header(props) {
           ></img>
           <div className="basket_button">
             <img
-              src="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/open-basket.png"
+              src={Basket}
               onClick={() => dispatch(toggleBasket({ show: true }))}
             ></img>
           </div>
