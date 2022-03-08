@@ -293,7 +293,7 @@
                 gap: 10px;
 
                 .card {
-                    height: 400px;
+                    height: 300px;
                     width: 100%;
                     padding: 10px 25px;
                     gap: 10px;
@@ -302,7 +302,7 @@
                     // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
                     // background-color: rgba(241, 241, 241, 0.876);
                     .card-title.h5 {
-                        font-size: 14px;
+                        font-size: 15px;
                         display: flex;
                         flex-direction: row !important;
                         gap: 2px !important;
@@ -313,17 +313,17 @@
                         margin: 0px !important;
                         color: #808b96;
                         font-weight: 800;
-                        height: 5%;
+                        height: 10%;
                     }
 
                     .image_container {
-                        height: 70%;
+                        height: 55%;
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         width: 100%;
                         img {
-                            max-width: 55%;
+                            max-width: 65%;
                             // max-height: 40%;
 
                             max-height: 100% !important;
@@ -350,7 +350,7 @@
                             row-gap: 5px;
                             font-size: 13px;
                             .item_description {
-                                font-size: 16px;
+                                font-size: 17px;
                                 // display: block !important;
                                 display: flex !important;
                                 flex-direction: column;
