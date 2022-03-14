@@ -8,8 +8,9 @@ import { toast } from "react-toastify";
 import Results from "../Results/Results";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { removeFromCart } from "./../actions/index";
+import { removeFromCart, setToken } from "./../actions/index";
 import HandleView from "../OtherComponents/HandleView";
+import GetAuthToken from "../Api/Authenticate";
 import $ from "jquery";
 import isEmpty from "lodash/isEmpty";
 import BasketForm from "./BasketForm";
@@ -45,6 +46,17 @@ class Basket extends Component {
     };
     this.handleView = this.handleView.bind(this);
     this.handleShowBasketForm = this.handleShowBasketForm.bind(this);
+  }
+
+  async componentDidMount() {
+    let token;
+    // if (this.props.tokenState.token === "") {
+    token = await GetAuthToken();
+    // console.log("token :", token);
+    // if (token) {
+    this.props.setToken(token.access_token);
+    // }
+    // } else token = this.props.tokenState.token;
   }
 
   handleShowBasketForm(value) {
@@ -120,7 +132,7 @@ class Basket extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ removeFromCart }, dispatch);
+  return bindActionCreators({ removeFromCart, setToken }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Basket);
