@@ -132,6 +132,9 @@
                 .form_field {
                     max-height: 28px;
                     width: 80%;
+                    h2 {
+                        display: none;
+                    }
                     input,
                     .css-ee3byn-Select {
                         height: 28px !important;
@@ -178,6 +181,595 @@
                     width: 20%;
                     border: none;
                     cursor: pointer;
+                }
+            }
+            .filters {
+                opacity: 0;
+                height: 0px;
+            }
+            .show_filters {
+                opacity: 1;
+                height: 100vh;
+                position: absolute;
+                overflow: scroll;
+                width: 100%;
+                top: 0;
+                // bottom: 0;
+                left: 0;
+                background: white;
+                padding: 0px 20px;
+                overscroll-behavior: contain;
+                .filter_header {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+                    color: #34495e !important;
+                    background-color: white;
+                    column-gap: 3px;
+                    padding: 10px 0px;
+                    h4 {
+                        font-size: 16px;
+                        width: 70%;
+                        text-align: left;
+                        margin: 0;
+                    }
+                    span {
+                        width: 25%;
+                        font-size: 12px;
+                        text-decoration: underline;
+                    }
+                    button {
+                        width: 5%;
+                        border: none;
+                        background: inherit;
+                    }
+                }
+                .accordion {
+                    border-top: 1px solid #d0d3d4 !important;
+                    .accordion-item {
+                        border-color: white;
+                        background-color: #f2f4f5 !important;
+                        border: white;
+                        .accordion-header {
+                            .accordion-button,
+                            .accordion-button:focus {
+                                padding: 18px 0px;
+                                font-size: 14px;
+                                font-weight: 700;
+                                color: #34495e !important;
+                                outline: none !important;
+                                background: white !important;
+                                border: none !important ;
+                                box-shadow: none !important;
+                                border-bottom: 1px solid #d0d3d4 !important;
+                                // border-top: 1px solid black !important;
+                            }
+                            .accordion-button::after {
+                                content: "+";
+                                /* width: 12px; */
+                                /* height: 12px; */
+                                background-image: none;
+                                transition: none !important;
+                                transform: none !important;
+                                position: relative;
+                                color: #34495e;
+                                padding: 0px 5px;
+                                outline: none;
+                                background: #f2f4f4;
+                            }
+                            .accordion-button:not(.collapsed)::after {
+                                content: "-";
+                                padding: 0px 7px;
+                            }
+                        }
+                        .accordion-body {
+                            // height: 200px;
+                            padding: 10px 0px;
+                            background-color: white !important;
+                            display: flex;
+                            flex-direction: column;
+                            row-gap: 10px;
+                            .form_field {
+                                // max-height: 34px;
+                                // width: 80%;
+                                h2 {
+                                    font-size: 14px;
+                                    color: #34495e !important;
+                                    font-weight: 500;
+                                    margin: 10px 0px;
+                                    text-align: left;
+                                }
+                                input,
+                                .css-ee3byn-Select {
+                                    height: 28px !important;
+                                    min-height: 28px !important;
+                                    width: 100%;
+                                    line-height: 1.5;
+
+                                    padding: 8px 12px;
+                                    border: 1.5px solid #e2e2e2;
+                                    background-color: #fafafa;
+                                    font-size: 0.9rem;
+                                    outline: #e2e2e2;
+                                    height: 100%;
+                                    padding-right: 36px;
+                                    padding-right: 36px;
+                                    padding-right: 66px;
+                                }
+                                .css-1k0hmue-IconWrapper svg.search-icon {
+                                    fill: #34495e;
+                                }
+                                > ul {
+                                    list-style-type: none !important;
+                                    display: block !important;
+                                    padding: 5px 0px;
+                                    margin: 0;
+                                    li {
+                                        display: flex;
+                                        align-items: center;
+                                        gap: 6px;
+                                        max-height: 14px;
+                                        input {
+                                            height: 14px !important;
+                                            width: 14px;
+                                        }
+                                        span {
+                                            // height: 18px;
+                                            font-size: 13px;
+                                            margin: 0px 0px 0px 0px;
+                                            color: #34495e;
+                                            font-weight: 500;
+                                        }
+                                    }
+                                    li:first-child {
+                                        display: none;
+                                    }
+                                }
+                                .css-3cr1qg-suggestionsContainer,
+                                .css-cfyl0p-InputWrapper.eiy7zyl0 {
+                                    button,
+                                    input {
+                                        height: 32px;
+                                        min-height: 32px !important;
+                                        font-size: 13px;
+                                        background: white !important;
+                                        color: #6c6c6c;
+                                        padding: 8px !important;
+                                    }
+                                    .filter_options_container {
+                                        display: flex;
+                                        flex-wrap: wrap;
+                                        gap: 5px;
+                                        height: 100px;
+                                        overflow-y: scroll;
+                                        .filter_options,
+                                        .filter_options_active {
+                                            width: fit-content;
+                                            font-size: 11px;
+                                            border: 0.5px solid #eeeeee;
+                                            padding: 5px;
+                                            border-radius: 3px;
+                                            background-color: #eeeeee;
+                                            cursor: pointer;
+                                        }
+                                        .filter_options_active {
+                                            border: 0.5px solid black !important;
+                                        }
+                                    }
+                                    .subtype_filter_options_container {
+                                    }
+                                    ul {
+                                        display: flex;
+                                        flex-direction: row;
+                                        flex-wrap: wrap;
+                                        justify-content: flex-start;
+                                        gap: 10px;
+                                        width: 100%;
+                                        /* height: 100px; */
+                                        // border: 1px solid #ccc;
+                                        border: none;
+                                        background-color: #fff;
+                                        font-size: 0.9rem;
+                                        z-index: 3;
+                                        position: absolute;
+                                        margin: 0;
+                                        padding: 0px 0px 5px;
+                                        list-style: none;
+                                        max-height: 160px;
+                                        // min-height: 175px;
+                                        overflow-y: auto;
+                                        input {
+                                            font-size: 13px;
+                                            position: sticky;
+                                            top: 0;
+                                            z-index: 4;
+                                            width: 100%;
+                                            margin: 3px 3px;
+                                        }
+                                        li {
+                                            width: fit-content;
+                                            font-size: 12px;
+                                            border: 0.5px solid #f8f8f8;
+                                            padding: 5px;
+                                            border-radius: 3px;
+                                            background-color: #f8f8f8 !important;
+                                            cursor: pointer;
+                                            height: fit-content;
+                                            display: flex;
+                                            gap: 6px;
+                                            color: #34495e;
+                                            font-weight: 500;
+                                            .css-1yjrvfv-Tick {
+                                                padding: 0px 4px;
+                                            }
+                                            .css-1yjrvfv-Tick::after {
+                                                content: "x";
+                                                /* width: 12px; */
+                                                /* height: 12px; */
+                                                background-image: none;
+                                                // transition: none !important;
+                                                // transform: none !important;
+                                                position: relative;
+                                                color: #34495e;
+                                                // padding: 0px 4px;
+                                                outline: none;
+                                                // background: #f2f4f4;
+
+                                                // box-sizing: content-box;
+                                                // content: "";
+                                                // position: absolute;
+                                                // background-color: transparent;
+                                                top: -9px;
+                                                font-size: 20px;
+                                                /* left: 0; */
+                                                /* width: 8px; */
+                                                /* height: 4px; */
+                                                /* margin-top: -4px; */
+                                                border: none;
+                                                /* border-color: #0B6AFF; */
+                                                /* border-width: 0 0 2px 2px; */
+                                                /* border-radius: 0; */
+                                                /* border-image: none; */
+                                                -webkit-transform: rotate(-45deg) scale(1);
+                                                -ms-transform: rotate(-45deg) scale(1);
+                                                transform: rotate(-45deg) scale(1);
+                                                -webkit-transition: all 200ms ease-out;
+                                                transition: all 200ms ease-out;
+                                            }
+                                        }
+                                        li.active {
+                                            background-color: #34495e !important;
+                                            color: white;
+                                            .css-1yjrvfv-Tick::after {
+                                                color: white;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .price-range {
+                                margin-bottom: 8px;
+                                .price-range__input {
+                                    display: flex;
+                                    align-items: baseline;
+                                    flex-direction: column;
+                                    > div {
+                                        width: 100%;
+                                        > div {
+                                            > input {
+                                                background: white !important;
+                                                color: #6c6c6c;
+                                                padding: 5px;
+                                                @media screen and (-webkit-min-device-pixel-ratio: 0) {
+                                                    height: 30px;
+                                                }
+                                                height: 30px !important;
+                                                min-height: 30px !important;
+                                                font-size: 0.8rem;
+                                                border: 1.5px solid #e2e2e2;
+                                            }
+                                        }
+                                        > h2 {
+                                            font-size: 14px;
+                                            color: #34495e !important;
+                                            font-weight: 500;
+                                            line-height: 20px;
+                                            display: block;
+                                            max-width: 100%;
+                                            white-space: nowrap;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis;
+                                            text-align: left;
+                                        }
+                                    }
+                                    .price-range__input--price-input {
+                                        width: 100%;
+                                        height: 30px;
+                                    }
+                                }
+                            }
+                            .carat-range-input {
+                                margin-bottom: 8px;
+                                div > div > input {
+                                    background: white !important;
+                                    color: #6c6c6c;
+                                    padding: 5px;
+                                    height: 30px !important;
+                                    min-height: 30px !important;
+                                    font-size: 0.8rem;
+                                    border: 1.5px solid #e2e2e2;
+                                }
+                                display: flex;
+                                flex-direction: column;
+                                .carat-range-input__carat-slider {
+                                    display: flex;
+                                    align-items: center;
+                                    vertical-align: middle;
+                                    width: 100%;
+                                    h2 {
+                                        font-size: 14px;
+                                        // font-family: "Proxima Nova Regular" !important;
+                                        line-height: 30px;
+                                        font-size: 14px;
+                                        color: #34495e !important;
+                                        font-weight: 500;
+                                        margin: 0px;
+                                        display: block;
+                                        max-width: 100%;
+                                        white-space: nowrap;
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                    }
+                                }
+                                .carat-range-input__carat-input {
+                                    width: 100%;
+                                    height: 30px;
+                                }
+                            }
+                            // .date-range {
+                            .date-range-input {
+                                display: flex;
+                                flex-direction: column;
+                                h2 {
+                                    // font-family: "Proxima Nova Regular" !important;
+                                    line-height: 30px;
+                                    font-size: 14px !important;
+                                    color: #34495e !important;
+                                    font-weight: 500;
+                                    margin: 0px;
+                                    display: block;
+                                    max-width: 100%;
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    width: 100%;
+                                    text-align: left;
+                                }
+                                .css-ln922y-Flex,
+                                .css-ylmnjo {
+                                    width: 100%;
+                                    height: 30px;
+                                    display: flex;
+                                    flex-direction: row;
+                                    div.css-1j6xlwo,
+                                    div.css-oced0z-Flex-leftLabel-Flex,
+                                    div.css-u4hgrv-Flex-leftLabel-Flex {
+                                        width: 40%;
+                                        border: 1px solid #ccc;
+                                        background: white !important;
+                                        border: none;
+
+                                        .DayPickerInput {
+                                            height: 30px !important;
+                                            input {
+                                                background: white !important;
+                                                color: #6c6c6c;
+                                                padding: 5px;
+                                                height: 30px !important;
+                                                min-height: 30px !important;
+                                                font-size: 0.8rem;
+                                                border: 1.5px solid #e2e2e2;
+                                            }
+
+                                            .DayPickerInput-OverlayWrapper {
+                                                // visibility: visible;
+                                                display: block;
+                                                width: 100%;
+                                            }
+                                        }
+                                        svg {
+                                            // font-size: 11px;
+                                            height: 7px;
+                                            flex-basis: 20%;
+                                        }
+                                    }
+                                    .css-w7gaf3,
+                                    .css-1llwu9v-Flex-Flex-Flex-Flex,
+                                    .css-sdo7u7-Flex-Flex-Flex-Flex {
+                                        flex-basis: 20%;
+                                    }
+                                }
+                            }
+                            .diamond-range {
+                                margin-bottom: 8px;
+                                .e1i1ftc40 {
+                                    display: none;
+                                }
+                                .diamond-range-input {
+                                    display: none;
+                                    > div {
+                                        width: 30%;
+                                        > div {
+                                            > input {
+                                                background: #fff;
+                                                @media screen and (-webkit-min-device-pixel-ratio: 0) {
+                                                    height: 30px;
+                                                }
+                                            }
+                                        }
+
+                                        > h2 {
+                                            font-size: 14px;
+                                            color: #58585a;
+                                            line-height: 26px;
+                                            margin: 0px;
+                                        }
+                                    }
+
+                                    span {
+                                        margin: 2px 0 0;
+                                        text-align: center;
+                                        display: inline-block;
+                                        width: 45px;
+                                    }
+                                    .diamond-input-container {
+                                        width: 73%;
+                                        height: 30px;
+                                        @media screen and (min-width: 1330px) and (max-width: 1430px) {
+                                            width: 73%;
+                                        }
+                                        @media screen and (min-width: 1100px) and (max-width: 1320px) {
+                                            width: 73%;
+                                        }
+                                    }
+                                }
+                                .diamond-con-range-input {
+                                    width: 100%;
+                                    div > div > input {
+                                        background: #fff;
+                                    }
+                                    display: inline-block;
+                                    .diamond-slider-container {
+                                        display: flex;
+                                        flex-direction: column;
+                                        width: 100%;
+                                        h2 {
+                                            line-height: 30px;
+                                            font-size: 14px !important;
+                                            color: #34495e !important;
+                                            font-weight: 500;
+                                            margin: 0px;
+                                            display: block;
+                                            max-width: 100%;
+                                            white-space: nowrap;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis;
+                                            width: 100%;
+                                        }
+                                    }
+                                    .diamond-input-container {
+                                        width: 100%;
+                                        height: 30px;
+                                        display: flex;
+                                        flex-direction: row;
+                                        flex-wrap: wrap;
+                                        div {
+                                            // display: inline-block;
+                                            width: 40%;
+                                            // @media (max-width: 767px) {
+                                            //     width: 20%;
+                                            // }
+                                            // @media (min-width: 768px) and (max-width: 1024px) {
+                                            //     width: 34.5%;
+                                            // }
+                                            // text-align: center;
+                                            input {
+                                                background: white !important;
+                                                color: #6c6c6c;
+                                                padding: 5px;
+                                                height: 30px !important;
+                                                min-height: 30px !important;
+                                                font-size: 0.8rem;
+                                                border: 1.5px solid #e2e2e2;
+                                            }
+                                        }
+                                        // div:first-child {
+                                        //     width: 40%;
+                                        //     // @media (max-width: 767px) {
+                                        //     //     width: 40%;
+                                        //     // }
+
+                                        // }
+                                        // div:last-child {
+                                        //     width: 32.6%;
+                                        //     @media (max-width: 767px) {
+                                        //         width: 40%;
+                                        //     }
+                                        //     input {
+                                        //         padding: 5px;
+                                        //         height: 30px;
+                                        //     }
+                                        // }
+                                    }
+                                }
+                                .color-input-dropdowns {
+                                    display: flex;
+                                    flex-direction: row;
+                                    flex-wrap: wrap;
+                                    > h2 {
+                                        line-height: 30px;
+                                        font-size: 14px !important;
+                                        color: #34495e !important;
+                                        font-weight: 500;
+                                        margin: 0px;
+                                        display: block;
+                                        max-width: 100%;
+                                        white-space: nowrap;
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        width: 100%;
+                                    }
+                                    > span {
+                                        font-size: 14px;
+                                        color: #58585a;
+                                        width: 20%;
+                                        @media (min-width: 768px) and (max-width: 1024px) {
+                                            width: 17px;
+                                        }
+                                        display: flex;
+                                        margin: 2px 0 0;
+                                        justify-content: center;
+                                        flex: 1;
+                                    }
+                                    .start-range,
+                                    .end-range {
+                                        width: 40%;
+                                        margin-top: 0px;
+                                        // @media (max-width: 767px) {
+                                        //     width: 28%;
+
+                                        > div {
+                                            > button {
+                                                background: white !important;
+                                                color: #6c6c6c;
+                                                padding: 5px;
+                                                height: 30px !important;
+                                                min-height: 30px !important;
+                                                font-size: 0.8rem;
+                                                border: 1.5px solid #e2e2e2;
+                                                > div {
+                                                    width: 100%;
+                                                    text-overflow: unset;
+                                                }
+                                            }
+                                            > ul {
+                                                top: 30px;
+                                                font-size: 11px;
+                                                max-height: 220px !important;
+                                                li {
+                                                    padding: 4px 6px !important;
+                                                }
+                                            }
+                                        }
+                                        // }
+                                    }
+                                }
+                            }
+                            .hide__multilist {
+                                display: none;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -1520,10 +2112,32 @@
     .offcanvas-body {
         padding: 0px;
         .basket_container {
+            .basket_no_container {
+                padding: 5px 20px;
+                display: flex;
+                background: #f2f4f4;
+                color: #34495e !important;
+                label {
+                    width: 90%;
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+                button {
+                    width: 28%;
+                    border: none;
+                    background: inherit;
+                    font-size: 12px;
+                    display: flex;
+                    align-items: center;
+                    column-gap: 4px;
+                    padding: 0;
+                    justify-content: flex-end;
+                }
+            }
             .result_status_view_option_container {
                 display: flex;
                 width: 100%;
-                padding: 15px 20px 5px;
+                padding: 5px 20px 5px;
                 flex-direction: row;
                 align-items: center;
                 // background-color: #f8f9f9 !important;

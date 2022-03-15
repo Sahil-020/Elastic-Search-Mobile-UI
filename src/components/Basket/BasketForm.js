@@ -7,11 +7,15 @@ import { useSelector } from "react-redux";
 import { setBasketFormInput } from "../actions";
 
 export default function BasketForm(props) {
-  let { show, handleShowBasketForm } = props;
+  let { show, handleShowBasketForm, handleSave } = props;
   let basketForm = useSelector((state) => state.basketInputChange);
   let dispatch = useDispatch();
   const onModalHide = () => {
     handleShowBasketForm(false);
+  };
+  const handleCreate = () => {
+    let type = basketForm.orderNbr !== "New" ? "Update" : "New";
+    handleSave(type);
   };
   return (
     <Modal
@@ -77,7 +81,7 @@ export default function BasketForm(props) {
           </select>
         </div>
         <div className="form_field_wrapper">
-          <button>Create</button>
+          <button onClick={handleCreate}>Create</button>
         </div>
       </Modal.Body>
     </Modal>

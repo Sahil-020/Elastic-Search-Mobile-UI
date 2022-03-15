@@ -63,6 +63,7 @@ import IsOpenJob from "../search-components/IsOpenJob";
 import ShowCode from "../OtherComponents/ShowCode";
 import HandleWholesale from "../OtherComponents/HandleWholesale";
 import Options from "../../assets/icons/Options.png";
+import Clear from "../../assets/icons/Clear.png";
 
 const mapStateToProps = (state) => {
   return {
@@ -91,12 +92,21 @@ class JewelryMain extends Component {
     this.isValueEmpty = this.isMultipleValueEmpty.bind(this);
     this.isMultipleValueEmpty = this.isMultipleValueEmpty.bind(this);
     this.onCheckSelect = this.onCheckSelect.bind(this);
+    this.handleShowFilters = this.handleShowFilters.bind(this);
   }
 
   // componentDidMount() {
   //   this.setState({ showFilters: true });
   //   // this.setState({ showFilters: false });
   // }
+  handleShowFilters(value) {
+    document.getElementById("Search_Filters").className = value;
+    if (value === "show_filters") {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }
 
   onCheckSelect(value) {
     this.setState({
@@ -297,82 +307,94 @@ class JewelryMain extends Component {
                 <SerialSearchComponent
                   handleSerialSearchSignal={this.handleSerialSearchSignal}
                 />
-                <button onClick={() => this.setState({ showFilters: true })}>
+                <button
+                  //  onClick={() => this.setState({ showFilters: true })}
+                  onClick={() => this.handleShowFilters("show_filters")}
+                >
                   Filters
                 </button>
               </div>
-              <Offcanvas
+              {/* <Offcanvas
                 show={showFilters}
                 onHide={() => this.setState({ showFilters: false })}
                 placement="bottom"
-              >
-                <Offcanvas.Header closeButton>
+              > */}
+              {/* <Offcanvas.Header closeButton>
                   <Offcanvas.Title>Filters</Offcanvas.Title>
                   <SearchCriteria />
                 </Offcanvas.Header>
-                <Offcanvas.Body>
-                  <Accordion defaultActiveKey="0">
-                    <Accordion.Item eventKey="0">
-                      <Accordion.Header>General Fields</Accordion.Header>
-                      <Accordion.Body>
-                        <SerialSearchComponent
-                          handleSerialSearchSignal={
-                            this.handleSerialSearchSignal
-                          }
-                        />
-                        <StyleNumber />
-                        <ItemTypeSearch />
-                        <ItemSubtype />
-                        <Collection />
-                        <SubCollection />
-                        <CenterShape />
-                        <Metal />
-                        <Period />
-                        <Maker />
-                        <RfidSearch
-                          handleRfidSearchSignal={this.handleRfidSearchSignal}
-                        />
-                        <Keyword />
-                        <WRShape />
-                        <WRSetting />
-                        <EternPart />
-                        <Warehouse />
-                        <MemoOut />
-                        <SoldCustomerSearch
-                          handleSoldCustSignal={this.handleRfidSearchSignal}
-                        />
-                      </Accordion.Body>
-                    </Accordion.Item>
-                    <Accordion.Item eventKey="1">
-                      <Accordion.Header>Range Fields</Accordion.Header>
-                      <Accordion.Body className="range_fields">
-                        <RetailPriceRange />
-                        <WholesalePriceRange />
-                        <DiamondCarats />
-                        <ColorCarat />
-                        <RingSizeRange />
-                        <PurchasDateRange />
-                      </Accordion.Body>
-                    </Accordion.Item>
-                    <Accordion.Item eventKey="2">
-                      <Accordion.Header>Selection Fields</Accordion.Header>
-                      <Accordion.Body className="selection_fields">
-                        <KwiatOnly />
-                        <FredLeightonOnly />
-                        <IsSold />
-                        <IsCom />
-                        <IsVirtual />
-                        <IsSemimount />
-                        <IsOpenJob />
-                        <TiaraOnly />
-                        <FLRoundOnly />
-                        <AshokaOnly />
-                        <KWCushionOnly />
-                      </Accordion.Body>
-                    </Accordion.Item>
-                  </Accordion>
-                </Offcanvas.Body>
-              </Offcanvas>
+                <Offcanvas.Body> */}
+              <div className="filters" id="Search_Filters">
+                <div className="filter_header">
+                  <h4>Filters</h4>{" "}
+                  <span>
+                    <img src={Clear} /> Clear filters
+                  </span>
+                  <button onClick={() => this.handleShowFilters("filters")}>
+                    X
+                  </button>
+                </div>
+                <Accordion defaultActiveKey="0">
+                  <Accordion.Item eventKey="0">
+                    <Accordion.Header>General Fields</Accordion.Header>
+                    <Accordion.Body>
+                      <SerialSearchComponent
+                        handleSerialSearchSignal={this.handleSerialSearchSignal}
+                      />
+                      <StyleNumber />
+                      <ItemTypeSearch />
+                      <ItemSubtype />
+                      <Collection />
+                      <SubCollection />
+                      <CenterShape />
+                      <Metal />
+                      <Period />
+                      <Maker />
+                      <RfidSearch
+                        handleRfidSearchSignal={this.handleRfidSearchSignal}
+                      />
+                      <Keyword />
+                      <WRShape />
+                      <WRSetting />
+                      <EternPart />
+                      <Warehouse />
+                      <MemoOut />
+                      <SoldCustomerSearch
+                        handleSoldCustSignal={this.handleRfidSearchSignal}
+                      />
+                    </Accordion.Body>
+                  </Accordion.Item>
+                  <Accordion.Item eventKey="1">
+                    <Accordion.Header>Range Fields</Accordion.Header>
+                    <Accordion.Body className="range_fields">
+                      <RetailPriceRange />
+                      <WholesalePriceRange />
+                      <DiamondCarats />
+                      <ColorCarat />
+                      <RingSizeRange />
+                      <PurchasDateRange />
+                    </Accordion.Body>
+                  </Accordion.Item>
+                  <Accordion.Item eventKey="2">
+                    <Accordion.Header>Selection Fields</Accordion.Header>
+                    <Accordion.Body className="selection_fields">
+                      <KwiatOnly />
+                      <FredLeightonOnly />
+                      <IsSold />
+                      <IsCom />
+                      <IsVirtual />
+                      <IsSemimount />
+                      <IsOpenJob />
+                      <TiaraOnly />
+                      <FLRoundOnly />
+                      <AshokaOnly />
+                      <KWCushionOnly />
+                    </Accordion.Body>
+                  </Accordion.Item>
+                </Accordion>
+              </div>
+              {/* </Offcanvas.Body>
+              </Offcanvas> */}
             </div>
             {/* <SelectedFilters className="selectedFilters" /> */}
             {/* <SearchCriteria /> */}

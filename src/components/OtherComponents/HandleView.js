@@ -27,11 +27,11 @@ class HandleView extends Component {
         <label>
           {numberOfResults && time
             ? `${numberOfResults} results found in ${time}ms`
-            : basketOrderNo && items
-            ? `${basketOrderNo} | ${items.length} items`
-            : // : items
-              // ? `${items.length} items`
-              ""}
+            : // : basketOrderNo && items
+            // ? `${basketOrderNo} | ${items.length} items`
+            items
+            ? `${items.length} items`
+            : ""}
         </label>
         <div className="result_view_options">
           <img

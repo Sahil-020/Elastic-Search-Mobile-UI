@@ -10,7 +10,7 @@ class SerialSearchComponent extends Component {
     return (
       <DataSearch
         className="form_field"
-        // title="Serial"
+        title="Serial"
         showClear
         debounce={250}
         placeholder="Enter Serial Number..."
