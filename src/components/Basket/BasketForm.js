@@ -29,23 +29,21 @@ export default function BasketForm(props) {
       <Modal.Body>
         <div className="form_field_wrapper">
           <label>Description</label>
-          <input
+          <textarea
             value={basketForm.desc}
             onChange={(e) =>
               dispatch(setBasketFormInput({ desc: e.target.value }))
             }
-            placeholder="Description"
-          ></input>
+          />
         </div>
         <div className="form_field_wrapper">
           <label>Internal Notes</label>
-          <input
+          <textarea
             value={basketForm.internalNotes}
             onChange={(e) =>
               dispatch(setBasketFormInput({ internalNotes: e.target.value }))
             }
-            placeholder="Internal Notes"
-          ></input>
+          />
         </div>
         <CustomerSearch />
         <ContactSearch />
