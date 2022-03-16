@@ -54,6 +54,8 @@ import { toggleBasket } from "../actions";
 import Basket from "./../Basket/Basket";
 import ShowCode from "../OtherComponents/ShowCode";
 import HandleWholesale from "../OtherComponents/HandleWholesale";
+import Clear from "../../assets/icons/Clear.png";
+
 const mapStateToProps = (state) => {
   return {
     basket: state.basket,
@@ -81,8 +83,21 @@ class DiamondMain extends Component {
     this.isValueEmpty = this.isValueEmpty.bind(this);
     this.isMultipleValueEmpty = this.isMultipleValueEmpty.bind(this);
     this.onCheckSelect = this.onCheckSelect.bind(this);
+    this.handleShowFilters = this.handleShowFilters.bind(this);
   }
 
+  // componentDidMount() {
+  //   this.setState({ showFilters: true });
+  //   // this.setState({ showFilters: false });
+  // }
+  handleShowFilters(value) {
+    document.getElementById("Search_Filters").className = value;
+    if (value === "show_filters") {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }
   onCheckSelect(value) {
     this.setState({
       checked: value,
@@ -276,11 +291,14 @@ class DiamondMain extends Component {
                 <SerialSearchComponent
                   handleSerialSearchSignal={this.handleSerialSearchSignal}
                 />
-                <button onClick={() => this.setState({ showFilters: true })}>
+                <button
+                  // onClick={() => this.setState({ showFilters: true })}
+                  onClick={() => this.handleShowFilters("show_filters")}
+                >
                   Filters
                 </button>
               </div>
-              <Offcanvas
+              {/* <Offcanvas
                 show={showFilters}
                 onHide={() => this.setState({ showFilters: false })}
                 placement="bottom"
@@ -289,65 +307,73 @@ class DiamondMain extends Component {
                   <Offcanvas.Title>Filters</Offcanvas.Title>
                   <SearchCriteria />
                 </Offcanvas.Header>
-                <Offcanvas.Body>
-                  <Accordion defaultActiveKey="0">
-                    <Accordion.Item eventKey="0">
-                      <Accordion.Header>General Fields</Accordion.Header>
-                      <Accordion.Body>
-                        <SerialSearchComponent
-                          handleSerialSearchSignal={
-                            this.handleSerialSearchSignal
-                          }
-                        />
-                        <StyleNumber />
-                        <Shape />
-                        <MountedNumberStock
-                          handleMountedSearchSignal={
-                            this.handleMountedSearchSignal
-                          }
-                        />
-                        <FancyColor />
-                        <FancyColorIntensity />
-                        <Warehouse />
-                        <MemoOut />
-                        <RfidSearch
-                          handleRfidSearchSignal={this.handleRfidSearchSignal}
-                        />
-                        <Report data={DiamondSearchKeyword} />
-                      </Accordion.Body>
-                    </Accordion.Item>
-                    <Accordion.Item eventKey="1">
-                      <Accordion.Header>Range Fields</Accordion.Header>
-                      <Accordion.Body className="range_fields">
-                        <DiamondCaratWeightComponent
-                          data={DiamondCaratWeight}
-                        />
-                        <DiamondColorRange />
-                        <DiamondClarityRange />
-                        <DiamondCutRange />
-                        <StoneRatio />
+                <Offcanvas.Body> */}
 
-                        <RetailPriceRange />
-                        <WholesalePriceRange />
-                      </Accordion.Body>
-                    </Accordion.Item>
-                    <Accordion.Item eventKey="2">
-                      <Accordion.Header>Selection Fields</Accordion.Header>
-                      <Accordion.Body className="selection_fields">
-                        <LooseOnly />
-                        <LooseAndRingsOnly />
-                        <IsSold />
-                        <IsVirtual />
-                        <IsRtv />
-                        <TiaraOnly />
-                        <FLRoundOnly />
-                        <FLCushionsOnly />
-                        <KWCushionOnly />
-                      </Accordion.Body>
-                    </Accordion.Item>
-                  </Accordion>
-                </Offcanvas.Body>
-              </Offcanvas>
+              <div className="filters" id="Search_Filters">
+                <div className="filter_header">
+                  <h4>Filters</h4>{" "}
+                  <span>
+                    <img src={Clear} /> Clear filters
+                  </span>
+                  <button onClick={() => this.handleShowFilters("filters")}>
+                    X
+                  </button>
+                </div>
+                <Accordion defaultActiveKey="0">
+                  <Accordion.Item eventKey="0">
+                    <Accordion.Header>General Fields</Accordion.Header>
+                    <Accordion.Body>
+                      <SerialSearchComponent
+                        handleSerialSearchSignal={this.handleSerialSearchSignal}
+                      />
+                      <StyleNumber />
+                      <Shape />
+                      <MountedNumberStock
+                        handleMountedSearchSignal={
+                          this.handleMountedSearchSignal
+                        }
+                      />
+                      <FancyColor />
+                      <FancyColorIntensity />
+                      <Warehouse />
+                      <MemoOut />
+                      <RfidSearch
+                        handleRfidSearchSignal={this.handleRfidSearchSignal}
+                      />
+                      <Report data={DiamondSearchKeyword} />
+                    </Accordion.Body>
+                  </Accordion.Item>
+                  <Accordion.Item eventKey="1">
+                    <Accordion.Header>Range Fields</Accordion.Header>
+                    <Accordion.Body className="range_fields">
+                      <DiamondCaratWeightComponent data={DiamondCaratWeight} />
+                      <DiamondColorRange />
+                      <DiamondClarityRange />
+                      <DiamondCutRange />
+                      <StoneRatio />
+
+                      <RetailPriceRange />
+                      <WholesalePriceRange />
+                    </Accordion.Body>
+                  </Accordion.Item>
+                  <Accordion.Item eventKey="2">
+                    <Accordion.Header>Selection Fields</Accordion.Header>
+                    <Accordion.Body className="selection_fields">
+                      <LooseOnly />
+                      <LooseAndRingsOnly />
+                      <IsSold />
+                      <IsVirtual />
+                      <IsRtv />
+                      <TiaraOnly />
+                      <FLRoundOnly />
+                      <FLCushionsOnly />
+                      <KWCushionOnly />
+                    </Accordion.Body>
+                  </Accordion.Item>
+                </Accordion>
+              </div>
+              {/* </Offcanvas.Body>
+              </Offcanvas> */}
             </div>
             {/* <SelectedFilters className="selectedFilters" /> */}
             {/* <SearchCriteria /> */}

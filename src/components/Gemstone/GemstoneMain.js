@@ -47,6 +47,8 @@ import isEmpty from "lodash/isEmpty";
 import currencyFormatter from "currency-formatter";
 import ShowCode from "../OtherComponents/ShowCode";
 import HandleWholesale from "../OtherComponents/HandleWholesale";
+import Clear from "../../assets/icons/Clear.png";
+
 const mapStateToProps = (state) => {
   return {
     basket: state.basket,
@@ -75,6 +77,20 @@ class GemstoneMain extends Component {
     this.isValueEmpty = this.isValueEmpty.bind(this);
     this.isMultipleValueEmpty = this.isMultipleValueEmpty.bind(this);
     this.onCheckSelect = this.onCheckSelect.bind(this);
+    this.handleShowFilters = this.handleShowFilters.bind(this);
+  }
+
+  // componentDidMount() {
+  //   this.setState({ showFilters: true });
+  //   // this.setState({ showFilters: false });
+  // }
+  handleShowFilters(value) {
+    document.getElementById("Search_Filters").className = value;
+    if (value === "show_filters") {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
   }
   onCheckSelect(value) {
     this.setState({
@@ -234,11 +250,14 @@ class GemstoneMain extends Component {
                 <SerialSearchComponent
                   handleSerialSearchSignal={this.handleSerialSearchSignal}
                 />
-                <button onClick={() => this.setState({ showFilters: true })}>
+                <button
+                  // onClick={() => this.setState({ showFilters: true })}
+                  onClick={() => this.handleShowFilters("show_filters")}
+                >
                   Filters
                 </button>
               </div>
-              <Offcanvas
+              {/* <Offcanvas
                 show={showFilters}
                 onHide={() => this.setState({ showFilters: false })}
                 placement="bottom"
@@ -247,54 +266,63 @@ class GemstoneMain extends Component {
                   <Offcanvas.Title>Filters</Offcanvas.Title>
                   <SearchCriteria />
                 </Offcanvas.Header>
-                <Offcanvas.Body>
-                  <Accordion defaultActiveKey="0">
-                    <Accordion.Item eventKey="0">
-                      <Accordion.Header>General Fields</Accordion.Header>
-                      <Accordion.Body>
-                        <SerialSearchComponent
-                          handleSerialSearchSignal={
-                            this.handleSerialSearchSignal
-                          }
-                        />
-                        <StyleNumber />
-                        <GemstoneShape />
-                        <MountedNumberStock
-                          handleMountedSearchSignal={
-                            this.handleMountedSearchSignal
-                          }
-                        />
-                        <GemstoneType />
-                        <CountryofOrigin />
-                        <GemEnhancement />
-                        <Warehouse />
-                        <MemoOut />
-                        <RfidSearch
-                          handleRfidSearchSignal={this.handleRfidSearchSignal}
-                        />
-                        <Report data={GemstoneKeywordSearch} />
-                      </Accordion.Body>
-                    </Accordion.Item>
-                    <Accordion.Item eventKey="1">
-                      <Accordion.Header>Range Fields</Accordion.Header>
-                      <Accordion.Body className="range_fields">
-                        <CaratWeight />
-                        <RetailPriceRange />
-                        <WholesalePriceRange />
-                      </Accordion.Body>
-                    </Accordion.Item>
-                    <Accordion.Item eventKey="2">
-                      <Accordion.Header>Selection Fields</Accordion.Header>
-                      <Accordion.Body className="selection_fields">
-                        <LooseOnly />
-                        <IsSold />
-                        <IsVirtual />
-                        <IsRtv />
-                      </Accordion.Body>
-                    </Accordion.Item>
-                  </Accordion>
-                </Offcanvas.Body>
-              </Offcanvas>
+                <Offcanvas.Body> */}
+              <div className="filters" id="Search_Filters">
+                <div className="filter_header">
+                  <h4>Filters</h4>{" "}
+                  <span>
+                    <img src={Clear} /> Clear filters
+                  </span>
+                  <button onClick={() => this.handleShowFilters("filters")}>
+                    X
+                  </button>
+                </div>
+                <Accordion defaultActiveKey="0">
+                  <Accordion.Item eventKey="0">
+                    <Accordion.Header>General Fields</Accordion.Header>
+                    <Accordion.Body>
+                      <SerialSearchComponent
+                        handleSerialSearchSignal={this.handleSerialSearchSignal}
+                      />
+                      <StyleNumber />
+                      <GemstoneShape />
+                      <MountedNumberStock
+                        handleMountedSearchSignal={
+                          this.handleMountedSearchSignal
+                        }
+                      />
+                      <GemstoneType />
+                      <CountryofOrigin />
+                      <GemEnhancement />
+                      <Warehouse />
+                      <MemoOut />
+                      <RfidSearch
+                        handleRfidSearchSignal={this.handleRfidSearchSignal}
+                      />
+                      <Report data={GemstoneKeywordSearch} />
+                    </Accordion.Body>
+                  </Accordion.Item>
+                  <Accordion.Item eventKey="1">
+                    <Accordion.Header>Range Fields</Accordion.Header>
+                    <Accordion.Body className="range_fields">
+                      <CaratWeight />
+                      <RetailPriceRange />
+                      <WholesalePriceRange />
+                    </Accordion.Body>
+                  </Accordion.Item>
+                  <Accordion.Item eventKey="2">
+                    <Accordion.Header>Selection Fields</Accordion.Header>
+                    <Accordion.Body className="selection_fields">
+                      <LooseOnly />
+                      <IsSold />
+                      <IsVirtual />
+                      <IsRtv />
+                    </Accordion.Body>
+                  </Accordion.Item>
+                </Accordion>
+              </div>
+              {/* </Offcanvas.Body>
+              </Offcanvas> */}
             </div>
             {/* <SelectedFilters className="selectedFilters" /> */}
             {/* <SearchCriteria /> */}

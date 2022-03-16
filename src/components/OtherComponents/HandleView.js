@@ -39,7 +39,13 @@ class HandleView extends Component {
             src={ListView}
             onClick={(e) => handleView(e, "List")}
           />
-          <img src={Grid1} onClick={(e) => handleView(e, "Grid1")} />
+          <img
+            src={Grid1}
+            onClick={(e) => {
+              // e.stopPropagation();
+              handleView(e, "Grid1");
+            }}
+          />
           <img src={Grid2} onClick={(e) => handleView(e, "Grid2")} />
           <img src={Grid3} onClick={(e) => handleView(e, "Grid3")} />
         </div>

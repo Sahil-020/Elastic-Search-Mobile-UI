@@ -21,7 +21,7 @@ import {
   appbaseBasketUrl,
   basketApikey,
 } from "../../utils/constants";
-import { axios } from "axios";
+import axios from "axios";
 import $ from "jquery";
 import isEmpty from "lodash/isEmpty";
 import BasketForm from "./BasketForm";
@@ -430,7 +430,7 @@ class Basket extends Component {
       <>
         <div className="basket_container" id="basket">
           <div className="basket_no_container">
-            <label>{basketForm.basketNo}</label>
+            <label>{basketForm.orderNbr}</label>
             <button>
               <img src={Clear} />
               Clear list

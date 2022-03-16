@@ -185,10 +185,14 @@
             }
             .filters {
                 opacity: 0;
+                // visibility: hidden;
                 height: 0px;
+                pointer-events: none;
+                cursor: default;
             }
             .show_filters {
                 opacity: 1;
+                // visibility: visible;
                 height: 100vh;
                 position: absolute;
                 overflow: scroll;
@@ -1138,9 +1142,11 @@
                             position: absolute;
                             bottom: 3%;
                             left: 7%;
-                            background: #34495e;
-                            color: #f2f4f4;
-                            font-size: 12px;
+                            // background: #34495e;
+                            color: #34495e;
+                            font-weight: 500;
+                            // color: #f2f4f4;
+                            font-size: 11px;
                         }
                     }
                     .card-body {

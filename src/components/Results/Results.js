@@ -125,22 +125,20 @@ export default function Results(props) {
                     "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg";
                 }}
               />
-              {/* <span>
-                  {item.IsSold === "1" ? "Sold" : ""}
-                  {item.IsRtv === "1" ? "RTV" : ""}
-                  {item.SerialStatus === "In Production" ? "In Production" : ""}
-                  {item.IsSemimount === "1" ? "Semimount" : ""}
-                  {item.SerialStatus === "Adjusted Out" ? "Adjusted Out" : ""}
-                  {item.IsMounted === "1" && item.IsSold !== "1"
-                    ? "mounted"
-                    : ""}
-                  {item.isOpenJob === "1" && item.PONumber !== null
-                    ? `ON ORDER`
-                    : ""}
-                  {item.isOpenJob === "1" && item.PONumber === null
-                    ? `STOCK CREATE`
-                    : ""}
-                </span> */}
+              <span>
+                {item.IsSold === "1" ? "Sold" : ""}
+                {item.IsRtv === "1" ? "RTV" : ""}
+                {item.SerialStatus === "In Production" ? "In Production" : ""}
+                {item.IsSemimount === "1" ? "Semimount" : ""}
+                {item.SerialStatus === "Adjusted Out" ? "Adjusted Out" : ""}
+                {item.IsMounted === "1" && item.IsSold !== "1" ? "mounted" : ""}
+                {item.isOpenJob === "1" && item.PONumber !== null
+                  ? `ON ORDER`
+                  : ""}
+                {item.isOpenJob === "1" && item.PONumber === null
+                  ? `STOCK CREATE`
+                  : ""}
+              </span>
             </div>
             <Card.Body>
               {viewType === "List" && (
