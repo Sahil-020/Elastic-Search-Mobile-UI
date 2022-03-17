@@ -82,6 +82,7 @@ class JewelryMain extends Component {
       soldCustSignal: false,
       serialSearchSignal: false,
       rfidSearchSignal: false,
+      showBasketOptions: false,
     };
     // this.clearFilters = this.clearFilters.bind(this)
     this.defaultQuery = this.defaultQuery.bind(this);
@@ -93,12 +94,18 @@ class JewelryMain extends Component {
     this.isMultipleValueEmpty = this.isMultipleValueEmpty.bind(this);
     this.onCheckSelect = this.onCheckSelect.bind(this);
     this.handleShowFilters = this.handleShowFilters.bind(this);
+    this.handleShowBasketOptions = this.handleShowBasketOptions.bind(this);
   }
 
   // componentDidMount() {
   //   this.setState({ showFilters: true });
   //   // this.setState({ showFilters: false });
   // }
+
+  handleShowBasketOptions(value) {
+    this.setState({ showBasketOptions: value });
+  }
+
   handleShowFilters(value) {
     document.getElementById("Search_Filters").className = value;
     if (value === "show_filters") {
@@ -299,10 +306,6 @@ class JewelryMain extends Component {
             credentials={AppbaseCredentials}
           >
             <div className="search_components_container">
-              <div className="showcode_container">
-                <ShowCode onCheck={this.onCheckSelect} />
-                <HandleWholesale />
-              </div>
               <div className="serial_search_container">
                 <SerialSearchComponent
                   handleSerialSearchSignal={this.handleSerialSearchSignal}
@@ -313,6 +316,10 @@ class JewelryMain extends Component {
                 >
                   Filters
                 </button>
+              </div>
+              <div className="showcode_container">
+                <ShowCode onCheck={this.onCheckSelect} />
+                <HandleWholesale />
               </div>
               {/* <Offcanvas
                 show={showFilters}
@@ -443,12 +450,17 @@ class JewelryMain extends Component {
         >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>Basket list</Offcanvas.Title>
-            <img src={Options}></img>
+            <img
+              src={Options}
+              onClick={() => this.handleShowBasketOptions(true)}
+            ></img>
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Basket
               isValueEmpty={this.isValueEmpty}
               isMultipleValueEmpty={this.isMultipleValueEmpty}
+              showBasketOptions={this.state.showBasketOptions}
+              handleShowBasketOptions={this.handleShowBasketOptions}
             />
           </Offcanvas.Body>
         </Offcanvas>

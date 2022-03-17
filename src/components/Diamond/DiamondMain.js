@@ -283,10 +283,6 @@ class DiamondMain extends Component {
             credentials={AppbaseCredentials}
           >
             <div className="search_components_container">
-              <div className="showcode_container">
-                <ShowCode onCheck={this.onCheckSelect} />
-                <HandleWholesale />
-              </div>
               <div className="serial_search_container">
                 <SerialSearchComponent
                   handleSerialSearchSignal={this.handleSerialSearchSignal}
@@ -297,6 +293,10 @@ class DiamondMain extends Component {
                 >
                   Filters
                 </button>
+              </div>
+              <div className="showcode_container">
+                <ShowCode onCheck={this.onCheckSelect} />
+                <HandleWholesale />
               </div>
               {/* <Offcanvas
                 show={showFilters}

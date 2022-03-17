@@ -31,6 +31,8 @@ import Print from "../../assets/icons/Print.png";
 import Save from "../../assets/icons/Save.png";
 import Clear from "../../assets/icons/Clear.png";
 import Reset from "../../assets/icons/Clear.png";
+import BasketOptions from "./BasketOptions";
+import BasketSelectModal from "./BasketSelectModal";
 
 const mapStateToProps = (state) => {
   return {
@@ -52,6 +54,7 @@ class Basket extends Component {
         contact: "",
         occassion: "",
         showBasketForm: false,
+        showBasketSelect: false,
       },
       allBaskets: [],
       basketToOpen: "",
@@ -59,6 +62,7 @@ class Basket extends Component {
     };
     this.handleView = this.handleView.bind(this);
     this.handleShowBasketForm = this.handleShowBasketForm.bind(this);
+    this.handleShowBasketSelect = this.handleShowBasketSelect.bind(this);
     this.handleSave = this.handleSave.bind(this);
   }
 
@@ -71,6 +75,10 @@ class Basket extends Component {
     this.props.setToken(token.access_token);
     // }
     // } else token = this.props.tokenState.token;
+  }
+
+  handleShowBasketSelect(value) {
+    this.setState({ showBasketSelect: value });
   }
 
   handleOpenBasketForm() {
@@ -424,7 +432,14 @@ class Basket extends Component {
   }
 
   render() {
-    let { items, isValueEmpty, isMultipleValueEmpty, basketForm } = this.props;
+    let {
+      items,
+      isValueEmpty,
+      isMultipleValueEmpty,
+      basketForm,
+      showBasketOptions,
+      handleShowBasketOptions,
+    } = this.props;
     // let { allBaskets, items } = this.state;
     return (
       <>
@@ -466,6 +481,15 @@ class Basket extends Component {
           handleShowBasketForm={this.handleShowBasketForm}
           handleSave={this.handleSave}
           show={this.state.showBasketForm}
+        />
+        <BasketOptions
+          show={showBasketOptions}
+          handleShowBasketOptions={handleShowBasketOptions}
+          handleShowBasketSelect={this.handleShowBasketSelect}
+        />
+        <BasketSelectModal
+          show={this.state.showBasketSelect}
+          handleShowBasketSelect={this.handleShowBasketSelect}
         />
       </>
     );

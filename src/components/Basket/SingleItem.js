@@ -277,30 +277,30 @@ export default function SingleItem(props) {
     dispatch(toggleSingleView({ show: false, item: {} }));
   };
   const handleReports = (type) => {
-    let { resultData } = this.state;
+    // let { resultData } = this.state;
     if (type === "jpg") {
-      if (resultData.ReportJpgUrls) {
+      if (item.ReportJpgUrls) {
         // console.log(
         //   "jpg",
-        //   resultData.ReportJpgUrls.split("|").map((value) =>
+        //   item.ReportJpgUrls.split("|").map((value) =>
         //     value.replace(" ", "")
         //   )
         // );
-        return resultData.ReportJpgUrls.split("|").map((value) =>
+        return item.ReportJpgUrls.split("|").map((value) =>
           value.replace(" ", "")
         );
       }
       return [];
     }
     if (type === "pdf") {
-      if (resultData.ReportPdfUrls) {
+      if (item.ReportPdfUrls) {
         // console.log(
         //   "pdf",
-        //   resultData.ReportPdfUrls.split("|").map((value) =>
+        //   item.ReportPdfUrls.split("|").map((value) =>
         //     value.replace(" ", "")
         //   )
         // );
-        return resultData.ReportPdfUrls.split("|").map((value) =>
+        return item.ReportPdfUrls.split("|").map((value) =>
           value.replace(" ", "")
         );
       }
@@ -786,7 +786,7 @@ export default function SingleItem(props) {
                           } else return <></>;
                         }
                       )} */}
-                    {this.handleReports("jpg").map((jpg, index) => (
+                    {handleReports("jpg").map((jpg, index) => (
                       <img
                         className="report_img"
                         src={jpg}

@@ -18,7 +18,7 @@ export default function Results(props) {
   const showWholesale = useSelector(
     (state) => state.basketInputChange.showWholesale
   );
-  console.log("items : ", items);
+  // console.log("items : ", items);
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
