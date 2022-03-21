@@ -9,6 +9,7 @@ import Results from "../Results/Results";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import {
+  resetStates,
   removeFromCart,
   setToken,
   setBasketFormInput,
@@ -59,11 +60,13 @@ class Basket extends Component {
       allBaskets: [],
       basketToOpen: "",
       allBasketDetails: [],
+      selectModalType: "",
     };
     this.handleView = this.handleView.bind(this);
     this.handleShowBasketForm = this.handleShowBasketForm.bind(this);
     this.handleShowBasketSelect = this.handleShowBasketSelect.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleSelectModalType = this.handleSelectModalType.bind(this);
   }
 
   async componentDidMount() {
@@ -75,6 +78,11 @@ class Basket extends Component {
     this.props.setToken(token.access_token);
     // }
     // } else token = this.props.tokenState.token;
+  }
+
+  handleSelectModalType(value) {
+    console.log("Inside select modal type", value);
+    this.setState({ selectModalType: value });
   }
 
   handleShowBasketSelect(value) {
@@ -439,6 +447,7 @@ class Basket extends Component {
       basketForm,
       showBasketOptions,
       handleShowBasketOptions,
+      resetStates,
     } = this.props;
     // let { allBaskets, items } = this.state;
     return (
@@ -446,7 +455,7 @@ class Basket extends Component {
         <div className="basket_container" id="basket">
           <div className="basket_no_container">
             <label>{basketForm.orderNbr}</label>
-            <button>
+            <button onClick={() => resetStates()}>
               <img src={Clear} />
               Clear list
             </button>
@@ -486,10 +495,14 @@ class Basket extends Component {
           show={showBasketOptions}
           handleShowBasketOptions={handleShowBasketOptions}
           handleShowBasketSelect={this.handleShowBasketSelect}
+          handleSelectModalType={this.handleSelectModalType}
         />
         <BasketSelectModal
           show={this.state.showBasketSelect}
           handleShowBasketSelect={this.handleShowBasketSelect}
+          handleShowBasketOptions={handleShowBasketOptions}
+          handleSelectModalType={this.handleSelectModalType}
+          selectModalType={this.state.selectModalType}
         />
       </>
     );
@@ -498,7 +511,7 @@ class Basket extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
-    { removeFromCart, setToken, setBasketFormInput, toggleLoader },
+    { removeFromCart, setToken, setBasketFormInput, toggleLoader, resetStates },
     dispatch
   );
 };

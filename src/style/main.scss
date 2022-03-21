@@ -2217,7 +2217,7 @@
                     gap: 10px;
 
                     .card {
-                        height: 400px;
+                        height: 300px;
                         width: 100%;
                         padding: 10px 25px;
                         gap: 10px;
@@ -2226,7 +2226,7 @@
                         // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
                         // background-color: rgba(241, 241, 241, 0.876);
                         .card-title.h5 {
-                            font-size: 14px;
+                            font-size: 15px;
                             display: flex;
                             flex-direction: row !important;
                             gap: 2px !important;
@@ -2237,17 +2237,17 @@
                             margin: 0px !important;
                             color: #808b96;
                             font-weight: 800;
-                            height: 5%;
+                            height: 10%;
                         }
 
                         .image_container {
-                            height: 70%;
+                            height: 55%;
                             display: flex;
                             align-items: center;
                             justify-content: center;
                             width: 100%;
                             img {
-                                max-width: 55%;
+                                max-width: 65%;
                                 // max-height: 40%;
 
                                 max-height: 100% !important;
@@ -2271,10 +2271,10 @@
                                 padding: 0px 0px 0px;
                                 display: flex;
                                 flex-direction: column;
-                                row-gap: 10px;
+                                row-gap: 5px;
                                 font-size: 13px;
                                 .item_description {
-                                    font-size: 16px;
+                                    font-size: 17px;
                                     // display: block !important;
                                     display: flex !important;
                                     flex-direction: column;
@@ -2325,11 +2325,11 @@
                     gap: 6px !important;
                     .card {
                         width: 31% !important;
-                        height: 200px !important;
+                        height: 150px !important;
                         padding: 10px 0px !important;
-                        gap: 10px !important;
+                        gap: 5px !important;
                         .card-title.h5 {
-                            height: 15% !important;
+                            height: 25% !important;
                             font-size: 8px !important;
                             font-weight: 900 !important;
                             flex-wrap: wrap !important;
@@ -2344,10 +2344,13 @@
                             }
                         }
                         .card-body {
-                            height: 15%;
+                            height: 10%;
                             .card-text {
                                 div.item_price {
-                                    font-size: 13px !important;
+                                    display: flex !important;
+                                    align-items: center;
+                                    justify-content: center;
+                                    font-size: 9px !important;
                                 }
                             }
                         }
@@ -2369,10 +2372,10 @@
                     gap: 10px !important;
                     .card {
                         width: 48% !important;
-                        height: 350px !important;
+                        height: 260px !important;
                         margin: 0px !important;
                         padding: 10px !important;
-                        gap: 6px !important;
+                        gap: 5px !important;
                         .card-title.h5 {
                             height: 10% !important;
                             font-size: 12px !important;
@@ -2384,14 +2387,14 @@
                             padding: 8px 0px 0px;
                         }
                         .image_container {
-                            height: 55% !important;
+                            height: 60% !important;
                             img {
                                 max-width: 100% !important;
                                 margin: auto;
                             }
                         }
                         .card-body {
-                            height: 30% !important;
+                            height: 20% !important;
                             .card-text {
                                 // display: block !important;
                                 div.item_description,
@@ -2403,11 +2406,11 @@
                                 }
                                 div.item_price {
                                     display: flex !important;
-                                    flex-direction: column;
+                                    flex-direction: row;
                                     align-items: center;
-                                    // justify-content: flex-end;
-                                    font-size: 16px !important;
-                                    padding: 7px 0px 0px;
+                                    justify-content: center;
+                                    font-size: 13px !important;
+                                    padding: 0px 0px 0px;
                                 }
                                 > div {
                                     display: none !important;
@@ -2431,7 +2434,7 @@
                     gap: 6px !important;
                     .card {
                         width: 100% !important;
-                        height: 120px !important;
+                        height: 135px !important;
                         display: flex;
                         flex-direction: row;
                         flex-wrap: wrap;
@@ -2455,6 +2458,10 @@
                         .image_container {
                             width: 25%;
                             height: 100% !important;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            row-gap: 10px;
                             img {
                                 max-width: 100% !important;
                                 margin: auto;
@@ -2462,13 +2469,15 @@
                                 max-height: 100% !important;
                             }
                             span {
-                                width: 25%;
+                                // width: 25%;
                                 padding: 2px 10px;
-                                position: absolute;
-                                bottom: 3%;
-                                left: 7%;
-                                background: #34495e;
-                                color: #f2f4f4;
+                                // position: absolute;
+                                // bottom: 3%;
+                                // left: 7%;
+                                // background: #34495e;
+                                color: #34495e;
+                                font-weight: 500;
+                                // color: #f2f4f4;
                                 font-size: 12px;
                             }
                         }
@@ -2862,9 +2871,22 @@
                         font-size: 12px;
                         font-weight: 500;
                     }
-                    input {
-                        border: 1px solid #d0d3d4 !important;
-                        outline: none;
+                    .search_container {
+                        display: flex;
+                        gap: 8px;
+                        input {
+                            border: 1px solid #d0d3d4 !important;
+                            outline: none;
+                            width: 80%;
+                        }
+                        button {
+                            width: 20%;
+                            border: none;
+                            outline: none;
+                            background: #34495e;
+                            color: white;
+                            font-size: 14px;
+                        }
                     }
                 }
                 .basket_list_container {
@@ -2881,6 +2903,18 @@
                             font-size: 14px;
                             font-weight: 500;
                             padding: 10px 0px;
+                            display: flex;
+                            flex-direction: column;
+                            label {
+                                font-size: 15px;
+                                font-weight: 700;
+                            }
+                            span {
+                                font-weight: 500;
+                                font-size: 12px;
+                            }
+                            border-bottom: 1px solid #d0d3d4 !important;
+                            border: none;
                         }
                     }
                 }

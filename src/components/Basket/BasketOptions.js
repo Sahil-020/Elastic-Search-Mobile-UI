@@ -40,6 +40,7 @@ class BasketOptions extends Component {
   }
   onModalHide() {
     this.props.handleShowBasketOptions(false);
+    this.props.handleSelectModalType("");
   }
 
   async fetchBasketIntermediate() {
@@ -226,7 +227,7 @@ class BasketOptions extends Component {
   }
 
   render() {
-    let { show, handleShowBasketSelect } = this.props;
+    let { show, handleShowBasketSelect, handleSelectModalType } = this.props;
     let { allBaskets, myBaskets, allMyBaskets, allMyBasketsSaveExisting } =
       this.state;
     return (
@@ -244,8 +245,22 @@ class BasketOptions extends Component {
         <Modal.Body>
           <div className="basket_option_container">
             <ul>
-              <li onClick={() => handleShowBasketSelect(true)}>Open list</li>
-              <li onClick={() => handleShowBasketSelect(true)}>Clone list</li>
+              <li
+                onClick={() => {
+                  handleShowBasketSelect(true);
+                  handleSelectModalType("open");
+                }}
+              >
+                Open list
+              </li>
+              <li
+                onClick={() => {
+                  handleShowBasketSelect(true);
+                  handleSelectModalType("clone");
+                }}
+              >
+                Clone list
+              </li>
               <li>Export list</li>
             </ul>
             {/* <Accordion defaultActiveKey="0">

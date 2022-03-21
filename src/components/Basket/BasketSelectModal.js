@@ -40,9 +40,11 @@ class BasketSelectModal extends Component {
       myBasketSelectedValue: "",
       allMyBasketSelectedValue: "",
       allBaskets: [],
+      allBasketShow: [],
       myBaskets: [],
       allMyBaskets: [],
       allMyBasketsSaveExisting: [],
+      serachBasketValue: "",
     };
     this.fetchBasketIntermediate = this.fetchBasketIntermediate.bind(this);
     this.fetchBaskets = this.fetchBaskets.bind(this);
@@ -51,14 +53,49 @@ class BasketSelectModal extends Component {
     this.handleAllMyBasketChange = this.handleAllMyBasketChange.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
     this.onModalHide = this.onModalHide.bind(this);
+    this.getNoOfItems = this.getNoOfItems.bind(this);
+    this.handleBasketSearch = this.handleBasketSearch.bind(this);
   }
 
   componentDidMount() {
     this.fetchBasketIntermediate();
   }
 
+  handleBasketSearch(value) {
+    let { allBaskets, allBasketShow } = this.state;
+    let searchRes;
+    if (value) {
+      searchRes = allBaskets.filter((basket) => {
+        if (
+          basket._id.includes(value) ||
+          basket._source.Description.value
+            .toLowerCase()
+            .includes(value.toLowerCase())
+        ) {
+          return true;
+        }
+        return false;
+      });
+      console.log({ searchRes });
+      this.setState({ allBasketShow: searchRes });
+    } else {
+      this.setState({ allBasketShow: allBaskets });
+    }
+  }
+
+  getNoOfItems(basket) {
+    // console.log({ basket });
+    let basketItems = basket._source.OrdersList.value;
+    basketItems = JSON.parse(basketItems.replace(/'/g, '"'));
+    let noOfItems = `${basketItems.length} items`;
+    // basketItems.length !== 0 ? `${basketItems.length} items` : "";
+    return noOfItems;
+    // console.log({ basketItems });
+  }
+
   onModalHide() {
     this.props.handleShowBasketSelect(false);
+    this.props.handleSelectModalType("");
   }
 
   async fetchBasketIntermediate() {
@@ -92,6 +129,20 @@ class BasketSelectModal extends Component {
                         basket._source.MakePrivate.value === false)))) ||
                   !basket._source.UILoggedInUser)
             ),
+          allBasketShow: allBasketResults
+            .sort((a, b) => parseInt(b._id) - parseInt(a._id))
+            .filter(
+              (basket) =>
+                (!basket._source.Status ||
+                  basket._source.Status !== "Deleted") &&
+                ((basket._source.UILoggedInUser &&
+                  (userLoggedIn === basket._source.UILoggedInUser.value ||
+                    (userLoggedIn !== basket._source.UILoggedInUser.value &&
+                      (!basket._source.MakePrivate ||
+                        basket._source.MakePrivate.value === false)))) ||
+                  !basket._source.UILoggedInUser)
+            ),
+
           allMyBasketsSaveExisting: allBasketResults
             .sort((a, b) => parseInt(b._id) - parseInt(a._id))
             .filter(
@@ -245,17 +296,18 @@ class BasketSelectModal extends Component {
   }
 
   handleAllBasketChange(selectedOption) {
-    if (selectedOption.value === "default") {
-      // console.log("value: ", selectedOption);
-      this.setState({
-        allBasketSelectedValue: null,
-      });
-    } else {
-      // console.log("value: ", selectedOption);
-      this.setState({
-        allBasketSelectedValue: selectedOption,
-      });
-    }
+    // if (selectedOption.value === "default") {
+    //   // console.log("value: ", selectedOption);
+    //   this.setState({
+    //     allBasketSelectedValue: null,
+    //   });
+    // } else {
+    //   // console.log("value: ", selectedOption);
+    this.setState({
+      allBasketSelectedValue: selectedOption,
+      serachBasketValue: selectedOption,
+    });
+    // }
   }
 
   handleMyBasketChange(selectedOption) {
@@ -307,7 +359,7 @@ class BasketSelectModal extends Component {
       basketSelected = myBasketSelectedValue
         ? myBasketSelectedValue.value
         : allBasketSelectedValue
-        ? allBasketSelectedValue.value
+        ? allBasketSelectedValue
         : allMyBasketSelectedValue
         ? allMyBasketSelectedValue.value
         : null;
@@ -502,12 +554,15 @@ class BasketSelectModal extends Component {
       this.props.toggleLoader({
         isLoading: false,
       });
+      this.onModalHide();
+      this.props.handleShowBasketOptions(false);
     }
   }
   render() {
-    let { show } = this.props;
-    let { allBaskets } = this.state;
-    console.log({ allBaskets });
+    let { show, selectModalType } = this.props;
+    let { allBaskets, allBasketShow, serachBasketValue } = this.state;
+    // console.log({ allBaskets });
+    console.log({ selectModalType });
     return (
       <Modal
         show={show}
@@ -525,18 +580,37 @@ class BasketSelectModal extends Component {
         </Modal.Header>
         <Modal.Body>
           <div className="basket_select_header">
-            <h6>Open</h6>
+            <h6>{selectModalType === "open" ? "Open" : "Clone"}</h6>
             <span>Choose Existing Basket</span>
-            <input type="search" />
+            <div className="search_container">
+              <input
+                type="search"
+                value={serachBasketValue}
+                onChange={(e) => this.handleBasketSearch(e.target.value)}
+              />
+              <button onClick={this.handleOpen}>
+                {selectModalType === "open" ? "Open" : "Clone"}
+              </button>
+            </div>
           </div>
           <div className="basket_list_container">
-            <ul>
-              {allBaskets.map((basket) => (
-                <li>
-                  {basket._id} - {basket._source.Description.value}
-                </li>
-              ))}
-            </ul>
+            {allBasketShow ? (
+              <ul>
+                {allBasketShow.map((basket, i) => (
+                  <li
+                    key={i}
+                    onClick={() => this.handleAllBasketChange(basket._id)}
+                  >
+                    <label>
+                      {basket._id} - {basket._source.Description.value}
+                    </label>
+                    <span>{this.getNoOfItems(basket)}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              "Loading..."
+            )}
           </div>
         </Modal.Body>
       </Modal>
