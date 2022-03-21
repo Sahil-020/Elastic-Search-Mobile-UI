@@ -558,11 +558,12 @@ class BasketSelectModal extends Component {
       this.props.handleShowBasketOptions(false);
     }
   }
+
   render() {
     let { show, selectModalType } = this.props;
     let { allBaskets, allBasketShow, serachBasketValue } = this.state;
     // console.log({ allBaskets });
-    console.log({ selectModalType });
+    // console.log({ selectModalType });
     return (
       <Modal
         show={show}
@@ -588,7 +589,13 @@ class BasketSelectModal extends Component {
                 value={serachBasketValue}
                 onChange={(e) => this.handleBasketSearch(e.target.value)}
               />
-              <button onClick={this.handleOpen}>
+              <button
+                onClick={() => {
+                  selectModalType === "open"
+                    ? this.handleOpen()
+                    : this.handleClone();
+                }}
+              >
                 {selectModalType === "open" ? "Open" : "Clone"}
               </button>
             </div>

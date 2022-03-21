@@ -81,7 +81,7 @@ class Basket extends Component {
   }
 
   handleSelectModalType(value) {
-    console.log("Inside select modal type", value);
+    // console.log("Inside select modal type", value);
     this.setState({ selectModalType: value });
   }
 
