@@ -644,10 +644,18 @@ class BasketOptions extends Component {
               <li
                 onClick={() => {
                   handleShowBasketSelect(true);
-                  handleSelectModalType("open");
+                  handleSelectModalType("Open");
                 }}
               >
                 Open list
+              </li>
+              <li
+                onClick={() => {
+                  handleShowBasketSelect(true);
+                  handleSelectModalType("Save Existing");
+                }}
+              >
+                Save Existing list.
               </li>
               <li
                 onClick={() => {
