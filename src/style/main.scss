@@ -2124,12 +2124,13 @@
     .offcanvas-body {
         padding: 0px;
         .basket_container {
+            height: 100%;
             .basket_no_container {
                 padding: 5px 20px;
                 display: flex;
                 background: #f2f4f4;
                 color: #34495e !important;
-                label {
+                height: 7% label {
                     width: 90%;
                     font-size: 16px;
                     font-weight: 500;
@@ -2152,6 +2153,7 @@
                 padding: 5px 20px 5px;
                 flex-direction: row;
                 align-items: center;
+                height: 8%;
                 // background-color: #f8f9f9 !important;
 
                 label {
@@ -2184,13 +2186,15 @@
                 }
             }
             .es_basket_results {
-                display: flex;
-                flex-direction: column;
-                flex-wrap: wrap;
-                justify-content: space-around;
-                padding: 10px 20px 0px;
-                align-items: flex-end;
-                gap: 10px;
+                /* display: flex; */
+                /* flex-direction: column; */
+                /* flex-wrap: wrap; */
+                /* justify-content: space-around; */
+                padding: 5px 20px 0px;
+                /* align-items: flex-end; */
+                /* gap: 10px; */
+                overflow: scroll;
+                height: 75%;
                 > button,
                 select {
                     width: fit-content;
