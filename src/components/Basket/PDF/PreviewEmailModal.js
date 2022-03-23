@@ -947,9 +947,10 @@ class PreviewEmailModal extends Component {
       if (resp && resp.status === 200) {
         // console.log("In if loop, resp: ", resp);
         toast.success("Mail Sent !", {
-          position: toast.POSITION.TOP_RIGHT,
+          // position: toast.POSITION.TOP_RIGHT,
           autoClose: 2000,
           pauseOnHover: false,
+          theme: "colored",
         });
         // this.props.toggleLoader({
         //   isLoading: false,
@@ -958,9 +959,10 @@ class PreviewEmailModal extends Component {
       } else {
         // console.log("In else loop resp : ", resp);
         toast.error("Error while sending mail !", {
-          position: toast.POSITION.TOP_RIGHT,
+          // position: toast.POSITION.TOP_RIGHT,
           autoClose: 2000,
           pauseOnHover: false,
+          theme: "colored",
         });
         this.props.toggleLoader({
           isLoading: false,
@@ -1037,9 +1039,10 @@ class PreviewEmailModal extends Component {
         ) {
           // if (!products) {
           toast.success(`Activity Created Successfully`, {
-            position: toast.POSITION.TOP_RIGHT,
+            // position: toast.POSITION.TOP_RIGHT,
             autoClose: 2000,
             pauseOnHover: false,
+            theme: "colored",
           });
           this.props.toggleLoader({
             isLoading: false,
@@ -1048,9 +1051,10 @@ class PreviewEmailModal extends Component {
           // return;
         } else {
           toast.error(`Failed To Create Activity`, {
-            position: toast.POSITION.TOP_RIGHT,
+            // position: toast.POSITION.TOP_RIGHT,
             autoClose: 2000,
             pauseOnHover: false,
+            theme: "colored",
           });
           // let token = await GetAuthToken();
           // if (token) {
