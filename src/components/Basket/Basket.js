@@ -44,6 +44,7 @@ const mapStateToProps = (state) => {
   return {
     items: state.cartActions.items,
     basketForm: state.basketInputChange,
+    tokenState: state.tokenState,
   };
 };
 
