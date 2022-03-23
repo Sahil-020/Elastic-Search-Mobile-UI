@@ -1,0 +1,92 @@
+.basket_preview .detail-layout .basket_preview_form_details {
+  padding: 10px 0 0 0; }
+  .basket_preview .detail-layout .basket_preview_form_details table tr {
+    padding-bottom: 8px; }
+    .basket_preview .detail-layout .basket_preview_form_details table tr td {
+      font-size: 15px; }
+      @media (max-width: 767px) {
+        .basket_preview .detail-layout .basket_preview_form_details table tr td {
+          font-size: 13px; } }
+    .basket_preview .detail-layout .basket_preview_form_details table tr td:nth-child(2) {
+      padding-left: 5px; }
+
+.basket_preview .detail-layout h4 {
+  font-size: 17px;
+  margin: 20px 0 0 0; }
+
+.basket_preview .detail-layout .basket_preview_items .items {
+  border-bottom: black solid 1px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px; }
+  .basket_preview .detail-layout .basket_preview_items .items table.item_header {
+    width: 100%; }
+    .basket_preview .detail-layout .basket_preview_items .items table.item_header tbody tr td {
+      padding-left: 5px; }
+      .basket_preview .detail-layout .basket_preview_items .items table.item_header tbody tr td pre {
+        border: none !important;
+        background-color: white !important;
+        padding: 0;
+        font-size: 13px; }
+        @media (max-width: 767px) {
+          .basket_preview .detail-layout .basket_preview_items .items table.item_header tbody tr td pre {
+            font-size: 11px; } }
+    .basket_preview .detail-layout .basket_preview_items .items table.item_header tbody tr td:first-child {
+      width: 40%; }
+    .basket_preview .detail-layout .basket_preview_items .items table.item_header tbody tr td:nth-child(2) {
+      width: 50%; }
+    .basket_preview .detail-layout .basket_preview_items .items table.item_header tbody tr td:nth-child(3) {
+      width: 10%; }
+  .basket_preview .detail-layout .basket_preview_items .items .item_description .item_image {
+    width: 15%;
+    display: inline-block;
+    background-color: #fff;
+    vertical-align: top;
+    height: 60px; }
+    @media (max-width: 767px) {
+      .basket_preview .detail-layout .basket_preview_items .items .item_description .item_image {
+        font-size: 12px; } }
+    .basket_preview .detail-layout .basket_preview_items .items .item_description .item_image .product-thumbnail {
+      max-width: 100%;
+      max-height: 100%;
+      height: 100%;
+      vertical-align: baseline !important; }
+    .basket_preview .detail-layout .basket_preview_items .items .item_description .item_image .dia-image-icon {
+      min-width: 100%;
+      min-height: 100%;
+      max-height: 100%;
+      margin-top: 0;
+      margin-bottom: 0;
+      vertical-align: baseline !important; }
+    .basket_preview .detail-layout .basket_preview_items .items .item_description .item_image .product-image-icon {
+      max-width: 100%;
+      max-height: 100%;
+      margin-top: 0;
+      vertical-align: baseline !important; }
+  .basket_preview .detail-layout .basket_preview_items .items .item_description .item_details {
+    width: 68%;
+    display: inline-block;
+    padding-left: 10px;
+    max-height: 100%; }
+    .basket_preview .detail-layout .basket_preview_items .items .item_description .item_details table {
+      width: 100%; }
+      .basket_preview .detail-layout .basket_preview_items .items .item_description .item_details table tbody tr td {
+        font-size: 12px; }
+        @media (max-width: 767px) {
+          .basket_preview .detail-layout .basket_preview_items .items .item_description .item_details table tbody tr td {
+            font-size: 10px; } }
+        .basket_preview .detail-layout .basket_preview_items .items .item_description .item_details table tbody tr td span {
+          font-size: 12px; }
+          @media (max-width: 767px) {
+            .basket_preview .detail-layout .basket_preview_items .items .item_description .item_details table tbody tr td span {
+              font-size: 10px; } }
+  .basket_preview .detail-layout .basket_preview_items .items .item_description .item_price {
+    width: 17%;
+    display: inline-block; }
+    .basket_preview .detail-layout .basket_preview_items .items .item_description .item_price table {
+      width: 100%; }
+      .basket_preview .detail-layout .basket_preview_items .items .item_description .item_price table tbody tr td {
+        font-size: 12px; }
+        @media (max-width: 767px) {
+          .basket_preview .detail-layout .basket_preview_items .items .item_description .item_price table tbody tr td {
+            font-size: 10px; } }

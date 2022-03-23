@@ -14,13 +14,16 @@ import {
   setToken,
   setBasketFormInput,
   toggleLoader,
-} from "./../actions/index";
+} from "../actions/index";
 import HandleView from "../OtherComponents/HandleView";
 import GetAuthToken from "../Api/Authenticate";
 import {
   AppbaseBasketApp,
   appbaseBasketUrl,
   basketApikey,
+  basketBaseUrl,
+  ApiBaseUrl,
+  ApiKey,
 } from "../../utils/constants";
 import axios from "axios";
 import $ from "jquery";
@@ -34,7 +37,9 @@ import Clear from "../../assets/icons/Clear.png";
 import Reset from "../../assets/icons/Clear.png";
 import BasketOptions from "./BasketOptions";
 import BasketSelectModal from "./BasketSelectModal";
-
+import PreviewEmailModal from "./PDF/PreviewEmailModal";
+import PDFModal from "./PDF/PDFModal";
+import ChooseLayoutModal from "./ChooseLayoutModal";
 const mapStateToProps = (state) => {
   return {
     items: state.cartActions.items,
@@ -61,12 +66,40 @@ class Basket extends Component {
       basketToOpen: "",
       allBasketDetails: [],
       selectModalType: "",
+      showAccuExportModal: false,
+      showPreviewModal: false,
+      showPDFModal: false,
+      showChooseLayout: false,
+      showExportModal: false,
+      layoutType: "",
+      coverType: "NoCover",
+      includeGIA: "No",
+      goto: "",
+
+      accuExportLink: "",
+      csvData: "",
+      csvRenderData: [],
     };
     this.handleView = this.handleView.bind(this);
     this.handleShowBasketForm = this.handleShowBasketForm.bind(this);
     this.handleShowBasketSelect = this.handleShowBasketSelect.bind(this);
     this.handleSave = this.handleSave.bind(this);
     this.handleSelectModalType = this.handleSelectModalType.bind(this);
+    // this.showExportModal = this.showExportModal.bind(this);
+    // this.hideExportModal = this.hideExportModal.bind(this);
+    this.showPreviewModal = this.showPreviewModal.bind(this);
+    this.hidePreviewModal = this.hidePreviewModal.bind(this);
+    this.showChooseLayout = this.showChooseLayout.bind(this);
+    this.handleCsvData = this.handleCsvData.bind(this);
+    this.handleCsvRenderData = this.handleCsvRenderData.bind(this);
+    this.showPDFModal = this.showPDFModal.bind(this);
+    this.hidePDFModal = this.hidePDFModal.bind(this);
+    this.handleSetCover = this.handleSetCover.bind(this);
+    this.handleSetLayout = this.handleSetLayout.bind(this);
+    this.handleIncludeGIA = this.handleIncludeGIA.bind(this);
+    this.handleEmail = this.handleEmail.bind(this);
+    this.handlePrint = this.handlePrint.bind(this);
+    this.getContactEmail = this.getContactEmail;
   }
 
   async componentDidMount() {
@@ -78,6 +111,64 @@ class Basket extends Component {
     this.props.setToken(token.access_token);
     // }
     // } else token = this.props.tokenState.token;
+  }
+
+  handleSetCover(cover) {
+    // console.log("layout: ", layout);
+    this.setState({ coverType: cover });
+  }
+
+  handleSetLayout(layout) {
+    // console.log("layout: ", layout);
+    this.setState({ layoutType: layout });
+  }
+
+  showPDFModal() {
+    this.setState({
+      showPDFModal: true,
+    });
+  }
+  hidePDFModal() {
+    this.setState({
+      showPDFModal: false,
+    });
+  }
+
+  handleCsvRenderData(value) {
+    this.setState({ csvRenderData: value });
+  }
+
+  handleCsvData(value) {
+    this.setState({ csvData: value });
+  }
+  handleIncludeGIA(value) {
+    this.setState({ includeGIA: value });
+  }
+
+  showChooseLayout(value) {
+    this.setState({
+      showChooseLayout: true,
+      goto: value,
+    });
+  }
+
+  showPreviewModal() {
+    this.setState({
+      showPreviewModal: true,
+    });
+  }
+  hidePreviewModal() {
+    this.setState({
+      showPreviewModal: false,
+    });
+  }
+
+  showAccuExportModal(link) {
+    this.setState({ showAccuExportModal: true, accuExportLink: link });
+  }
+
+  hideAccuExportModal() {
+    this.setState({ showAccuExportModal: false });
   }
 
   handleSelectModalType(value) {
@@ -131,6 +222,158 @@ class Basket extends Component {
       document.getElementById("ES_Results_Baskets").className =
         "List_result_container";
     }
+  }
+
+  async getContactEmail() {
+    var custobj = this.props.basketInputObj.customer;
+    var contobj = this.props.basketInputObj.contact;
+    // console.log("Customer details: ", custobj, "\nContact details: ", contobj);
+    if (custobj && custobj.CustomerId && contobj && contobj.DisplayName) {
+      var token = this.props.tokenState.token;
+      var custId;
+      if (custobj.CustomerId) {
+        custId = custobj.CustomerId;
+      } else {
+        custId = null;
+      }
+      var payload = {
+        data: {
+          defaults: {
+            baseURL: basketBaseUrl,
+            token: token,
+          },
+          inputs: {
+            CustomerID: { value: custId },
+            Contact: { value: contobj.DisplayName },
+          },
+        },
+      };
+      var response = await axios
+        .post(ApiBaseUrl + "contact", payload, {
+          headers: {
+            "x-api-key": ApiKey,
+          },
+        })
+        .then((res) => {
+          // console.log("resp : ", res);
+          // return JSON.parse(res.data.body);
+          return res;
+        })
+        .catch((err) => {
+          // console.log("error : ", err);
+          console.log("Contact error.");
+          this.props.toggleLoader({
+            isLoading: false,
+          });
+          return;
+        });
+      if (
+        response &&
+        response.data &&
+        response.data.statusCode === 200 &&
+        JSON.parse(JSON.parse(response.data.body).Contacts.value)
+      ) {
+        console.log("Contact found");
+        // console.log(
+        //   "Contact Response: ",
+        //   JSON.parse(JSON.parse(response.data.body).Contacts.value)
+        // );
+        let contDetails = JSON.parse(
+          JSON.parse(response.data.body).Contacts.value
+        );
+        for (let i = 0; i < contDetails.length; i++) {
+          if (contDetails[i].ContactId === contobj.ContactId) {
+            this.props.setBasketFormInput({ contact: contDetails[i] });
+          }
+        }
+        // console.log("Basket form data: ", this.props.basketInputObj);
+      } else if (JSON.parse(response.data.body).errorCode === 401) {
+        // window.alert("Conatct error.");
+        console.log("Contact Error");
+        // console.log("contact error: ", JSON.parse(response.data.body));
+        return;
+      }
+    } else {
+      console.log("Customer or contact empty.");
+    }
+  }
+
+  async handleEmail() {
+    // if (
+    //   this.props.basketInputObj.orderNbr &&
+    //   this.props.basketInputObj.orderNbr !== "New"
+    // ) {
+    if (
+      (this.props.selectedItems && !this.props.selectedItems.length) ||
+      !this.props.items.length
+    ) {
+      toast.error("There are no items selected in the basket.", {
+        // position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+        pauseOnHover: false,
+        theme: "colored",
+      });
+      return;
+    }
+    this.props.toggleLoader({
+      isLoading: true,
+    });
+    // await this.getUserEmail();
+    await this.getContactEmail();
+    this.props.setBasketFormInput({
+      includePrice: false,
+      includeRetail: false,
+      includeWholesale: false,
+    });
+    this.props.setBasketFormInput({
+      includeLinks: "No",
+    });
+    this.handleSetCover("NoCover");
+    this.handleIncludeGIA("No");
+    // this.handleBasketChange("Email");
+    this.props.toggleLoader({
+      isLoading: false,
+    });
+    this.showChooseLayout("Email");
+
+    // } else {
+    //   window.alert("Please select a basket first");
+    // }
+  }
+
+  handlePrint() {
+    // if (
+    //   this.props.basketInputObj.orderNbr &&
+    //   this.props.basketInputObj.orderNbr !== "New"
+    // ) {
+    // this.handleBasketChange("Print");
+    if (
+      (this.props.selectedItems && !this.props.selectedItems.length) ||
+      !this.props.items.length
+    ) {
+      toast.error("There are no items selected in the basket.", {
+        // position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+        pauseOnHover: false,
+        theme: "colored",
+      });
+      return;
+    }
+    this.props.setBasketFormInput({
+      includePrice: false,
+      includeRetail: false,
+      includeWholesale: false,
+    });
+    this.props.setBasketFormInput({
+      includeLinks: "No",
+    });
+    this.handleSetCover("NoCover");
+    this.handleIncludeGIA("No");
+    this.showChooseLayout("Print");
+
+    // } else {
+    //   window.alert("Please select a basket first");
+    // }
   }
 
   async handleSave(type) {
@@ -476,10 +719,10 @@ class Basket extends Component {
           </div>
           <div className="basket_primary_action_container">
             <button>
-              <img src={Print}></img>
+              <img src={Print} onClick={this.handlePrint}></img>
             </button>
             <button>
-              <img src={Email}></img>
+              <img src={Email} onClick={this.handleEmail}></img>
             </button>
             <button onClick={() => this.handleOpenBasketForm(true)}>
               <img src={Save}></img> Save
@@ -504,6 +747,50 @@ class Basket extends Component {
           handleSelectModalType={this.handleSelectModalType}
           selectModalType={this.state.selectModalType}
         />
+        <PreviewEmailModal
+          show={this.state.showPreviewModal}
+          hide={this.hidePreviewModal}
+          layoutType={this.state.layoutType}
+          coverType={this.state.coverType}
+          showChooseLayout={this.showChooseLayout}
+          selectedItems={this.state.selectedItems}
+          includeGIA={this.state.includeGIA}
+          csvData={this.state.csvData}
+          csvRenderData={this.state.csvRenderData}
+          handleCsvData={this.handleCsvData}
+          handleCsvRenderData={this.handleCsvRenderData}
+        />
+        <PDFModal
+          show={this.state.showPDFModal}
+          hide={this.hidePDFModal}
+          layoutType={this.state.layoutType}
+          coverType={this.state.coverType}
+          showChooseLayout={this.showChooseLayout}
+          selectedItems={this.state.selectedItems}
+          includeGIA={this.state.includeGIA}
+        />
+        <ChooseLayoutModal
+          show={this.state.showChooseLayout}
+          hide={this.hideChooseLayout}
+          setLayout={this.handleSetLayout}
+          setCover={this.handleSetCover}
+          showPreviewModal={this.showPreviewModal}
+          showPDFModal={this.showPDFModal}
+          goto={this.state.goto}
+          showChooseLayout={this.showChooseLayout}
+          coverType={this.state.coverType}
+          includeGIA={this.state.includeGIA}
+          handleIncludeGIA={this.handleIncludeGIA}
+          selectedItems={this.state.selectedItems}
+        />
+        {/* <ChooseExportModal
+          show={this.state.showExportModal}
+          hide={this.hideExportModal}
+          // selectedItems={this.state.selectedItems}
+          showPreviewModal={this.showPreviewModal}
+          handleCsvData={this.handleCsvData}
+          handleCsvRenderData={this.handleCsvRenderData}
+        /> */}
       </>
     );
   }

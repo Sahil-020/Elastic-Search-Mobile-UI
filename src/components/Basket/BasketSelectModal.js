@@ -942,7 +942,7 @@ class BasketSelectModal extends Component {
               />
               <button
                 onClick={() => {
-                  selectModalType === "open"
+                  selectModalType === "Open"
                     ? this.handleOpen()
                     : this.handleSaveAs();
                 }}

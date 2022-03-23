@@ -1,0 +1,24 @@
+.kwiat_cover {
+  height: 11in; }
+  .kwiat_cover .kwiat_cover_logo {
+    text-align: center;
+    margin-bottom: 40px; }
+    .kwiat_cover .kwiat_cover_logo img {
+      vertical-align: middle;
+      max-width: 30%; }
+  .kwiat_cover .kwiat_cover_desc {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold; }
+  .kwiat_cover .kwiat_cover_image {
+    text-align: center;
+    height: 45%;
+    margin-top: 20px; }
+    .kwiat_cover .kwiat_cover_image img {
+      max-width: 100%;
+      max-height: 100%; }
+  .kwiat_cover .kwiat_cover_footer {
+    margin-top: 30px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 12px; }

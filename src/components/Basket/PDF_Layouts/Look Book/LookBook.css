@@ -1,0 +1,195 @@
+div .basket_preview .layout_second {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+  div .basket_preview .layout_second .item_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: auto;
+    width: 505px; }
+    @media (max-width: 767px) {
+      div .basket_preview .layout_second .item_container {
+        width: 100%;
+        margin: 0; } }
+    div .basket_preview .layout_second .item_container .item {
+      width: 160px;
+      margin-bottom: 25px !important;
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      font-size: 6px;
+      font-family: Arial, Helvetica, sans-serif;
+      /*          font-weight: 600;*/
+      margin: 2px 4px;
+      text-align: center; }
+      div .basket_preview .layout_second .item_container .item .item_icon {
+        text-align: center;
+        height: 60%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin-bottom: 7px;
+        padding: 5px; }
+        div .basket_preview .layout_second .item_container .item .item_icon a,
+        div .basket_preview .layout_second .item_container .item .item_icon img {
+          height: 100%;
+          max-width: 100%;
+          margin: auto; }
+      div .basket_preview .layout_second .item_container .item .item_serial_description,
+      div .basket_preview .layout_second .item_container .item .item_daimond_description {
+        width: 100%;
+        /*            padding: 0px 1px;*/
+        font-size: 7px;
+        font-weight: 700;
+        /*            line-height: 1.5em;*/
+        min-height: 2em;
+        white-space: break-spaces;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        margin-bottom: 2px;
+        padding: 0px 0px 2px 0px;
+        box-sizing: content-box; }
+      div .basket_preview .layout_second .item_container .item .item_serial_style_no {
+        width: 100%;
+        padding: 1px; }
+      div .basket_preview .layout_second .item_container .item .item_metal {
+        width: 100%;
+        padding: 1px; }
+      div .basket_preview .layout_second .item_container .item .item_internal_note {
+        width: 100%;
+        padding: 1px; }
+      div .basket_preview .layout_second .item_container .item .stone_details {
+        width: 100%;
+        padding: 1px; }
+      div .basket_preview .layout_second .item_container .item .item_price {
+        width: 100%;
+        padding: 1px;
+        font-style: italic; }
+
+div .layout_second_header {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  position: absolute;
+  top: 0.25in;
+  right: 0px;
+  left: 0px;
+  margin: 0px 0.6in;
+  font-family: Arial, Helvetica, sans-serif; }
+
+div .layout_second_footer {
+  border-top: solid #b8b8b8 1px;
+  text-align: center;
+  font-weight: 500;
+  position: absolute;
+  bottom: 0.2in;
+  right: 0px;
+  left: 0px;
+  padding: 6px 0px 4px 0px;
+  margin: 0px 0.6in;
+  height: 5%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 7px;
+  font-family: Arial, Helvetica, sans-serif; }
+  div .layout_second_footer span:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around; }
+  div .layout_second_footer span:nth-child(2) {
+    width: 50%;
+    padding-top: 10px !important;
+    font-size: 6px; }
+  div .layout_second_footer .kwiat {
+    max-width: 40px; }
+  div .layout_second_footer .fred {
+    max-width: 150px !important; }
+  div .layout_second_footer .kwfl {
+    max-width: 100px !important; }
+  div .layout_second_footer .bridal {
+    max-width: 40px !important; }
+  div .layout_second_footer img {
+    margin-bottom: 4px; }
+
+.email_body_items {
+  padding: 40px 0px 0px; }
+  .email_body_items .item_container {
+    /* flex-direction: row; */
+    /* flex-wrap: wrap; */
+    /* align-items: center; */
+    /* justify-content: flex-start; */
+    margin: auto;
+    width: 505px;
+    text-align: center; }
+    @media (max-width: 767px) {
+      .email_body_items .item_container {
+        width: 100%;
+        margin: 0; } }
+    .email_body_items .item_container .item {
+      width: 160px;
+      margin-bottom: 25px !important;
+      height: 200px;
+      /* display: flex; */
+      /* flex-direction: column; */
+      /* align-items: center; */
+      /* justify-content: flex-start; */
+      font-size: 6px;
+      font-family: Arial, Helvetica, sans-serif;
+      /* font-weight: 600; */
+      /* margin: 2
+    px
+     4
+    px
+    ; */
+      text-align: center;
+      margin: auto; }
+      .email_body_items .item_container .item .item_icon {
+        text-align: center;
+        height: 60%;
+        width: 70%;
+        display: flex;
+        align-items: center;
+        margin-bottom: 7px;
+        padding: 5px; }
+        .email_body_items .item_container .item .item_icon a,
+        .email_body_items .item_container .item .item_icon img {
+          height: 100%;
+          max-width: 100%;
+          margin: auto; }
+      .email_body_items .item_container .item .item_serial_description {
+        width: 100%;
+        /*            padding: 0px 1px;*/
+        font-size: 7px;
+        font-weight: bold;
+        /*            line-height: 1.5em;*/
+        /*            max-height: 3em;*/
+        white-space: break-spaces;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        margin-bottom: 3px;
+        margin-top: 3px; }
+      .email_body_items .item_container .item .item_serial_style_no {
+        width: 100%;
+        padding: 1px; }
+      .email_body_items .item_container .item .item_metal {
+        width: 100%;
+        padding: 1px; }
+      .email_body_items .item_container .item .item_internal_note {
+        width: 100%;
+        padding: 1px; }
+      .email_body_items .item_container .item .stone_details {
+        width: 100%;
+        padding: 1px; }
+      .email_body_items .item_container .item .item_price {
+        width: 100%;
+        padding: 1px;
+        font-style: italic; }

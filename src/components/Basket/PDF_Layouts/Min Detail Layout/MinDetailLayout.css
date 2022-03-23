@@ -1,0 +1,63 @@
+.basket_preview .min-detail {
+  padding: 10px; }
+  .basket_preview .min-detail .basket_preview_form_details {
+    padding: 10px 0 0 0; }
+    .basket_preview .min-detail .basket_preview_form_details table tr {
+      padding-bottom: 8px; }
+      .basket_preview .min-detail .basket_preview_form_details table tr td {
+        font-size: 15px; }
+      .basket_preview .min-detail .basket_preview_form_details table tr td:nth-child(2) {
+        padding-left: 5px; }
+  .basket_preview .min-detail h4 {
+    font-size: 17px;
+    margin: 20px 0 0 0; }
+  .basket_preview .min-detail .basket_preview_items .items {
+    border-bottom: black solid 1px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    display: flex;
+    align-items: initial;
+    justify-content: flex-start; }
+    .basket_preview .min-detail .basket_preview_items .items .item_image {
+      width: 25%;
+      display: inline-block;
+      background-color: #fff;
+      height: 100px; }
+      .basket_preview .min-detail .basket_preview_items .items .item_image .product-thumbnail {
+        max-width: 100%;
+        max-height: 100%;
+        min-height: 100%;
+        vertical-align: baseline !important; }
+      .basket_preview .min-detail .basket_preview_items .items .item_image .dia-image-icon {
+        min-width: 100%;
+        min-height: 100%;
+        max-height: 100%;
+        margin-top: 0;
+        margin-bottom: 0;
+        vertical-align: baseline !important; }
+      .basket_preview .min-detail .basket_preview_items .items .item_image .product-image-icon {
+        max-width: 100%;
+        max-height: 100%;
+        margin-top: 0;
+        vertical-align: baseline !important; }
+    .basket_preview .min-detail .basket_preview_items .items table.item_header {
+      width: 65%;
+      margin-left: 5px; }
+      .basket_preview .min-detail .basket_preview_items .items table.item_header tbody tr td {
+        padding-left: 5px;
+        vertical-align: initial; }
+        .basket_preview .min-detail .basket_preview_items .items table.item_header tbody tr td pre {
+          border: none !important;
+          background-color: white !important;
+          padding: 0;
+          font-size: 12px; }
+          @media (max-width: 767px) {
+            .basket_preview .min-detail .basket_preview_items .items table.item_header tbody tr td pre {
+              font-size: 12px; } }
+      .basket_preview .min-detail .basket_preview_items .items table.item_header tbody tr td:first-child {
+        width: 40%; }
+      .basket_preview .min-detail .basket_preview_items .items table.item_header tbody tr td:nth-child(2) {
+        width: 50%; }
+      .basket_preview .min-detail .basket_preview_items .items table.item_header tbody tr td:nth-child(3) {
+        width: 10%; }

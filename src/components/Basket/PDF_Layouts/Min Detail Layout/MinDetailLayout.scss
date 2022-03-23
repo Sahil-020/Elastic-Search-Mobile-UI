@@ -1,0 +1,101 @@
+.basket_preview {
+  .min-detail {
+    padding: 10px;
+    .basket_preview_form_details {
+      padding: 10px 0 0 0;
+      table {
+        tr {
+          padding-bottom: 8px;
+          td {
+            font-size: 15px;
+          }
+          td:nth-child(2) {
+            padding-left: 5px;
+          }
+        }
+      }
+    }
+    h4 {
+      font-size: 17px;
+      margin: 20px 0 0 0;
+    }
+
+    .basket_preview_items {
+      .items {
+        border-bottom: black solid 1px;
+        // height: 150px;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        display: flex;
+        align-items: initial;
+        justify-content: flex-start;
+        .item_image {
+          width: 25%;
+          display: inline-block;
+          // align-items: center;
+          // padding: 10px;
+          background-color: #fff;
+          height: 100px;
+          // text-align: center;
+          .product-thumbnail {
+            max-width: 100%;
+            max-height: 100%;
+            min-height: 100%;
+            // height: 150px;
+            // width: 100%;
+            vertical-align: baseline !important;
+          }
+          .dia-image-icon {
+            min-width: 100%;
+            min-height: 100%;
+            max-height: 100%;
+            // height: 150px;
+            // width: 100%;
+            margin-top: 0;
+            margin-bottom: 0;
+            vertical-align: baseline !important;
+          }
+          .product-image-icon {
+            max-width: 100%;
+            max-height: 100%;
+            // height: 150px;
+            // width: 100%;
+            margin-top: 0;
+            vertical-align: baseline !important;
+          }
+        }
+        table.item_header {
+          width: 65%;
+          margin-left: 5px;
+          tbody {
+            tr {
+              td {
+                padding-left: 5px;
+                vertical-align: initial;
+                pre {
+                  border: none !important;
+                  background-color: white !important;
+                  padding: 0;
+                  font-size: 12px;
+                  @media (max-width: 767px) {
+                    font-size: 12px;
+                  }
+                }
+              }
+              td:first-child {
+                width: 40%;
+              }
+              td:nth-child(2) {
+                width: 50%;
+              }
+              td:nth-child(3) {
+                width: 10%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
