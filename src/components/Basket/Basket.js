@@ -231,8 +231,8 @@ class Basket extends Component {
   }
 
   async getContactEmail() {
-    var custobj = this.props.basketInputObj.customer;
-    var contobj = this.props.basketInputObj.contact;
+    var custobj = this.props.basketForm.customer;
+    var contobj = this.props.basketForm.contact;
     // console.log("Customer details: ", custobj, "\nContact details: ", contobj);
     if (custobj && custobj.CustomerId && contobj && contobj.DisplayName) {
       var token = this.props.tokenState.token;

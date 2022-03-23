@@ -1725,7 +1725,7 @@ class PreviewEmailModal extends Component {
             </div> */}
             </div>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body id="preview-modal">
             {/* <h4>Email Details:</h4> */}
             <div className="basket__input__wrapper">
               <div className="basket__input">

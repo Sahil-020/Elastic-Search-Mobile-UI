@@ -135,10 +135,8 @@ class PDFModal extends Component {
                         "https://cdn4.kwiat.com/apps/kwiat-elastic-search/icons/KW-FL-Combined-Logos-Short-1000px.png",
                       Kwiat:
                         "https://cdn4.kwiat.com/source-images/web/logos/kwiat.jpg",
-                      Fred:
-                        "https://cdn4.kwiat.com/source-images/web/logos/fredleighton.jpg",
-                      KWFL:
-                        "https://cdn4.kwiat.com/apps/kwiat-elastic-search/icons/KW-FL-Combined-Logos-Short-1000px.png",
+                      Fred: "https://cdn4.kwiat.com/source-images/web/logos/fredleighton.jpg",
+                      KWFL: "https://cdn4.kwiat.com/apps/kwiat-elastic-search/icons/KW-FL-Combined-Logos-Short-1000px.png",
                       Bridal:
                         "https://cdn4.kwiat.com/source-images/web/logos/kwiat.jpg",
                     }[this.props.coverType]
@@ -471,7 +469,7 @@ class PDFModal extends Component {
         // className="preview-details-modal"
         aria-labelledby="contained-modal-title-vcenter"
         backdrop="static"
-        id="preview-modal"
+        // id="preview-modal"
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
@@ -586,7 +584,7 @@ class PDFModal extends Component {
             </div>
           </div>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body id="preview-modal">
           {/* {layoutType === "LookBook" ? (
             <div className="layout_second_header_preview">
               {this.props.basketInputObj.desc}
@@ -751,10 +749,8 @@ class PDFModal extends Component {
                         "https://cdn4.kwiat.com/apps/kwiat-elastic-search/icons/KW-FL-Combined-Logos-Short-1000px.png",
                       Kwiat:
                         "https://cdn4.kwiat.com/source-images/web/logos/kwiat.jpg",
-                      Fred:
-                        "https://cdn4.kwiat.com/source-images/web/logos/fredleighton.jpg",
-                      KWFL:
-                        "https://cdn4.kwiat.com/apps/kwiat-elastic-search/icons/KW-FL-Combined-Logos-Short-1000px.png",
+                      Fred: "https://cdn4.kwiat.com/source-images/web/logos/fredleighton.jpg",
+                      KWFL: "https://cdn4.kwiat.com/apps/kwiat-elastic-search/icons/KW-FL-Combined-Logos-Short-1000px.png",
                       Bridal:
                         "https://cdn4.kwiat.com/source-images/web/logos/kwiat.jpg",
                     }[this.props.coverType]

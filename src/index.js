@@ -8,6 +8,9 @@ import store, { history } from "./configureStore";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/js/bootstrap.min.js";
 import "bootstrap/dist/css/bootstrap.css";
+import "react-multi-email/style.css";
+import "react-quill/dist/quill.snow.css";
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
