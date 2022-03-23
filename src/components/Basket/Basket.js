@@ -724,11 +724,11 @@ class Basket extends Component {
             </div>
           </div>
           <div className="basket_primary_action_container">
-            <button>
-              <img src={Print} onClick={this.handlePrint}></img>
+            <button onClick={this.handlePrint}>
+              <img src={Print}></img>
             </button>
-            <button>
-              <img src={Email} onClick={this.handleEmail}></img>
+            <button onClick={this.handleEmail}>
+              <img src={Email}></img>
             </button>
             <button onClick={() => this.handleOpenBasketForm(true)}>
               <img src={Save}></img> Save
