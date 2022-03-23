@@ -90,6 +90,7 @@ class Basket extends Component {
     this.showPreviewModal = this.showPreviewModal.bind(this);
     this.hidePreviewModal = this.hidePreviewModal.bind(this);
     this.showChooseLayout = this.showChooseLayout.bind(this);
+    this.hideChooseLayout = this.hideChooseLayout.bind(this);
     this.handleCsvData = this.handleCsvData.bind(this);
     this.handleCsvRenderData = this.handleCsvRenderData.bind(this);
     this.showPDFModal = this.showPDFModal.bind(this);
@@ -149,6 +150,11 @@ class Basket extends Component {
     this.setState({
       showChooseLayout: true,
       goto: value,
+    });
+  }
+  hideChooseLayout() {
+    this.setState({
+      showChooseLayout: false,
     });
   }
 

@@ -3493,6 +3493,9 @@ $Dark_Red_Color: #aa0707;
                     flex-direction: row;
                     align-items: center;
                     flex-wrap: wrap;
+                    h4 {
+                        width: 100%;
+                    }
                     // justify-content: center;
                     .links__toggle,
                     .gia__toggle {
@@ -3500,6 +3503,7 @@ $Dark_Red_Color: #aa0707;
                         display: flex;
                         align-items: center;
                         font-size: 13px;
+
                         input[type="radio"] {
                             margin: 2px 6px 0px 10px;
                             width: 13px;
@@ -3513,6 +3517,10 @@ $Dark_Red_Color: #aa0707;
                             margin: 0px;
                             cursor: pointer;
                             color: #808b96;
+                        }
+                        #linksChoice1,
+                        #giaChoice1 {
+                            margin: 2px 6px 0px 0px !important;
                         }
                     }
                 }
