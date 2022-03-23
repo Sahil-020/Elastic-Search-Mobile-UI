@@ -321,9 +321,9 @@ class Basket extends Component {
       });
       return;
     }
-    this.props.toggleLoader({
-      isLoading: true,
-    });
+    // this.props.toggleLoader({
+    //   isLoading: true,
+    // });
     // await this.getUserEmail();
     await this.getContactEmail();
     this.props.setBasketFormInput({
@@ -337,9 +337,9 @@ class Basket extends Component {
     this.handleSetCover("NoCover");
     this.handleIncludeGIA("No");
     // this.handleBasketChange("Email");
-    this.props.toggleLoader({
-      isLoading: false,
-    });
+    // this.props.toggleLoader({
+    //   isLoading: false,
+    // });
     this.showChooseLayout("Email");
 
     // } else {
