@@ -3500,6 +3500,7 @@ $Dark_Red_Color: #aa0707;
                     .links__toggle,
                     .gia__toggle {
                         // margin-top: 5px;
+                        width: 100%;
                         display: flex;
                         align-items: center;
                         font-size: 13px;
@@ -3519,7 +3520,8 @@ $Dark_Red_Color: #aa0707;
                             color: #808b96;
                         }
                         #linksChoice1,
-                        #giaChoice1 {
+                        #linksChoice2,
+                        #linksChoice3 #giaChoice1 {
                             margin: 2px 6px 0px 0px !important;
                         }
                     }
