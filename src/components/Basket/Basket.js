@@ -14,6 +14,7 @@ import {
   setToken,
   setBasketFormInput,
   toggleLoader,
+  toggleBasket,
 } from "../actions/index";
 import HandleView from "../OtherComponents/HandleView";
 import GetAuthToken from "../Api/Authenticate";
@@ -713,7 +714,11 @@ class Basket extends Component {
     // let { allBaskets, items } = this.state;
     return (
       <>
-        <div className="basket_container" id="basket">
+        <div
+          className="basket_container"
+          id="basket"
+          onTouchMove={() => this.props.toggleBasket({ show: false })}
+        >
           <div className="basket_no_container">
             <label>{basketForm.orderNbr}</label>
             <button onClick={() => resetStates()}>
@@ -825,7 +830,14 @@ class Basket extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
-    { removeFromCart, setToken, setBasketFormInput, toggleLoader, resetStates },
+    {
+      removeFromCart,
+      setToken,
+      setBasketFormInput,
+      toggleLoader,
+      resetStates,
+      toggleBasket,
+    },
     dispatch
   );
 };
