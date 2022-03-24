@@ -717,7 +717,7 @@ class Basket extends Component {
         <div
           className="basket_container"
           id="basket"
-          onTouchMove={() => this.props.toggleBasket({ show: false })}
+          // onTouchMove={() => this.props.toggleBasket({ show: false })}
         >
           <div className="basket_no_container">
             <label>{basketForm.orderNbr}</label>
