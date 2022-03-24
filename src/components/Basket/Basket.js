@@ -82,6 +82,8 @@ class Basket extends Component {
       accuExportLink: "",
       csvData: "",
       csvRenderData: [],
+      touchStart: "",
+      touchEnd: "",
     };
     this.handleView = this.handleView.bind(this);
     this.handleShowBasketForm = this.handleShowBasketForm.bind(this);
@@ -702,6 +704,7 @@ class Basket extends Component {
   }
 
   render() {
+    let { touchStart, touchEnd } = this.state;
     let {
       items,
       isValueEmpty,
@@ -717,7 +720,17 @@ class Basket extends Component {
         <div
           className="basket_container"
           id="basket"
-          // onTouchMove={() => this.props.toggleBasket({ show: false })}
+          onTouchStart={(e) =>
+            this.setState({ touchStart: e.targetTouches[0].clientX })
+          }
+          onTouchMove={(e) =>
+            this.setState({ touchEnd: e.targetTouches[0].clientX })
+          }
+          onTouchEnd={() => {
+            if (touchStart - touchEnd > 150) {
+              this.props.toggleBasket({ show: false });
+            }
+          }}
         >
           <div className="basket_no_container">
             <label>{basketForm.orderNbr}</label>
