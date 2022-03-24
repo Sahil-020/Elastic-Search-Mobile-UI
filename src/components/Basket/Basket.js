@@ -40,6 +40,7 @@ import BasketSelectModal from "./BasketSelectModal";
 import PreviewEmailModal from "./PDF/PreviewEmailModal";
 import PDFModal from "./PDF/PDFModal";
 import ChooseLayoutModal from "./ChooseLayoutModal";
+import ChooseExportModal from "./Export/ChooseExportModal";
 const mapStateToProps = (state) => {
   return {
     items: state.cartActions.items,
@@ -86,8 +87,8 @@ class Basket extends Component {
     this.handleShowBasketSelect = this.handleShowBasketSelect.bind(this);
     this.handleSave = this.handleSave.bind(this);
     this.handleSelectModalType = this.handleSelectModalType.bind(this);
-    // this.showExportModal = this.showExportModal.bind(this);
-    // this.hideExportModal = this.hideExportModal.bind(this);
+    this.showExportModal = this.showExportModal.bind(this);
+    this.hideExportModal = this.hideExportModal.bind(this);
     this.showPreviewModal = this.showPreviewModal.bind(this);
     this.hidePreviewModal = this.hidePreviewModal.bind(this);
     this.showChooseLayout = this.showChooseLayout.bind(this);
@@ -167,6 +168,16 @@ class Basket extends Component {
   hidePreviewModal() {
     this.setState({
       showPreviewModal: false,
+    });
+  }
+  showExportModal() {
+    this.setState({
+      showExportModal: true,
+    });
+  }
+  hideExportModal() {
+    this.setState({
+      showExportModal: false,
     });
   }
 
@@ -746,6 +757,7 @@ class Basket extends Component {
           handleShowBasketOptions={handleShowBasketOptions}
           handleShowBasketSelect={this.handleShowBasketSelect}
           handleSelectModalType={this.handleSelectModalType}
+          showExportModal={this.showExportModal}
         />
         <BasketSelectModal
           show={this.state.showBasketSelect}
@@ -789,6 +801,14 @@ class Basket extends Component {
           includeGIA={this.state.includeGIA}
           handleIncludeGIA={this.handleIncludeGIA}
           selectedItems={this.state.selectedItems}
+        />
+        <ChooseExportModal
+          show={this.state.showExportModal}
+          hide={this.hideExportModal}
+          // selectedItems={this.state.selectedItems}
+          showPreviewModal={this.showPreviewModal}
+          handleCsvData={this.handleCsvData}
+          handleCsvRenderData={this.handleCsvRenderData}
         />
         {/* <ChooseExportModal
           show={this.state.showExportModal}

@@ -623,7 +623,12 @@ class BasketOptions extends Component {
   }
 
   render() {
-    let { show, handleShowBasketSelect, handleSelectModalType } = this.props;
+    let {
+      show,
+      handleShowBasketSelect,
+      handleSelectModalType,
+      showExportModal,
+    } = this.props;
     let { allBaskets, myBaskets, allMyBaskets, allMyBasketsSaveExisting } =
       this.state;
     return (
@@ -666,7 +671,7 @@ class BasketOptions extends Component {
               >
                 Clone list
               </li>
-              <li>Export list</li>
+              <li onClick={() => showExportModal()}>Export list</li>
             </ul>
             {/* <Accordion defaultActiveKey="0">
               <Accordion.Item eventKey="0">
