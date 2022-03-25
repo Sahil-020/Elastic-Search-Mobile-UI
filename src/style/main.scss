@@ -1264,8 +1264,11 @@ $Dark_Red_Color: #aa0707;
 }
 .single_item_modal {
     .modal-dialog {
+        margin: 0;
         .modal-content {
             background-color: #f2f4f4 !important;
+            border: none !important;
+            border-radius: 0px;
             .modal-header {
                 padding: 0;
                 border: none;

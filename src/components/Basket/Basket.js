@@ -727,7 +727,7 @@ class Basket extends Component {
             this.setState({ touchEnd: e.targetTouches[0].clientX })
           }
           onTouchEnd={() => {
-            if (touchStart - touchEnd > 75) {
+            if (touchStart - touchEnd > 300) {
               this.props.toggleBasket({ show: false });
             }
           }}
