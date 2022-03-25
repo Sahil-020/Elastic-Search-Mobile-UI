@@ -720,17 +720,17 @@ class Basket extends Component {
         <div
           className="basket_container"
           id="basket"
-          onTouchStart={(e) =>
-            this.setState({ touchStart: e.targetTouches[0].clientX })
-          }
-          onTouchMove={(e) =>
-            this.setState({ touchEnd: e.targetTouches[0].clientX })
-          }
-          onTouchEnd={() => {
-            if (touchStart - touchEnd > 150) {
-              this.props.toggleBasket({ show: false });
-            }
-          }}
+          // onTouchStart={(e) =>
+          //   this.setState({ touchStart: e.targetTouches[0].clientX })
+          // }
+          // onTouchMove={(e) =>
+          //   this.setState({ touchEnd: e.targetTouches[0].clientX })
+          // }
+          // onTouchEnd={() => {
+          //   if (touchStart - touchEnd > 150) {
+          //     this.props.toggleBasket({ show: false });
+          //   }
+          // }}
         >
           <div className="basket_no_container">
             <label>{basketForm.orderNbr}</label>
@@ -740,7 +740,20 @@ class Basket extends Component {
             </button>
           </div>
           <HandleView handleView={this.handleView} items={items} />
-          <div className="es_basket_results">
+          <div
+            className="es_basket_results"
+            onTouchStart={(e) =>
+              this.setState({ touchStart: e.targetTouches[0].clientX })
+            }
+            onTouchMove={(e) =>
+              this.setState({ touchEnd: e.targetTouches[0].clientX })
+            }
+            onTouchEnd={() => {
+              if (touchStart - touchEnd > 150) {
+                this.props.toggleBasket({ show: false });
+              }
+            }}
+          >
             <div
               id="ES_Results_Baskets"
               className="List_result_container"
