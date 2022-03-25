@@ -33,6 +33,8 @@ export default function SingleItem(props) {
   let { id } = useParams();
 
   const { show, item } = useSelector((state) => state.singleViewModal);
+  const [touchStart, setTouchStart] = useState("");
+  const [touchEnd, setTouchEnd] = useState("");
   const showWholesale = useSelector(
     (state) => state.basketInputChange.showWholesale
   );
@@ -337,6 +339,13 @@ export default function SingleItem(props) {
       show={show}
       onHide={() => onModalHide()}
       {...handlers}
+      onTouchStart={(e) => setTouchStart(e.targetTouches[0].clientX)}
+      onTouchMove={(e) => setTouchEnd(e.targetTouches[0].clientX)}
+      onTouchEnd={() => {
+        if (touchStart - touchEnd > 75) {
+          dispatch(toggleSingleView({ show: false, item: {} }));
+        }
+      }}
     >
       <Modal.Header closeButton></Modal.Header>
       <Modal.Body>
