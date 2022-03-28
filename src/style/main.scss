@@ -62,6 +62,10 @@ $Dark_Red_Color: #aa0707;
                     justify-content: flex-end;
                     width: 40%;
                     img {
+                        z-index: 101;
+                        position: fixed;
+                        top: 0;
+                        margin: 18px 10px 0px;
                         height: 22px;
                         width: 22px;
                     }
@@ -139,7 +143,8 @@ $Dark_Red_Color: #aa0707;
             .serial_search_container {
                 display: flex;
                 align-items: center;
-                justify-content: space-around;
+                justify-content: flex-start;
+                column-gap: 15px;
                 .form_field {
                     max-height: 28px;
                     width: 80%;
@@ -188,6 +193,8 @@ $Dark_Red_Color: #aa0707;
                         }
                     }
                 }
+                img {
+                }
                 button {
                     width: 20%;
                     border: none;
@@ -204,6 +211,7 @@ $Dark_Red_Color: #aa0707;
             .show_filters {
                 opacity: 1;
                 // visibility: visible;
+                z-index: 104;
                 height: 100vh;
                 position: absolute;
                 overflow: scroll;
@@ -222,6 +230,9 @@ $Dark_Red_Color: #aa0707;
                     background-color: white;
                     column-gap: 3px;
                     padding: 10px 0px;
+                    position: sticky;
+                    top: 0;
+                    z-index: 10;
                     h4 {
                         font-size: 16px;
                         width: 70%;
@@ -1264,7 +1275,7 @@ $Dark_Red_Color: #aa0707;
 }
 .single_item_modal {
     .modal-dialog {
-        margin: 0;
+        // margin: 0;
         .modal-content {
             background-color: #f2f4f4 !important;
             border: none !important;
@@ -1279,8 +1290,13 @@ $Dark_Red_Color: #aa0707;
                     position: relative;
                     font-size: 12px;
                     padding: 10px;
-                    position: relative;
+                    position: fixed;
+                    top: 50%;
+                    background-color: #efefef;
+                    z-index: 1;
                     margin: 0;
+                    background: "transparent url(data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27%23000%27%3e%3cpath d=%27M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z%27/%3e%3c/svg%3e) center/1.5em auto no-repeat";
+                    opacity: 1;
                 }
             }
             .modal-body {
@@ -1429,7 +1445,7 @@ $Dark_Red_Color: #aa0707;
                                     .accordion-button,
                                     .accordion-button:focus {
                                         padding: 15px 0px;
-                                        font-size: 15px;
+                                        font-size: 14px;
                                         font-weight: 700;
                                         color: #34495e !important;
                                         outline: none !important;
@@ -1437,6 +1453,7 @@ $Dark_Red_Color: #aa0707;
                                         border: none !important ;
                                         box-shadow: none !important;
                                         border-bottom: 1px solid #d0d3d4 !important;
+                                        border-radius: 0px;
                                         // border-top: 1px solid black !important;
                                     }
                                     .accordion-button::after {
@@ -1446,7 +1463,7 @@ $Dark_Red_Color: #aa0707;
                                         transform: none !important;
                                         position: relative;
                                         color: #34495e;
-                                        padding: 0px 4px;
+                                        padding: 0px 6px;
                                         outline: none;
                                         background: #f2f4f4;
                                     }
@@ -1487,11 +1504,11 @@ $Dark_Red_Color: #aa0707;
                                                     }
                                                 }
                                                 td:first-child {
-                                                    width: 45%;
+                                                    width: 55%;
                                                     white-space: nowrap;
                                                 }
                                                 td:nth-child(2) {
-                                                    width: 50%;
+                                                    width: 45%;
                                                 }
                                             }
                                         }

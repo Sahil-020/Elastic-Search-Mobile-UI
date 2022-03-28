@@ -4,7 +4,7 @@ import currencyFormatter from "currency-formatter";
 import { useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleSingleView, addToCart, removeFromCart } from "../actions";
-import SingleItem from "../Basket/SingleItem";
+import SingleItem from "../SingleItemView/SingleItem";
 
 export default function Results(props) {
   let {

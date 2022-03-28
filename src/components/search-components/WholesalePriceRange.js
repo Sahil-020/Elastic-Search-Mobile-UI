@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { RangeInput } from "@appbaseio/reactivesearch";
+import RangeFilterWithSelect from "../HOC_Components/RangeFilterWithSelect";
 
 class WholesalePriceRange extends Component {
   constructor(props) {
@@ -51,4 +52,4 @@ class WholesalePriceRange extends Component {
     );
   }
 }
-export default WholesalePriceRange;
+export default RangeFilterWithSelect(WholesalePriceRange);

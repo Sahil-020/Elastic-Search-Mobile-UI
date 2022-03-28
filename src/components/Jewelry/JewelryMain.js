@@ -64,6 +64,7 @@ import ShowCode from "../OtherComponents/ShowCode";
 import HandleWholesale from "../OtherComponents/HandleWholesale";
 import Options from "../../assets/icons/Options.png";
 import Clear from "../../assets/icons/Clear.png";
+import Filter from "../../assets/icons/Filter.png";
 
 const mapStateToProps = (state) => {
   return {
@@ -83,6 +84,9 @@ class JewelryMain extends Component {
       serialSearchSignal: false,
       rfidSearchSignal: false,
       showBasketOptions: false,
+      selected: "RetailPrice",
+      sort: "asc",
+      sizeLimit: 15,
     };
     // this.clearFilters = this.clearFilters.bind(this)
     this.defaultQuery = this.defaultQuery.bind(this);
@@ -107,12 +111,14 @@ class JewelryMain extends Component {
   }
 
   handleShowFilters(value) {
-    document.getElementById("Search_Filters").className = value;
     if (value === "show_filters") {
+      document.getElementById("Search_Components").style.position = "inherit";
       document.body.style.overflow = "hidden";
     } else {
+      document.getElementById("Search_Components").style.position = "sticky";
       document.body.style.overflow = "auto";
     }
+    document.getElementById("Search_Filters").className = value;
   }
 
   onCheckSelect(value) {
@@ -245,8 +251,15 @@ class JewelryMain extends Component {
   }
 
   render() {
-    let { showFilters, serialSearchSignal, rfidSearchSignal, soldCustSignal } =
-      this.state;
+    let {
+      showFilters,
+      serialSearchSignal,
+      rfidSearchSignal,
+      soldCustSignal,
+      selected,
+      sizeLimit,
+      sort,
+    } = this.state;
     let { basket, toggleBasket } = this.props;
     // console.log();
     let andQuery = [];
@@ -305,17 +318,16 @@ class JewelryMain extends Component {
             url={AppbaseAppUrl}
             credentials={AppbaseCredentials}
           >
-            <div className="search_components_container">
+            <div id="Search_Components" className="search_components_container">
               <div className="serial_search_container">
                 <SerialSearchComponent
                   handleSerialSearchSignal={this.handleSerialSearchSignal}
                 />
-                <button
+                <img
+                  src={Filter}
                   //  onClick={() => this.setState({ showFilters: true })}
                   onClick={() => this.handleShowFilters("show_filters")}
-                >
-                  Filters
-                </button>
+                />
               </div>
               <div className="showcode_container">
                 <ShowCode onCheck={this.onCheckSelect} />
@@ -340,6 +352,7 @@ class JewelryMain extends Component {
                   <button onClick={() => this.handleShowFilters("filters")}>
                     X
                   </button>
+                  {/* <SearchCriteria /> */}
                 </div>
                 <Accordion defaultActiveKey="0">
                   <Accordion.Item eventKey="0">
@@ -408,7 +421,10 @@ class JewelryMain extends Component {
 
             <ReactiveList
               componentId="results"
-              dataField="RetailPrice"
+              // dataField="RetailPrice"
+              dataField={selected}
+              size={sizeLimit}
+              sortBy={sort}
               react={{
                 and: andQuery,
                 // or: andQuery,

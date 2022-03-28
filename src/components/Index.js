@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Header from "./Header";
 import JewelryMain from "./Jewelry/JewelryMain";
 import { Switch, Route, Redirect } from "react-router-dom";
-import SingleItem from "./Basket/SingleItem";
+import SingleItem from "./SingleItemView/SingleItem";
 import DiamondMain from "./Diamond/DiamondMain";
 import GemstoneMain from "./Gemstone/GemstoneMain";
 import ScrollToTop from "react-scroll-to-top";

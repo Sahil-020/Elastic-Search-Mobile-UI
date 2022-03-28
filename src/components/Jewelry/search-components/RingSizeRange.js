@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { RangeInput } from "@appbaseio/reactivesearch";
+import RangeFilterWithSelect from "../../HOC_Components/RangeFilterWithSelect";
 class RingSizeRange extends Component {
   constructor(props) {
     super(props);
@@ -46,4 +47,4 @@ class RingSizeRange extends Component {
     );
   }
 }
-export default RingSizeRange;
+export default RangeFilterWithSelect(RingSizeRange);

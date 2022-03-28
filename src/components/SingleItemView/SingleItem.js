@@ -20,7 +20,7 @@ import Appbase from "appbase-js";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleSingleView, addToCart } from "../actions";
 import { useSwipeable } from "react-swipeable";
-import { FieldData } from "./../OtherComponents/FieldData";
+import { FieldData } from "./FieldData";
 
 export default function SingleItem(props) {
   let {
@@ -339,13 +339,13 @@ export default function SingleItem(props) {
       show={show}
       onHide={() => onModalHide()}
       {...handlers}
-      onTouchStart={(e) => setTouchStart(e.targetTouches[0].clientX)}
-      onTouchMove={(e) => setTouchEnd(e.targetTouches[0].clientX)}
-      onTouchEnd={() => {
-        if (touchStart - touchEnd > 75) {
-          dispatch(toggleSingleView({ show: false, item: {} }));
-        }
-      }}
+      // onTouchStart={(e) => setTouchStart(e.targetTouches[0].clientX)}
+      // onTouchMove={(e) => setTouchEnd(e.targetTouches[0].clientX)}
+      // onTouchEnd={() => {
+      //   if (touchStart - touchEnd > 75) {
+      //     dispatch(toggleSingleView({ show: false, item: {} }));
+      //   }
+      // }}
     >
       <Modal.Header closeButton></Modal.Header>
       <Modal.Body>
@@ -393,10 +393,226 @@ export default function SingleItem(props) {
 
           <div className="single_item_details">
             <Accordion defaultActiveKey="0">
-              <AccordionItem eventKey="0">
-                {/* <h6> */}
+              {Object.keys(FieldData.GeneralData)
+                .map((key, Index) => item[key])
+                .filter((value) => ![undefined, null, ""].includes(value))
+                .length !== 0 ? (
+                <AccordionItem eventKey="1">
+                  <AccordionHeader>GENERAL INFORMATION</AccordionHeader>
+                  <AccordionBody>
+                    <Table>
+                      <tbody>
+                        {Object.keys(FieldData.GeneralData).map(
+                          (key, Index) => {
+                            if (item[key]) {
+                              return (
+                                <tr key={key}>
+                                  <td>
+                                    <li>
+                                      {" "}
+                                      {FieldData.GeneralData[key].label}{" "}
+                                    </li>
+                                  </td>
+                                  <td>{item[key]}</td>
+                                </tr>
+                              );
+                            } else return <></>;
+                          }
+                        )}
+                      </tbody>
+                    </Table>
+                  </AccordionBody>
+                </AccordionItem>
+              ) : (
+                <></>
+              )}
+              {Object.keys(FieldData.Description)
+                .map((key, Index) => item[key])
+                .filter((value) => ![undefined, null, ""].includes(value))
+                .length !== 0 ? (
+                <AccordionItem eventKey="2">
+                  <AccordionHeader>DESCRIPTION</AccordionHeader>
+                  <AccordionBody>
+                    <Table>
+                      <tbody>
+                        {Object.keys(FieldData.Description).map(
+                          (key, Index) => {
+                            if (item[key]) {
+                              return (
+                                <tr key={key}>
+                                  <td>
+                                    <li>
+                                      {" "}
+                                      {FieldData.Description[key].label}{" "}
+                                    </li>
+                                  </td>
+                                  <td>{item[key]}</td>
+                                </tr>
+                              );
+                            } else return <></>;
+                          }
+                        )}
+                      </tbody>
+                    </Table>
+                  </AccordionBody>
+                </AccordionItem>
+              ) : (
+                <></>
+              )}
+              {Object.keys(FieldData.RingDetail)
+                .map((key, Index) => item[key])
+                .filter((value) => ![undefined, null, ""].includes(value))
+                .length !== 0 ? (
+                <AccordionItem eventKey="3">
+                  <AccordionHeader>RING DETAIL</AccordionHeader>
+                  <AccordionBody>
+                    <Table>
+                      <tbody>
+                        {Object.keys(FieldData.RingDetail).map((key, Index) => {
+                          if (item[key]) {
+                            return (
+                              <tr key={key}>
+                                <td>
+                                  <li> {FieldData.RingDetail[key].label} </li>
+                                </td>
+                                <td>{item[key]}</td>
+                              </tr>
+                            );
+                          } else return <></>;
+                        })}
+                      </tbody>
+                    </Table>
+                  </AccordionBody>
+                </AccordionItem>
+              ) : (
+                <></>
+              )}
+              {Object.keys(FieldData.DiamondDetail)
+                .map((key, Index) => item[key])
+                .filter((value) => ![undefined, null, ""].includes(value))
+                .length !== 0 ? (
+                <AccordionItem eventKey="4">
+                  <AccordionHeader>DIAMOND DETAIL</AccordionHeader>
+                  <AccordionBody>
+                    <Table>
+                      <tbody>
+                        {Object.keys(FieldData.DiamondDetail).map(
+                          (key, Index) => {
+                            if (item[key]) {
+                              return (
+                                <tr key={key}>
+                                  <td>
+                                    <li>
+                                      {" "}
+                                      {FieldData.DiamondDetail[key].label}{" "}
+                                    </li>
+                                  </td>
+                                  <td>{item[key]}</td>
+                                </tr>
+                              );
+                            } else return <></>;
+                          }
+                        )}
+                      </tbody>
+                    </Table>
+                  </AccordionBody>
+                </AccordionItem>
+              ) : (
+                <></>
+              )}
+              {Object.keys(FieldData.ColorDetail)
+                .map((key, Index) => item[key])
+                .filter((value) => ![undefined, null, ""].includes(value))
+                .length !== 0 ? (
+                <AccordionItem eventKey="5">
+                  <AccordionHeader>COLOR DETAILS</AccordionHeader>
+                  <AccordionBody>
+                    <Table>
+                      <tbody>
+                        {Object.keys(FieldData.ColorDetail).map(
+                          (key, Index) => {
+                            if (item[key]) {
+                              return (
+                                <tr key={key}>
+                                  <td>
+                                    <li>
+                                      {" "}
+                                      {FieldData.ColorDetail[key].label}{" "}
+                                    </li>
+                                  </td>
+                                  <td>{item[key]}</td>
+                                </tr>
+                              );
+                            } else return <></>;
+                          }
+                        )}
+                      </tbody>
+                    </Table>
+                  </AccordionBody>
+                </AccordionItem>
+              ) : (
+                <></>
+              )}
+              {Object.keys(FieldData.CenterInfo)
+                .map((key, Index) => item[key])
+                .filter((value) => ![undefined, null, ""].includes(value))
+                .length !== 0 ? (
+                <AccordionItem eventKey="5">
+                  <AccordionHeader>CENTER INFO</AccordionHeader>
+                  <AccordionBody>
+                    <Table>
+                      <tbody>
+                        {Object.keys(FieldData.CenterInfo).map((key, Index) => {
+                          if (item[key]) {
+                            return (
+                              <tr key={key}>
+                                <td>
+                                  <li> {FieldData.CenterInfo[key].label} </li>
+                                </td>
+                                <td>{item[key]}</td>
+                              </tr>
+                            );
+                          } else return <></>;
+                        })}
+                      </tbody>
+                    </Table>
+                  </AccordionBody>
+                </AccordionItem>
+              ) : (
+                <></>
+              )}
+              {Object.keys(FieldData.Dimensions)
+                .map((key, Index) => item[key])
+                .filter((value) => ![undefined, null, ""].includes(value))
+                .length !== 0 ? (
+                <AccordionItem eventKey="6">
+                  <AccordionHeader>DIMENSIONS</AccordionHeader>
+                  <AccordionBody>
+                    <Table>
+                      <tbody>
+                        {Object.keys(FieldData.Dimensions).map((key, Index) => {
+                          if (item[key]) {
+                            return (
+                              <tr key={key}>
+                                <td>
+                                  <li> {FieldData.Dimensions[key].label} </li>
+                                </td>
+                                <td>{item[key]}</td>
+                              </tr>
+                            );
+                          } else return <></>;
+                        })}
+                      </tbody>
+                    </Table>
+                  </AccordionBody>
+                </AccordionItem>
+              ) : (
+                <></>
+              )}
+
+              {/* <AccordionItem eventKey="0">
                 <AccordionHeader>Details:</AccordionHeader>
-                {/* </h6> */}
+
                 <AccordionBody>
                   <Table>
                     <tbody>
@@ -586,9 +802,8 @@ export default function SingleItem(props) {
                 </AccordionBody>
               </AccordionItem>
               <AccordionItem eventKey="1">
-                {/* <h6> */}
                 <AccordionHeader>Pricing Details:</AccordionHeader>
-                {/* </h6> */}
+               
                 <AccordionBody>
                   <Table>
                     <tbody>
@@ -634,9 +849,8 @@ export default function SingleItem(props) {
                 </AccordionBody>
               </AccordionItem>
               <AccordionItem eventKey="2">
-                {/* <h6> */}
                 <AccordionHeader>Status Details:</AccordionHeader>
-                {/* </h6> */}
+
                 <AccordionBody>
                   <Table>
                     <tbody>
@@ -703,13 +917,12 @@ export default function SingleItem(props) {
                     </tbody>
                   </Table>
                 </AccordionBody>
-              </AccordionItem>
+              </AccordionItem> */}
 
               {item.HoldText && (
                 <AccordionItem eventKey="3">
-                  {/* <h6> */}
                   <AccordionHeader>Hold Notes Details:</AccordionHeader>
-                  {/* </h6> */}
+
                   <AccordionBody>
                     <Table>
                       <tbody>

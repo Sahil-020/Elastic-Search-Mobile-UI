@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { RangeInput } from "@appbaseio/reactivesearch";
+import RangeFilterWithSelect from "../../HOC_Components/RangeFilterWithSelect";
 
 class DiamondCarats extends Component {
   constructor(props) {
@@ -28,6 +29,15 @@ class DiamondCarats extends Component {
               query: {
                 match_all: {},
               },
+              aggs: {
+                DiamondCarats: {
+                  histogram: {
+                    field: "DiamondCarats",
+                    interval: 1,
+                    offset: 0,
+                  },
+                },
+              },
             };
           } else {
             return {
@@ -43,9 +53,8 @@ class DiamondCarats extends Component {
             };
           }
         }}
-        onValueChange={(value) => this.handleSelected(value)}
       />
     );
   }
 }
-export default DiamondCarats;
+export default RangeFilterWithSelect(DiamondCarats);
