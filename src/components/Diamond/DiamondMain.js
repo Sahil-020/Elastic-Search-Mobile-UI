@@ -54,7 +54,10 @@ import { toggleBasket } from "../actions";
 import Basket from "./../Basket/Basket";
 import ShowCode from "../OtherComponents/ShowCode";
 import HandleWholesale from "../OtherComponents/HandleWholesale";
+import Options from "../../assets/icons/Options.png";
 import Clear from "../../assets/icons/Clear.png";
+import Filter from "../../assets/icons/Filter.png";
+
 
 const mapStateToProps = (state) => {
   return {
@@ -73,6 +76,10 @@ class DiamondMain extends Component {
       serialSearchSignal: false,
       rfidSearchSignal: false,
       mountedSearchSignal: false,
+      showBasketOptions: false,
+      selected: "RetailPrice",
+      sort: "asc",
+      sizeLimit: 15,
     };
     // this.clearFilters = this.clearFilters.bind(this)
     this.defaultQuery = this.defaultQuery.bind(this);
@@ -84,19 +91,26 @@ class DiamondMain extends Component {
     this.isMultipleValueEmpty = this.isMultipleValueEmpty.bind(this);
     this.onCheckSelect = this.onCheckSelect.bind(this);
     this.handleShowFilters = this.handleShowFilters.bind(this);
+    this.handleShowBasketOptions = this.handleShowBasketOptions.bind(this);
+
   }
 
   // componentDidMount() {
   //   this.setState({ showFilters: true });
   //   // this.setState({ showFilters: false });
   // }
+  handleShowBasketOptions(value) {
+    this.setState({ showBasketOptions: value });
+  }
   handleShowFilters(value) {
-    document.getElementById("Search_Filters").className = value;
     if (value === "show_filters") {
+      document.getElementById("Search_Components").style.position = "inherit";
       document.body.style.overflow = "hidden";
     } else {
+      document.getElementById("Search_Components").style.position = "sticky";
       document.body.style.overflow = "auto";
     }
+    document.getElementById("Search_Filters").className = value;
   }
   onCheckSelect(value) {
     this.setState({
@@ -234,7 +248,9 @@ class DiamondMain extends Component {
       serialSearchSignal,
       rfidSearchSignal,
       mountedSearchSignal,
-    } = this.state;
+      selected,
+      sizeLimit,
+      sort,    } = this.state;
     let { handleBackButton, basket, toggleBasket } = this.props;
     // console.log();
     let andQuery = [];
@@ -282,17 +298,16 @@ class DiamondMain extends Component {
             url={AppbaseAppUrl}
             credentials={AppbaseCredentials}
           >
-            <div className="search_components_container">
+            <div id="Search_Components" className="search_components_container">
               <div className="serial_search_container">
                 <SerialSearchComponent
                   handleSerialSearchSignal={this.handleSerialSearchSignal}
                 />
-                <button
-                  // onClick={() => this.setState({ showFilters: true })}
+                 <img
+                  src={Filter}
+                  //  onClick={() => this.setState({ showFilters: true })}
                   onClick={() => this.handleShowFilters("show_filters")}
-                >
-                  Filters
-                </button>
+                />
               </div>
               <div className="showcode_container">
                 <ShowCode onCheck={this.onCheckSelect} />
@@ -380,7 +395,10 @@ class DiamondMain extends Component {
 
             <ReactiveList
               componentId="results"
-              dataField="RetailPrice"
+              // dataField="RetailPrice"
+              dataField={selected}
+              size={sizeLimit}
+              sortBy={sort}              
               react={{
                 and: andQuery,
                 // or: andQuery,
@@ -424,12 +442,17 @@ class DiamondMain extends Component {
         >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>Basket list</Offcanvas.Title>
-            <span>...</span>
+            <img
+              src={Options}
+              onClick={() => this.handleShowBasketOptions(true)}
+            ></img>
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Basket
               isValueEmpty={this.isValueEmpty}
               isMultipleValueEmpty={this.isMultipleValueEmpty}
+              showBasketOptions={this.state.showBasketOptions}
+              handleShowBasketOptions={this.handleShowBasketOptions}
             />
           </Offcanvas.Body>
         </Offcanvas>

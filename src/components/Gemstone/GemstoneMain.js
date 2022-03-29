@@ -47,7 +47,10 @@ import isEmpty from "lodash/isEmpty";
 import currencyFormatter from "currency-formatter";
 import ShowCode from "../OtherComponents/ShowCode";
 import HandleWholesale from "../OtherComponents/HandleWholesale";
+import Options from "../../assets/icons/Options.png";
 import Clear from "../../assets/icons/Clear.png";
+import Filter from "../../assets/icons/Filter.png";
+
 
 const mapStateToProps = (state) => {
   return {
@@ -66,6 +69,10 @@ class GemstoneMain extends Component {
       serialSearchSignal: false,
       rfidSearchSignal: false,
       mountedSearchSignal: false,
+      showBasketOptions: false,
+      selected: "RetailPrice",
+      sort: "asc",
+      sizeLimit: 15,
     };
     // this.clearFilters = this.clearFilters.bind(this)
 
@@ -78,12 +85,17 @@ class GemstoneMain extends Component {
     this.isMultipleValueEmpty = this.isMultipleValueEmpty.bind(this);
     this.onCheckSelect = this.onCheckSelect.bind(this);
     this.handleShowFilters = this.handleShowFilters.bind(this);
+    this.handleShowBasketOptions = this.handleShowBasketOptions.bind(this);
+
   }
 
   // componentDidMount() {
   //   this.setState({ showFilters: true });
   //   // this.setState({ showFilters: false });
   // }
+  handleShowBasketOptions(value) {
+    this.setState({ showBasketOptions: value });
+  }
   handleShowFilters(value) {
     document.getElementById("Search_Filters").className = value;
     if (value === "show_filters") {
@@ -199,6 +211,9 @@ class GemstoneMain extends Component {
       serialSearchSignal,
       mountedSearchSignal,
       rfidSearchSignal,
+      selected,
+      sizeLimit,
+      sort,   
     } = this.state;
     let { handleBackButton, basket, toggleBasket } = this.props;
     // console.log();
@@ -241,17 +256,16 @@ class GemstoneMain extends Component {
             url={AppbaseAppUrl}
             credentials={AppbaseCredentials}
           >
-            <div className="search_components_container">
+            <div id="Search_Components" className="search_components_container">
               <div className="serial_search_container">
                 <SerialSearchComponent
                   handleSerialSearchSignal={this.handleSerialSearchSignal}
                 />
-                <button
-                  // onClick={() => this.setState({ showFilters: true })}
+                 <img
+                  src={Filter}
+                  //  onClick={() => this.setState({ showFilters: true })}
                   onClick={() => this.handleShowFilters("show_filters")}
-                >
-                  Filters
-                </button>
+                />
               </div>
               <div className="showcode_container">
                 <ShowCode onCheck={this.onCheckSelect} />
@@ -329,7 +343,10 @@ class GemstoneMain extends Component {
 
             <ReactiveList
               componentId="results"
-              dataField="RetailPrice"
+             // dataField="RetailPrice"
+             dataField={selected}
+             size={sizeLimit}
+             sortBy={sort}  
               react={{
                 and: andQuery,
                 // or: andQuery,
@@ -371,13 +388,17 @@ class GemstoneMain extends Component {
         >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>Basket list</Offcanvas.Title>
-            <span>...</span>
+            <img
+              src={Options}
+              onClick={() => this.handleShowBasketOptions(true)}
+            ></img>
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Basket
               isValueEmpty={this.isValueEmpty}
               isMultipleValueEmpty={this.isMultipleValueEmpty}
-            />
+              showBasketOptions={this.state.showBasketOptions}
+              handleShowBasketOptions={this.handleShowBasketOptions}              />
           </Offcanvas.Body>
         </Offcanvas>
       </>

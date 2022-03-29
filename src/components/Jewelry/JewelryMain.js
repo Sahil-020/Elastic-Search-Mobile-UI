@@ -429,6 +429,7 @@ class JewelryMain extends Component {
                 and: andQuery,
                 // or: andQuery,
               }}
+              defaultQuery={() => this.defaultQuery()}
               renderResultStats={({ numberOfResults, time }) => (
                 <HandleView
                   numberOfResults={numberOfResults}
@@ -454,7 +455,6 @@ class JewelryMain extends Component {
                   </div>
                 </div>
               )}
-              defaultQuery={() => this.defaultQuery()}
             />
           </ReactiveBase>
         </div>
@@ -475,8 +475,7 @@ class JewelryMain extends Component {
             <Basket
               isValueEmpty={this.isValueEmpty}
               isMultipleValueEmpty={this.isMultipleValueEmpty}
-              showBasketOptions={this.state.showBasketOptions}
-              handleShowBasketOptions={this.handleShowBasketOptions}
+           
             />
           </Offcanvas.Body>
         </Offcanvas>
