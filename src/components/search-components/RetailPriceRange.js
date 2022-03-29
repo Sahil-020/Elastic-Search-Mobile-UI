@@ -31,6 +31,15 @@ class RetailPriceRange extends Component {
                 query: {
                   match_all: {},
                 },
+                aggs: {
+                  RetailPrice: {
+                    histogram: {
+                      field: "RetailPrice",
+                      interval:100000,
+                      offset: 0,
+                    },
+                  },
+                },
               };
             } else {
               // console.log("range query")

@@ -31,6 +31,15 @@ class WholesalePriceRange extends Component {
                 query: {
                   match_all: {},
                 },
+                aggs: {
+                  WholesalePrice: {
+                    histogram: {
+                      field: "WholesalePrice",
+                      interval:100000,
+                      offset: 0,
+                    },
+                  },
+                },
               };
             } else {
               // console.log("range query")

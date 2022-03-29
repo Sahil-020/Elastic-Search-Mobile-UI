@@ -65,6 +65,7 @@ import HandleWholesale from "../OtherComponents/HandleWholesale";
 import Options from "../../assets/icons/Options.png";
 import Clear from "../../assets/icons/Clear.png";
 import Filter from "../../assets/icons/Filter.png";
+import IsRtv from './../search-components/IsRtv';
 
 const mapStateToProps = (state) => {
   return {
@@ -87,6 +88,7 @@ class JewelryMain extends Component {
       selected: "RetailPrice",
       sort: "asc",
       sizeLimit: 15,
+      showResults:false,
     };
     // this.clearFilters = this.clearFilters.bind(this)
     this.defaultQuery = this.defaultQuery.bind(this);
@@ -277,7 +279,7 @@ class JewelryMain extends Component {
         "SubType",
         "Collection",
         "SubCollection",
-        "CenterSahape",
+        "CenterShape",
         "Maker",
         "Metal",
         "Period",
@@ -347,12 +349,12 @@ class JewelryMain extends Component {
                 <div className="filter_header">
                   <h4>Filters</h4>{" "}
                   <span>
-                    <img src={Clear} /> Clear filters
+                    <img src={Clear} />   <SearchCriteria />
                   </span>
                   <button onClick={() => this.handleShowFilters("filters")}>
                     X
                   </button>
-                  {/* <SearchCriteria /> */}
+                
                 </div>
                 <Accordion defaultActiveKey="0">
                   <Accordion.Item eventKey="0">
@@ -403,6 +405,7 @@ class JewelryMain extends Component {
                       <IsSold />
                       <IsCom />
                       <IsVirtual />
+                      <IsRtv/>
                       <IsSemimount />
                       <IsOpenJob />
                       <TiaraOnly />

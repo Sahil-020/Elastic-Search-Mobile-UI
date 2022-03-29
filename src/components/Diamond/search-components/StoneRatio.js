@@ -42,6 +42,15 @@ class StoneRatio extends Component {
                 query: {
                   match_all: {},
                 },
+                aggs: {
+                  StoneRatio: {
+                    histogram: {
+                      field: "StoneRatio",
+                      interval:1,
+                      offset: 1,
+                    },
+                  },
+                },
               };
             } else {
               return {

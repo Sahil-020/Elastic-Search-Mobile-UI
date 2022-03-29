@@ -30,6 +30,15 @@ class DiamondCaratWeightComponent extends Component {
               query: {
                 match_all: {},
               },
+              aggs: {
+                DiamondCaratWeight: {
+                  histogram: {
+                    field: "DiamondCaratWeight",
+                    interval:1,
+                    offset: 1,
+                  },
+                },
+              },
             };
           } else {
             return {

@@ -4,7 +4,10 @@ import { SelectedFilters } from "@appbaseio/reactivesearch";
 class SearchCriteria extends Component {
   render() {
     return (
-      <div className="selected--filters--container">
+      // <div 
+      // // className="selected--filters--container"
+      // className=""
+      // >
         <SelectedFilters
           className="selectedFilters"
           resetToDefault={true}
@@ -126,17 +129,18 @@ class SearchCriteria extends Component {
               Object.assign(
                 <button
                   key={"clear"}
-                  className="clear-all-btn"
+                  // className="clear-all-btn"
+                  className=""
                   onClick={() => clearFilter("clearAll")}
                 >
-                  Reset filters
+                  Clear filters
                 </button>
               )
             );
             return filters;
           }}
         />
-      </div>
+      // </div>
     );
   }
 }

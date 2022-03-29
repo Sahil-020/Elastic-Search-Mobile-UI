@@ -285,7 +285,7 @@ class GemstoneMain extends Component {
                 <div className="filter_header">
                   <h4>Filters</h4>{" "}
                   <span>
-                    <img src={Clear} /> Clear filters
+                    <img src={Clear} /> <SearchCriteria/>
                   </span>
                   <button onClick={() => this.handleShowFilters("filters")}>
                     X

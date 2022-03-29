@@ -40,6 +40,15 @@ class CaratWeight extends Component {
               query: {
                 match_all: {},
               },
+              aggs: {
+                CaratWeight: {
+                  histogram: {
+                    field: "CaratWeight",
+                    interval:1000,
+                    offset: 0,
+                  },
+                },
+              },
             };
           } else {
             return {

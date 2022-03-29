@@ -28,6 +28,15 @@ class ColorCarat extends Component {
               query: {
                 match_all: {},
               },
+              aggs: {
+                ColorCarats: {
+                  histogram: {
+                    field: "ColorCarats",
+                    interval:1,
+                    offset: 0,
+                  },
+                },
+              },
             };
           } else {
             return {

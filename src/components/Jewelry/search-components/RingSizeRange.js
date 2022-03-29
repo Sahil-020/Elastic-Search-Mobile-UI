@@ -28,6 +28,15 @@ class RingSizeRange extends Component {
               query: {
                 match_all: {},
               },
+              aggs: {
+                RingSizeValue: {
+                  histogram: {
+                    field: "RingSizeValue",
+                    interval: 1,
+                    offset: 0,
+                  },
+                },
+              },
             };
           } else {
             return {

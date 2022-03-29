@@ -239,10 +239,15 @@ $Dark_Red_Color: #aa0707;
                         text-align: left;
                         margin: 0;
                     }
-                    span {
+                    span, span button {
                         width: 25%;
-                        font-size: 12px;
-                        text-decoration: underline;
+                        font-size: 12px !important;
+                        text-decoration: underline !important;
+                        button{
+                            width:auto;
+                            padding:0;
+                        }
+                       
                     }
                     button {
                         width: 5%;
