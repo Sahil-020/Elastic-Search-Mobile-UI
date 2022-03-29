@@ -351,9 +351,9 @@ class JewelryMain extends Component {
                   <span>
                     <img src={Clear} />   <SearchCriteria />
                   </span>
-                  <button onClick={() => this.handleShowFilters("filters")}>
+                  {/* <button onClick={() => this.handleShowFilters("filters")}>
                     X
-                  </button>
+                  </button> */}
                 
                 </div>
                 <Accordion defaultActiveKey="0">
@@ -478,7 +478,8 @@ class JewelryMain extends Component {
             <Basket
               isValueEmpty={this.isValueEmpty}
               isMultipleValueEmpty={this.isMultipleValueEmpty}
-           
+              showBasketOptions={this.state.showBasketOptions}
+              handleShowBasketOptions={this.handleShowBasketOptions}
             />
           </Offcanvas.Body>
         </Offcanvas>

@@ -113,9 +113,9 @@ class Basket extends Component {
     // if (this.props.tokenState.token === "") {
     token = await GetAuthToken();
     // console.log("token :", token);
-    // if (token) {
+    if (token && token.access_token) {
     this.props.setToken(token.access_token);
-    // }
+    }
     // } else token = this.props.tokenState.token;
   }
 
