@@ -166,8 +166,10 @@ class ChooseLayoutModal extends Component {
     }
   }
   render() {
-    let { show, basketInputObj, coverType, includeGIA } = this.props;
-    // console.log("include GIA :", includeGIA);
+    let { show, basketInputObj, coverType, includeGIA, goto } = this.props;
+    console.log("show : ", show);
+    console.log("include GIA :", includeGIA);
+    console.log("goto :", goto);
     return (
       <div>
         <Modal

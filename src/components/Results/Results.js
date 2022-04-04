@@ -1,10 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import Card from "react-bootstrap/Card";
 import currencyFormatter from "currency-formatter";
 import { useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleSingleView, addToCart, removeFromCart } from "../actions";
 import SingleItem from "../SingleItemView/SingleItem";
+import PreviewEmailModal from "../Basket/PDF/PreviewEmailModal";
+import PDFModal from "../Basket/PDF/PDFModal";
+import ChooseLayoutModal from "../Basket/ChooseLayoutModal";
 
 export default function Results(props) {
   let {
@@ -14,6 +17,16 @@ export default function Results(props) {
     isValueEmpty,
     isMultipleValueEmpty,
   } = props;
+  const [data, setData] = useState({
+    currentRes: [],
+    showPreviewModal: false,
+    showPDFModal: false,
+    showChooseLayout: false,
+    layoutType: "",
+    coverType: "NoCover",
+    goto: "",
+    includeGIA: "No",
+  });
   const basket = useSelector((state) => state.basket);
   const showWholesale = useSelector(
     (state) => state.basketInputChange.showWholesale
@@ -58,9 +71,72 @@ export default function Results(props) {
       return imageurl;
     }
   };
-  const showItem = (id) => {
-    // console.log("location : ", location, "\n id : ", id);
-    id && history.push(`${location.pathname}/${id}`, { id });
+
+  const handleIncludeGIA = (value) => {
+    setData({ ...data, includeGIA: value });
+  };
+  const handleEmail = async (res) => {
+    console.log("Inside handle email");
+    // if (
+    //   this.props.basketInputObj.orderNbr &&
+    //   this.props.basketInputObj.orderNbr !== "New"
+    // ) {
+    // this.props.toggleLoader({
+    //   isLoading: true,
+    // });
+    // await getUserEmail();
+    // await this.getContactEmail();
+    // this.handleBasketChange("Email");
+    // this.props.toggleLoader({
+    //   isLoading: false,
+    // });
+    showChooseLayout("Email", res);
+
+    // } else {
+    //   window.alert("Please select a basket first");
+    // }
+  };
+
+  const handleCurrentRes = (res) => {
+    setData({ ...data, currentRes: [res] });
+  };
+
+  const handleSetCover = (cover) => {
+    // console.log("layout: ", layout);
+    setData({ ...data, coverType: cover });
+  };
+
+  const handleSetLayout = (layout) => {
+    // console.log("layout: ", layout);
+    setData({ ...data, layoutType: layout });
+  };
+
+  const showChooseLayout = (value, res) => {
+    console.log("Inside ChooseLayout");
+    console.log({ res, value });
+    setData({
+      ...data,
+      showChooseLayout: true,
+      goto: value,
+    });
+    handleCurrentRes(res);
+  };
+  const hideChooseLayout = () => {
+    setData({ ...data, showChooseLayout: false });
+  };
+
+  const showPDFModal = () => {
+    setData({ ...data, showPDFModal: true });
+  };
+  const hidePDFModal = () => {
+    setData({ ...data, showPDFModal: false });
+  };
+
+  const showPreviewModal = () => {
+    this.setData({ ...data, showPreviewModal: true });
+  };
+  const hidePreviewModal = () => {
+    setData({ ...data, showPreviewModal: false });
   };
 
   return (
@@ -276,6 +352,53 @@ export default function Results(props) {
       <SingleItem
         isValueEmpty={isValueEmpty}
         isMultipleValueEmpty={isMultipleValueEmpty}
+        handleSetCover={handleSetCover}
+        handleIncludeGIA={handleIncludeGIA}
+        showChooseLayout={showChooseLayout}
+        handleEmail={handleEmail}
+      />
+      <PreviewEmailModal
+        show={data.showPreviewModal}
+        hide={hidePreviewModal}
+        layoutType={data.layoutType}
+        coverType={data.coverType}
+        showChooseLayout={showChooseLayout}
+        item={
+          data.currentRes.length && data.currentRes[0] ? data.currentRes : []
+        }
+        handleCurrentRes={handleCurrentRes}
+        filename={"Kwiat-Fred-Leighton"}
+        includeGIA={data.includeGIA}
+        // user={this.stat}
+      />
+      <PDFModal
+        show={data.showPDFModal}
+        hide={hidePDFModal}
+        layoutType={data.layoutType}
+        coverType={data.coverType}
+        showChooseLayout={showChooseLayout}
+        item={
+          data.currentRes.length && data.currentRes[0] ? data.currentRes : []
+        }
+        handleCurrentRes={handleCurrentRes}
+        filename={"KWFL"}
+        includeGIA={data.includeGIA}
+      />
+      <ChooseLayoutModal
+        show={data.showChooseLayout}
+        hide={hideChooseLayout}
+        setLayout={handleSetLayout}
+        setCover={handleSetCover}
+        showPreviewModal={showPreviewModal}
+        showPDFModal={showPDFModal}
+        goto={data.goto}
+        showChooseLayout={showChooseLayout}
+        coverType={data.coverType}
+        includeGIA={data.includeGIA}
+        handleIncludeGIA={handleIncludeGIA}
+        item={
+          data.currentRes.length && data.currentRes[0] ? data.currentRes : []
+        }
       />
     </>
     //   </div>

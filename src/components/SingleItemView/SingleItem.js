@@ -18,9 +18,14 @@ import {
 } from "../../utils/constants";
 import Appbase from "appbase-js";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleSingleView, addToCart } from "../actions";
+import { toggleSingleView, addToCart, setBasketFormInput } from "../actions";
 import { useSwipeable } from "react-swipeable";
 import { FieldData } from "./FieldData";
+import Email from "../../assets/icons/Email.png";
+import Print from "../../assets/icons/Print.png";
+import PreviewEmailModal from "../Basket/PDF/PreviewEmailModal";
+import PDFModal from "../Basket/PDF/PDFModal";
+import ChooseLayoutModal from "../Basket/ChooseLayoutModal";
 
 export default function SingleItem(props) {
   let {
@@ -29,129 +34,18 @@ export default function SingleItem(props) {
     addItemToBasket,
     isValueEmpty,
     isMultipleValueEmpty,
+    handleEmail,
+    handleSetCover,
+    showChooseLayout,
+    handleIncludeGIA,
   } = props;
   let { id } = useParams();
 
   const { show, item } = useSelector((state) => state.singleViewModal);
-  const [touchStart, setTouchStart] = useState("");
-  const [touchEnd, setTouchEnd] = useState("");
   const showWholesale = useSelector(
     (state) => state.basketInputChange.showWholesale
   );
   const dispatch = useDispatch();
-
-  const handlers = useSwipeable({
-    onSwiped: (eventData) =>
-      dispatch(toggleSingleView({ show: false, item: {} })),
-  });
-
-  // const [item, setItem] = useState({});
-
-  // const getItem = async () => {
-  //   console.log("Inside get item");
-  //   let app = [JewelrySerialApp, DiamondSerialApp, GemstoneSerialApp];
-  //   let result = false;
-  //   for (let i = 0; i < app.length; i++) {
-  //     let appbaseRef = Appbase({
-  //       url: AppbaseAppUrl,
-  //       app: app[i],
-  //       credentials: AppbaseCredentials,
-  //     });
-
-  //     await appbaseRef
-  //       .get({
-  //         type: "_doc",
-  //         id: id,
-  //       })
-  //       .then((response) => {
-  //         // console.log("Success: ", response);
-  //         if (response.found && response.found === true) {
-  //           setItem(response._source);
-  //           result = true;
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         console.log("Error: ", error);
-  //       });
-  //     if (result) {
-  //       break;
-  //     }
-  //   }
-  // };
-  // const isValueEmpty = (res) => {
-  //   // console.log("res & name :", res, name);
-  //   let result = "";
-  //   if (!isEmpty(res) && res !== "0.00") {
-  //     // result = `${name} : ${res}`;
-  //     result = res;
-  //   }
-  //   // else {
-  //   //   result = `${name} : null`;
-  //   // }
-  //   // console.log("result : ", result);
-  //   return result;
-  // };
-  // const isMultipleValueEmpty = (res, expr) => {
-  //   let result = "";
-  //   switch (expr) {
-  //     case "CenterDetails":
-  //       if (!isEmpty(res.CenterShape)) {
-  //         result = `Center Details:
-  //         ${(res.CenterCaratWeight && res.CenterCaratWeight + " cts") || ""}
-  //         ${res.CenterShape || ""} ${
-  //           (res.CenterColor && res.CenterColor + " /") || ""
-  //         }
-  //         ${(res.CenterClarity && res.CenterClarity + " /") || ""} ${
-  //           res.CenterCut || ""
-  //         } ${res.CenterEnhancement || ""} ${
-  //           (res.CenterOrigin && res.CenterOrigin + " - #") || ""
-  //         }  ${res.CenterStoneNbr || ""}`;
-  //       }
-  //       break;
-
-  //     case "WholesalePrice":
-  //       result =
-  //         (res.WholesalePrice &&
-  //           currencyFormatter.format(`${res.WholesalePrice}`, {
-  //             code: "USD",
-  //             precision: 0,
-  //           })) ||
-  //         "";
-
-  //       break;
-
-  //     case "ItemSubtype":
-  //       if (!isEmpty(res.ItemSubtype)) {
-  //         result = res.ItemSubtype;
-  //       } else {
-  //         result = res.ItemType || "";
-  //       }
-  //       break;
-  //     case "RetailPrice":
-  //       if (!isEmpty(res)) {
-  //         result = currencyFormatter.format(`${res}`, {
-  //           code: "USD",
-  //           precision: 0,
-  //         });
-  //       }
-  //       break;
-  //     case "ColorClarity":
-  //       result = `${res.Color || ""}
-  //         ${res.Color && res.Clarity ? "/" : ""}
-  //         ${res.Clarity || ""}
-  //       `;
-  //       break;
-  //     case "DiamondDetails":
-  //       result = `${res.DiamondDetails || ""}
-  //         ${res.DiamondDetails && res.ColorComment ? " & " : ""}
-  //         ${res.ColorComment || ""}
-  //       `;
-  //       break;
-  //     default:
-  //       return result.trim();
-  //   }
-  //   return result.trim();
-  // };
 
   const handleImageGallery = (res) => {
     // console.log("inside handleImageGallery");
@@ -329,6 +223,7 @@ export default function SingleItem(props) {
 
   return (
     // <label>{id}</label>
+
     <Modal
       animation={false}
       autoFocus={false}
@@ -338,14 +233,6 @@ export default function SingleItem(props) {
       size="lg"
       show={show}
       onHide={() => onModalHide()}
-      {...handlers}
-      // onTouchStart={(e) => setTouchStart(e.targetTouches[0].clientX)}
-      // onTouchMove={(e) => setTouchEnd(e.targetTouches[0].clientX)}
-      // onTouchEnd={() => {
-      //   if (touchStart - touchEnd > 75) {
-      //     dispatch(toggleSingleView({ show: false, item: {} }));
-      //   }
-      // }}
     >
       <Modal.Header closeButton></Modal.Header>
       <Modal.Body>
@@ -362,6 +249,21 @@ export default function SingleItem(props) {
                 showBullets={true}
               />
             </div>
+            <span className="other_item_details">
+              {" "}
+              {item.IsSold === "1" ? "Sold" : ""}
+              {item.IsRtv === "1" ? "RTV" : ""}
+              {item.SerialStatus === "In Production" ? "In Production" : ""}
+              {item.IsSemimount === "1" ? "Semimount" : ""}
+              {item.SerialStatus === "Adjusted Out" ? "Adjusted Out" : ""}
+              {item.IsMounted === "1" && item.IsSold !== "1" ? "mounted" : ""}
+              {item.isOpenJob === "1" && item.PONumber !== null
+                ? `ON ORDER`
+                : ""}
+              {item.isOpenJob === "1" && item.PONumber === null
+                ? `STOCK CREATE`
+                : ""}
+            </span>
             <h6>
               {item.SerialNumber && item.StyleNumber
                 ? `${item.SerialNumber} | ${item.StyleNumber}`
@@ -721,6 +623,43 @@ export default function SingleItem(props) {
             </Accordion>
           </div>
           <div className="add_to_basket">
+            <button
+              onClick={() => {
+                dispatch(
+                  setBasketFormInput({
+                    includePrice: false,
+                    includeRetail: false,
+                    includeWholesale: false,
+                    includeLinks: "No",
+                  })
+                );
+
+                handleSetCover("NoCover");
+                handleIncludeGIA("No");
+                showChooseLayout("Print", item);
+              }}
+            >
+              <img src={Print}></img>
+            </button>
+            <button
+              onClick={() => {
+                dispatch(
+                  setBasketFormInput({
+                    includePrice: false,
+                    includeRetail: false,
+                    includeWholesale: false,
+                    includeLinks: "No",
+                  })
+                );
+
+                handleSetCover("NoCover");
+                handleIncludeGIA("No");
+                handleEmail(item);
+                // onModalHide();
+              }}
+            >
+              <img src={Email}></img>
+            </button>
             <button onClick={() => dispatch(addToCart({ product: item }))}>
               Add to Basket
             </button>

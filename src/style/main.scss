@@ -1072,7 +1072,9 @@ $Dark_Red_Color: #aa0707;
                         span{
                             bottom:0;
                             font-size:11px;
-                            position:relative
+                            position:relative;
+                            text-transform: uppercase;
+
                         }
                     }
                     .card-body {
@@ -1133,6 +1135,7 @@ $Dark_Red_Color: #aa0707;
                         }
                         span{
                             position: relative !important;
+                            text-transform: uppercase;
                             font-size: 13px;
                             bottom:0;
                             height: 15%;
@@ -1228,6 +1231,8 @@ $Dark_Red_Color: #aa0707;
                             font-weight: 500;
                             // color: #f2f4f4;
                             font-size: 12px;
+                            text-transform: uppercase;
+
                         }
                     }
                     .card-body {
@@ -1471,6 +1476,13 @@ $Dark_Red_Color: #aa0707;
                                 }
                             }
                         }
+                        span{
+                            width:100%;
+                            font-size: 15px;
+                            font-weight: 800;
+                            text-transform: uppercase;
+                            text-align: center;
+                        }
                         h6 {
                             width: 100%;
                             font-size: 16px;
@@ -1589,17 +1601,48 @@ $Dark_Red_Color: #aa0707;
                         }
                     }
                     .add_to_basket {
-                        padding: 10px 25px;
+
+                        background: #f2f4f4;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
                         button {
-                            background: #34495e;
-                            width: 100%;
-                            height: 40px;
-                            color: white;
-                            border: none;
-                            outline: none;
-                            font-size: 18px;
-                            font-weight: 600;
+                            padding: 0;
+                            background: white;
+                            border: 1px solid #e5e8e8;
+                            img {
+                                height: 18px;
+                                width: 24px;
+                            }
                         }
+                        button:first-child,
+                        button:nth-child(2) {
+                            width: 15%;
+                            height: 38px;
+                        }
+                        button:last-child {
+                            width: 60%;
+                            height: 38px;
+                            background: #34495e;
+                            color: #f2f4f4;
+                            font-weight: bold;
+                            img {
+                                width: 14px !important;
+                                margin: 0px 10px 0px 0px;
+                            }
+                        }
+
+                        // padding: 10px 25px;
+                        // button {
+                        //     background: #34495e;
+                        //     width: 100%;
+                        //     height: 40px;
+                        //     color: white;
+                        //     border: none;
+                        //     outline: none;
+                        //     font-size: 18px;
+                        //     font-weight: 600;
+                        // }
                     }
                 }
             }
@@ -1649,9 +1692,6 @@ $Dark_Red_Color: #aa0707;
         padding: 0px;
         .basket_container {
             height: 100%;
-            display:flex;
-            flex-direction: column;
-            gap:3px;
             .basket_no_container {
                 padding: 5px 20px;
                 display: flex;
@@ -1810,7 +1850,7 @@ $Dark_Red_Color: #aa0707;
                             //     // text-align: left;
                             // }
                             .card-text {
-                                // text-align: left;
+                                text-align: center;
                                 padding: 0px 0px 0px;
                                 display: flex;
                                 flex-direction: column;
@@ -1901,7 +1941,10 @@ $Dark_Red_Color: #aa0707;
                             span{
                                 bottom:0;
                                 font-size:11px;
-                                position:relative
+                                position:relative;
+                            text-transform: uppercase;
+
+
                             }
                         }
                         .card-body {
@@ -1968,6 +2011,8 @@ $Dark_Red_Color: #aa0707;
                                 height: 15%;
                                 color: #34495e;
                                 font-weight: 700;
+                            text-transform: uppercase;
+
                             }
                         }
                         .card-body {
@@ -2059,6 +2104,8 @@ $Dark_Red_Color: #aa0707;
                                 font-weight: 500;
                                 // color: #f2f4f4;
                                 font-size: 12px;
+                            text-transform: uppercase;
+
                             }
                         }
                         .card-body {
@@ -2575,6 +2622,7 @@ $Dark_Red_Color: #aa0707;
                     h4 {
                         width: 100%;
                         color: #34495e;
+                        font-size: 15px;
                     }
                     .price__toggle {
                         margin-top: 4px;
@@ -2597,6 +2645,7 @@ $Dark_Red_Color: #aa0707;
                             cursor: pointer;
                             margin: 0px 0px 2px 0px;
                             color: #808b96;
+                            font-size: 14px;
                         }
                     }
                     // .price__toggle:nth-child(1) {
@@ -2621,6 +2670,7 @@ $Dark_Red_Color: #aa0707;
                     flex-wrap: wrap;
                     h4 {
                         width: 100%;
+                        font-size: 15px;
                     }
                     // justify-content: center;
                     .links__toggle,
@@ -2644,6 +2694,7 @@ $Dark_Red_Color: #aa0707;
                             margin: 0px;
                             cursor: pointer;
                             color: #808b96;
+                            font-size: 14px;
                         }
                         #linksChoice1,
                         #linksChoice2,
@@ -2664,6 +2715,7 @@ $Dark_Red_Color: #aa0707;
                     h4 {
                         font-weight: bold;
                         color: #34495e;
+                        font-size: 15px;
 
                         // text-align: center;
                         // padding-left: 5%;
@@ -2711,6 +2763,8 @@ $Dark_Red_Color: #aa0707;
                             span {
                                 margin-top: 10px;
                                 font-size: 11px;
+                                font-size: 14px;
+                                text-align: center;
                             }
                         }
                         .Active {

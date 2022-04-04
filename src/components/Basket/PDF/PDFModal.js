@@ -457,6 +457,7 @@ class PDFModal extends Component {
     // console.log("cartItems: ", cartItems);
     // console.log("coverType : ", coverType);
     // console.log("item : ", item);
+    // console.log("show : ", show);
 
     return (
       <Modal

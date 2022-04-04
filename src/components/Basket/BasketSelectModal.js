@@ -64,6 +64,7 @@ class BasketSelectModal extends Component {
   }
 
   handleBasketSearch(value) {
+    this.setState({ serachBasketValue: value });
     let { allBaskets, allBasketShow } = this.state;
     let searchRes;
     if (value) {
@@ -936,7 +937,7 @@ class BasketSelectModal extends Component {
             <span>Choose Existing Basket</span>
             <div className="search_container">
               <input
-                type="search"
+                type="text"
                 value={serachBasketValue}
                 onChange={(e) => this.handleBasketSearch(e.target.value)}
               />
