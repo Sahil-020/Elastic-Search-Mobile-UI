@@ -102,12 +102,14 @@ class GemstoneMain extends Component {
     this.setState({ showBasketOptions: value });
   }
   handleShowFilters(value) {
-    document.getElementById("Search_Filters").className = value;
     if (value === "show_filters") {
+      document.getElementById("Search_Components").style.position = "inherit";
       document.body.style.overflow = "hidden";
     } else {
+      document.getElementById("Search_Components").style.position = "sticky";
       document.body.style.overflow = "auto";
     }
+    document.getElementById("Search_Filters").className = value;
   }
   onCheckSelect(value) {
     this.setState({
