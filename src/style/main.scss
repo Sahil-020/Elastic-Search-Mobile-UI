@@ -1097,8 +1097,9 @@ $Dark_Red_Color: #aa0707;
                         flex-wrap: wrap !important;
                         column-gap: 0px !important;
                         row-gap: 0px !important;
-                        align-items: flex-end;
+                        align-items: center;
                         padding: 8px 0px 0px;
+                        flex-direction: column !important;
                     }
                     .image_container {
                         height: 60% !important;
