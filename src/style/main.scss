@@ -1013,7 +1013,7 @@ $Dark_Red_Color: #aa0707;
                             border: none;
                             width: fit-content;
                             height: fit-content;
-                            padding: 2px;
+                            padding: 5px;
                             margin: auto;
                             background-color: #f2f4f4 !important;
                             position: absolute;
@@ -1086,9 +1086,9 @@ $Dark_Red_Color: #aa0707;
                 gap: 10px !important;
                 .card {
                     width: 48% !important;
-                    height: 270px !important;
+                    height: 290px !important;
                     margin: 0px !important;
-                    padding: 10px !important;
+                    padding:20px 10px 10px !important;
                     gap: 8px !important;
                     .card-title.h5 {
                         height: 15% !important;
@@ -1144,10 +1144,12 @@ $Dark_Red_Color: #aa0707;
                     }
                     .result_action_group {
                         button {
-                            top: 1% !important;
+                            top: 2% !important;
+                            right:2% !important;
+                            
                             img {
-                                height: 16px !important;
-                                width: 16px !important;
+                                height: 25px !important;
+                                width: 25px !important;
                             }
                         }
                     }
