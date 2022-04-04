@@ -114,7 +114,7 @@ class Basket extends Component {
     token = await GetAuthToken();
     // console.log("token :", token);
     if (token && token.access_token) {
-    this.props.setToken(token.access_token);
+      this.props.setToken(token.access_token);
     }
     // } else token = this.props.tokenState.token;
   }
@@ -219,12 +219,12 @@ class Basket extends Component {
   }
 
   handleView(e, value) {
-    console.log(
-      "result element : ",
-      document.getElementById("ES_Results").className,
-      "\n Type : ",
-      typeof document.getElementById("ES_Results").className
-    );
+    // console.log(
+    //   "result element : ",
+    //   document.getElementById("ES_Results").className,
+    //   "\n Type : ",
+    //   typeof document.getElementById("ES_Results").className
+    // );
 
     $(".result_view_options").children().removeClass("active");
     // console.log("Selected value: ", value);
