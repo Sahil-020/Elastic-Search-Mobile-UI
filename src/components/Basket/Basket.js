@@ -742,17 +742,17 @@ class Basket extends Component {
           <HandleView handleView={this.handleView} items={items} />
           <div
             className="es_basket_results"
-            onTouchStart={(e) =>
-              this.setState({ touchStart: e.targetTouches[0].clientX })
-            }
-            onTouchMove={(e) =>
-              this.setState({ touchEnd: e.targetTouches[0].clientX })
-            }
-            onTouchEnd={() => {
-              if (touchStart - touchEnd > 150) {
-                this.props.toggleBasket({ show: false });
-              }
-            }}
+            // onTouchStart={(e) =>
+            //   this.setState({ touchStart: e.targetTouches[0].clientX })
+            // }
+            // onTouchMove={(e) =>
+            //   this.setState({ touchEnd: e.targetTouches[0].clientX })
+            // }
+            // onTouchEnd={() => {
+            //   if (touchStart - touchEnd > 150) {
+            //     this.props.toggleBasket({ show: false });
+            //   }
+            // }}
           >
             <div
               id="ES_Results_Baskets"

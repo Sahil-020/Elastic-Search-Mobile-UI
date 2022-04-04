@@ -150,7 +150,7 @@ export default function Results(props) {
       {items &&
         items.map((item, index) => (
           <Card
-            key={index}
+            key={item.SerialNumber}
             onClick={(e) => {
               // if (e.target !== this) {
               //   return;
@@ -339,7 +339,9 @@ export default function Results(props) {
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    dispatch(removeFromCart(item));
+                    if (window.confirm("Confirm Delete?")) {
+                      dispatch(removeFromCart(item));
+                    }
                   }}
                 >
                   <span>-</span>
