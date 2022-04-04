@@ -78,7 +78,7 @@ class Basket extends Component {
       coverType: "NoCover",
       includeGIA: "No",
       goto: "",
-
+      viewType: "List",
       accuExportLink: "",
       csvData: "",
       csvRenderData: [],
@@ -761,6 +761,7 @@ class Basket extends Component {
             >
               <Results
                 items={items}
+                viewType={this.state.viewType}
                 isValueEmpty={isValueEmpty}
                 isMultipleValueEmpty={isMultipleValueEmpty}
               />
