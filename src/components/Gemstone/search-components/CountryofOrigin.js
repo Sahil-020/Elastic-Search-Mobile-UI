@@ -14,6 +14,11 @@ class CountryofOrigin extends Component {
         renderListItem={(label, count) => (
           <div>{label !== "NULL" ? label : "None"}</div>
         )}
+        // onValueChange={(value) => {
+        //   // if (value) {
+        //   this.props.handleShowResults(true);
+        //   // }
+        // }}
       />
     );
   }

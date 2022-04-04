@@ -58,7 +58,6 @@ import Options from "../../assets/icons/Options.png";
 import Clear from "../../assets/icons/Clear.png";
 import Filter from "../../assets/icons/Filter.png";
 
-
 const mapStateToProps = (state) => {
   return {
     basket: state.basket,
@@ -80,6 +79,7 @@ class DiamondMain extends Component {
       selected: "RetailPrice",
       sort: "asc",
       sizeLimit: 15,
+      showResults: false,
     };
     // this.clearFilters = this.clearFilters.bind(this)
     this.defaultQuery = this.defaultQuery.bind(this);
@@ -92,13 +92,18 @@ class DiamondMain extends Component {
     this.onCheckSelect = this.onCheckSelect.bind(this);
     this.handleShowFilters = this.handleShowFilters.bind(this);
     this.handleShowBasketOptions = this.handleShowBasketOptions.bind(this);
-
+    this.handleShowResults = this.handleShowResults.bind(this);
   }
 
   // componentDidMount() {
   //   this.setState({ showFilters: true });
   //   // this.setState({ showFilters: false });
   // }
+
+  handleShowResults(value) {
+    this.setState({ showResults: value });
+  }
+
   handleShowBasketOptions(value) {
     this.setState({ showBasketOptions: value });
   }
@@ -250,9 +255,11 @@ class DiamondMain extends Component {
       mountedSearchSignal,
       selected,
       sizeLimit,
-      sort,    } = this.state;
+      sort,
+      showResults,
+    } = this.state;
     let { handleBackButton, basket, toggleBasket } = this.props;
-    // console.log();
+    console.log({ showResults });
     let andQuery = [];
     if (serialSearchSignal) {
       andQuery = ["SerialSearch"];
@@ -290,7 +297,7 @@ class DiamondMain extends Component {
     return (
       <>
         <div className="navbar_container">
-          <Navigation />
+          <Navigation handleShowResults={this.handleShowResults} />
         </div>
         <div className="content">
           <ReactiveBase
@@ -302,8 +309,9 @@ class DiamondMain extends Component {
               <div className="serial_search_container">
                 <SerialSearchComponent
                   handleSerialSearchSignal={this.handleSerialSearchSignal}
+                  handleShowResults={this.handleShowResults}
                 />
-                 <img
+                <img
                   src={Filter}
                   //  onClick={() => this.setState({ showFilters: true })}
                   onClick={() => this.handleShowFilters("show_filters")}
@@ -328,9 +336,17 @@ class DiamondMain extends Component {
                 <div className="filter_header">
                   <h4>Filters</h4>{" "}
                   <span>
-                    <img src={Clear} /><SearchCriteria/>
+                    <img src={Clear} />
+                    <SearchCriteria
+                      handleShowResults={this.handleShowResults}
+                    />
                   </span>
-                  <button onClick={() => this.handleShowFilters("filters")}>
+                  <button
+                    onClick={() => {
+                      this.handleShowFilters("filters");
+                      this.handleShowResults(true);
+                    }}
+                  >
                     X
                   </button>
                 </div>
@@ -340,49 +356,76 @@ class DiamondMain extends Component {
                     <Accordion.Body>
                       <SerialSearchComponent
                         handleSerialSearchSignal={this.handleSerialSearchSignal}
+                        handleShowResults={this.handleShowResults}
                       />
-                      <StyleNumber />
-                      <Shape />
+                      <StyleNumber handleShowResults={this.handleShowResults} />
+                      <Shape handleShowResults={this.handleShowResults} />
                       <MountedNumberStock
                         handleMountedSearchSignal={
                           this.handleMountedSearchSignal
                         }
+                        handleShowResults={this.handleShowResults}
                       />
-                      <FancyColor />
-                      <FancyColorIntensity />
-                      <Warehouse />
-                      <MemoOut />
+                      <FancyColor handleShowResults={this.handleShowResults} />
+                      <FancyColorIntensity
+                        handleShowResults={this.handleShowResults}
+                      />
+                      <Warehouse handleShowResults={this.handleShowResults} />
+                      <MemoOut handleShowResults={this.handleShowResults} />
                       <RfidSearch
                         handleRfidSearchSignal={this.handleRfidSearchSignal}
+                        handleShowResults={this.handleShowResults}
                       />
-                      <Report data={DiamondSearchKeyword} />
+                      <Report
+                        data={DiamondSearchKeyword}
+                        handleShowResults={this.handleShowResults}
+                      />
                     </Accordion.Body>
                   </Accordion.Item>
                   <Accordion.Item eventKey="1">
                     <Accordion.Header>Range Fields</Accordion.Header>
                     <Accordion.Body className="range_fields">
-                      <DiamondCaratWeightComponent data={DiamondCaratWeight} />
-                      <DiamondColorRange />
-                      <DiamondClarityRange />
-                      <DiamondCutRange />
-                      <StoneRatio />
+                      <DiamondCaratWeightComponent
+                        data={DiamondCaratWeight}
+                        handleShowResults={this.handleShowResults}
+                      />
+                      <DiamondColorRange
+                        handleShowResults={this.handleShowResults}
+                      />
+                      <DiamondClarityRange
+                        handleShowResults={this.handleShowResults}
+                      />
+                      <DiamondCutRange
+                        handleShowResults={this.handleShowResults}
+                      />
+                      <StoneRatio handleShowResults={this.handleShowResults} />
 
-                      <RetailPriceRange />
-                      <WholesalePriceRange />
+                      <RetailPriceRange
+                        handleShowResults={this.handleShowResults}
+                      />
+                      <WholesalePriceRange
+                        handleShowResults={this.handleShowResults}
+                      />
                     </Accordion.Body>
                   </Accordion.Item>
                   <Accordion.Item eventKey="2">
                     <Accordion.Header>Selection Fields</Accordion.Header>
                     <Accordion.Body className="selection_fields">
-                      <LooseOnly />
-                      <LooseAndRingsOnly />
-                      <IsSold />
-                      <IsVirtual />
-                      <IsRtv />
-                      <TiaraOnly />
-                      <FLRoundOnly />
-                      <FLCushionsOnly />
-                      <KWCushionOnly />
+                      <LooseOnly handleShowResults={this.handleShowResults} />
+                      <LooseAndRingsOnly
+                        handleShowResults={this.handleShowResults}
+                      />
+                      <IsSold handleShowResults={this.handleShowResults} />
+                      <IsVirtual handleShowResults={this.handleShowResults} />
+                      <IsRtv handleShowResults={this.handleShowResults} />
+                      <TiaraOnly handleShowResults={this.handleShowResults} />
+                      <FLRoundOnly handleShowResults={this.handleShowResults} />
+                      <FLCushionsOnly
+                        handleShowResults={this.handleShowResults}
+                      />
+                      <KWCushionOnly
+                        handleShowResults={this.handleShowResults}
+                      />
                     </Accordion.Body>
                   </Accordion.Item>
                 </Accordion>
@@ -393,45 +436,55 @@ class DiamondMain extends Component {
             {/* <SelectedFilters className="selectedFilters" /> */}
             {/* <SearchCriteria /> */}
 
-            <ReactiveList
-              componentId="results"
-              // dataField="RetailPrice"
-              dataField={selected}
-              size={sizeLimit}
-              sortBy={sort}              
-              react={{
-                and: andQuery,
-                // or: andQuery,
-              }}
-              defaultQuery={() => this.defaultQuery()}
-              renderResultStats={({ numberOfResults, time }) => (
-                <HandleView
-                  numberOfResults={numberOfResults}
-                  time={time}
-                  handleView={this.handleView}
-                />
-              )}
-              // scrollOnChange={false}
-              render={({ data }) => (
-                <div className="es_results">
-                  <div
-                    id="ES_Results"
-                    className="List_result_container"
-                    // className="compact_result_container"
-                  >
-                    <Results
-                      items={data}
-                      viewType={this.state.viewType}
-                      isValueEmpty={this.isValueEmpty}
-                      isMultipleValueEmpty={this.isMultipleValueEmpty}
-                      // items={this.state.result}
+            {showResults ? (
+              <ReactiveList
+                componentId="results"
+                // dataField="RetailPrice"
+                dataField={selected}
+                size={sizeLimit}
+                sortBy={sort}
+                react={{
+                  and: andQuery,
+                  // or: andQuery,
+                }}
+                defaultQuery={() => this.defaultQuery()}
+                renderResultStats={({ numberOfResults, time }) => (
+                  <HandleView
+                    numberOfResults={numberOfResults}
+                    time={time}
+                    handleView={this.handleView}
+                  />
+                )}
+                // scrollOnChange={false}
+                render={({ data }) => (
+                  <div className="es_results">
+                    <div
+                      id="ES_Results"
+                      className="List_result_container"
+                      // className="compact_result_container"
+                    >
+                      <Results
+                        items={data}
+                        viewType={this.state.viewType}
+                        isValueEmpty={this.isValueEmpty}
+                        isMultipleValueEmpty={this.isMultipleValueEmpty}
+                        // items={this.state.result}
 
-                      handleBackButton={handleBackButton}
-                    />
+                        handleBackButton={handleBackButton}
+                      />
+                    </div>
                   </div>
-                </div>
-              )}
-            />
+                )}
+              />
+            ) : (
+              <div className="banner text-center">
+                <img
+                  src="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Search-Background-Diamond.png"
+                  alt="banner"
+                  className="img-responsive"
+                />
+              </div>
+            )}
           </ReactiveBase>
         </div>
         <Offcanvas

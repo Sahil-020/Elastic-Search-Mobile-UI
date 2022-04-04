@@ -26,7 +26,10 @@ class SoldCustomerSearch extends Component {
         iconPosition="right"
         // customQuery={this.handleCustomQuery}
         // onValueChange={(value) => this.handleChange(value)}
-        onValueSelected={(value) => this.props.handleSoldCustSignal(true)}
+        // onValueSelected={(value) => {
+        //   this.props.handleSoldCustSignal(true);
+        //   this.props.handleShowResults(true);
+        // }}
       />
     );
   }

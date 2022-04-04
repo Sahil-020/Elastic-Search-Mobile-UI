@@ -59,6 +59,11 @@ class CenterShape extends Component {
           return ordered_array;
         }}
         placeholder="Select values"
+        // onValueChange={(value) => {
+        //   // if (value) {
+        //   this.props.handleShowResults(true);
+        //   // }
+        // }}
       />
     );
   }

@@ -51,7 +51,6 @@ import Options from "../../assets/icons/Options.png";
 import Clear from "../../assets/icons/Clear.png";
 import Filter from "../../assets/icons/Filter.png";
 
-
 const mapStateToProps = (state) => {
   return {
     basket: state.basket,
@@ -73,6 +72,7 @@ class GemstoneMain extends Component {
       selected: "RetailPrice",
       sort: "asc",
       sizeLimit: 15,
+      showResults: false,
     };
     // this.clearFilters = this.clearFilters.bind(this)
 
@@ -86,13 +86,18 @@ class GemstoneMain extends Component {
     this.onCheckSelect = this.onCheckSelect.bind(this);
     this.handleShowFilters = this.handleShowFilters.bind(this);
     this.handleShowBasketOptions = this.handleShowBasketOptions.bind(this);
-
+    this.handleShowResults = this.handleShowResults.bind(this);
   }
 
   // componentDidMount() {
   //   this.setState({ showFilters: true });
   //   // this.setState({ showFilters: false });
   // }
+
+  handleShowResults(value) {
+    this.setState({ showResults: value });
+  }
+
   handleShowBasketOptions(value) {
     this.setState({ showBasketOptions: value });
   }
@@ -213,7 +218,8 @@ class GemstoneMain extends Component {
       rfidSearchSignal,
       selected,
       sizeLimit,
-      sort,   
+      sort,
+      showResults,
     } = this.state;
     let { handleBackButton, basket, toggleBasket } = this.props;
     // console.log();
@@ -260,8 +266,9 @@ class GemstoneMain extends Component {
               <div className="serial_search_container">
                 <SerialSearchComponent
                   handleSerialSearchSignal={this.handleSerialSearchSignal}
+                  handleShowResults={this.handleShowResults}
                 />
-                 <img
+                <img
                   src={Filter}
                   //  onClick={() => this.setState({ showFilters: true })}
                   onClick={() => this.handleShowFilters("show_filters")}
@@ -285,9 +292,17 @@ class GemstoneMain extends Component {
                 <div className="filter_header">
                   <h4>Filters</h4>{" "}
                   <span>
-                    <img src={Clear} /> <SearchCriteria/>
+                    <img src={Clear} />{" "}
+                    <SearchCriteria
+                      handleShowResults={this.handleShowResults}
+                    />
                   </span>
-                  <button onClick={() => this.handleShowFilters("filters")}>
+                  <button
+                    onClick={() => {
+                      this.handleShowFilters("filters");
+                      this.handleShowResults(true);
+                    }}
+                  >
                     X
                   </button>
                 </div>
@@ -297,40 +312,58 @@ class GemstoneMain extends Component {
                     <Accordion.Body>
                       <SerialSearchComponent
                         handleSerialSearchSignal={this.handleSerialSearchSignal}
+                        handleShowResults={this.handleShowResults}
                       />
-                      <StyleNumber />
-                      <GemstoneShape />
+                      <StyleNumber handleShowResults={this.handleShowResults} />
+                      <GemstoneShape
+                        handleShowResults={this.handleShowResults}
+                      />
                       <MountedNumberStock
                         handleMountedSearchSignal={
                           this.handleMountedSearchSignal
                         }
+                        handleShowResults={this.handleShowResults}
                       />
-                      <GemstoneType />
-                      <CountryofOrigin />
-                      <GemEnhancement />
-                      <Warehouse />
-                      <MemoOut />
+                      <GemstoneType
+                        handleShowResults={this.handleShowResults}
+                      />
+                      <CountryofOrigin
+                        handleShowResults={this.handleShowResults}
+                      />
+                      <GemEnhancement
+                        handleShowResults={this.handleShowResults}
+                      />
+                      <Warehouse handleShowResults={this.handleShowResults} />
+                      <MemoOut handleShowResults={this.handleShowResults} />
                       <RfidSearch
                         handleRfidSearchSignal={this.handleRfidSearchSignal}
+                        handleShowResults={this.handleShowResults}
                       />
-                      <Report data={GemstoneKeywordSearch} />
+                      <Report
+                        data={GemstoneKeywordSearch}
+                        handleShowResults={this.handleShowResults}
+                      />
                     </Accordion.Body>
                   </Accordion.Item>
                   <Accordion.Item eventKey="1">
                     <Accordion.Header>Range Fields</Accordion.Header>
                     <Accordion.Body className="range_fields">
                       <CaratWeight />
-                      <RetailPriceRange />
-                      <WholesalePriceRange />
+                      <RetailPriceRange
+                        handleShowResults={this.handleShowResults}
+                      />
+                      <WholesalePriceRange
+                        handleShowResults={this.handleShowResults}
+                      />
                     </Accordion.Body>
                   </Accordion.Item>
                   <Accordion.Item eventKey="2">
                     <Accordion.Header>Selection Fields</Accordion.Header>
                     <Accordion.Body className="selection_fields">
-                      <LooseOnly />
-                      <IsSold />
-                      <IsVirtual />
-                      <IsRtv />
+                      <LooseOnly handleShowResults={this.handleShowResults} />
+                      <IsSold handleShowResults={this.handleShowResults} />
+                      <IsVirtual handleShowResults={this.handleShowResults} />
+                      <IsRtv handleShowResults={this.handleShowResults} />
                     </Accordion.Body>
                   </Accordion.Item>
                 </Accordion>
@@ -341,43 +374,53 @@ class GemstoneMain extends Component {
             {/* <SelectedFilters className="selectedFilters" /> */}
             {/* <SearchCriteria /> */}
 
-            <ReactiveList
-              componentId="results"
-             // dataField="RetailPrice"
-             dataField={selected}
-             size={sizeLimit}
-             sortBy={sort}  
-              react={{
-                and: andQuery,
-                // or: andQuery,
-              }}
-              defaultQuery={() => this.defaultQuery()}
-              renderResultStats={({ numberOfResults, time }) => (
-                <HandleView
-                  numberOfResults={numberOfResults}
-                  time={time}
-                  handleView={this.handleView}
-                />
-              )}
-              render={({ data }) => (
-                <div className="es_results">
-                  <div
-                    id="ES_Results"
-                    className="List_result_container"
-                    // className="compact_result_container"
-                  >
-                    <Results
-                      items={data}
-                      viewType={this.state.viewType}
-                      isValueEmpty={this.isValueEmpty}
-                      isMultipleValueEmpty={this.isMultipleValueEmpty}
-                      // items={this.state.result}
-                      handleBackButton={handleBackButton}
-                    />
+            {showResults ? (
+              <ReactiveList
+                componentId="results"
+                // dataField="RetailPrice"
+                dataField={selected}
+                size={sizeLimit}
+                sortBy={sort}
+                react={{
+                  and: andQuery,
+                  // or: andQuery,
+                }}
+                defaultQuery={() => this.defaultQuery()}
+                renderResultStats={({ numberOfResults, time }) => (
+                  <HandleView
+                    numberOfResults={numberOfResults}
+                    time={time}
+                    handleView={this.handleView}
+                  />
+                )}
+                render={({ data }) => (
+                  <div className="es_results">
+                    <div
+                      id="ES_Results"
+                      className="List_result_container"
+                      // className="compact_result_container"
+                    >
+                      <Results
+                        items={data}
+                        viewType={this.state.viewType}
+                        isValueEmpty={this.isValueEmpty}
+                        isMultipleValueEmpty={this.isMultipleValueEmpty}
+                        // items={this.state.result}
+                        handleBackButton={handleBackButton}
+                      />
+                    </div>
                   </div>
-                </div>
-              )}
-            />
+                )}
+              />
+            ) : (
+              <div className="banner text-center">
+                <img
+                  src="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Search-Background-Gemstone.png"
+                  alt="banner"
+                  className="img-responsive"
+                />
+              </div>
+            )}
           </ReactiveBase>
         </div>
         <Offcanvas
@@ -398,7 +441,8 @@ class GemstoneMain extends Component {
               isValueEmpty={this.isValueEmpty}
               isMultipleValueEmpty={this.isMultipleValueEmpty}
               showBasketOptions={this.state.showBasketOptions}
-              handleShowBasketOptions={this.handleShowBasketOptions}              />
+              handleShowBasketOptions={this.handleShowBasketOptions}
+            />
           </Offcanvas.Body>
         </Offcanvas>
       </>

@@ -247,29 +247,28 @@ export default function Results(props) {
             </Card.Body>
             {/* {viewType === "List" && ( */}
             <div className="result_action_group">
-              <button>
-                {!basket.show ? (
-                  <img
-                    src="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/add-to-basket.png"
-                    onClick={(e) => {
-                      // if (e.target === this) {
-                      e.stopPropagation();
-                      dispatch(addToCart({ product: item }));
-                      // addItemToBasket(item);
-                      // }
-                    }}
-                  ></img>
-                ) : (
-                  <span
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      dispatch(removeFromCart(item));
-                    }}
-                  >
-                    -
-                  </span>
-                )}
-              </button>
+              {!basket.show ? (
+                <button
+                  onClick={(e) => {
+                    // if (e.target === this) {
+                    e.stopPropagation();
+                    dispatch(addToCart({ product: item }));
+                    // addItemToBasket(item);
+                    // }
+                  }}
+                >
+                  <img src="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/add-to-basket.png"></img>
+                </button>
+              ) : (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    dispatch(removeFromCart(item));
+                  }}
+                >
+                  <span>-</span>
+                </button>
+              )}
             </div>
             {/* )} */}
           </Card>

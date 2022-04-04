@@ -35,7 +35,7 @@ class WholesalePriceRange extends Component {
                   WholesalePrice: {
                     histogram: {
                       field: "WholesalePrice",
-                      interval:100000,
+                      interval: 100000,
                       offset: 0,
                     },
                   },
@@ -55,6 +55,11 @@ class WholesalePriceRange extends Component {
           rangeLabels={{
             start: "$",
             end: "$",
+          }}
+          onValueChange={(value) => {
+            // if (value) {
+            this.props.handleShowResults(true);
+            // }
           }}
         />
       </div>

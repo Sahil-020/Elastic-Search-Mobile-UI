@@ -28,6 +28,11 @@ class PurchasDateRange extends Component {
         showFilter={true}
         filterLabel="Date"
         URLParams={false}
+        // onValueChange={(value) => {
+        //   // if (value) {
+        //   this.props.handleShowResults(true);
+        //   // }
+        // }}
       />
     );
   }

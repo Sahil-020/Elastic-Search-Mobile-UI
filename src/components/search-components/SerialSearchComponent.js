@@ -18,7 +18,14 @@ class SerialSearchComponent extends Component {
         componentId="SerialSearch"
         icon={false}
         iconPosition={"right"}
-        onValueSelected={(value) => this.props.handleSerialSearchSignal(true)}
+        // onValueSelected={(value) => this.props.handleSerialSearchSignal(true)}
+        onValueSelected={(value) => {
+          // if (value) {
+          this.props.handleSerialSearchSignal(true);
+          this.props.handleShowResults(true);
+          // }
+        }}
+        URLParams={true}
       />
     );
   }

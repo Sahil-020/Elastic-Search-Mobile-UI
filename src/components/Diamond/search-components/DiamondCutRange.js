@@ -1,20 +1,13 @@
 import React, { Component } from "react";
 import { SingleDropdownList, MultiList } from "@appbaseio/reactivesearch";
-const item_order = [
-  "Excellent",
-  "F",
-  "Fair",
-  "G",
-  "Good",
-  "Very Good",
-];
+const item_order = ["Excellent", "F", "Fair", "G", "Good", "Very Good"];
 
 class DiamondCutRange extends Component {
   constructor(props) {
     super(props);
     this.state = {
       startValue: "",
-      endValue: ""
+      endValue: "",
     };
     this.handleStartChange = this.handleStartChange.bind(this);
     this.handleEndChange = this.handleEndChange.bind(this);
@@ -22,16 +15,16 @@ class DiamondCutRange extends Component {
   }
   handleStartChange(value) {
     this.setState({
-      startValue: value
+      startValue: value,
     });
   }
   handleEndChange(value) {
     this.setState({
-      endValue: value
+      endValue: value,
     });
   }
   mapOrder(array, order, key) {
-    array.sort(function(a, b) {
+    array.sort(function (a, b) {
       var A = a[key],
         B = b[key];
       if (order.indexOf(A) > order.indexOf(B)) {
@@ -72,8 +65,8 @@ class DiamondCutRange extends Component {
             showCount={false}
             showFilter={true}
             filterLabel="DiaStartCut"
-            onValueChange={value => this.handleStartChange(value)}
-            transformData={list => {
+            onValueChange={(value) => this.handleStartChange(value)}
+            transformData={(list) => {
               var ordered_array;
               ordered_array = this.mapOrder(list, item_order, "key");
               return ordered_array;
@@ -90,8 +83,8 @@ class DiamondCutRange extends Component {
             showCount={false}
             showFilter={true}
             filterLabel="DiaEndCut"
-            onValueChange={value => this.handleEndChange(value)}
-            transformData={list => {
+            onValueChange={(value) => this.handleEndChange(value)}
+            transformData={(list) => {
               var ordered_array;
               ordered_array = this.mapOrder(list, item_order, "key");
               return ordered_array;
@@ -108,7 +101,12 @@ class DiamondCutRange extends Component {
             showSearch={false}
             showFilter={false}
             react={{
-              or: ["DiamondStartCut", "DiamondEndCut"]
+              or: ["DiamondStartCut", "DiamondEndCut"],
+            }}
+            onChange={(value) => {
+              // if (value) {
+              this.props.handleShowResults(true);
+              // }
             }}
           />
         </div>

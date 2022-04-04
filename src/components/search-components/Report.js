@@ -16,6 +16,11 @@ class Report extends Component {
         autosuggest={false}
         iconPosition="right"
         queryFormat="and"
+        // onValueSelected={(value) => {
+        //   // if (value) {
+        //   this.props.handleShowResults(true);
+        //   // }
+        // }}
       />
     );
   }

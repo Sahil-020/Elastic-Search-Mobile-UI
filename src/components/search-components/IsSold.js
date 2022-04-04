@@ -60,6 +60,11 @@ class IsSold extends Component {
             resolve();
           });
         }}
+        // onValueChange={(value) => {
+        //   // if (value) {
+        //   this.props.handleShowResults(true);
+        //   // }
+        // }}
       />
     );
   }

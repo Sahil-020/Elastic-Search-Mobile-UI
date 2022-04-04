@@ -65,7 +65,7 @@ import HandleWholesale from "../OtherComponents/HandleWholesale";
 import Options from "../../assets/icons/Options.png";
 import Clear from "../../assets/icons/Clear.png";
 import Filter from "../../assets/icons/Filter.png";
-import IsRtv from './../search-components/IsRtv';
+import IsRtv from "./../search-components/IsRtv";
 
 const mapStateToProps = (state) => {
   return {
@@ -88,7 +88,7 @@ class JewelryMain extends Component {
       selected: "RetailPrice",
       sort: "asc",
       sizeLimit: 15,
-      showResults:false,
+      showResults: false,
     };
     // this.clearFilters = this.clearFilters.bind(this)
     this.defaultQuery = this.defaultQuery.bind(this);
@@ -101,12 +101,17 @@ class JewelryMain extends Component {
     this.onCheckSelect = this.onCheckSelect.bind(this);
     this.handleShowFilters = this.handleShowFilters.bind(this);
     this.handleShowBasketOptions = this.handleShowBasketOptions.bind(this);
+    this.handleShowResults = this.handleShowResults.bind(this);
   }
 
   // componentDidMount() {
   //   this.setState({ showFilters: true });
   //   // this.setState({ showFilters: false });
   // }
+
+  handleShowResults(value) {
+    this.setState({ showResults: value });
+  }
 
   handleShowBasketOptions(value) {
     this.setState({ showBasketOptions: value });
@@ -261,6 +266,7 @@ class JewelryMain extends Component {
       selected,
       sizeLimit,
       sort,
+      showResults,
     } = this.state;
     let { basket, toggleBasket } = this.props;
     // console.log();
@@ -312,7 +318,7 @@ class JewelryMain extends Component {
     return (
       <>
         <div className="navbar_container">
-          <Navigation />
+          <Navigation handleShowResults={this.handleShowResults} />
         </div>
         <div className="content">
           <ReactiveBase
@@ -324,6 +330,7 @@ class JewelryMain extends Component {
               <div className="serial_search_container">
                 <SerialSearchComponent
                   handleSerialSearchSignal={this.handleSerialSearchSignal}
+                  handleShowResults={this.handleShowResults}
                 />
                 <img
                   src={Filter}
@@ -349,12 +356,19 @@ class JewelryMain extends Component {
                 <div className="filter_header">
                   <h4>Filters</h4>{" "}
                   <span>
-                    <img src={Clear} />   <SearchCriteria />
+                    <img src={Clear} />{" "}
+                    <SearchCriteria
+                      handleShowResults={this.handleShowResults}
+                    />
                   </span>
-                  {/* <button onClick={() => this.handleShowFilters("filters")}>
+                  <button
+                    onClick={() => {
+                      this.handleShowFilters("filters");
+                      this.handleShowResults(true);
+                    }}
+                  >
                     X
-                  </button> */}
-                
+                  </button>
                 </div>
                 <Accordion defaultActiveKey="0">
                   <Accordion.Item eventKey="0">
@@ -362,56 +376,77 @@ class JewelryMain extends Component {
                     <Accordion.Body>
                       <SerialSearchComponent
                         handleSerialSearchSignal={this.handleSerialSearchSignal}
+                        handleShowResults={this.handleShowResults}
                       />
-                      <StyleNumber />
-                      <ItemTypeSearch />
-                      <ItemSubtype />
-                      <Collection />
-                      <SubCollection />
-                      <CenterShape />
-                      <Metal />
-                      <Period />
-                      <Maker />
+                      <StyleNumber handleShowResults={this.handleShowResults} />
+                      <ItemTypeSearch
+                        handleShowResults={this.handleShowResults}
+                      />
+                      <ItemSubtype handleShowResults={this.handleShowResults} />
+                      <Collection handleShowResults={this.handleShowResults} />
+                      <SubCollection
+                        handleShowResults={this.handleShowResults}
+                      />
+                      <CenterShape handleShowResults={this.handleShowResults} />
+                      <Metal handleShowResults={this.handleShowResults} />
+                      <Period handleShowResults={this.handleShowResults} />
+                      <Maker handleShowResults={this.handleShowResults} />
                       <RfidSearch
                         handleRfidSearchSignal={this.handleRfidSearchSignal}
+                        handleShowResults={this.handleShowResults}
                       />
-                      <Keyword />
-                      <WRShape />
-                      <WRSetting />
-                      <EternPart />
-                      <Warehouse />
-                      <MemoOut />
+                      <Keyword handleShowResults={this.handleShowResults} />
+                      <WRShape handleShowResults={this.handleShowResults} />
+                      <WRSetting handleShowResults={this.handleShowResults} />
+                      <EternPart handleShowResults={this.handleShowResults} />
+                      <Warehouse handleShowResults={this.handleShowResults} />
+                      <MemoOut handleShowResults={this.handleShowResults} />
                       <SoldCustomerSearch
                         handleSoldCustSignal={this.handleRfidSearchSignal}
+                        handleShowResults={this.handleShowResults}
                       />
                     </Accordion.Body>
                   </Accordion.Item>
                   <Accordion.Item eventKey="1">
                     <Accordion.Header>Range Fields</Accordion.Header>
                     <Accordion.Body className="range_fields">
-                      <RetailPriceRange />
-                      <WholesalePriceRange />
-                      <DiamondCarats />
-                      <ColorCarat />
-                      <RingSizeRange />
-                      <PurchasDateRange />
+                      <RetailPriceRange
+                        handleShowResults={this.handleShowResults}
+                      />
+                      <WholesalePriceRange
+                        handleShowResults={this.handleShowResults}
+                      />
+                      <DiamondCarats
+                        handleShowResults={this.handleShowResults}
+                      />
+                      <ColorCarat handleShowResults={this.handleShowResults} />
+                      <RingSizeRange
+                        handleShowResults={this.handleShowResults}
+                      />
+                      <PurchasDateRange
+                        handleShowResults={this.handleShowResults}
+                      />
                     </Accordion.Body>
                   </Accordion.Item>
                   <Accordion.Item eventKey="2">
                     <Accordion.Header>Selection Fields</Accordion.Header>
                     <Accordion.Body className="selection_fields">
-                      <KwiatOnly />
-                      <FredLeightonOnly />
-                      <IsSold />
-                      <IsCom />
-                      <IsVirtual />
-                      <IsRtv/>
-                      <IsSemimount />
-                      <IsOpenJob />
-                      <TiaraOnly />
-                      <FLRoundOnly />
-                      <AshokaOnly />
-                      <KWCushionOnly />
+                      <KwiatOnly handleShowResults={this.handleShowResults} />
+                      <FredLeightonOnly
+                        handleShowResults={this.handleShowResults}
+                      />
+                      <IsSold handleShowResults={this.handleShowResults} />
+                      <IsCom handleShowResults={this.handleShowResults} />
+                      <IsVirtual handleShowResults={this.handleShowResults} />
+                      <IsRtv handleShowResults={this.handleShowResults} />
+                      <IsSemimount handleShowResults={this.handleShowResults} />
+                      <IsOpenJob handleShowResults={this.handleShowResults} />
+                      <TiaraOnly handleShowResults={this.handleShowResults} />
+                      <FLRoundOnly handleShowResults={this.handleShowResults} />
+                      <AshokaOnly handleShowResults={this.handleShowResults} />
+                      <KWCushionOnly
+                        handleShowResults={this.handleShowResults}
+                      />
                     </Accordion.Body>
                   </Accordion.Item>
                 </Accordion>
@@ -422,43 +457,59 @@ class JewelryMain extends Component {
             {/* <SelectedFilters className="selectedFilters" /> */}
             {/* <SearchCriteria /> */}
 
-            <ReactiveList
-              componentId="results"
-              // dataField="RetailPrice"
-              dataField={selected}
-              size={sizeLimit}
-              sortBy={sort}
-              react={{
-                and: andQuery,
-                // or: andQuery,
-              }}
-              defaultQuery={() => this.defaultQuery()}
-              renderResultStats={({ numberOfResults, time }) => (
-                <HandleView
-                  numberOfResults={numberOfResults}
-                  time={time}
-                  handleView={this.handleView}
-                />
-              )}
-              render={({ data }) => (
-                <div className="es_results">
-                  <div
-                    id="ES_Results"
-                    className="List_result_container"
-                    // className="compact_result_container"
-                  >
-                    <Results
-                      items={data}
-                      viewType={this.state.viewType}
-                      isValueEmpty={this.isValueEmpty}
-                      isMultipleValueEmpty={this.isMultipleValueEmpty}
-                      // items={this.state.result}
-                      // handleBackButton={handleBackButton}
-                    />
+            {showResults ? (
+              <ReactiveList
+                componentId="results"
+                // dataField="RetailPrice"
+                dataField={selected}
+                size={sizeLimit}
+                sortBy={sort}
+                react={{
+                  and: andQuery,
+                  // or: andQuery,
+                }}
+                defaultQuery={() => this.defaultQuery()}
+                renderResultStats={({ numberOfResults, time }) => (
+                  <HandleView
+                    numberOfResults={numberOfResults}
+                    time={time}
+                    handleView={this.handleView}
+                  />
+                )}
+                render={({ data }) => (
+                  <div className="es_results">
+                    <div
+                      id="ES_Results"
+                      className="List_result_container"
+                      // className="compact_result_container"
+                    >
+                      <Results
+                        items={data}
+                        viewType={this.state.viewType}
+                        isValueEmpty={this.isValueEmpty}
+                        isMultipleValueEmpty={this.isMultipleValueEmpty}
+                        // items={this.state.result}
+                        // handleBackButton={handleBackButton}
+                      />
+                    </div>
                   </div>
-                </div>
-              )}
-            />
+                )}
+              />
+            ) : (
+              <div className="banner text-center">
+                <img
+                  src={
+                    // appType === "original"
+                    // ?
+                    "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Search-Background-Jewelry.png"
+                    // :
+                    // "https://cdn.kwiat.com/apps/kwiat-elastic-search-consumer/icons/Search-Background-Jewelry.svg"
+                  }
+                  alt="banner"
+                  className="img-responsive"
+                />
+              </div>
+            )}
           </ReactiveBase>
         </div>
         <Offcanvas

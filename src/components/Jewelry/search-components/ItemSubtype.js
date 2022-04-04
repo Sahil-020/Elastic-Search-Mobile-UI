@@ -65,6 +65,11 @@ class ItemSubtype extends Component {
         //     </div>
         //   );
         // }}
+        // onValueChange={(value) => {
+        //   // if (value) {
+        //   this.props.handleShowResults(true);
+        //   // }
+        // }}
       />
     );
   }

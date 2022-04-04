@@ -18,7 +18,10 @@ class MountedNumberStock extends Component {
         showClear
         debounce={250}
         autosuggest={true}
-        onValueChange={(value) => this.props.handleMountedSearchSignal(true)}
+        // onValueSelected={(value) => {
+        //   this.props.handleMountedSearchSignal(true);
+        //   this.props.handleShowResults(true);
+        // }}
       />
     );
   }

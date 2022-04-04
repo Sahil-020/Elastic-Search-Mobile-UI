@@ -50,6 +50,11 @@ class FLCushionsOnly extends Component {
             );
           }
         }}
+        // onValueChange={(value) => {
+        //   // if (value) {
+        //   this.props.handleShowResults(true);
+        //   // }
+        // }}
       />
     );
   }

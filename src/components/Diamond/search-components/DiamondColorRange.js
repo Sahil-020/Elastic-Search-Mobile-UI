@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import {
-  SingleDropdownList,
-  MultiList
-} from "@appbaseio/reactivesearch";
+import { SingleDropdownList, MultiList } from "@appbaseio/reactivesearch";
 
 const item_order = [
   "D",
@@ -25,15 +22,15 @@ const item_order = [
   "W-X",
   "WX",
   "YZ",
-  "*"
+  "*",
 ];
 
 class DiamondColorRange extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      startValue: '',
-      endValue: ''
+      startValue: "",
+      endValue: "",
     };
     this.handleStartChange = this.handleStartChange.bind(this);
     this.handleEndChange = this.handleEndChange.bind(this);
@@ -41,16 +38,16 @@ class DiamondColorRange extends Component {
   }
   handleStartChange(value) {
     this.setState({
-      startValue: value
+      startValue: value,
     });
   }
   handleEndChange(value) {
     this.setState({
-      endValue: value
+      endValue: value,
     });
   }
   mapOrder(array, order, key) {
-    array.sort(function(a, b) {
+    array.sort(function (a, b) {
       var A = a[key],
         B = b[key];
       if (order.indexOf(A) > order.indexOf(B)) {
@@ -69,7 +66,7 @@ class DiamondColorRange extends Component {
       value = null;
     } else if (startValue && !endValue) {
       value = item_order.slice(item_order.indexOf(startValue));
-    } else if(!startValue && endValue) {
+    } else if (!startValue && endValue) {
       value = item_order.slice(0, item_order.indexOf(endValue) + 1);
     } else {
       value = item_order.slice(
@@ -91,8 +88,8 @@ class DiamondColorRange extends Component {
             showCount={false}
             showFilter={true}
             filterLabel="DiaStartColor"
-            onValueChange={value => this.handleStartChange(value)}
-            transformData={list => {
+            onValueChange={(value) => this.handleStartChange(value)}
+            transformData={(list) => {
               var ordered_array;
               ordered_array = this.mapOrder(list, item_order, "key");
               return ordered_array;
@@ -109,8 +106,8 @@ class DiamondColorRange extends Component {
             showCount={false}
             showFilter={true}
             filterLabel="DiaEndColor"
-            onValueChange={value => this.handleEndChange(value)}
-            transformData={list => {
+            onValueChange={(value) => this.handleEndChange(value)}
+            transformData={(list) => {
               var ordered_array;
               ordered_array = this.mapOrder(list, item_order, "key");
               return ordered_array;
@@ -128,7 +125,12 @@ class DiamondColorRange extends Component {
             showSearch={false}
             showFilter={false}
             react={{
-              or: ["DiamondStartColor", "DiamondEndColor"]
+              or: ["DiamondStartColor", "DiamondEndColor"],
+            }}
+            onChange={(value) => {
+              // if (value) {
+              this.props.handleShowResults(true);
+              // }
             }}
           />
         </div>

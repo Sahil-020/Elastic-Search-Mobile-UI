@@ -23,6 +23,11 @@ class Keyword extends Component {
         queryFormat="and"
         searchOperators={true}
         iconPosition="right"
+        // onValueSelected={(value) => {
+        //   // if (value) {
+        //   this.props.handleShowResults(true);
+        //   // }
+        // }}
       />
     );
   }

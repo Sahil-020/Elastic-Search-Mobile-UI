@@ -32,7 +32,7 @@ class ColorCarat extends Component {
                 ColorCarats: {
                   histogram: {
                     field: "ColorCarats",
-                    interval:1,
+                    interval: 1,
                     offset: 0,
                   },
                 },
@@ -52,6 +52,11 @@ class ColorCarat extends Component {
             };
           }
         }}
+        // onValueChange={(value) => {
+        //   // if (value) {
+        //   this.props.handleShowResults(true);
+        //   // }
+        // }}
       />
     );
   }

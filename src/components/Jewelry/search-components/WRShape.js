@@ -18,6 +18,11 @@ class WRShape extends Component {
         showSearch={true}
         sortBy="asc"
         placeholder="Select values"
+        // onValueChange={(value) => {
+        //   // if (value) {
+        //   this.props.handleShowResults(true);
+        //   // }
+        // }}
       />
     );
   }

@@ -78,6 +78,11 @@ class ItemTypeSearch extends Component {
         //   );
         // }}
         placeholder="Select Types"
+        // onValueChange={(value) => {
+        //   // if (value) {
+        //   this.props.handleShowResults(true);
+        //   // }
+        // }}
       />
     );
   }

@@ -16,6 +16,11 @@ class Warehouse extends Component {
         showCount={false}
         showSearch={true}
         sortBy="asc"
+        // onValueChange={(value) => {
+        //   // if (value) {
+        //   this.props.handleShowResults(true);
+        //   // }
+        // }}
       />
     );
   }

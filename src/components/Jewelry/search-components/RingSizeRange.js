@@ -52,6 +52,11 @@ class RingSizeRange extends Component {
             };
           }
         }}
+        // onValueChange={(value) => {
+        //   // if (value) {
+        //   this.props.handleShowResults(true);
+        //   // }
+        // }}
       />
     );
   }

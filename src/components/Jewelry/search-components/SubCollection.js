@@ -37,6 +37,11 @@ class SubCollection extends Component {
         //     </ul>
         //   );
         // }}
+        // onValueChange={(value) => {
+        //   // if (value) {
+        //   this.props.handleShowResults(true);
+        //   // }
+        // }}
       />
     );
   }

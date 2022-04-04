@@ -46,7 +46,7 @@ class StoneRatio extends Component {
                   StoneRatio: {
                     histogram: {
                       field: "StoneRatio",
-                      interval:1,
+                      interval: 1,
                       offset: 1,
                     },
                   },
@@ -70,7 +70,11 @@ class StoneRatio extends Component {
             start: "$",
             end: "$",
           }}
-          onValueChange={(value) => this.handleSelected(value)}
+          onValueChange={(value) => {
+            // if (value) {
+            this.props.handleShowResults(true);
+            // }
+          }}
         />
       </div>
     );

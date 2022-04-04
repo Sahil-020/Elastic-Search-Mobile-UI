@@ -44,7 +44,7 @@ class CaratWeight extends Component {
                 CaratWeight: {
                   histogram: {
                     field: "CaratWeight",
-                    interval:1000,
+                    interval: 1000,
                     offset: 0,
                   },
                 },
@@ -61,6 +61,11 @@ class CaratWeight extends Component {
           }
         }}
         // onValueChange={(value) => this.handleSelected(value)}
+        // onValueChange={(value) => {
+        //   // if (value) {
+        //   this.props.handleShowResults(true);
+        //   // }
+        // }}
       />
     );
   }

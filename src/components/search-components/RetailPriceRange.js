@@ -35,7 +35,7 @@ class RetailPriceRange extends Component {
                   RetailPrice: {
                     histogram: {
                       field: "RetailPrice",
-                      interval:100000,
+                      interval: 100000,
                       offset: 0,
                     },
                   },
@@ -56,7 +56,11 @@ class RetailPriceRange extends Component {
             start: "$",
             end: "$",
           }}
-          onValueChange={(value) => this.handleSelected(value)}
+          onValueChange={(value) => {
+            // if (value) {
+            this.props.handleShowResults(true);
+            // }
+          }}
         />
       </div>
     );

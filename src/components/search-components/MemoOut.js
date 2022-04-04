@@ -16,6 +16,11 @@ class MemoOut extends Component {
         renderListItem={(label) => (
           <div>{label !== "NULL" ? label : "None"}</div>
         )}
+        // onValueChange={(value) => {
+        //   // if (value) {
+        //   this.props.handleShowResults(true);
+        //   // }
+        // }}
       />
     );
   }

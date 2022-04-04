@@ -13,6 +13,11 @@ class StyleNumber extends Component {
         queryFormat="and"
         componentId="StyleNumber"
         iconPosition={"right"}
+        // onValueSelected={(value) => {
+        //   // if (value) {
+        //   this.props.handleShowResults(true);
+        //   // }
+        // }}
       />
     );
   }

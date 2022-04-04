@@ -53,6 +53,11 @@ class LooseOnly extends Component {
             );
           }
         }}
+        // onValueChange={(value) => {
+        //   // if (value) {
+        //   this.props.handleShowResults(true);
+        //   // }
+        // }}
       />
     );
   }

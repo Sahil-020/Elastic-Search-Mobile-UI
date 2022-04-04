@@ -17,6 +17,11 @@ class Period extends Component {
           <div>{label !== "NULL" ? label : "None"}</div>
         )}
         placeholder="Select values"
+        // onValueChange={(value) => {
+        //   // if (value) {
+        //   this.props.handleShowResults(true);
+        //   // }
+        // }}
       />
     );
   }

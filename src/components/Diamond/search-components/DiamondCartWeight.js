@@ -34,7 +34,7 @@ class DiamondCaratWeightComponent extends Component {
                 DiamondCaratWeight: {
                   histogram: {
                     field: "DiamondCaratWeight",
-                    interval:1,
+                    interval: 1,
                     offset: 1,
                   },
                 },
@@ -58,7 +58,12 @@ class DiamondCaratWeightComponent extends Component {
           start: "$",
           end: "$",
         }}
-        // onValueChange={(value) => this.handleSelected(value)}
+        // // // onValueChange={(value) => this.handleSelected(value)}
+        // // onValueChange={(value) => {
+        // //   // if (value) {
+        // //   this.props.handleShowResults(true);
+        // //   // }
+        // }}
       />
     );
   }
