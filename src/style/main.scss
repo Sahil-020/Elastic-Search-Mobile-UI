@@ -1665,6 +1665,10 @@ $Dark_Red_Color: #aa0707;
     }
 }
 
+.single_item_modal ~ .modal-backdrop {
+    z-index: 1210 !important;
+}
+
 .offcanvas-backdrop,
 .modal-backdrop {
     background-color: #082157 !important;

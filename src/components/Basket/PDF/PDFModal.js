@@ -453,7 +453,7 @@ class PDFModal extends Component {
       includeGIA,
     } = this.props;
 
-    // console.log("basketInputObj: ", basketInputObj);
+    // console.log("layoutType: ", layoutType);
     // console.log("cartItems: ", cartItems);
     // console.log("coverType : ", coverType);
     // console.log("item : ", item);

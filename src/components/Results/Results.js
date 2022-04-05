@@ -21,13 +21,15 @@ export default function Results(props) {
     currentRes: [],
     showPreviewModal: false,
     showPDFModal: false,
-    showChooseLayout: false,
-    layoutType: "",
+    // showChooseLayout: false,
+    // layoutType: "",
     coverType: "NoCover",
-    goto: "",
+    // goto: "",
     includeGIA: "No",
   });
-  // const [showChooseLayout,setShowChooseLayout] = useState(false)
+  const [showChooseLayout, setShowChooseLayout] = useState(false);
+  const [goto, setGoto] = useState("");
+  const [layoutType, setLayoutType] = useState("");
   const basket = useSelector((state) => state.basket);
   const showWholesale = useSelector(
     (state) => state.basketInputChange.showWholesale
@@ -109,22 +111,26 @@ export default function Results(props) {
 
   const handleSetLayout = (layout) => {
     // console.log("layout: ", layout);
-    setData({ ...data, layoutType: layout });
+    setLayoutType(layout);
+    // setData({ ...data, layoutType: layout });
   };
 
   const handleShowChooseLayout = (value, res) => {
     console.log("Inside ChooseLayout");
     console.log({ res, value });
-    setData({
-      ...data,
-      showChooseLayout: true,
-      goto: value,
-    });
+    // setData({
+    //   ...data,
+    //   showChooseLayout: true,
+    //   goto: value,
+    // });
+    setShowChooseLayout(true);
+    setGoto(value);
     handleCurrentRes(res);
     console.log({ data });
   };
   const hideChooseLayout = () => {
-    setData({ ...data, showChooseLayout: false });
+    // setData({ ...data, showChooseLayout: false });
+    setShowChooseLayout(false);
   };
 
   const showPDFModal = () => {
@@ -135,7 +141,7 @@ export default function Results(props) {
   };
 
   const showPreviewModal = () => {
-    this.setData({ ...data, showPreviewModal: true });
+    setData({ ...data, showPreviewModal: true });
   };
   const hidePreviewModal = () => {
     setData({ ...data, showPreviewModal: false });
@@ -364,7 +370,7 @@ export default function Results(props) {
       <PreviewEmailModal
         show={data.showPreviewModal}
         hide={hidePreviewModal}
-        layoutType={data.layoutType}
+        layoutType={layoutType}
         coverType={data.coverType}
         showChooseLayout={handleShowChooseLayout}
         item={
@@ -378,7 +384,7 @@ export default function Results(props) {
       <PDFModal
         show={data.showPDFModal}
         hide={hidePDFModal}
-        layoutType={data.layoutType}
+        layoutType={layoutType}
         coverType={data.coverType}
         showChooseLayout={handleShowChooseLayout}
         item={
@@ -389,13 +395,13 @@ export default function Results(props) {
         includeGIA={data.includeGIA}
       />
       <ChooseLayoutModal
-        show={data.showChooseLayout}
+        show={showChooseLayout}
         hide={hideChooseLayout}
         setLayout={handleSetLayout}
         setCover={handleSetCover}
         showPreviewModal={showPreviewModal}
         showPDFModal={showPDFModal}
-        goto={data.goto}
+        goto={goto}
         showChooseLayout={handleShowChooseLayout}
         coverType={data.coverType}
         includeGIA={data.includeGIA}
