@@ -65,7 +65,7 @@ $Dark_Red_Color: #aa0707;
                     justify-content: flex-end;
                     width: 40%;
                     img {
-                        z-index: 101;
+                        z-index: 1220;
                         position: fixed;
                         top: 0;
                         margin: 18px 10px 0px;
@@ -214,7 +214,7 @@ $Dark_Red_Color: #aa0707;
             .show_filters {
                 opacity: 1;
                 // visibility: visible;
-                z-index: 104;
+                z-index: 1230;
                 height: 100vh;
                 position: fixed;
                 overflow: scroll;
@@ -1350,6 +1350,7 @@ $Dark_Red_Color: #aa0707;
     }
 }
 .single_item_modal {
+    z-index: 1210 !important;
     .modal-dialog {
         // margin: 0;
         .modal-content {
@@ -1654,10 +1655,14 @@ $Dark_Red_Color: #aa0707;
 .modal-backdrop {
     background-color: #082157 !important;
 }
+.modal-backdrop{
+    z-index:1200 !important;
+}
 
 
 .basket_offcanvas {
     height: 100vh !important;
+    z-index: 1250 !important;
     .offcanvas-header {
         justify-content: flex-start;
         padding: 15px 20px;
@@ -2237,7 +2242,12 @@ $Dark_Red_Color: #aa0707;
     }
 }
 
+.basket_offcanvas + .modal-backdrop{
+    z-index:1250 !important;
+}
+
 .basket_form_modal {
+    z-index: 1300 !important;
     .modal-dialog {
         .modal-content {
             height: 90vh;
@@ -2323,6 +2333,7 @@ $Dark_Red_Color: #aa0707;
 }
 
 .basket_options {
+    z-index: 1260 !important;
     .modal-dialog {
         // margin: 100% 15px;
         position: absolute;
@@ -2461,6 +2472,7 @@ $Dark_Red_Color: #aa0707;
     }
 }
 .basket_select {
+    z-index: 1400 !important;
     .modal-dialog {
         position: absolute;
         bottom: 0;
@@ -2557,7 +2569,7 @@ $Dark_Red_Color: #aa0707;
 }
 
 .choose-layout-modal {
-    z-index: 10000;
+    z-index: 1260 !important;
     overflow: hidden !important;
     .modal-dialog {
         height: 100%;
@@ -2763,7 +2775,7 @@ $Dark_Red_Color: #aa0707;
                             span {
                                 margin-top: 10px;
                                 font-size: 11px;
-                                font-size: 15px;
+                                font-size: 14px;
                                 text-align: center;
                             }
                         }
@@ -2796,7 +2808,7 @@ $Dark_Red_Color: #aa0707;
 
 .pdf_modal,
 .email_modal {
-    z-index: 110001;
+    z-index: 1270 !important;
     overflow: hidden !important;
 
     .modal-dialog {
@@ -3299,7 +3311,7 @@ $Dark_Red_Color: #aa0707;
 
 .show-export-modal,
 .show-diamond-export-modal {
-    z-index: 10000;
+    z-index: 1400!important;
     .modal-dialog {
         height: 100%;
         margin: 0;

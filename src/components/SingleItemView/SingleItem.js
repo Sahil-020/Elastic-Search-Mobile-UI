@@ -35,9 +35,9 @@ export default function SingleItem(props) {
     isValueEmpty,
     isMultipleValueEmpty,
     handleEmail,
-    handleSetCover,
     showChooseLayout,
     handleIncludeGIA,
+    handleSetCover,
   } = props;
   let { id } = useParams();
 
