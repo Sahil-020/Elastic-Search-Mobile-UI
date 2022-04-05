@@ -33,8 +33,8 @@ $Dark_Red_Color: #aa0707;
         display: flex;
         align-items: center;
         justify-content: center;
-        img{
-            height:30px;
+        img {
+            height: 30px;
         }
     }
     .navbar.navbar-expand.navbar-light.bg-light {
@@ -242,15 +242,15 @@ $Dark_Red_Color: #aa0707;
                         text-align: left;
                         margin: 0;
                     }
-                    span, span button {
+                    span,
+                    span button {
                         width: 25%;
                         font-size: 12px !important;
                         text-decoration: underline !important;
-                        button{
-                            width:auto;
-                            padding:0;
+                        button {
+                            width: auto;
+                            padding: 0;
                         }
-                       
                     }
                     button {
                         width: 5%;
@@ -960,7 +960,7 @@ $Dark_Red_Color: #aa0707;
 
                             max-height: 100% !important;
                         }
-                        span{
+                        span {
                             font-size: 14px;
                             color: #34495e;
                             position: absolute;
@@ -1052,12 +1052,12 @@ $Dark_Red_Color: #aa0707;
                         height: 20% !important;
                         font-size: 8px !important;
                         font-weight: 900 !important;
-                        flex-direction: column !important;;
+                        flex-direction: column !important;
                         // flex-wrap: wrap !important;
                         column-gap: 2px !important;
                         row-gap: 0px !important;
                         padding: 0px 0px 0px;
-                        span{
+                        span {
                             text-align: center;
                         }
                     }
@@ -1069,12 +1069,11 @@ $Dark_Red_Color: #aa0707;
                             max-width: 75% !important;
                             max-height: 80% !important;
                         }
-                        span{
-                            bottom:0;
-                            font-size:11px;
-                            position:relative;
+                        span {
+                            bottom: 0;
+                            font-size: 11px;
+                            position: relative;
                             text-transform: uppercase;
-
                         }
                     }
                     .card-body {
@@ -1085,7 +1084,7 @@ $Dark_Red_Color: #aa0707;
                                 align-items: center;
                                 justify-content: center;
                                 font-size: 9px !important;
-                                gap: 3px
+                                gap: 3px;
                             }
                         }
                     }
@@ -1110,7 +1109,7 @@ $Dark_Red_Color: #aa0707;
                     width: 48% !important;
                     height: 290px !important;
                     margin: 0px !important;
-                    padding:30px 10px 10px !important;
+                    padding: 30px 10px 10px !important;
                     gap: 8px !important;
                     .card-title.h5 {
                         height: 15% !important;
@@ -1130,14 +1129,14 @@ $Dark_Red_Color: #aa0707;
                         position: relative;
                         img {
                             max-width: 100% !important;
-                            max-height:  80% !important ;
+                            max-height: 80% !important ;
                             // margin: auto;
                         }
-                        span{
+                        span {
                             position: relative !important;
                             text-transform: uppercase;
                             font-size: 13px;
-                            bottom:0;
+                            bottom: 0;
                             height: 15%;
                             color: #34495e;
                             font-weight: 700;
@@ -1170,8 +1169,8 @@ $Dark_Red_Color: #aa0707;
                     .result_action_group {
                         button {
                             top: 2% !important;
-                            right:2% !important;
-                            
+                            right: 2% !important;
+
                             img {
                                 height: 25px !important;
                                 width: 25px !important;
@@ -1232,7 +1231,6 @@ $Dark_Red_Color: #aa0707;
                             // color: #f2f4f4;
                             font-size: 12px;
                             text-transform: uppercase;
-
                         }
                     }
                     .card-body {
@@ -1310,7 +1308,6 @@ $Dark_Red_Color: #aa0707;
                             position: absolute;
                             right: -10%;
                             top: 40%;
-                        
 
                             img {
                                 // position: absolute !important;
@@ -1332,11 +1329,11 @@ $Dark_Red_Color: #aa0707;
             margin-left: auto;
             margin-right: auto;
             > img {
-              @media (max-width: 767px) {
-                max-width: 100%;
-              }
+                @media (max-width: 767px) {
+                    max-width: 100%;
+                }
             }
-          }
+        }
     }
 
     .es-scroll-button {
@@ -1477,8 +1474,8 @@ $Dark_Red_Color: #aa0707;
                                 }
                             }
                         }
-                        span{
-                            width:100%;
+                        span {
+                            width: 100%;
                             font-size: 15px;
                             font-weight: 800;
                             text-transform: uppercase;
@@ -1602,7 +1599,6 @@ $Dark_Red_Color: #aa0707;
                         }
                     }
                     .add_to_basket {
-
                         background: #f2f4f4;
                         display: flex;
                         align-items: center;
@@ -1655,17 +1651,16 @@ $Dark_Red_Color: #aa0707;
 .modal-backdrop {
     background-color: #082157 !important;
 }
-.modal-backdrop{
-    z-index:1200 !important;
+.modal-backdrop {
+    z-index: 1200 !important;
 }
-
 
 .basket_offcanvas {
     height: 100vh !important;
     z-index: 1250 !important;
     .offcanvas-header {
         justify-content: flex-start;
-        padding: 15px 20px;
+        padding: 15px 20px 5px;
         background: #f2f4f4;
 
         .offcanvas-title.h5 {
@@ -1718,6 +1713,46 @@ $Dark_Red_Color: #aa0707;
                     column-gap: 4px;
                     padding: 0;
                     justify-content: flex-end;
+                }
+            }
+            .quick__add__form {
+                padding: 5px 20px 5px;
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 1px solid #e5e8e8 !important;
+                background: #f2f4f4;
+                select {
+                    font-size: 13px;
+                    height: 30px;
+                    width: 30%;
+                    border: 1px solid #e5e8e8;
+                }
+                .input__button__wrapper {
+                    display: flex;
+                    width: 67%;
+                    height: 30px;
+                    justify-content: space-between;
+                    .basket__input.quickadd__input.form-group.has-feedback {
+                        width: 75%;
+                        input {
+                            height: 30px;
+                            border-radius: 0;
+                            padding: 4px;
+                            border: 1px solid #e5e8e8 !important;
+                        }
+                        .form-control:focus {
+                            border: 1px solid #e5e8e8;
+                            box-shadow: none;
+                        }
+                    }
+                    button {
+                        width: 20%;
+                        border: none;
+                        padding: 2px;
+                        font-size: 12px;
+                        background: #34495e;
+                        color: #f2f4f4;
+                    }
                 }
             }
             .result_status_view_option_container {
@@ -1793,7 +1828,7 @@ $Dark_Red_Color: #aa0707;
                     // margin-top: 10px;
                     // padding: 5px;
                     gap: 10px;
-    
+
                     .card {
                         height: 330px;
                         width: 100%;
@@ -1817,7 +1852,7 @@ $Dark_Red_Color: #aa0707;
                             font-weight: 800;
                             height: 15%;
                         }
-    
+
                         .image_container {
                             height: 55%;
                             display: flex;
@@ -1829,10 +1864,10 @@ $Dark_Red_Color: #aa0707;
                             img {
                                 max-width: 55%;
                                 // max-height: 40%;
-    
+
                                 max-height: 100% !important;
                             }
-                            span{
+                            span {
                                 font-size: 14px;
                                 color: #34495e;
                                 position: absolute;
@@ -1845,7 +1880,7 @@ $Dark_Red_Color: #aa0707;
                             padding: 5px 0 0;
                             height: 25%;
                             color: #34495e;
-    
+
                             // .card-title.h5 {
                             //     font-size: 1rem;
                             //     display: flex;
@@ -1897,7 +1932,7 @@ $Dark_Red_Color: #aa0707;
                                 position: absolute;
                                 top: 2%;
                                 right: 2%;
-    
+
                                 // width: 100%;
                                 img {
                                     height: 28px;
@@ -1907,7 +1942,7 @@ $Dark_Red_Color: #aa0707;
                         }
                     }
                 }
-    
+
                 .Grid3_result_container,
                 .Grid2_result_container {
                     height: 100%;
@@ -1926,12 +1961,12 @@ $Dark_Red_Color: #aa0707;
                             height: 20% !important;
                             font-size: 8px !important;
                             font-weight: 900 !important;
-                            flex-direction: column !important;;
+                            flex-direction: column !important;
                             // flex-wrap: wrap !important;
                             column-gap: 2px !important;
                             row-gap: 0px !important;
                             padding: 0px 0px 0px;
-                            span{
+                            span {
                                 text-align: center;
                             }
                         }
@@ -1943,13 +1978,11 @@ $Dark_Red_Color: #aa0707;
                                 max-width: 75% !important;
                                 max-height: 80% !important;
                             }
-                            span{
-                                bottom:0;
-                                font-size:11px;
-                                position:relative;
-                            text-transform: uppercase;
-
-
+                            span {
+                                bottom: 0;
+                                font-size: 11px;
+                                position: relative;
+                                text-transform: uppercase;
                             }
                         }
                         .card-body {
@@ -1960,7 +1993,7 @@ $Dark_Red_Color: #aa0707;
                                     align-items: center;
                                     justify-content: center;
                                     font-size: 9px !important;
-                                    gap: 3px
+                                    gap: 3px;
                                 }
                             }
                         }
@@ -1986,7 +2019,7 @@ $Dark_Red_Color: #aa0707;
                         width: 48% !important;
                         height: 290px !important;
                         margin: 0px !important;
-                        padding:30px 10px 10px !important;
+                        padding: 30px 10px 10px !important;
                         gap: 8px !important;
                         .card-title.h5 {
                             height: 15% !important;
@@ -2006,18 +2039,17 @@ $Dark_Red_Color: #aa0707;
                             position: relative;
                             img {
                                 max-width: 100% !important;
-                                max-height:  80% !important ;
+                                max-height: 80% !important ;
                                 // margin: auto;
                             }
-                            span{
+                            span {
                                 position: relative !important;
                                 font-size: 13px;
-                                bottom:0;
+                                bottom: 0;
                                 height: 15%;
                                 color: #34495e;
                                 font-weight: 700;
-                            text-transform: uppercase;
-
+                                text-transform: uppercase;
                             }
                         }
                         .card-body {
@@ -2047,8 +2079,8 @@ $Dark_Red_Color: #aa0707;
                         .result_action_group {
                             button {
                                 top: 2% !important;
-                                right:2% !important;
-                                
+                                right: 2% !important;
+
                                 img {
                                     height: 25px !important;
                                     width: 25px !important;
@@ -2075,7 +2107,7 @@ $Dark_Red_Color: #aa0707;
                         border: none !important;
                         border-radius: 0px !important ;
                         border-bottom: 1px solid rgba(0, 0, 0, 0.125) !important;
-    
+
                         .item_no {
                             display: flex;
                             align-items: center;
@@ -2109,8 +2141,7 @@ $Dark_Red_Color: #aa0707;
                                 font-weight: 500;
                                 // color: #f2f4f4;
                                 font-size: 12px;
-                            text-transform: uppercase;
-
+                                text-transform: uppercase;
                             }
                         }
                         .card-body {
@@ -2141,7 +2172,7 @@ $Dark_Red_Color: #aa0707;
                                 font-size: 13px;
                                 text-align: left;
                                 color: #34495e;
-    
+
                                 .item_description {
                                     font-size: 13px !important;
                                     // display: block !important;
@@ -2152,16 +2183,16 @@ $Dark_Red_Color: #aa0707;
                                     text-overflow: ellipsis;
                                     display: flex !important;
                                     flex-direction: column;
-    
+
                                     span:first-child {
                                         // width: 100%;
                                     }
                                     // white-space: nowrap;
                                 }
-    
+
                                 .item_price {
                                     display: block !important;
-    
+
                                     font-size: 16px;
                                     font-weight: 700;
                                 }
@@ -2188,8 +2219,7 @@ $Dark_Red_Color: #aa0707;
                                 position: absolute;
                                 right: -10%;
                                 top: 40%;
-                            
-    
+
                                 img {
                                     // position: absolute !important;
                                     // top: 0;
@@ -2242,8 +2272,8 @@ $Dark_Red_Color: #aa0707;
     }
 }
 
-.basket_offcanvas + .modal-backdrop{
-    z-index:1250 !important;
+.basket_offcanvas ~ .modal-backdrop {
+    z-index: 1250 !important;
 }
 
 .basket_form_modal {
@@ -3311,7 +3341,7 @@ $Dark_Red_Color: #aa0707;
 
 .show-export-modal,
 .show-diamond-export-modal {
-    z-index: 1400!important;
+    z-index: 1400 !important;
     .modal-dialog {
         height: 100%;
         margin: 0;

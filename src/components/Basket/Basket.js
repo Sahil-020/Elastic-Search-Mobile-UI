@@ -42,6 +42,7 @@ import PreviewEmailModal from "./PDF/PreviewEmailModal";
 import PDFModal from "./PDF/PDFModal";
 import ChooseLayoutModal from "./ChooseLayoutModal";
 import ChooseExportModal from "./Export/ChooseExportModal";
+import QuickAddProduct from "./QuickAddProduct";
 const mapStateToProps = (state) => {
   return {
     items: state.cartActions.items,
@@ -739,6 +740,7 @@ class Basket extends Component {
               Clear list
             </button>
           </div>
+          <QuickAddProduct />
           <HandleView handleView={this.handleView} items={items} />
           <div
             className="es_basket_results"

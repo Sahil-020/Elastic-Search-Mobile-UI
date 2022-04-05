@@ -27,6 +27,7 @@ export default function Results(props) {
     goto: "",
     includeGIA: "No",
   });
+  // const [showChooseLayout,setShowChooseLayout] = useState(false)
   const basket = useSelector((state) => state.basket);
   const showWholesale = useSelector(
     (state) => state.basketInputChange.showWholesale
@@ -90,7 +91,7 @@ export default function Results(props) {
     // this.props.toggleLoader({
     //   isLoading: false,
     // });
-    showChooseLayout("Email", res);
+    handleShowChooseLayout("Email", res);
 
     // } else {
     //   window.alert("Please select a basket first");
@@ -111,15 +112,20 @@ export default function Results(props) {
     setData({ ...data, layoutType: layout });
   };
 
-  const showChooseLayout = (value, res) => {
+  const handleShowChooseLayout = (value, res) => {
     console.log("Inside ChooseLayout");
     console.log({ res, value });
+    let chooseLayout = { showChooseLayout: true };
+    let goto = { goto: value };
     setData({
       ...data,
-      showChooseLayout: true,
-      goto: value,
+      ...chooseLayout,
+      ...goto,
+      // showChooseLayout: true,
+      // goto: value,
     });
     handleCurrentRes(res);
+    console.log({ data });
   };
   const hideChooseLayout = () => {
     setData({ ...data, showChooseLayout: false });
@@ -356,7 +362,7 @@ export default function Results(props) {
         isMultipleValueEmpty={isMultipleValueEmpty}
         handleSetCover={handleSetCover}
         handleIncludeGIA={handleIncludeGIA}
-        showChooseLayout={showChooseLayout}
+        showChooseLayout={handleShowChooseLayout}
         handleEmail={handleEmail}
       />
       <PreviewEmailModal
@@ -364,7 +370,7 @@ export default function Results(props) {
         hide={hidePreviewModal}
         layoutType={data.layoutType}
         coverType={data.coverType}
-        showChooseLayout={showChooseLayout}
+        showChooseLayout={handleShowChooseLayout}
         item={
           data.currentRes.length && data.currentRes[0] ? data.currentRes : []
         }
@@ -378,7 +384,7 @@ export default function Results(props) {
         hide={hidePDFModal}
         layoutType={data.layoutType}
         coverType={data.coverType}
-        showChooseLayout={showChooseLayout}
+        showChooseLayout={handleShowChooseLayout}
         item={
           data.currentRes.length && data.currentRes[0] ? data.currentRes : []
         }
@@ -394,7 +400,7 @@ export default function Results(props) {
         showPreviewModal={showPreviewModal}
         showPDFModal={showPDFModal}
         goto={data.goto}
-        showChooseLayout={showChooseLayout}
+        showChooseLayout={handleShowChooseLayout}
         coverType={data.coverType}
         includeGIA={data.includeGIA}
         handleIncludeGIA={handleIncludeGIA}
