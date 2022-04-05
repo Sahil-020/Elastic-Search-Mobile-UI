@@ -1064,7 +1064,7 @@ $Dark_Red_Color: #aa0707;
                 .card {
                     width: 31% !important;
                     height: 180px !important;
-                    padding: 40px 0px 10px !important;
+                    padding: 40px 0px 0px !important;
                     gap: 5px !important;
                     .card-title.h5 {
                         height: 20% !important;
@@ -1080,7 +1080,7 @@ $Dark_Red_Color: #aa0707;
                         }
                     }
                     .image_container {
-                        height: 60% !important;
+                        height: 65% !important;
                         flex-direction: column !important;
                         align-items: center;
                         img {
@@ -1095,7 +1095,9 @@ $Dark_Red_Color: #aa0707;
                         }
                     }
                     .card-body {
-                        height: 20%;
+                        height: 15%;
+                        padding: 0px !important;
+
                         .card-text {
                             div.item_price {
                                 display: flex !important;
@@ -1983,7 +1985,7 @@ $Dark_Red_Color: #aa0707;
                     .card {
                         width: 31% !important;
                         height: 180px !important;
-                        padding: 40px 0px 10px !important;
+                        padding: 40px 0px 0px !important;
                         gap: 5px !important;
                         .card-title.h5 {
                             height: 20% !important;
@@ -1999,7 +2001,7 @@ $Dark_Red_Color: #aa0707;
                             }
                         }
                         .image_container {
-                            height: 60% !important;
+                            height: 65% !important;
                             flex-direction: column !important;
                             align-items: center;
                             img {
@@ -2014,7 +2016,8 @@ $Dark_Red_Color: #aa0707;
                             }
                         }
                         .card-body {
-                            height: 20%;
+                            height: 15%;
+                            padding: 0px !important;
                             .card-text {
                                 div.item_price {
                                     display: flex !important;
