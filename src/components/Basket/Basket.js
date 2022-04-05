@@ -734,7 +734,7 @@ class Basket extends Component {
           // }}
         >
           <div className="basket_no_container">
-            <label>{basketForm.orderNbr}</label>
+            <span>{basketForm.orderNbr}</span>
             <button onClick={() => resetStates()}>
               <img src={Clear} />
               Clear list
