@@ -11,17 +11,21 @@ $Border_Color: #e3e3e3;
 $Light_Blue_Color: #b6d2f2;
 $Light_Red_Color: #f1cece;
 $Dark_Red_Color: #aa0707;
-
-._loading_overlay_overlay {
-    z-index: 111111;
-    height: 100%;
-    .css-42igfv {
-        position: fixed !important;
-        left: 50%;
-        top: 45%;
-        @media (max-width: 767px) {
-            left: 40%;
-            top: 50%;
+._loading_overlay_wrapper {
+    height: 100vh;
+    width: 100vw;
+    ._loading_overlay_overlay {
+        z-index: 111111 !important;
+        height: 100%;
+        width: 100%;
+        .css-42igfv {
+            position: fixed !important;
+            left: 50%;
+            top: 45%;
+            @media (max-width: 767px) {
+                left: 40%;
+                top: 50%;
+            }
         }
     }
 }
