@@ -301,7 +301,7 @@ export default function SingleItem(props) {
                 .map((key, Index) => item[key])
                 .filter((value) => ![undefined, null, ""].includes(value))
                 .length !== 0 ? (
-                <AccordionItem eventKey="1">
+                <AccordionItem eventKey="0">
                   <AccordionHeader>GENERAL INFORMATION</AccordionHeader>
                   <AccordionBody>
                     <Table>
@@ -334,7 +334,7 @@ export default function SingleItem(props) {
                 .map((key, Index) => item[key])
                 .filter((value) => ![undefined, null, ""].includes(value))
                 .length !== 0 ? (
-                <AccordionItem eventKey="2">
+                <AccordionItem eventKey="1">
                   <AccordionHeader>DESCRIPTION</AccordionHeader>
                   <AccordionBody>
                     <Table>
@@ -367,7 +367,7 @@ export default function SingleItem(props) {
                 .map((key, Index) => item[key])
                 .filter((value) => ![undefined, null, ""].includes(value))
                 .length !== 0 ? (
-                <AccordionItem eventKey="3">
+                <AccordionItem eventKey="2">
                   <AccordionHeader>RING DETAIL</AccordionHeader>
                   <AccordionBody>
                     <Table>
@@ -395,7 +395,7 @@ export default function SingleItem(props) {
                 .map((key, Index) => item[key])
                 .filter((value) => ![undefined, null, ""].includes(value))
                 .length !== 0 ? (
-                <AccordionItem eventKey="4">
+                <AccordionItem eventKey="3">
                   <AccordionHeader>DIAMOND DETAIL</AccordionHeader>
                   <AccordionBody>
                     <Table>
@@ -428,7 +428,7 @@ export default function SingleItem(props) {
                 .map((key, Index) => item[key])
                 .filter((value) => ![undefined, null, ""].includes(value))
                 .length !== 0 ? (
-                <AccordionItem eventKey="5">
+                <AccordionItem eventKey="4">
                   <AccordionHeader>COLOR DETAILS</AccordionHeader>
                   <AccordionBody>
                     <Table>
@@ -583,7 +583,7 @@ export default function SingleItem(props) {
                 .map((key, Index) => item[key])
                 .filter((value) => ![undefined, null, ""].includes(value))
                 .length !== 0 ? (
-                <Accordion.Item eventKey="4">
+                <Accordion.Item eventKey="8">
                   <Accordion.Button id="Certificate">
                     CERTIFIED DIAMOND REPORT
                   </Accordion.Button>

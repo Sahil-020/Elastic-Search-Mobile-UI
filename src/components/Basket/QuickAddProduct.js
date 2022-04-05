@@ -345,9 +345,10 @@ class QuickAddProduct extends Component {
         errorMsg = "No products found !";
       }
       toast.error(errorMsg, {
-        position: toast.POSITION.TOP_RIGHT,
+        // position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,
         pauseOnHover: false,
+        theme: "colored",
       });
     }
     // }

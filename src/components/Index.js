@@ -30,52 +30,52 @@ class Index extends Component {
 
   render() {
     return (
-      // <LoadingOverlay active={this.props.isLoading} spinner text="Loading...">
-      <div className="main_container">
-        <ScrollToTop component={<img src={Arrow}></img>} smooth />
-        <Header
-          showBackButton={this.state.showBackButton}
-          handleBackButton={this.handleBackButton}
-        />
-        <Switch>
-          <Route
-            path="/"
-            exact
-            render={() => {
-              return <Redirect to="/JewelrySerial" />;
-            }}
+      <LoadingOverlay active={this.props.isLoading} spinner text="Loading...">
+        <div className="main_container">
+          <ScrollToTop component={<img src={Arrow}></img>} smooth />
+          <Header
+            showBackButton={this.state.showBackButton}
+            handleBackButton={this.handleBackButton}
           />
-          <Route
-            exact
-            path="/JewelrySerial"
-            render={(props) => (
-              <JewelryMain
-                {...props}
-                handleBackButton={this.handleBackButton}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/DiamondSerial"
-            render={(props) => (
-              <DiamondMain
-                {...props}
-                handleBackButton={this.handleBackButton}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/GemstoneSerial"
-            render={(props) => (
-              <GemstoneMain
-                {...props}
-                handleBackButton={this.handleBackButton}
-              />
-            )}
-          />
-          {/*} <Route
+          <Switch>
+            <Route
+              path="/"
+              exact
+              render={() => {
+                return <Redirect to="/JewelrySerial" />;
+              }}
+            />
+            <Route
+              exact
+              path="/JewelrySerial"
+              render={(props) => (
+                <JewelryMain
+                  {...props}
+                  handleBackButton={this.handleBackButton}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/DiamondSerial"
+              render={(props) => (
+                <DiamondMain
+                  {...props}
+                  handleBackButton={this.handleBackButton}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/GemstoneSerial"
+              render={(props) => (
+                <GemstoneMain
+                  {...props}
+                  handleBackButton={this.handleBackButton}
+                />
+              )}
+            />
+            {/*} <Route
             path={[
               "/JewelrySerial/:id",
               "/DiamondSerial/:id",
@@ -83,9 +83,9 @@ class Index extends Component {
             ]}
             render={(props) => <SingleItem {...props} />}
           /> */}
-        </Switch>
-      </div>
-      // </LoadingOverlay>
+          </Switch>
+        </div>
+      </LoadingOverlay>
     );
   }
 }

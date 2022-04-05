@@ -12,6 +12,20 @@ $Light_Blue_Color: #b6d2f2;
 $Light_Red_Color: #f1cece;
 $Dark_Red_Color: #aa0707;
 
+._loading_overlay_overlay {
+    z-index: 111111;
+    height: 100%;
+    .css-42igfv {
+        position: fixed !important;
+        left: 50%;
+        top: 45%;
+        @media (max-width: 767px) {
+            left: 40%;
+            top: 50%;
+        }
+    }
+}
+
 .main_container {
     .styles_scroll-to-top__2A70v {
         /* border-radius: 5%; */
@@ -1710,10 +1724,13 @@ $Dark_Red_Color: #aa0707;
                     background: inherit;
                     font-size: 12px;
                     display: flex;
-                    align-items: center;
+                    align-items: flex-start;
                     column-gap: 4px;
                     padding: 0;
                     justify-content: flex-end;
+                    img {
+                        margin: 3px 2px 2px;
+                    }
                 }
             }
             .quick__add__form {
