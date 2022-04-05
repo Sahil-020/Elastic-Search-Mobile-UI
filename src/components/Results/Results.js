@@ -115,14 +115,10 @@ export default function Results(props) {
   const handleShowChooseLayout = (value, res) => {
     console.log("Inside ChooseLayout");
     console.log({ res, value });
-    let chooseLayout = { showChooseLayout: true };
-    let goto = { goto: value };
     setData({
       ...data,
-      ...chooseLayout,
-      ...goto,
-      // showChooseLayout: true,
-      // goto: value,
+      showChooseLayout: true,
+      goto: value,
     });
     handleCurrentRes(res);
     console.log({ data });
