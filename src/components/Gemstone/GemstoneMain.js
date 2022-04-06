@@ -280,32 +280,24 @@ class GemstoneMain extends Component {
                 <ShowCode onCheck={this.onCheckSelect} />
                 <HandleWholesale />
               </div>
-              {/* <Offcanvas
-                show={showFilters}
-                onHide={() => this.setState({ showFilters: false })}
-                placement="bottom"
-              >
-                <Offcanvas.Header closeButton>
-                  <Offcanvas.Title>Filters</Offcanvas.Title>
-                  <SearchCriteria />
-                </Offcanvas.Header>
-                <Offcanvas.Body> */}
+              <SearchCriteria handleShowResults={this.handleShowResults} />
+
               <div className="filters" id="Search_Filters">
                 <div className="filter_header">
                   <h4>Filters</h4>{" "}
-                  <span>
+                  {/* <span>
                     <img src={Clear} />{" "}
                     <SearchCriteria
                       handleShowResults={this.handleShowResults}
                     />
-                  </span>
+                  </span> */}
                   <button
                     onClick={() => {
                       this.handleShowFilters("filters");
                       this.handleShowResults(true);
                     }}
                   >
-                    X
+                    Search
                   </button>
                 </div>
                 <Accordion defaultActiveKey="0">
@@ -370,11 +362,7 @@ class GemstoneMain extends Component {
                   </Accordion.Item>
                 </Accordion>
               </div>
-              {/* </Offcanvas.Body>
-              </Offcanvas> */}
             </div>
-            {/* <SelectedFilters className="selectedFilters" /> */}
-            {/* <SearchCriteria /> */}
 
             {showResults ? (
               <ReactiveList
