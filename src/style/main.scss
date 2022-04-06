@@ -1410,8 +1410,9 @@ $Dark_Red_Color: #aa0707;
                 .single_item_container {
                     display: flex;
                     flex-direction: column;
-                    gap: 15px;
-                    padding: 5px 0px 10px;
+                    gap: 0px;
+                    padding: 0px 0px 10px;
+                    background: white !important;
                     // background-color: #f2f4f4 !important;
                     font-family: "Circular-Loom" !important;
                     height: 93%;
@@ -1442,7 +1443,7 @@ $Dark_Red_Color: #aa0707;
                         justify-items: center;
                         gap: 6px;
                         color: #34495e;
-                        padding: 0px 25px;
+                        padding: 10px 25px;
                         background-color: #f2f4f4 !important;
 
                         .image_container {
