@@ -847,18 +847,20 @@ $Dark_Red_Color: #aa0707;
             padding: 0px 0px 0px 0px;
             width: 100%;
             max-height: 30px;
-            margin: 5px 0px;
+            margin: 0px 0px;
             overflow-y: hidden;
             .clear-filter-btn,
             .clear-all-btn {
                 font-size: 14px;
                 white-space: nowrap !important;
-                margin: 4px;
+                margin: 0px 4px;
                 -webkit-appearance: none;
                 border: none;
                 border-right: 1px solid;
                 outline: none;
-                background: transparent;
+                // background: transparent;
+                background: #34495e;
+                color: #f2f4f4;
                 .clear--icon {
                     margin-left: 6px;
                     opacity: 0.7;
@@ -868,8 +870,10 @@ $Dark_Red_Color: #aa0707;
                 border: none !important;
                 position: sticky;
                 right: 0;
-                background: white;
+                // background: white;
                 white-space: nowrap !important;
+                background: #34495e;
+                color: #f2f4f4;
             }
         }
         .result_status_view_option_container {
@@ -1410,7 +1414,7 @@ $Dark_Red_Color: #aa0707;
                     padding: 5px 0px 10px;
                     background-color: #f2f4f4 !important;
                     font-family: "Circular-Loom" !important;
-                    height: 90%;
+                    height: 93%;
                     overflow: scroll;
                     .item_header_options {
                         display: flex;
@@ -1582,6 +1586,9 @@ $Dark_Red_Color: #aa0707;
                                     .accordion-button:not(.collapsed)::after {
                                         content: "-";
                                         padding: 0px 7px;
+                                    }
+                                    .accordion-button:hover {
+                                        z-index: 0 !important;
                                     }
                                 }
                                 .accordion-body {
