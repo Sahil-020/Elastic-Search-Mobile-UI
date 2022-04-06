@@ -274,25 +274,35 @@ export default function SingleItem(props) {
                 : ``}
             </h6>
             <div className="single_item_description">{item.Description}</div>
-            {item.RetailPrice && (
+            {item.RetailPrice || (item.WholesalePrice && showWholesale) ? (
               <div className="single_item_price">
-                <label>
-                  {currencyFormatter.format(`${item.RetailPrice}`, {
-                    code: "USD",
-                    precision: 0,
-                  }) || ""}
-                  <span> (R)</span>
-                </label>
+                {item.RetailPrice && (
+                  <label>
+                    {currencyFormatter.format(`${item.RetailPrice}`, {
+                      code: "USD",
+                      precision: 0,
+                    }) || ""}
+                    <span> (R)</span>
+                  </label>
+                )}{" "}
+                {item.WholesalePrice && showWholesale && (
+                  <label>
+                    {isMultipleValueEmpty(item, "WholesalePrice")}{" "}
+                    <span>(W)</span>
+                  </label>
+                )}
               </div>
+            ) : (
+              <></>
             )}
-            {item.WholesalePrice && showWholesale && (
+            {/* {item.WholesalePrice && showWholesale && (
               <div className="single_item_price">
                 <label>
                   {isMultipleValueEmpty(item, "WholesalePrice")}{" "}
                   <span>(W)</span>
                 </label>
               </div>
-            )}
+            )} */}
           </div>
 
           <div className="single_item_details">
@@ -526,7 +536,7 @@ export default function SingleItem(props) {
                             <td>
                               <li>Hold By</li>
                             </td>
-                            <td>{isValueEmpty(item.HoldBy)}</td>
+                            <td>{item.HoldBy}</td>
                           </tr>
                         )}
                         {item.HoldCustomerName && (
@@ -534,7 +544,7 @@ export default function SingleItem(props) {
                             <td>
                               <li>Hold Customer Name</li>
                             </td>
-                            <td>{isValueEmpty(item.HoldCustomerName)}</td>
+                            <td>{item.HoldCustomerName}</td>
                           </tr>
                         )}
                         {item.HoldDate && (
@@ -543,7 +553,7 @@ export default function SingleItem(props) {
                               <li>Hold Date</li>
                             </td>
                             <td>
-                              {isValueEmpty(item.HoldDate)
+                              {item.HoldDate
                                 ? moment(new Date(`${item.HoldDate}`)).format(
                                     "MM/DD/YYYY"
                                   )
@@ -557,7 +567,7 @@ export default function SingleItem(props) {
                               <li>Release Date</li>
                             </td>
                             <td>
-                              {isValueEmpty(item.ReleaseDate)
+                              {item.ReleaseDate
                                 ? moment(
                                     new Date(`${item.ReleaseDate}`)
                                   ).format("MM/DD/YYYY")
@@ -571,7 +581,7 @@ export default function SingleItem(props) {
                             <td>
                               <li>Hold Text</li>
                             </td>
-                            <td>{isValueEmpty(item.HoldText)}</td>
+                            <td>{item.HoldText}</td>
                           </tr>
                         )}
                       </tbody>

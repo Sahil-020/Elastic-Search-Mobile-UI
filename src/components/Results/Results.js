@@ -166,7 +166,9 @@ export default function Results(props) {
               // handleItemToView(item);
               // toggleSingleItem(true);
               // showItem(item._id);
-              dispatch(toggleSingleView({ show: true, item: item }));
+              if (!basket.show) {
+                dispatch(toggleSingleView({ show: true, item: item }));
+              }
               // handleBackButton(true);
             }}
           >
