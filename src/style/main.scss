@@ -1412,7 +1412,7 @@ $Dark_Red_Color: #aa0707;
                     flex-direction: column;
                     gap: 15px;
                     padding: 5px 0px 10px;
-                    background-color: #f2f4f4 !important;
+                    // background-color: #f2f4f4 !important;
                     font-family: "Circular-Loom" !important;
                     height: 93%;
                     overflow: scroll;
@@ -1443,6 +1443,8 @@ $Dark_Red_Color: #aa0707;
                         gap: 6px;
                         color: #34495e;
                         padding: 0px 25px;
+                        background-color: #f2f4f4 !important;
+
                         .image_container {
                             width: 100%;
                             padding: 0px 0px 0px;
@@ -1637,7 +1639,8 @@ $Dark_Red_Color: #aa0707;
                         }
                     }
                     .add_to_basket {
-                        background: #f2f4f4;
+                        background-color: #f2f4f4 !important;
+
                         display: flex;
                         align-items: center;
                         justify-content: space-between;

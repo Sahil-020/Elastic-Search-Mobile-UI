@@ -110,6 +110,7 @@ class JewelryMain extends Component {
   // }
 
   handleShowResults(value) {
+    console.log("inside show results");
     this.setState({ showResults: value });
   }
 
