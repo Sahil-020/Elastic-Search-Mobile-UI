@@ -133,7 +133,7 @@ class SearchCriteria extends Component {
                   // className=""
                   onClick={() => {
                     clearFilter("clearAll");
-                    this.props.handleShowResults(false);
+                    this.props.handleClearFilters();
                   }}
                 >
                   Clear filters

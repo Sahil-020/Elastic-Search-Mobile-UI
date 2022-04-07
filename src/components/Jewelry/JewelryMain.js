@@ -87,7 +87,7 @@ class JewelryMain extends Component {
       showBasketOptions: false,
       selected: "RetailPrice",
       sort: "asc",
-      sizeLimit: 15,
+      sizeLimit: 45,
       showResults: false,
     };
     // this.clearFilters = this.clearFilters.bind(this)
@@ -102,6 +102,7 @@ class JewelryMain extends Component {
     this.handleShowFilters = this.handleShowFilters.bind(this);
     this.handleShowBasketOptions = this.handleShowBasketOptions.bind(this);
     this.handleShowResults = this.handleShowResults.bind(this);
+    this.handleClearFilters = this.handleClearFilters.bind(this);
   }
 
   // componentDidMount() {
@@ -109,8 +110,16 @@ class JewelryMain extends Component {
   //   // this.setState({ showFilters: false });
   // }
 
+  handleClearFilters() {
+    console.log("Inside handle clear filters");
+    this.handleShowResults(false);
+    this.handleRfidSearchSignal(false);
+    this.handleSerialSearchSignal(false);
+    this.handleSoldCustSignal(false);
+  }
+
   handleShowResults(value) {
-    console.log("inside show results");
+    console.log("inside show results", { value });
     this.setState({ showResults: value });
   }
 
@@ -259,6 +268,7 @@ class JewelryMain extends Component {
   }
 
   render() {
+    console.log("Inside Render");
     let {
       showFilters,
       serialSearchSignal,
@@ -270,7 +280,7 @@ class JewelryMain extends Component {
       showResults,
     } = this.state;
     let { basket, toggleBasket } = this.props;
-    // console.log();
+    console.log(this.state);
     let andQuery = [];
     if (serialSearchSignal) {
       andQuery = ["SerialSearch"];
@@ -343,7 +353,7 @@ class JewelryMain extends Component {
                 <ShowCode onCheck={this.onCheckSelect} />
                 <HandleWholesale />
               </div>
-              <SearchCriteria handleShowResults={this.handleShowResults} />
+              <SearchCriteria handleClearFilters={this.handleClearFilters} />
               <div className="filters" id="Search_Filters">
                 <div className="filter_header">
                   <h4>Filters</h4>{" "}
@@ -394,7 +404,7 @@ class JewelryMain extends Component {
                       <Warehouse handleShowResults={this.handleShowResults} />
                       <MemoOut handleShowResults={this.handleShowResults} />
                       <SoldCustomerSearch
-                        handleSoldCustSignal={this.handleRfidSearchSignal}
+                        handleSoldCustSignal={this.handleSoldCustSignal}
                         handleShowResults={this.handleShowResults}
                       />
                     </Accordion.Body>

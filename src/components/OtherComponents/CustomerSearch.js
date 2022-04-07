@@ -29,6 +29,35 @@ class CustomerSearch extends Component {
     this.onChangeDebounced = debounce(this.onChangeDebounced, 700);
   }
 
+  async componentDidMount() {
+    let urlString = window.location.href;
+    let paramString = urlString.split("?")[1];
+    let queryString = new URLSearchParams(paramString);
+    // console.log({ queryString });
+    for (let pair of queryString.entries()) {
+      // console.log({ pair });
+      // console.log("Key is: " + pair[0]);
+      // console.log("Value is: " + pair[1]);
+
+      if (pair[0] === "Customer") {
+        let value = pair[1].replace(/"/g, "");
+        // this.inputOnChange(pair[1]);
+        // this.setState({ customerName: pair[1] });
+        this.props.setBasketFormInput({
+          customer: { Customer: value },
+        });
+        let res = await this.fetchCustomers(value);
+        console.log({ res });
+        if (res.length !== 0) {
+          this.props.setBasketFormInput({ customer: res[0] });
+        }
+
+        // this.setState({ showBasketModal: pair[1] === "true" && true });
+        // document.location.reload(true);
+      }
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (this.state.basketInputs !== nextProps.basketInputObj) {
       this.setState({
@@ -37,11 +66,11 @@ class CustomerSearch extends Component {
     }
   }
 
-  inputOnChange(event) {
+  inputOnChange(value) {
     this.setState({
-      customerName: event.target.value,
+      customerName: value,
     });
-    this.onChangeDebounced(event.target.value);
+    this.onChangeDebounced(value);
   }
   async onChangeDebounced(val) {
     this.setState({
@@ -129,9 +158,9 @@ class CustomerSearch extends Component {
                   id="customer"
                   required
                   {...getInputProps({
-                    placeholder: "Customer ",
+                    placeholder: "Customer Quicksearch",
                     onChange: (e) => {
-                      this.inputOnChange(e, selectedItem);
+                      this.inputOnChange(e.target.value, selectedItem);
                       if (e.target.value === "") {
                         this.props.setBasketFormInput({ customer: {} });
                         clearSelection();

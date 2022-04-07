@@ -28,7 +28,13 @@ class RfidSearch extends Component {
         // }}
         iconPosition="right"
         // onChange={(value) => this.setState({ value: value })}
-        // onValueChange={(value) => this.handleChange(value)}
+        onValueChange={(value) => {
+          if (value) {
+            this.props.handleRfidSearchSignal(true);
+            return;
+          }
+          this.props.handleRfidSearchSignal(false);
+        }}
         // onValueSelected={(value) => this.props.handleRfidSearchSignal(value)}
         // onValueSelected={(value) => {
         //   // if (value) {

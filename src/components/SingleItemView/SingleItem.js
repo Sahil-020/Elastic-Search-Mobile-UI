@@ -15,10 +15,16 @@ import {
   GemstoneSerialApp,
   AppbaseAppUrl,
   AppbaseCredentials,
+  BaseURL,
 } from "../../utils/constants";
 import Appbase from "appbase-js";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleSingleView, addToCart, setBasketFormInput } from "../actions";
+import {
+  toggleSingleView,
+  addToCart,
+  setBasketFormInput,
+  toggleIframeModal,
+} from "../actions";
 import { useSwipeable } from "react-swipeable";
 import { FieldData } from "./FieldData";
 import Email from "../../assets/icons/Email.png";
@@ -526,7 +532,18 @@ export default function SingleItem(props) {
 
               {item.HoldText && (
                 <AccordionItem eventKey="7">
-                  <AccordionHeader>HOLD NOTES DETAILS:</AccordionHeader>
+                  <AccordionHeader
+                    onClick={() =>
+                      dispatch(
+                        toggleIframeModal({
+                          show: true,
+                          url: `${BaseURL}/pages/kw/kw801004.aspx?PopupPanel=On&InventoryID=${item.StyleNumber}&LotSerialNbr=${item.SerialNumber}`,
+                        })
+                      )
+                    }
+                  >
+                    HOLD NOTES:
+                  </AccordionHeader>
 
                   <AccordionBody>
                     <Table>

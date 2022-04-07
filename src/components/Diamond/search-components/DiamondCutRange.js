@@ -103,11 +103,11 @@ class DiamondCutRange extends Component {
             react={{
               or: ["DiamondStartCut", "DiamondEndCut"],
             }}
-            onChange={(value) => {
-              // if (value) {
-              this.props.handleShowResults(true);
-              // }
-            }}
+            // onChange={(value) => {
+            //   // if (value) {
+            //   this.props.handleShowResults(true);
+            //   // }
+            // }}
           />
         </div>
       </div>

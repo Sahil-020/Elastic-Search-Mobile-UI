@@ -117,11 +117,11 @@ class DiamondClarityRange extends Component {
             react={{
               or: ["DiamondStartCarat", "DiamondEndCarat"],
             }}
-            onChange={(value) => {
-              // if (value) {
-              this.props.handleShowResults(true);
-              // }
-            }}
+            // onChange={(value) => {
+            //   // if (value) {
+            //   this.props.handleShowResults(true);
+            //   // }
+            // }}
           />
         </div>
       </div>

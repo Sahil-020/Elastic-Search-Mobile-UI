@@ -70,11 +70,11 @@ class StoneRatio extends Component {
             start: "$",
             end: "$",
           }}
-          onValueChange={(value) => {
-            // if (value) {
-            this.props.handleShowResults(true);
-            // }
-          }}
+          // onValueChange={(value) => {
+          //   // if (value) {
+          //   this.props.handleShowResults(true);
+          //   // }
+          // }}
         />
       </div>
     );

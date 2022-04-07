@@ -524,8 +524,8 @@ class QuickAddProduct extends Component {
             }}
           </Downshift>
           <button className="quick__add--btn" onClick={this.handleQuickAdd}>
-            {!isMobileOnly && "Quick Add"}
-            {isMobileOnly && "Add"}
+            {/* {!isMobileOnly && "Quick Add"} */}
+            {/* {isMobileOnly && "Add"} */} Add
           </button>
           {/* <button
             className="quick__add_bulk_btn"

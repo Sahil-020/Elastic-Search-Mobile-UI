@@ -71,7 +71,7 @@ class GemstoneMain extends Component {
       showBasketOptions: false,
       selected: "RetailPrice",
       sort: "asc",
-      sizeLimit: 15,
+      sizeLimit: 45,
       showResults: false,
     };
     // this.clearFilters = this.clearFilters.bind(this)
@@ -87,12 +87,20 @@ class GemstoneMain extends Component {
     this.handleShowFilters = this.handleShowFilters.bind(this);
     this.handleShowBasketOptions = this.handleShowBasketOptions.bind(this);
     this.handleShowResults = this.handleShowResults.bind(this);
+    this.handleClearFilters = this.handleClearFilters.bind(this);
   }
 
   // componentDidMount() {
   //   this.setState({ showFilters: true });
   //   // this.setState({ showFilters: false });
   // }
+
+  handleClearFilters() {
+    this.handleShowResults(false);
+    this.handleSerialSearchSignal(false);
+    this.handleRfidSearchSignal(false);
+    this.handleRfidSearchSignal(false);
+  }
 
   handleShowResults(value) {
     this.setState({ showResults: value });
@@ -280,7 +288,7 @@ class GemstoneMain extends Component {
                 <ShowCode onCheck={this.onCheckSelect} />
                 <HandleWholesale />
               </div>
-              <SearchCriteria handleShowResults={this.handleShowResults} />
+              <SearchCriteria handleClearFilters={this.handleClearFilters} />
 
               <div className="filters" id="Search_Filters">
                 <div className="filter_header">

@@ -19,13 +19,19 @@ class SerialSearchComponent extends Component {
         icon={false}
         iconPosition={"right"}
         // onValueSelected={(value) => this.props.handleSerialSearchSignal(true)}
-        onValueSelected={(value) => {
-          // if (value) {
-          this.props.handleSerialSearchSignal(true);
-          this.props.handleShowResults(true);
-          // }
+        onValueChange={(value) => {
+          if (value) {
+            this.props.handleSerialSearchSignal(true);
+            return;
+          }
+          this.props.handleSerialSearchSignal(false);
         }}
-        URLParams={true}
+        onValueSelected={(value) => {
+          if (value) {
+            this.props.handleShowResults(true);
+          }
+        }}
+        // URLParams={true}
       />
     );
   }

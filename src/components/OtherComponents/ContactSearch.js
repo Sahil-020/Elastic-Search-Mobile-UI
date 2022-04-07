@@ -30,6 +30,35 @@ class ContactSearch extends Component {
     this.onChangeDebounced = debounce(this.onChangeDebounced, 700);
   }
 
+  async componentDidMount() {
+    let urlString = window.location.href;
+    let paramString = urlString.split("?")[1];
+    let queryString = new URLSearchParams(paramString);
+    // console.log({ queryString });
+    for (let pair of queryString.entries()) {
+      // console.log({ pair });
+      // console.log("Key is: " + pair[0]);
+      // console.log("Value is: " + pair[1]);
+
+      if (pair[0] === "Contact") {
+        let value = pair[1].replace(/"/g, "");
+        // this.inputOnChange(pair[1]);
+        // this.setState({ customerName: pair[1] });
+        this.props.setBasketFormInput({
+          contact: { DisplayName: value },
+        });
+        let res = await this.fetchContacts(value);
+        console.log({ res });
+        if (res.length !== 0) {
+          this.props.setBasketFormInput({ contact: res[0] });
+        }
+
+        // this.setState({ showBasketModal: pair[1] === "true" && true });
+        // document.location.reload(true);
+      }
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (this.state.basketInputs !== nextProps.basketInputObj) {
       this.setState({
@@ -39,11 +68,11 @@ class ContactSearch extends Component {
     }
   }
 
-  inputOnChange(event) {
+  inputOnChange(value) {
     this.setState({
-      contactUpdating: event.target.value,
+      contactUpdating: value,
     });
-    this.onChangeDebounced(event.target.value);
+    this.onChangeDebounced(value);
   }
   async onChangeDebounced(val) {
     this.setState({
@@ -142,9 +171,9 @@ class ContactSearch extends Component {
                   id="contact"
                   required
                   {...getInputProps({
-                    placeholder: "Contact",
+                    placeholder: "Contact Quicksearch",
                     onChange: (e) => {
-                      this.inputOnChange(e, selectedItem);
+                      this.inputOnChange(e.target.value, selectedItem);
                       if (e.target.value === "") {
                         clearSelection();
                         this.setState({

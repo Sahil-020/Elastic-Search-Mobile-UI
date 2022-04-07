@@ -127,11 +127,11 @@ class DiamondColorRange extends Component {
             react={{
               or: ["DiamondStartColor", "DiamondEndColor"],
             }}
-            onChange={(value) => {
-              // if (value) {
-              this.props.handleShowResults(true);
-              // }
-            }}
+            // onChange={(value) => {
+            //   // if (value) {
+            //   this.props.handleShowResults(true);
+            //   // }
+            // }}
           />
         </div>
       </div>

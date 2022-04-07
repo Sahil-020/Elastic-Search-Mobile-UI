@@ -9,6 +9,7 @@ import ScrollToTop from "react-scroll-to-top";
 import Arrow from "../assets/icons/arrow-151-24.png";
 import { connect } from "react-redux";
 import LoadingOverlay from "react-loading-overlay";
+import IframeModal from "./OtherComponents/IframeModal";
 
 const mapStateToProps = (state) => {
   return {
@@ -84,6 +85,7 @@ class Index extends Component {
             render={(props) => <SingleItem {...props} />}
           /> */}
           </Switch>
+          <IframeModal />
         </div>
       </LoadingOverlay>
     );

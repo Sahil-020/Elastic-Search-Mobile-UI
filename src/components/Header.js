@@ -14,32 +14,21 @@ export default function Header(props) {
   const location = useLocation();
   const history = useHistory();
 
-  const handleBack = () => {
-    // console.log("location : ", location);
-    handleBackButton(false);
-    // let path = location.pathname;
-    // let parentLocation;
-    // let lastIndex;
-    // for (let i = path.length - 1; i >= 0; i--) {
-    //   if (path[i] === "/") {
-    //     lastIndex = i;
-    //     break;
-    //   }
-    // }
-    // parentLocation = path.substring(0, lastIndex);
-    // history.push(parentLocation);
-    history.goBack();
-  };
   useEffect(() => {
-    let count = 0;
-    let path = location.pathname;
-    for (let i = 0; i < path.length; i++) {
-      if (path[i] === "/") {
-        count++;
+    let urlString = window.location.href;
+    let paramString = urlString.split("?")[1];
+    let queryString = new URLSearchParams(paramString);
+    // console.log({ queryString });
+    for (let pair of queryString.entries()) {
+      // console.log({ pair });
+      // console.log("Key is: " + pair[0]);
+      // console.log("Value is: " + pair[1]);
+
+      if (pair[0] === "Basket") {
+        // this.setState({ showBasketModal: true });
+        dispatch(toggleBasket({ show: true }));
+        // document.location.reload(true);
       }
-    }
-    if (count === 2) {
-      handleBackButton(true);
     }
   }, []);
 
