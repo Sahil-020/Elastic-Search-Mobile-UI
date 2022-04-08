@@ -949,7 +949,7 @@ $Dark_Red_Color: #aa0707;
                 .card {
                     height: 330px;
                     width: 100%;
-                    padding: 40px 25px 15px;
+                    padding: 15px;
                     gap: 10px;
                     // font-family: "Circular-Loom" !important;
                     border-radius: 0px;
@@ -978,17 +978,21 @@ $Dark_Red_Color: #aa0707;
                         justify-content: center;
                         width: 100%;
                         position: relative;
-                        img {
-                            max-width: 55%;
-                            // max-height: 40%;
+                        .item_image {
+                            height: 90%;
+                            img {
+                                max-width: 100%;
+                                // max-height: 40%;
 
-                            max-height: 100% !important;
+                                max-height: 100% !important;
+                            }
                         }
                         span {
                             font-size: 14px;
                             color: #34495e;
-                            position: absolute;
-                            bottom: -10%;
+                            // position: absolute;
+                            // bottom: -10%;
+                            height: 10%;
                             font-weight: 700;
                             text-transform: uppercase;
                         }
@@ -1072,9 +1076,10 @@ $Dark_Red_Color: #aa0707;
                 gap: 6px !important;
                 .card {
                     width: 31% !important;
-                    height: 180px !important;
-                    padding: 40px 0px 0px !important;
-                    gap: 5px !important;
+                    height: 160px !important;
+                    padding: 5px !important;
+                    gap: 10px !important;
+                    // justify-content: space-between;
                     .card-title.h5 {
                         height: 20% !important;
                         font-size: 8px !important;
@@ -1092,11 +1097,15 @@ $Dark_Red_Color: #aa0707;
                         height: 65% !important;
                         flex-direction: column !important;
                         align-items: center;
-                        img {
-                            max-width: 75% !important;
-                            max-height: 80% !important;
+                        .item_image {
+                            height: 90%;
+                            img {
+                                max-width: 100% !important;
+                                max-height: 100% !important;
+                            }
                         }
                         span {
+                            height: 10%;
                             bottom: 0;
                             font-size: 11px;
                             position: relative;
@@ -1138,10 +1147,11 @@ $Dark_Red_Color: #aa0707;
                 gap: 10px !important;
                 .card {
                     width: 48% !important;
-                    height: 290px !important;
+                    height: 260px !important;
                     margin: 0px !important;
-                    padding: 30px 10px 10px !important;
-                    gap: 8px !important;
+                    padding: 10px !important;
+                    // gap: 8px !important;
+                    justify-content: space-between !important;
                     .card-title.h5 {
                         height: 15% !important;
                         font-size: 12px !important;
@@ -1150,7 +1160,7 @@ $Dark_Red_Color: #aa0707;
                         column-gap: 0px !important;
                         row-gap: 0px !important;
                         align-items: center;
-                        padding: 8px 0px 0px;
+                        padding: 0px 0px 0px;
                         flex-direction: column !important;
                     }
                     .image_container {
@@ -1158,17 +1168,20 @@ $Dark_Red_Color: #aa0707;
                         flex-direction: column !important;
                         align-items: center;
                         position: relative;
-                        img {
-                            max-width: 100% !important;
-                            max-height: 80% !important ;
-                            // margin: auto;
+                        .item_image {
+                            height: 90%;
+                            img {
+                                max-width: 100% !important;
+                                max-height: 100% !important ;
+                                // margin: auto;
+                            }
                         }
                         span {
                             position: relative !important;
                             text-transform: uppercase;
                             font-size: 13px;
-                            bottom: 0;
-                            height: 15%;
+                            // bottom: 0;
+                            height: 10%;
                             color: #34495e;
                             font-weight: 700;
                         }
@@ -1246,15 +1259,18 @@ $Dark_Red_Color: #aa0707;
                         display: flex;
                         flex-direction: column;
                         align-items: center;
-                        row-gap: 10px;
-                        img {
-                            max-width: 100% !important;
-                            margin: auto;
-                            // border: none !important;
-                            max-height: 80% !important;
+                        // row-gap: 10px;
+                        .item_image {
+                            height: 90%;
+                            img {
+                                max-width: 100% !important;
+                                margin: auto;
+                                // border: none !important;
+                                max-height: 100% !important;
+                            }
                         }
                         span {
-                            height: 20%;
+                            height: 10%;
                             padding: 2px 10px;
                             // position: absolute;
                             // bottom: 3%;
@@ -1381,7 +1397,7 @@ $Dark_Red_Color: #aa0707;
     }
 }
 .single_item_modal {
-    z-index: 1210 !important;
+    z-index: 1250 !important;
     height: 100vh;
     .modal-dialog {
         margin: 0;
@@ -1414,6 +1430,15 @@ $Dark_Red_Color: #aa0707;
             .modal-body {
                 padding: 10px 0px;
                 height: 100%;
+                img.basket {
+                    z-index: 1220;
+                    position: fixed;
+                    top: 0;
+                    right: 0;
+                    margin: 5px;
+                    height: 22px;
+                    width: 22px;
+                }
 
                 .single_item_container {
                     display: flex;
@@ -1883,7 +1908,6 @@ $Dark_Red_Color: #aa0707;
                 .Grid_result_container,
                 .Grid3_result_container,
                 .Grid2_result_container {
-                    // height: 100%;
                     width: 100%;
                     display: flex;
                     flex-direction: column;
@@ -1896,7 +1920,7 @@ $Dark_Red_Color: #aa0707;
                     .card {
                         height: 330px;
                         width: 100%;
-                        padding: 40px 25px 15px;
+                        padding: 15px;
                         gap: 10px;
                         // font-family: "Circular-Loom" !important;
                         border-radius: 0px;
@@ -1925,17 +1949,21 @@ $Dark_Red_Color: #aa0707;
                             justify-content: center;
                             width: 100%;
                             position: relative;
-                            img {
-                                max-width: 55%;
-                                // max-height: 40%;
+                            .item_image {
+                                height: 90%;
+                                img {
+                                    max-width: 100%;
+                                    // max-height: 40%;
 
-                                max-height: 100% !important;
+                                    max-height: 100% !important;
+                                }
                             }
                             span {
                                 font-size: 14px;
                                 color: #34495e;
-                                position: absolute;
-                                bottom: -10%;
+                                // position: absolute;
+                                // bottom: -10%;
+                                height: 10%;
                                 font-weight: 700;
                                 text-transform: uppercase;
                             }
@@ -1994,7 +2022,10 @@ $Dark_Red_Color: #aa0707;
                                 margin: auto;
                                 background-color: #f2f4f4 !important;
                                 position: absolute;
-                                top: 2%;
+                                // top: 50%;
+                                // right: 2%;
+                                top: 45%;
+                                transform: translateY(-45%);
                                 right: 2%;
 
                                 // width: 100%;
@@ -2009,18 +2040,17 @@ $Dark_Red_Color: #aa0707;
 
                 .Grid3_result_container,
                 .Grid2_result_container {
-                    height: 100%;
                     display: flex;
                     flex-direction: row !important;
                     flex-wrap: wrap;
-                    align-items: flex-start !important;
-                    justify-content: flex-start !important;
-                    gap: 10px !important;
+                    justify-content: space-between !important;
+                    gap: 6px !important;
                     .card {
                         width: 31% !important;
-                        height: 180px !important;
-                        padding: 40px 0px 0px !important;
-                        gap: 5px !important;
+                        height: 160px !important;
+                        padding: 5px !important;
+                        gap: 10px !important;
+                        // justify-content: space-between;
                         .card-title.h5 {
                             height: 20% !important;
                             font-size: 8px !important;
@@ -2038,11 +2068,15 @@ $Dark_Red_Color: #aa0707;
                             height: 65% !important;
                             flex-direction: column !important;
                             align-items: center;
-                            img {
-                                max-width: 75% !important;
-                                max-height: 80% !important;
+                            .item_image {
+                                height: 90%;
+                                img {
+                                    max-width: 100% !important;
+                                    max-height: 100% !important;
+                                }
                             }
                             span {
+                                height: 10%;
                                 bottom: 0;
                                 font-size: 11px;
                                 position: relative;
@@ -2052,7 +2086,9 @@ $Dark_Red_Color: #aa0707;
                         .card-body {
                             height: 15%;
                             padding: 0px !important;
+
                             .card-text {
+                                text-align: center;
                                 div.item_price {
                                     display: flex !important;
                                     align-items: center;
@@ -2064,12 +2100,14 @@ $Dark_Red_Color: #aa0707;
                         }
                         .result_action_group {
                             button {
-                                top: 2% !important;
-                                right: 2% !important;
-                                padding: 3px !important;
+                                // top: 50%;
+                                right: 2%;
+                                top: 45% !important;
+                                transform: translateY(-45%);
+                                padding: 1px 3px !important;
                                 img {
-                                    height: 22px !important;
-                                    width: 22px !important;
+                                    height: 18px !important;
+                                    width: 18px !important;
                                 }
                             }
                         }
@@ -2079,13 +2117,13 @@ $Dark_Red_Color: #aa0707;
                     // justify-content: space-between !important;
                     // padding: 10px 20px !important;
                     gap: 10px !important;
-                    height: 100%;
                     .card {
                         width: 48% !important;
-                        height: 290px !important;
+                        height: 260px !important;
                         margin: 0px !important;
-                        padding: 30px 10px 10px !important;
-                        gap: 8px !important;
+                        padding: 10px !important;
+                        // gap: 8px !important;
+                        justify-content: space-between !important;
                         .card-title.h5 {
                             height: 15% !important;
                             font-size: 12px !important;
@@ -2094,7 +2132,7 @@ $Dark_Red_Color: #aa0707;
                             column-gap: 0px !important;
                             row-gap: 0px !important;
                             align-items: center;
-                            padding: 8px 0px 0px;
+                            padding: 0px 0px 0px;
                             flex-direction: column !important;
                         }
                         .image_container {
@@ -2102,19 +2140,22 @@ $Dark_Red_Color: #aa0707;
                             flex-direction: column !important;
                             align-items: center;
                             position: relative;
-                            img {
-                                max-width: 100% !important;
-                                max-height: 80% !important ;
-                                // margin: auto;
+                            .item_image {
+                                height: 90%;
+                                img {
+                                    max-width: 100% !important;
+                                    max-height: 100% !important ;
+                                    // margin: auto;
+                                }
                             }
                             span {
                                 position: relative !important;
+                                text-transform: uppercase;
                                 font-size: 13px;
-                                bottom: 0;
-                                height: 15%;
+                                // bottom: 0;
+                                height: 10%;
                                 color: #34495e;
                                 font-weight: 700;
-                                text-transform: uppercase;
                             }
                         }
                         .card-body {
@@ -2143,19 +2184,21 @@ $Dark_Red_Color: #aa0707;
                         }
                         .result_action_group {
                             button {
-                                top: 2% !important;
+                                // top: 2% !important;
+
+                                top: 45% !important;
+                                transform: translateY(-45%);
                                 right: 2% !important;
 
                                 img {
-                                    height: 25px !important;
-                                    width: 25px !important;
+                                    height: 22px !important;
+                                    width: 22px !important;
                                 }
                             }
                         }
                     }
                 }
                 .List_result_container {
-                    height: 100%;
                     width: 100%;
                     padding: 0px !important;
                     gap: 6px !important;
@@ -2188,15 +2231,18 @@ $Dark_Red_Color: #aa0707;
                             display: flex;
                             flex-direction: column;
                             align-items: center;
-                            row-gap: 10px;
-                            img {
-                                max-width: 100% !important;
-                                margin: auto;
-                                // border: none !important;
-                                max-height: 80% !important;
+                            // row-gap: 10px;
+                            .item_image {
+                                height: 90%;
+                                img {
+                                    max-width: 100% !important;
+                                    margin: auto;
+                                    // border: none !important;
+                                    max-height: 100% !important;
+                                }
                             }
                             span {
-                                height: 20%;
+                                height: 10%;
                                 padding: 2px 10px;
                                 // position: absolute;
                                 // bottom: 3%;

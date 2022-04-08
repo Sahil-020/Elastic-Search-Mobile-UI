@@ -166,9 +166,9 @@ export default function Results(props) {
               // handleItemToView(item);
               // toggleSingleItem(true);
               // showItem(item._id);
-              if (!basket.show) {
-                dispatch(toggleSingleView({ show: true, item: item }));
-              }
+              // if (!basket.show) {
+              dispatch(toggleSingleView({ show: true, item: item }));
+              // }
               // handleBackButton(true);
             }}
           >
@@ -203,14 +203,16 @@ export default function Results(props) {
               </div>
             )}
             <div className="image_container">
-              <Card.Img
-                variant="top"
-                src={handleImage(item)}
-                onError={(event) => {
-                  event.target.src =
-                    "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg";
-                }}
-              />
+              <div className="item_image">
+                <Card.Img
+                  variant="top"
+                  src={handleImage(item)}
+                  onError={(event) => {
+                    event.target.src =
+                      "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg";
+                  }}
+                />
+              </div>
               <span>
                 {item.IsSold === "1" ? "Sold" : ""}
                 {item.IsRtv === "1" ? "RTV" : ""}

@@ -24,11 +24,13 @@ import {
   addToCart,
   setBasketFormInput,
   toggleIframeModal,
+  toggleBasket,
 } from "../actions";
 import { useSwipeable } from "react-swipeable";
 import { FieldData } from "./FieldData";
 import Email from "../../assets/icons/Email.png";
 import Print from "../../assets/icons/Print.png";
+import Basket from "../../assets/icons/basket_white.png";
 import PreviewEmailModal from "../Basket/PDF/PreviewEmailModal";
 import PDFModal from "../Basket/PDF/PDFModal";
 import ChooseLayoutModal from "../Basket/ChooseLayoutModal";
@@ -48,6 +50,7 @@ export default function SingleItem(props) {
   let { id } = useParams();
 
   const { show, item } = useSelector((state) => state.singleViewModal);
+  const basket = useSelector((state) => state.basket);
   const showWholesale = useSelector(
     (state) => state.basketInputChange.showWholesale
   );
@@ -242,6 +245,13 @@ export default function SingleItem(props) {
     >
       <Modal.Header closeButton></Modal.Header>
       <Modal.Body>
+        {!basket.show && (
+          <img
+            className="basket"
+            src={Basket}
+            onClick={() => dispatch(toggleBasket({ show: true }))}
+          ></img>
+        )}
         <div className="single_item_container">
           <div className="item_short_detail">
             <div className="image_container">
