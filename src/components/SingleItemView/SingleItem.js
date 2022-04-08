@@ -542,18 +542,7 @@ export default function SingleItem(props) {
 
               {item.HoldText && (
                 <AccordionItem eventKey="7">
-                  <AccordionHeader
-                    onClick={() =>
-                      dispatch(
-                        toggleIframeModal({
-                          show: true,
-                          url: `${BaseURL}/pages/kw/kw801004.aspx?PopupPanel=On&InventoryID=${item.StyleNumber}&LotSerialNbr=${item.SerialNumber}`,
-                        })
-                      )
-                    }
-                  >
-                    HOLD NOTES:
-                  </AccordionHeader>
+                  <AccordionHeader>HOLD NOTES:</AccordionHeader>
 
                   <AccordionBody>
                     <Table>

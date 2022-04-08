@@ -16,6 +16,7 @@ export default function Results(props) {
     handleBackButton,
     isValueEmpty,
     isMultipleValueEmpty,
+    handleStockPopUpModal,
   } = props;
   const [data, setData] = useState({
     currentRes: [],
@@ -312,7 +313,14 @@ export default function Results(props) {
                 )}
                 <div className="item_price">
                   {item.RetailPrice ? (
-                    <span>
+                    <span
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (!basket.show) {
+                          handleStockPopUpModal(true, item);
+                        }
+                      }}
+                    >
                       {currencyFormatter.format(`${item.RetailPrice}`, {
                         code: "USD",
                         precision: 0,
@@ -323,7 +331,14 @@ export default function Results(props) {
                     ""
                   )}{" "}
                   {item.WholesalePrice && showWholesale ? (
-                    <span>
+                    <span
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (!basket.show) {
+                          handleStockPopUpModal(true, item);
+                        }
+                      }}
+                    >
                       {isMultipleValueEmpty(item, "WholesalePrice")}
                       <sup>(W)</sup>
                     </span>

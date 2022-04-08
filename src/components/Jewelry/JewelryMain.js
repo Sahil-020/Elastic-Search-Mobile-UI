@@ -66,6 +66,7 @@ import Options from "../../assets/icons/Options.png";
 import Clear from "../../assets/icons/Clear.png";
 import Filter from "../../assets/icons/Filter.png";
 import IsRtv from "./../search-components/IsRtv";
+import StockModal from "../OtherComponents/JewelryStockModal";
 
 const mapStateToProps = (state) => {
   return {
@@ -89,6 +90,8 @@ class JewelryMain extends Component {
       sort: "asc",
       sizeLimit: 45,
       showResults: false,
+      showStockModal: false,
+      res: [],
     };
     // this.clearFilters = this.clearFilters.bind(this)
     this.defaultQuery = this.defaultQuery.bind(this);
@@ -103,12 +106,17 @@ class JewelryMain extends Component {
     this.handleShowBasketOptions = this.handleShowBasketOptions.bind(this);
     this.handleShowResults = this.handleShowResults.bind(this);
     this.handleClearFilters = this.handleClearFilters.bind(this);
+    this.handleStockPopUpModal = this.handleStockPopUpModal.bind(this);
   }
 
   // componentDidMount() {
   //   this.setState({ showFilters: true });
   //   // this.setState({ showFilters: false });
   // }
+
+  handleStockPopUpModal(value, item) {
+    this.setState({ showStockModal: value, res: item });
+  }
 
   handleClearFilters() {
     console.log("Inside handle clear filters");
@@ -488,6 +496,7 @@ class JewelryMain extends Component {
                         viewType={this.state.viewType}
                         isValueEmpty={this.isValueEmpty}
                         isMultipleValueEmpty={this.isMultipleValueEmpty}
+                        handleStockPopUpModal={this.handleStockPopUpModal}
                         // items={this.state.result}
                         // handleBackButton={handleBackButton}
                       />
@@ -534,6 +543,14 @@ class JewelryMain extends Component {
             />
           </Offcanvas.Body>
         </Offcanvas>
+        {this.state.showStockModal && (
+          <StockModal
+            show={this.state.showStockModal}
+            callback={this.handleStockPopUpModal}
+            result={this.state.res}
+            checked={this.state.checked}
+          />
+        )}
       </>
     );
   }
