@@ -47,7 +47,7 @@ class Index extends Component {
               "CF_Authorization=eyJhbGciOiJSUzI1NiIsImtpZCI6IjYyMGIyZTRiYzRjZDFhNjBkNzM1NWVhZDFjMjg5YTIwYmVjZmY2Y2E1Y2Y0MDM0ZGE1MDM5Zjk3ZDYxOWFmMDYifQ.eyJhdWQiOlsiMzFhMDdmNGQ0YmE3YjAzOWE3YWYwMjI0YzU4YTE0OWI5MmEyNjAzZmY1OTk0NTBjNjE0ZWVkZjZkZWIzMTBiYiJdLCJlbWFpbCI6ImNvcnlAS3dpYXQuY29tIiwiZXhwIjoxNjUxMTkzNjk4LCJpYXQiOjE2NDg1NjU2OTgsIm5iZiI6MTY0ODU2NTY5OCwiaXNzIjoiaHR0cHM6Ly9rd2lhdC5jbG91ZGZsYXJlYWNjZXNzLmNvbSIsInR5cGUiOiJhcHAiLCJpZGVudGl0eV9ub25jZSI6InNTc2hVejE1QzdUaUpBaWsiLCJzdWIiOiI2NjVjMGM0NC1iMTYyLTQ0NWQtYmMyMy1iMDE2YzJmYWYxYWEiLCJjb3VudHJ5IjoiVVMifQ.dTX_ePcQkZhhbyi0dlpLDXKLJ7IRFJ3Y9HuRJ6sHCIFKMwQ1G9gr0onTmJLgTUPeEGbeWySYzk2A7GZA7iz8Tnk8pDq9hkGV7vnOXGfRUP2WtXVEcGjSPpC68oz3pmxrvafG2TfnTKkNRKZCmo8coafCGc3jjO_sOxhJPv2IkgIG_pDDXE5mjVS9P18x5tHzQu0fyeqxNWpRI7NOV6OkeURqVHEfUjQk5YfTB2KgfDod6pFKF8on2Oi0ym5yxluMFKu1P-r1dSaNbzCB51_vEx7Jyql7chfwwY6K2tEpQ7hJ1guqN3I_HXYPI0NGcnr5WmMS3BlklsPTvxyqxvY7Jw",
           },
           // credentials: "same-origin",
-          withCredentials: true,
+          // withCredentials: true,
         }
         //   payload
       )
