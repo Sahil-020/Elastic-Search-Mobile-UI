@@ -17,8 +17,15 @@ import {
   SETTOKEN,
   SETSORTOPTION,
   SET_ASSET_OR_MEMO,
+  SET_GROUPS,
 } from "./actionTypes";
 
+export function setGroups(payload) {
+  return {
+    type: SET_GROUPS,
+    payload,
+  };
+}
 export function toggleIframeModal(payload) {
   return {
     type: TOGGLE_IFRAME_MODAL,

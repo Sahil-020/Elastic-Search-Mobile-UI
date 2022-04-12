@@ -19,6 +19,7 @@ import {
   SETSORTOPTION,
   UPDATE_ITEM_SELECTED,
   SET_ASSET_OR_MEMO,
+  SET_GROUPS,
 } from "../actions/actionTypes";
 import { toast } from "react-toastify";
 
@@ -30,6 +31,9 @@ let defaultState = {
 let defaultSingleViewState = {
   show: false,
   item: {},
+};
+let defaultGroupState = {
+  groups: [],
 };
 let defaultBasketState = {
   show: false,
@@ -350,6 +354,19 @@ function sortOption(state = defaultSortOption, action) {
       return state;
   }
 }
+function SetGroups(state = defaultGroupState, action) {
+  let { payload } = action;
+  console.log({ payload });
+
+  switch (action.type) {
+    case SET_GROUPS:
+      return Object.assign({}, state, {
+        groups: payload.groups,
+      });
+    default:
+      return state;
+  }
+}
 
 export default // (history) =>
 combineReducers({
@@ -362,5 +379,6 @@ combineReducers({
   loaderActions,
   tokenState,
   sortOption,
+  SetGroups,
   // router: connectRouter(history),
 });

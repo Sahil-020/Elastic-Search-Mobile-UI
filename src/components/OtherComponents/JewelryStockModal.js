@@ -3,7 +3,7 @@ import { Modal } from "react-bootstrap";
 // import ShowMore from "react-show-more";
 import moment from "moment";
 import currencyFormatter from "currency-formatter";
-// import FullDetailModal from "./FullDetailModal";
+import FullDetailModal from "./FullDetailModal";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -345,11 +345,11 @@ class StockModal extends Component {
             </div>
           </Modal.Body>
         </Modal>
-        {/* <FullDetailModal
+        <FullDetailModal
           show={this.state.show}
           callback={this.modalClose}
           result={this.props.result}
-        /> */}
+        />
       </div>
     );
   }
